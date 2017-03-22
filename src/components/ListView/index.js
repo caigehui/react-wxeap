@@ -12,6 +12,7 @@ const styles = {
     footer: {
         display: 'flex',
         width: '100%',
+        height: 60,
         justifyContent: 'space-around',
         alignItems:'center',
         textAlign: 'center',

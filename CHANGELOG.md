@@ -1,4 +1,4 @@
-# 2017-3-22 (version 0.3.10)
+# 2017-3-22 (version 0.3.11)
 * 引入babel-polyfill解决Android浏览器找不到Symbol的问题
 
 # 2017-3-21 (version 0.3.8)

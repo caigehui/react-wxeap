@@ -1,3 +1,6 @@
+# 2017-3-22 (version 0.3.10)
+* 引入babel-polyfill解决Android浏览器找不到Symbol的问题
+
 # 2017-3-21 (version 0.3.8)
 * 修改了调试的身份验证机制，当options不传auth或者为空字符串时，则不进行身份验证
 * 消除列表body的border

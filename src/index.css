@@ -30,17 +30,17 @@ html, body, :global(#root) {
   font-size: 30px!important;
 }
 :global(.am-textarea-control textarea) {
-  font-size: 25px!important
+  font-size: 30px!important
 }
 :global(.am-textarea-count) {
   font-size: 25px!important
 }
-:global(.am-popup) {
+/*:global(.am-popup) {
   background-color: rgba(0, 0, 0, 0)!important
 }
 :global(.am-popup-mask) {
   background-color: rgba(0, 0, 0, 1)!important
-}
+}*/
 
 /*刷新控件*/
 :global(.am-refresh-control-loading) {

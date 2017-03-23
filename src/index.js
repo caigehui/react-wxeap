@@ -7,10 +7,12 @@ import { DEV_MODE } from './app/constants';
 import ImageViewer from './components/ImageViewer';
 import ListView from './components/ListView';
 import delay from './util/delay';
+import wrapProps from './util/wrapProps';
 import './index.css';
 export {
     DEV_MODE,
     MobileApp,
+    wrapProps,
     request,
     delay,
     bind,

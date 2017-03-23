@@ -1,6 +1,6 @@
 {
   "name": "react-wxeap",
-  "version": "0.3.12",
+  "version": "0.3.15",
   "description": "cnwxsoft web framework",
   "scripts": {
     "build": "babel src --out-dir lib"
@@ -19,7 +19,8 @@
     "react-pinch-zoom-pan": "^1.2.0",
     "re-carousel": "^1.2.7",
     "reactcss": "^1.1.2",
-    "babel-polyfill": "6.23.0"
+    "babel-polyfill": "6.23.0",
+    "moment": "2.18.1"
   },
   "devDependencies": {
     "babel-core": "^6.24.0",

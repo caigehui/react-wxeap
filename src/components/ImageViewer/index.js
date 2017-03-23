@@ -7,13 +7,7 @@ import {
 import { PinchView } from 'react-pinch-zoom-pan'
 import Carousel from 're-carousel';
 import IndicatorDots from './IndicatorDots';
-const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
-let wrapProps;
-if (isIPhone) {
-    wrapProps = {
-        onTouchMove: e => e.preventDefault(),
-    };
-}
+import wrapProps from '../../util/wrapProps'
 const styles = {
     carouselContainer: {
         width: document.documentElement.clientWidth,

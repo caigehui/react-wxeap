@@ -46,6 +46,3 @@ export function compareObject(x, y) {
     }
     return true;
 };
-
-
-Object.prototype.isEqualTo = compareObject;

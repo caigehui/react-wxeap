@@ -12,7 +12,7 @@ html, body, :global(#root) {
 
 :global(.am-list-item .am-input-control input) {
   text-align: right;
-  font-size: 25px!important;
+  font-size: 28px!important;
 }
 
 :global(.am-list-item .am-input-label.am-input-label-5) {
@@ -24,10 +24,10 @@ html, body, :global(#root) {
   font-size: 30px!important;
 }
 :global(.am-list-extra) {
-  font-size: 25px!important;
+  font-size: 28px!important;
 }
 :global(.am-button) {
-  font-size: 30px!important;
+  font-size: 32px!important;
 }
 :global(.am-textarea-control textarea) {
   font-size: 30px!important

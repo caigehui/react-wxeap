@@ -8,6 +8,11 @@ import * as CONSTANTS from './constants';
 
 export default class MobileApp {
 
+    /**
+     * 初始化App
+     * @param {array} routes 
+     * @param {object} options 
+     */
     constructor(routes, options) {
         this.mobileApp = dva({
             onAction: [locationChangeMiddleware],
@@ -18,6 +23,9 @@ export default class MobileApp {
         this.configureAPI(options);
     }
 
+    /**
+     * 启动应用
+     */
     start() {
         if (CONSTANTS.DEV_MODE && this.auth && this.auth.length > 0) {
             fetch(this.origin + this.auth, { credentials: 'include' }).then(() => {

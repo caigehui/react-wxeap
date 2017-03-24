@@ -5,5 +5,7 @@ if (isIPhone) {
     onTouchMove: e => e.preventDefault(),
   };
 }
-
+/**
+ * 防止点击穿透
+ */
 export default wrapProps;

@@ -29,6 +29,12 @@ function exception(err) {
   return { data: null, err }
 }
 
+
+/**
+ * 发送网络请求，如果是POST请求需要传递bodyObject
+ * @param {string} url 
+ * @param {object} bodyObject 
+ */
 export default function request(url, bodyObject) {
   let options = { credentials: 'include' };
   if (bodyObject) options = {

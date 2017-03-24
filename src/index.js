@@ -9,6 +9,7 @@ import ListView from './components/ListView';
 import delay from './util/delay';
 import wrapProps from './util/wrapProps';
 import './index.css';
+import './util/array';
 export {
     DEV_MODE,
     MobileApp,

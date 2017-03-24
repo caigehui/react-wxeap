@@ -1,5 +1,6 @@
-# 2017-3-24 (version 0.3.18)
+# 2017-3-24 (version 0.3.20)
 * 新增两个数组的工具方法
+* 新增Array的removeObjectsByCondition
 
 # 2017-3-22 (version 0.3.15)
 * 引入babel-polyfill解决Android浏览器找不到Symbol的问题

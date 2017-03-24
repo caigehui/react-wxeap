@@ -8,6 +8,7 @@ import ImageViewer from './components/ImageViewer';
 import ListView from './components/ListView';
 import delay from './util/delay';
 import wrapProps from './util/wrapProps';
+import Seperator from './components/Seperator';
 import './index.css';
 import './util/array';
 export {
@@ -19,7 +20,8 @@ export {
     bind,
     routerRedux,
     ImageViewer,
-    ListView
+    ListView,
+    Seperator
 }
 
 //npm config set registry https://registry.npm.taobao.org

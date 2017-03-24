@@ -20,9 +20,6 @@ html, body, :global(#root) {
   font-size: 30px!important;
 }
 
-:global(.am-list-header) {
-  border-bottom: 1px solid rgb(230, 230, 235)
-}
 :global(.am-list-content) {
   font-size: 30px!important;
 }

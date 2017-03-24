@@ -1,8 +1,9 @@
-# 2017-3-24 (version 0.3.25)
+# 2017-3-24 (version 0.3.27)
 * 新增两个数组的工具方法
 * 新增Array的removeObjectsByCondition
 * 对字体进行修改
 * 列表边框调整
+* 新增Seperator分割线
 
 # 2017-3-22 (version 0.3.15)
 * 引入babel-polyfill解决Android浏览器找不到Symbol的问题

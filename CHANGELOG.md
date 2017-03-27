@@ -1,3 +1,6 @@
+# 2017-3-27 (version 0.4.0)
+* 合并0.3的update
+
 # 2017-3-24 (version 0.3.27)
 * 新增两个数组的工具方法
 * 新增Array的removeObjectsByCondition

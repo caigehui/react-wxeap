@@ -53,7 +53,9 @@ export default class extends React.Component {
     }
 
     componentDidMount() {
-        this.onRefresh();
+        if(this.state.tasks.length === 0) {
+            this.onRefresh();
+        }
     }
 
     send = (page) => {

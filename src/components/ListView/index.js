@@ -24,6 +24,9 @@ const styles = {
         backgroundColor: 'rgb(220,220,225)',
     }
 }
+
+let cacheTasks = [];
+
 export default class extends React.Component {
 
     static propTypes = {
@@ -39,8 +42,7 @@ export default class extends React.Component {
             rowHasChanged: (row1, row2) => true,
         });
         this.state = {
-            dataSource: dataSource.cloneWithRows([]),
-            tasks: [],
+            dataSource: dataSource.cloneWithRows(cacheTasks),
             refreshing: false,
             isLoading: false,
             page: 1,
@@ -53,26 +55,24 @@ export default class extends React.Component {
     }
 
     componentDidMount() {
-        if(this.state.tasks.length === 0) {
-            this.onRefresh();
-        }
+        this.onRefresh();
     }
 
     send = (page) => {
         this.props.onFetch && this.props.onFetch(page, (tasks, allLoaded) => {
             this.setState({
                 dataSource: this.state.dataSource.cloneWithRows(tasks),
-                tasks,
                 refreshing: false,
                 isLoading: false,
                 allLoaded
             });
+            cacheTasks = tasks;
         });
     }
     onEndReached = () => {
         const { isLoading, allLoaded, page } = this.state;
         if (isLoading === false && allLoaded === false) {
-            if (this.state.tasks.length === 0) return;/*初始化不加载 */
+            if (cacheTasks.length === 0) return;/*初始化不加载 */
             this.setState({
                 page: page + 1,
                 isLoading: true

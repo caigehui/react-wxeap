@@ -49,3 +49,7 @@ html, body, :global(#root) {
     justify-content: center;
     align-items: center;
 }
+
+:global(.am-badge-text) {
+  background-color: rgb(243, 54, 48) !important
+}

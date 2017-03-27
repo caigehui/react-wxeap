@@ -1,6 +1,6 @@
 {
   "name": "react-wxeap",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "cnwxsoft web framework",
   "scripts": {
     "build": "babel src --out-dir lib"

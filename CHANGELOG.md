@@ -1,3 +1,9 @@
+# 2017-3-28 (version 0.5.2)
+* 新增Navigation
+
+# 2017-3-28 (version 0.4.2)
+* ListView新增属性refreshable控制是否可以下拉刷新，默认为true
+
 # 2017-3-27 (version 0.4.1)
 * 合并0.3的update
 * 列表现在可以缓存数据

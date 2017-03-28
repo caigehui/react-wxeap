@@ -30,10 +30,15 @@ let cacheTasks = [];
 export default class extends React.Component {
 
     static propTypes = {
+        refeshable: PropTypes.bool,
         header: PropTypes.string,
         pageSize: PropTypes.number.isRequired,
         renderRow: PropTypes.func.isRequired,
         onFetch: PropTypes.func.isRequired
+    }
+
+    static defaultProps = {
+        refeshable: true
     }
 
     constructor(props) {
@@ -90,7 +95,7 @@ export default class extends React.Component {
     }
 
     render() {
-        const { header, pageSize, renderRow } = this.props;
+        const { header, pageSize, renderRow, refeshable } = this.props;
         const { allLoaded, isLoading, refreshing } = this.state;
         return (
             <div>
@@ -111,9 +116,9 @@ export default class extends React.Component {
                     scrollEventThrottle={20}
                     onEndReached={this.onEndReached}
                     onEndReachedThreshold={30}
-                    refreshControl={<RefreshControl
+                    refreshControl={refeshable?<RefreshControl
                         refreshing={refreshing}
-                        onRefresh={this.onRefresh} />}
+                        onRefresh={this.onRefresh} />:null}
                         {...this.props}/>
         </div>
         )

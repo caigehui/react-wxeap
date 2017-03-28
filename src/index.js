@@ -11,6 +11,7 @@ import wrapProps from './util/wrapProps';
 import Seperator from './components/Seperator';
 import './index.css';
 import './util/array';
+import Navigation from './components/Navigation';
 export {
     DEV_MODE,
     MobileApp,
@@ -21,7 +22,8 @@ export {
     routerRedux,
     ImageViewer,
     ListView,
-    Seperator
+    Seperator,
+    Navigation
 }
 
 //npm config set registry https://registry.npm.taobao.org

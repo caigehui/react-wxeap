@@ -53,3 +53,7 @@ html, body, :global(#root) {
 :global(.am-badge-text) {
   background-color: rgb(243, 54, 48) !important
 }
+
+:global(.am-navbar) {
+  border-bottom: 1px solid rgb(220, 220, 220);
+}

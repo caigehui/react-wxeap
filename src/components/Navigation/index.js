@@ -115,6 +115,7 @@ export default class Navigation extends React.Component {
 
 
     onMenuClick = (e) => {
+        e.stopPropagation();
         e.preventDefault(); // Fix event propagation on Android
         this.setState({
             showMenu: this.state.switchCompany ? true : !this.state.showMenu,
@@ -177,7 +178,10 @@ export default class Navigation extends React.Component {
                             <Icon type={require('../../assets/menu.svg')} />
                         </div>
                         {messages.length > 0 ?
-                            <div key="2" style={inlineStyles.message} onClick={this.props.onMessagesClick}>
+                            <div key="2" style={inlineStyles.message} onClick={(e) => {
+                                e.stopPropagation();
+                                this.props.onMessagesClick && this.props.onMessagesClick();
+                            }}>
                                 <Badge text={messages.length} size="large" />
                             </div> : null}
                     </div>

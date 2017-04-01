@@ -1,8 +1,15 @@
+#2017-4-1 (version 0.5.12)
+* 新增返回到移动端首页的方法：backToHome
+
+#2017-4-1 (version 0.5.10)
+* 修复Navigation的点击BUG
+
 #2017-4-1 (version 0.5.9)
 * 修复Navigation的显示BUG
 
 # 2017-3-28 (version 0.5.3)
 * 修复ListView缓存引起的BUG
+
 # 2017-3-28 (version 0.5.2)
 * 新增Navigation
 

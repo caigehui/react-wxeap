@@ -11,6 +11,7 @@ import wrapProps from './util/wrapProps';
 import Seperator from './components/Seperator';
 import './index.css';
 import './util/array';
+import backToHome from './util/backToHome';
 import Navigation from './components/Navigation';
 export {
     DEV_MODE,
@@ -23,7 +24,8 @@ export {
     ImageViewer,
     ListView,
     Seperator,
-    Navigation
+    Navigation,
+    backToHome
 }
 
 //npm config set registry https://registry.npm.taobao.org

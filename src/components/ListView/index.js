@@ -25,11 +25,14 @@ const styles = {
     }
 }
 
-let cacheTasks = [];
+
+let cacheTasks = {}
 
 export default class extends React.Component {
 
+
     static propTypes = {
+        listId: PropTypes.string,
         refreshable: PropTypes.bool,
         header: PropTypes.string,
         pageSize: PropTypes.number.isRequired,
@@ -38,7 +41,8 @@ export default class extends React.Component {
     }
 
     static defaultProps = {
-        refreshable: true
+        refreshable: true,
+        listId: 'temp'
     }
 
     constructor(props) {
@@ -46,8 +50,9 @@ export default class extends React.Component {
         const dataSource = new ListView.DataSource({
             rowHasChanged: (row1, row2) =>  row1 !== row2,
         });
+        
         this.state = {
-            dataSource: dataSource.cloneWithRows(cacheTasks),
+            dataSource: dataSource.cloneWithRows(cacheTasks[props.listId] || []),
             refreshing: false,
             isLoading: false,
             page: 1,
@@ -71,13 +76,13 @@ export default class extends React.Component {
                 isLoading: false,
                 allLoaded
             });
-            cacheTasks = tasks;
+            cacheTasks[this.props.listId] = tasks;
         });
     }
     onEndReached = () => {
         const { isLoading, allLoaded, page } = this.state;
         if (isLoading === false && allLoaded === false) {
-            if (cacheTasks.length === 0) return;/*初始化不加载 */
+            if ( cacheTasks[this.props.listId] && cacheTasks[this.props.listId].length === 0) return;/*初始化不加载 */
             this.setState({
                 page: page + 1,
                 isLoading: true

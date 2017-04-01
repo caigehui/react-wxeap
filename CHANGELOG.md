@@ -1,10 +1,14 @@
-#2017-4-1 (version 0.5.12)
+# 2017-4-1 (version 0.5.15)
+> 破坏性更新，ListView不向下兼容
+* 修复了列表缓存的BUG，ListView新增一个属性listId，现在会根据listId进行数据缓存
+
+# 2017-4-1 (version 0.5.12)
 * 新增返回到移动端首页的方法：backToHome
 
-#2017-4-1 (version 0.5.10)
+# 2017-4-1 (version 0.5.10)
 * 修复Navigation的点击BUG
 
-#2017-4-1 (version 0.5.9)
+# 2017-4-1 (version 0.5.9)
 * 修复Navigation的显示BUG
 
 # 2017-3-28 (version 0.5.3)

@@ -1,7 +1,7 @@
 import "babel-polyfill"
 import request from './util/request';
 import MobileApp from './app/mobileApp';
-import bind from './util/bind';
+import bind from './app/bind';
 import { routerRedux } from 'dva/router';
 import { DEV_MODE } from './app/constants';
 import ImageViewer from './components/ImageViewer';

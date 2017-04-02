@@ -70,19 +70,20 @@ export default class extends React.Component {
 
     send = (page) => {
         this.props.onFetch && this.props.onFetch(page, (tasks, allLoaded) => {
+            let originTasks = cacheTasks[this.props.listId] || [];
             this.setState({
-                dataSource: this.state.dataSource.cloneWithRows(tasks),
+                dataSource: this.state.dataSource.cloneWithRows([...originTasks, ...tasks]),
                 refreshing: false,
                 isLoading: false,
                 allLoaded
             });
-            cacheTasks[this.props.listId] = tasks;
+            cacheTasks[this.props.listId] = [...originTasks, ...tasks];
         });
     }
     onEndReached = () => {
         const { isLoading, allLoaded, page } = this.state;
         if (isLoading === false && allLoaded === false) {
-            if ( cacheTasks[this.props.listId] && cacheTasks[this.props.listId].length === 0) return;/*初始化不加载 */
+            if ( !cacheTasks[this.props.listId] || cacheTasks[this.props.listId].length === 0) return;/*初始化不加载 */
             this.setState({
                 page: page + 1,
                 isLoading: true

@@ -1,3 +1,7 @@
+# 2017-4-1 (version 0.5.19)
+> 破坏性更新，ListView不向下兼容
+* 修复了列表缓存分页失败的BUG
+
 # 2017-4-1 (version 0.5.15)
 > 破坏性更新，ListView不向下兼容
 * 修复了列表缓存的BUG，ListView新增一个属性listId，现在会根据listId进行数据缓存

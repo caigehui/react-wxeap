@@ -13,6 +13,7 @@ import './index.css';
 import './util/array';
 import backToHome from './util/backToHome';
 import Navigation from './components/Navigation';
+import * as LocalStorage from './util/localStorage';
 export {
     DEV_MODE,
     MobileApp,
@@ -25,7 +26,8 @@ export {
     ListView,
     Seperator,
     Navigation,
-    backToHome
+    backToHome,
+    LocalStorage
 }
 
 //npm config set registry https://registry.npm.taobao.org

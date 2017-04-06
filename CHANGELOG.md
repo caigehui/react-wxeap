@@ -1,5 +1,12 @@
+# 2017-4-1 (version 0.6.2)
+新增了LocalStorage作为不同页面之间数据的隐式传递，包括下面四个方法
+* getData
+* saveData
+* getUserDefault
+* saveUserDefault 
+紧急修复列表返回无法正常刷新的问题
+
 # 2017-4-1 (version 0.5.19)
-> 破坏性更新，ListView不向下兼容
 * 修复了列表缓存分页失败的BUG
 
 # 2017-4-1 (version 0.5.15)

@@ -48,7 +48,7 @@ export default class extends React.Component {
     constructor(props) {
         super(props);
         const dataSource = new ListView.DataSource({
-            rowHasChanged: (row1, row2) =>  row1 !== row2,
+            rowHasChanged: (row1, row2) => true,
         });
         
         this.state = {
@@ -70,7 +70,7 @@ export default class extends React.Component {
 
     send = (page) => {
         this.props.onFetch && this.props.onFetch(page, (tasks, allLoaded) => {
-            let originTasks = cacheTasks[this.props.listId] || [];
+            let originTasks = page === 1 ? [] : cacheTasks[this.props.listId];
             this.setState({
                 dataSource: this.state.dataSource.cloneWithRows([...originTasks, ...tasks]),
                 refreshing: false,

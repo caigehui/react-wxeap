@@ -14,6 +14,7 @@ import './util/array';
 import backToHome from './util/backToHome';
 import Navigation from './components/Navigation';
 import * as LocalStorage from './util/localStorage';
+import htmlFilter from './util/htmlFilter';
 export {
     DEV_MODE,
     MobileApp,
@@ -27,7 +28,8 @@ export {
     Seperator,
     Navigation,
     backToHome,
-    LocalStorage
+    LocalStorage,
+    htmlFilter
 }
 
 //npm config set registry https://registry.npm.taobao.org

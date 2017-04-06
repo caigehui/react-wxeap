@@ -1,4 +1,10 @@
-# 2017-4-1 (version 0.6.2)
+# 2017-4-6 (version 0.6.4)
+修复了超时间不操作断开连接的错误提示
+
+# 2017-4-6 (version 0.6.3)
+修复了Navigation绝对布局影响底层视图显示的BUG
+
+# 2017-4-5 (version 0.6.2)
 新增了LocalStorage作为不同页面之间数据的隐式传递，包括下面四个方法
 * getData
 * saveData

@@ -191,7 +191,7 @@ export default class Navigation extends React.Component {
 
         return (
             <div >
-                <div style={showMenu ? inlineStyles.menuActive : {}}>
+                
                     <NavBar
                         {...leftProps}
                         mode="light"
@@ -225,6 +225,7 @@ export default class Navigation extends React.Component {
                             ]}>
                         {!homeMode ? title : navTitle}
                     </NavBar>
+                    <div style={showMenu ? inlineStyles.menuActive : {}}>
                 </div>
                 {showMenu ? menu : null}
             </div>

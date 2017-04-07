@@ -8,7 +8,14 @@ import {
     Badge
 } from 'antd-mobile';
 const Item = Popover.Item;
-
+function isWX(){
+    let ua = navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i)=="micromessenger") {
+        return true;
+    } else {
+        return false;
+    }
+}
 const inlineStyles = {
     fooMenu: {
         zIndex: 2,
@@ -171,7 +178,8 @@ export default class Navigation extends React.Component {
         }
         if (homeMode) {
             leftProps = {
-                onLeftClick: this.props.onBack,
+                iconName: isWX()?null:'left',
+                onLeftClick: isWX()?null:this.props.onBack,
                 leftContent: (
                     <div style={inlineStyles.leftContent}>
                         <div key="1" style={inlineStyles.menu} onClick={this.onMenuClick} >

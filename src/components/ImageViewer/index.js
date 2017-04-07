@@ -11,16 +11,18 @@ import wrapProps from '../../util/wrapProps'
 const styles = {
     carouselContainer: {
         width: document.documentElement.clientWidth,
-        height: document.documentElement.clientHeight,//高度会变化
+        height: document.documentElement.clientHeight,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        backgroundColor: '#000'
     },
     img: {
-        margin: 'auto',
-        width: '100%',
-        height: 'auto'
+        width: document.documentElement.clientWidth,
+        height: document.documentElement.clientHeight,
+        backgroundColor: '#000',
+        objectFit: 'contain'
     },
     imgsContainer: {
         width: document.documentElement.clientWidth,
@@ -39,15 +41,14 @@ class ImageViewer extends React.Component {
             if (i < initIndex) newImgs.push(img);
         })
         const items = newImgs.map((img, i) =>
-            <PinchView key={i} backgroundColor='transparent' maxScale={2} containerRatio={175}>
+            <PinchView key={i} backgroundColor='transparent' maxScale={2} containerRatio={178}>
                 <img style={styles.img} src={img.url} />
             </PinchView>
         );
 
         return (
             <div style={styles.carouselContainer} onClick={Popup.hide}>
-                <Carousel indicator={IndicatorDots}>
-                    {items}
+                <Carousel indicator={IndicatorDots} frames={items}>
                 </Carousel>
             </div>
         )
@@ -62,5 +63,5 @@ class ImageViewer extends React.Component {
  * @param  {array} imgs  图片数组
  */
 export default (initIndex, imgs) => {
-    Popup.show(<ImageViewer imgs={imgs} initIndex={initIndex} />, { transitionName: 'am-zoom',  wrapProps})
+    Popup.show(<ImageViewer imgs={imgs} initIndex={initIndex} />, { transitionName: 'am-zoom', wrapProps })
 }

@@ -1,3 +1,15 @@
+# 2017-4-7 (version 0.7.3)
+修复：ImageViewer图片重叠的问题
+
+# 2017-4-6 (version 0.7.2)
+新增ListView局部刷新，并作向下兼容的处理
+
+# 2017-4-6 (version 0.7.2)
+新增ListView局部刷新，并作向下兼容的处理
+
+# 2017-4-6 (version 0.7.1)
+修复：Navigation在微信浏览器中是没有返回按钮的
+
 # 2017-4-6 (version 0.7.0)
 新增htmlFilter工具, 用于过滤HTML标签和转义字符
 

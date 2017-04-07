@@ -14,7 +14,7 @@ const styles = {
         width: '100%',
         height: 60,
         justifyContent: 'space-around',
-        alignItems:'center',
+        alignItems: 'center',
         textAlign: 'center',
         verticalAlign: 'middle',
     },
@@ -50,7 +50,7 @@ export default class extends React.Component {
         const dataSource = new ListView.DataSource({
             rowHasChanged: (row1, row2) => true,
         });
-        
+
         this.state = {
             dataSource: dataSource.cloneWithRows(cacheTasks[props.listId] || []),
             refreshing: false,
@@ -68,22 +68,48 @@ export default class extends React.Component {
         this.onRefresh();
     }
 
-    send = (page) => {
-        this.props.onFetch && this.props.onFetch(page, (tasks, allLoaded) => {
-            let originTasks = page === 1 ? [] : cacheTasks[this.props.listId];
-            this.setState({
-                dataSource: this.state.dataSource.cloneWithRows([...originTasks, ...tasks]),
-                refreshing: false,
-                isLoading: false,
-                allLoaded
-            });
-            cacheTasks[this.props.listId] = [...originTasks, ...tasks];
-        });
+    getListData() {
+        return cacheTasks[this.props.listId] || [];
     }
+
+    fill = (tasks, allLoaded, page) => {
+        try {
+            //作向下兼容处理
+            if (!page) {
+                let originTasks = this.state.page === 1 ? [] : cacheTasks[this.props.listId];
+                this.setState({
+                    dataSource: this.state.dataSource.cloneWithRows([...originTasks, ...tasks]),
+                    refreshing: false,
+                    isLoading: false,
+                    allLoaded
+                });
+                
+                cacheTasks[this.props.listId] = [...originTasks, ...tasks];
+            } else {
+                let newTasks = this.state.page === 1 ? [] : cacheTasks[this.props.listId] || [];
+                newTasks.splice(this.props.pageSize * (page - 1), this.props.pageSize, ...tasks)
+                this.setState({
+                    dataSource: this.state.dataSource.cloneWithRows(newTasks),
+                    refreshing: false,
+                    isLoading: false,
+                    allLoaded
+                })
+                cacheTasks[this.props.listId] = newTasks
+            }
+        } catch (err) {
+            console.warn(err)
+        }
+
+    }
+
+    send = (page) => {
+        this.props.onFetch && this.props.onFetch(page, this.fill);
+    }
+
     onEndReached = () => {
         const { isLoading, allLoaded, page } = this.state;
         if (isLoading === false && allLoaded === false) {
-            if ( !cacheTasks[this.props.listId] || cacheTasks[this.props.listId].length === 0) return;/*初始化不加载 */
+            if (!cacheTasks[this.props.listId] || cacheTasks[this.props.listId].length === 0) return;/*初始化不加载 */
             this.setState({
                 page: page + 1,
                 isLoading: true
@@ -112,9 +138,9 @@ export default class extends React.Component {
                     renderHeader={header ? () => <span>{header}</span> : null}
                     renderFooter={() =>
                         <div style={styles.footer}>
-                            <div style={styles.sep}/>
+                            <div style={styles.sep} />
                             {allLoaded ? '没有更多了' : isLoading ? '加载中...' : '加载完毕'}
-                            <div style={styles.sep}/>
+                            <div style={styles.sep} />
                         </div>}
                     renderRow={renderRow}
                     pageSize={pageSize}
@@ -122,11 +148,11 @@ export default class extends React.Component {
                     scrollEventThrottle={20}
                     onEndReached={this.onEndReached}
                     onEndReachedThreshold={30}
-                    refreshControl={refreshable?<RefreshControl
+                    refreshControl={refreshable ? <RefreshControl
                         refreshing={refreshing}
-                        onRefresh={this.onRefresh} />:null}
-                        {...this.props}/>
-        </div>
+                        onRefresh={this.onRefresh} /> : null}
+                    {...this.props} />
+            </div>
         )
     }
 }

@@ -199,8 +199,7 @@ export default class Navigation extends React.Component {
 
         return (
             <div >
-                
-                    <NavBar
+                <NavBar
                         {...leftProps}
                         mode="light"
                         rightContent={
@@ -233,7 +232,7 @@ export default class Navigation extends React.Component {
                             ]}>
                         {!homeMode ? title : navTitle}
                     </NavBar>
-                    <div style={showMenu ? inlineStyles.menuActive : {}}>
+                    <div onClick={() => this.setState({ showMenu: false })} style={showMenu ? inlineStyles.menuActive : {}}>
                 </div>
                 {showMenu ? menu : null}
             </div>

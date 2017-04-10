@@ -24,11 +24,7 @@ function validation(responseJson) {
 }
 
 function exception(err) {
-  if(err === '未将对象引用设置到对象的实例') {
-    Toast.info(`服务器错误：请求超时，请刷新页面`);
-  }else {
-    Toast.info(`服务器错误：${err}`);
-  }
+  Toast.info(`服务器错误：${err}`);
   console.warn(err)
   return { data: null, err }
 }

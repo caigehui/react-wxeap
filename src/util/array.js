@@ -17,7 +17,6 @@ Array.prototype.removeByCondition = function (condition) {
  * @param {function} condition 
  */
 Array.prototype.findByCondition = function (condition) {
-    let temp = [];
     for (let i of this) {
         if (condition(i)) return i;
     }
@@ -29,7 +28,6 @@ Array.prototype.findByCondition = function (condition) {
  * @param {*} condition 
  */
 Array.prototype.searchByCondition = function (condition) {
-    let temp = [];
     for (let i of this) {
         if (condition(i)) return true;
     }

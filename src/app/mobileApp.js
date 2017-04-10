@@ -60,7 +60,7 @@ export default class MobileApp {
 
         const APIConfig = (origin, module) => {
             let url = window.location.href.toLowerCase();
-            let end = url.indexOf(`/${module}`);
+            let end = url.lastIndexOf(`/${module}`);
             url = url.substring(0, end);
             return CONSTANTS.DEV_MODE ? `${origin}/api/` : `${url}/api/`;
         }

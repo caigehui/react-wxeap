@@ -1,3 +1,12 @@
+# 2017-4-7 (version 0.7.6)
+修复：htmlFilter现在会转换</p>为'\r\n'
+
+# 2017-4-7 (version 0.7.5)
+修复：htmlFilter现在不会过滤掉'\r\n'，而是过滤<br />
+
+# 2017-4-7 (version 0.7.4)
+修复：虚拟目录含有模块名会无法请求的BUG
+
 # 2017-4-7 (version 0.7.3)
 修复：ImageViewer图片重叠的问题
 

@@ -20,7 +20,7 @@ const styles = {
     },
     sep: {
         height: 1,
-        width: '32%',
+        width: '25%',
         backgroundColor: 'rgb(220,220,225)',
     }
 }

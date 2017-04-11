@@ -76,7 +76,7 @@ export default class Navigation extends React.Component {
             showPopover: false,
             switchCompany: false,
             showMenu: false,
-            navTitle: !props.homeMode ? '' : this.getNavTitle(props.menuValue, props.menuData)
+            navTitle: props.title || this.getNavTitle(props.menuValue, props.menuData)
         };
     }
 

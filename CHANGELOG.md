@@ -1,3 +1,6 @@
+# 2017-4-10 (version 0.7.7)
+修复：现在点击Navigation的Menu的阴影区域会隐藏Menu
+
 # 2017-4-7 (version 0.7.6)
 修复：htmlFilter现在会转换</p>为'\r\n'
 

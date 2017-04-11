@@ -14,6 +14,7 @@ import './util/array';
 import backToHome from './util/backToHome';
 import Navigation from './components/Navigation';
 import * as LocalStorage from './util/localStorage';
+import * as SessionStorage from './util/sessionStorage';
 import htmlFilter from './util/htmlFilter';
 export {
     DEV_MODE,
@@ -29,6 +30,7 @@ export {
     Navigation,
     backToHome,
     LocalStorage,
+    SessionStorage,
     htmlFilter
 }
 

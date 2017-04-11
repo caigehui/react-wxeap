@@ -1,3 +1,6 @@
+# 2017-4-11 (version 0.7.8)
+新增: SessionStorage，用于替换LocalStorage
+
 # 2017-4-10 (version 0.7.7)
 修复：现在点击Navigation的Menu的阴影区域会隐藏Menu
 

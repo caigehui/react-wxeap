@@ -7,15 +7,8 @@ import {
     ActivityIndicator,
     Badge
 } from 'antd-mobile';
+import MobileDetect from '../../util/mobileDetect';
 const Item = Popover.Item;
-function isWX(){
-    let ua = navigator.userAgent.toLowerCase();
-    if(ua.match(/MicroMessenger/i)=="micromessenger") {
-        return true;
-    } else {
-        return false;
-    }
-}
 const inlineStyles = {
     fooMenu: {
         zIndex: 2,
@@ -178,8 +171,8 @@ export default class Navigation extends React.Component {
         }
         if (homeMode) {
             leftProps = {
-                iconName: isWX()?null:'left',
-                onLeftClick: isWX()?null:this.props.onBack,
+                iconName: MobileDetect.isWechat?null:'left',
+                onLeftClick: MobileDetect.isWechat?null:this.props.onBack,
                 leftContent: (
                     <div style={inlineStyles.leftContent}>
                         <div key="1" style={inlineStyles.menu} onClick={this.onMenuClick} >

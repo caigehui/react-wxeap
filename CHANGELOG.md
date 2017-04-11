@@ -1,3 +1,6 @@
+# 2017-4-11 (version 0.8.1)
+新增ImagePicker，取代antd-mobile的ImagePicker，使用方法一样，但附加了图片压缩功能
+
 # 2017-4-11 (version 0.7.8)
 新增: SessionStorage，用于替换LocalStorage
 

@@ -1,8 +1,9 @@
 {
   "name": "react-wxeap",
-  "version": "0.8.1",
+  "version": "0.8.3",
   "description": "cnwxsoft web framework",
   "scripts": {
+    "pb": "npm run build && npm publish",
     "build": "babel src --out-dir lib"
   },
   "main": "lib/index.js",

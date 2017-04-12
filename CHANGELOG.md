@@ -1,3 +1,6 @@
+# 2017-4-12 (version 0.8.3)
+修复：ImagePicker无法删除图片
+
 # 2017-4-11 (version 0.8.1)
 新增ImagePicker，取代antd-mobile的ImagePicker，使用方法一样，但附加了图片压缩功能
 

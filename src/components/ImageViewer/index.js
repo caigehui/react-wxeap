@@ -7,7 +7,7 @@ import {
 import { PinchView } from 'react-pinch-zoom-pan'
 import Carousel from 're-carousel';
 import IndicatorDots from './IndicatorDots';
-import wrapProps from '../../util/wrapProps'
+import wrapProps from '../../utils/wrapProps'
 const styles = {
     carouselContainer: {
         width: document.documentElement.clientWidth,

@@ -7,7 +7,7 @@ import {
     ActivityIndicator,
     Badge
 } from 'antd-mobile';
-import MobileDetect from '../../util/mobileDetect';
+import MobileDetect from '../../utils/mobileDetect';
 const Item = Popover.Item;
 const inlineStyles = {
     fooMenu: {

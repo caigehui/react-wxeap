@@ -1,21 +1,21 @@
 import "babel-polyfill"
-import request from './util/request';
+import request from './utils/request';
 import MobileApp from './app/mobileApp';
 import bind from './app/bind';
 import { routerRedux } from 'dva/router';
 import { DEV_MODE } from './app/constants';
 import ImageViewer from './components/ImageViewer';
 import ListView from './components/ListView';
-import delay from './util/delay';
-import wrapProps from './util/wrapProps';
+import delay from './utils/delay';
+import wrapProps from './utils/wrapProps';
 import Seperator from './components/Seperator';
 import './index.css';
-import './util/array';
-import backToHome from './util/backToHome';
+import './utils/array';
+import backToHome from './utils/backToHome';
 import Navigation from './components/Navigation';
-import * as LocalStorage from './util/localStorage';
-import * as SessionStorage from './util/sessionStorage';
-import htmlFilter from './util/htmlFilter';
+import * as LocalStorage from './utils/localStorage';
+import * as SessionStorage from './utils/sessionStorage';
+import htmlFilter from './utils/htmlFilter';
 import ImagePicker from './components/ImagePicker';
 export {
     DEV_MODE,

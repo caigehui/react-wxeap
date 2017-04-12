@@ -1,0 +1,33 @@
+{
+    "title": "React WxEAP",
+    "description": "React WxEAP Documentation",
+    "author": "cnwxsoft",
+    "generator": "site",
+    "language": "zh-hans",
+    "plugins": [
+        "bootstrap-callout",
+        "prism",
+        "-highlight",
+        "-lunr",
+        "-search",
+        "search-pro"
+    ],
+    "pluginsConfig": {
+        "prism": {
+            "css": [
+                "prismjs/themes/prism-solarizedlight.css"
+            ]
+        },
+        "anchor-navigation-ex": {
+            "showLevel": false
+        },
+        "sharing": {
+            "weibo": true,
+            "facebook": false,
+            "twitter": false,
+            "google": false,
+            "instapaper": false,
+            "vk": false
+        }
+    }
+}

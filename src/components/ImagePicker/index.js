@@ -1,6 +1,6 @@
 import React from 'react';
 import { ImagePicker } from 'antd-mobile';
-import compressImage from '../../util/compressImage';
+import compressImage from '../../utils/compressImage';
 export default function ImagePickerCompress(props) {
     const onChange = (files, type, index) => {
         if(type === 'add') {

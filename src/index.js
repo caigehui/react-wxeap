@@ -17,6 +17,8 @@ import * as LocalStorage from './utils/localStorage';
 import * as SessionStorage from './utils/sessionStorage';
 import htmlFilter from './utils/htmlFilter';
 import ImagePicker from './components/ImagePicker';
+import * as MobileDetect from './utils/mobileDetect';
+import { compareObject } from './utils/object'
 export {
     DEV_MODE,
     MobileApp,
@@ -33,7 +35,9 @@ export {
     LocalStorage,
     SessionStorage,
     htmlFilter,
-    ImagePicker
+    ImagePicker,
+    MobileDetect,
+    compareObject
 }
 
 //npm config set registry https://registry.npm.taobao.org

@@ -32,17 +32,19 @@ export default class extends React.Component {
 
 
     static propTypes = {
-        listId: PropTypes.string,
+        listId: PropTypes.string.isRequired,
         refreshable: PropTypes.bool,
         header: PropTypes.string,
         pageSize: PropTypes.number.isRequired,
         renderRow: PropTypes.func.isRequired,
-        onFetch: PropTypes.func.isRequired
+        onFetch: PropTypes.func.isRequired,
+        renderSeparator: PropTypes.func
     }
 
     static defaultProps = {
         refreshable: true,
-        listId: 'temp'
+        listId: 'temp',
+        pageSize: 4
     }
 
     constructor(props) {

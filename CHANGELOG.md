@@ -1,3 +1,6 @@
+# 2017-4-12 (version 0.8.5)
+修复：ImagePicker图片方向不正确的BUG
+
 # 2017-4-12 (version 0.8.3)
 修复：ImagePicker无法删除图片
 

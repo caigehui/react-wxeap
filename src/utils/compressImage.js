@@ -45,7 +45,7 @@ function detectVerticalSquash(img) {
  * @param {number} maxWidth 
  * @param {func} cb 
  */
-export default function compressImage(src, maxWidth, cb) {
+export default function compressImage(src, orientation, maxWidth, cb) {
     let img = new Image();
     img.onload = () => {
         let w = Math.min(maxWidth, img.width);
@@ -81,6 +81,18 @@ export default function compressImage(src, maxWidth, cb) {
             canvas.width = w;
             canvas.height = h;
             ctx.drawImage(img, 0, 0, w, h);
+            switch (orientation) {
+                case 6://需要顺时针（向左）90度旋转  
+                    rotateImg(img, 'left', canvas);
+                    break;
+                case 8://需要逆时针（向右）90度旋转  
+                    rotateImg(img, 'right', canvas);
+                    break;
+                case 3://需要180度旋转  
+                    rotateImg(img, 'right', canvas);//转两次  
+                    rotateImg(img, 'right', canvas);
+                    break;
+            }
             // get image type
             let type = src.substring(src.indexOf(':') + 1, src.indexOf(';'));
             let base64Url = canvas.toDataURL(type);
@@ -89,3 +101,57 @@ export default function compressImage(src, maxWidth, cb) {
     };
     img.src = src;
 }
+
+
+//对图片旋转处理   
+function rotateImg(img, direction, canvas) {
+    //最小与最大旋转方向，图片旋转4次后回到原方向    
+    let min_step = 0;
+    let max_step = 3;
+    //let img = document.getElementById(pid);    
+    if (img == null) return;
+    //img的高度和宽度不能在img元素隐藏后获取，否则会出错    
+    let height = img.height;
+    let width = img.width;
+    //let step = img.getAttribute('step');    
+    let step = 2;
+    if (step == null) {
+        step = min_step;
+    }
+    if (direction == 'right') {
+        step++;
+        //旋转到原位置，即超过最大值    
+        step > max_step && (step = min_step);
+    } else {
+        step--;
+        step < min_step && (step = max_step);
+    }
+    //旋转角度以弧度值为参数    
+    let degree = step * 90 * Math.PI / 180;
+    let ctx = canvas.getContext('2d');
+    switch (step) {
+        case 0:
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage(img, 0, 0);
+            break;
+        case 1:
+            canvas.width = height;
+            canvas.height = width;
+            ctx.rotate(degree);
+            ctx.drawImage(img, 0, -height);
+            break;
+        case 2:
+            canvas.width = width;
+            canvas.height = height;
+            ctx.rotate(degree);
+            ctx.drawImage(img, -width, -height);
+            break;
+        case 3:
+            canvas.width = height;
+            canvas.height = width;
+            ctx.rotate(degree);
+            ctx.drawImage(img, -width, 0);
+            break;
+    }
+}  

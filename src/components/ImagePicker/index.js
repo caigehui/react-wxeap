@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImagePicker } from 'antd-mobile';
+import { ImagePicker, Toast } from 'antd-mobile';
 import compressImage from '../../utils/compressImage';
 export default class ImagePickerCompress extends React.Component {
 

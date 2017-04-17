@@ -16,10 +16,12 @@ function checkStatus(response) {
 }
 
 function validation(responseJson) {
-  if (responseJson && responseJson.ret === 0) {
-    return { data: responseJson.data || {}, err: null }
+  if (responseJson && responseJson.result === 0) {
+    delete responseJson.result;
+    delete responseJson.errmsg;
+    return { data: responseJson || {}, err: null }
   } else {
-    throw responseJson.err;
+    throw responseJson.errmsg;
   }
 }
 

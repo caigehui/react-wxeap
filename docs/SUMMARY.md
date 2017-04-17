@@ -20,6 +20,6 @@
 * [htmlFilter](./utils/htmlFilter.md)
 * [mobileDetect](./utils/mobileDetect.md)
 * [object](./utils/object.md)
-* [request](./utils/backToHome.md)
+* [request](./utils/request.md)
 * [storage](./utils/storage.md)
 * [wrapProps](./utils/wrapProps.md)

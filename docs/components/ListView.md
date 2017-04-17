@@ -41,8 +41,8 @@ import { ListView } from 'react-wxeap'
 `React WxEAP`使用的是自定义容器，而不是body作为容器
 
 
-属性 | 说明 | 类型 | 默认值
-----|-----|------|------
+| 属性 | 说明 | 类型 | 默认值 |
+| ----|-----|------|------ |
 | listId    | 列表的唯一标识，必须指定     | string  | 'temp'  |
 | refreshable    | 是否允许下拉刷新  | bool |  true  |
 | header   | 列表的标题，没有标题或为空字符串则不渲染列表的header  | string | undefined  |

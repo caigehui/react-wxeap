@@ -62,7 +62,7 @@ export default class MobileApp {
             let url = window.location.href.toLowerCase();
             let end = url.lastIndexOf(`/${module}`);
             url = url.substring(0, end);
-            return CONSTANTS.DEV_MODE ? `${origin}/api/` : `${url}/api/`;
+            return CONSTANTS.DEV_MODE ? `${origin}/wxapi/` : `${url}/wxapi/`;
         }
 
         global.API = APIConfig(origin, module);

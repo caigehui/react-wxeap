@@ -18,7 +18,7 @@ function checkStatus(response) {
 function validation(responseJson) {
   if (responseJson && responseJson.result === 0) {
     delete responseJson.result;
-    delete responseJson.errmsg;
+    responseJson.errmsg && delete responseJson.errmsg;
     return { data: responseJson || {}, err: null }
   } else {
     throw responseJson.errmsg;
@@ -26,7 +26,7 @@ function validation(responseJson) {
 }
 
 function exception(err) {
-  Toast.info(`服务器错误：${err}`);
+  Toast.info(err);
   console.warn(err)
   return { data: null, err }
 }

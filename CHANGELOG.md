@@ -1,3 +1,9 @@
+## 2017-4-17 (version 0.9.1)
+修改路径`api`为`wxapi`
+
+## 2017-4-17 (version 0.9.0)
+修改request结构以匹配接口格式
+
 ## 2017-4-17 (version 0.8.8)
 修复：ImageViewer图片位置错误的BUG
 

@@ -1,3 +1,6 @@
+## v0.9.2 2017-4-18 by gehui.cai
+引入eslint检查语法
+
 ## 2017-4-17 (version 0.9.1)
 修改路径`api`为`wxapi`
 

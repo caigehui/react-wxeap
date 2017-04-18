@@ -19,7 +19,7 @@ function validation(responseJson) {
   if (responseJson && responseJson.result === 0) {
     delete responseJson.result;
     responseJson.errmsg && delete responseJson.errmsg;
-    return { data: responseJson || {}, err: null }
+    return { data: responseJson || {}, err: null };
   } else {
     throw responseJson.errmsg;
   }
@@ -27,8 +27,8 @@ function validation(responseJson) {
 
 function exception(err) {
   Toast.info(err);
-  console.warn(err)
-  return { data: null, err }
+  console.warn(err);
+  return { data: null, err };
 }
 
 
@@ -40,13 +40,13 @@ function exception(err) {
 export default function request(url, bodyObject) {
   let options = { credentials: 'include' };
   if (bodyObject) options = {
-    method: "POST",
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(bodyObject),
     ...options
-  }
+  };
   return fetch(url, options)
     .then(checkStatus)
     .then(parseJSON)

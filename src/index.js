@@ -1,4 +1,4 @@
-import "babel-polyfill"
+import 'babel-polyfill';
 import request from './utils/request';
 import MobileApp from './app/mobileApp';
 import bind from './app/bind';
@@ -18,7 +18,7 @@ import * as SessionStorage from './utils/sessionStorage';
 import htmlFilter from './utils/htmlFilter';
 import ImagePicker from './components/ImagePicker';
 import * as MobileDetect from './utils/mobileDetect';
-import { compareObject } from './utils/object'
+import { compareObject } from './utils/object';
 export {
     DEV_MODE,
     MobileApp,
@@ -38,7 +38,7 @@ export {
     ImagePicker,
     MobileDetect,
     compareObject
-}
+};
 
 //npm config set registry https://registry.npm.taobao.org
 //npm config set registry http://registry.npmjs.org

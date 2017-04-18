@@ -14,7 +14,7 @@ export function saveUserDefault(key, value) {
  * @param {any} def 
  */
 export function getUserDefault(key, def) {
-    return localStorage[key] || def
+    return localStorage[key] || def;
 }
 
 /**

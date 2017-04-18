@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImagePicker, Toast } from 'antd-mobile';
+import { ImagePicker } from 'antd-mobile';
 import compressImage from '../../utils/compressImage';
 export default class ImagePickerCompress extends React.Component {
 
@@ -17,7 +17,7 @@ export default class ImagePickerCompress extends React.Component {
                 files[files.length - 1].url = url;
                 files[files.length - 1].orientation = 1;
                 this.props.onChange(files, type, index);
-            })
+            });
         } else {
             this.props.onChange(files, type, index);
         }
@@ -25,7 +25,7 @@ export default class ImagePickerCompress extends React.Component {
 
     }
     render() {
-        return <ImagePicker {...this.props} onChange={this.onChange} />
+        return <ImagePicker {...this.props} onChange={this.onChange} />;
     }
 
 }

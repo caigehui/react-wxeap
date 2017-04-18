@@ -50,7 +50,7 @@ export default class MobileApp {
                     {routes.map(route => <Route key={route.path} path={route.path} component={route.component} />)}
                 </Router>
             );
-        })
+        });
     }
 
     configureAPI(options) {
@@ -63,7 +63,7 @@ export default class MobileApp {
             let end = url.lastIndexOf(`/${module}`);
             url = url.substring(0, end);
             return CONSTANTS.DEV_MODE ? `${origin}/wxapi/` : `${url}/wxapi/`;
-        }
+        };
 
         global.API = APIConfig(origin, module);
     }

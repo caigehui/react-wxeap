@@ -1,20 +1,20 @@
-import React from 'react'
+import React from 'react';
 
 export default function IndicatorDots (props) {
   // Hide dots when there is only one dot.
-  if (props.total < 2) return <div style={styles.wrapper} />
+  if (props.total < 2) return <div style={styles.wrapper} />;
 
-  const dots = []
+  const dots = [];
   for (let i = 0; i < props.total; i++) {
-    dots.push(<Dot key={i} selected={props.index === i} />)
+    dots.push(<Dot key={i} selected={props.index === i} />);
   }
-  return <div style={styles.wrapper}>{dots}</div>
+  return <div style={styles.wrapper}>{dots}</div>;
 }
 
 IndicatorDots.propTypes = {
   index: React.PropTypes.number.isRequired,
   total: React.PropTypes.number.isRequired
-}
+};
 
 const styles = {
   wrapper: {
@@ -24,7 +24,7 @@ const styles = {
     bottom: '0px',
     textAlign: 'center'
   }
-}
+};
 
 function Dot (props) {
   return (
@@ -38,9 +38,9 @@ function Dot (props) {
       opacity: props.selected ? '1' : '0.3',
       transitionDuration: '300ms'
     }} />
-  )
+  );
 }
 
 Dot.propTypes = {
   selected: React.PropTypes.bool
-}
+};

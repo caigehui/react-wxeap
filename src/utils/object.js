@@ -13,7 +13,7 @@ export function compareObject(x, y) {
     if (x.constructor !== y.constructor) {
         return false;
     }
-    for (var p in x) {
+    for (let p in x) {
         if (x.hasOwnProperty(p)) {
             if (!y.hasOwnProperty(p)) {
                 return false;
@@ -21,7 +21,7 @@ export function compareObject(x, y) {
             if (x[p] === y[p]) {
                 continue;
             } 
-            if (typeof (x[p]) !== "object") {
+            if (typeof (x[p]) !== 'object') {
                 return false;
             }
             if (!Object.equals(x[p], y[p])) {
@@ -29,10 +29,10 @@ export function compareObject(x, y) {
             }
         }
     }
-    for (p in y) {
-        if (y.hasOwnProperty(p) && !x.hasOwnProperty(p)) {
+    for (let r in y) {
+        if (y.hasOwnProperty(r) && !x.hasOwnProperty(r)) {
             return false;
         }
     }
     return true;
-};
+}

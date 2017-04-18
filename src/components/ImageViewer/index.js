@@ -4,10 +4,10 @@ import React from 'react';
 import {
     Popup
 } from 'antd-mobile';
-import { PinchView } from 'react-pinch-zoom-pan'
+import { PinchView } from 'react-pinch-zoom-pan';
 import Carousel from 're-carousel';
 import IndicatorDots from './IndicatorDots';
-import wrapProps from '../../utils/wrapProps'
+import wrapProps from '../../utils/wrapProps';
 const styles = {
     carouselContainer: {
         width: document.documentElement.clientWidth,
@@ -28,7 +28,7 @@ const styles = {
         width: document.documentElement.clientWidth,
         height: document.documentElement.clientHeight
     }
-}
+};
 class ImageViewer extends React.Component {
 
     render() {
@@ -36,12 +36,12 @@ class ImageViewer extends React.Component {
         let newImgs = [];
         imgs.map((img, i) => {
             if (i >= initIndex) newImgs.push(img);
-        })
+        });
         imgs.map((img, i) => {
             if (i < initIndex) newImgs.push(img);
-        })
+        });
         const items = newImgs.map((img, i) =>
-            <PinchView key={i} backgroundColor='transparent' maxScale={2} containerRatio={document.documentElement.clientHeight*100/document.documentElement.clientWidth}>
+            <PinchView key={i} backgroundColor="transparent" maxScale={2} containerRatio={document.documentElement.clientHeight*100/document.documentElement.clientWidth}>
                 <img style={styles.img} src={img.url} />
             </PinchView>
         );
@@ -51,7 +51,7 @@ class ImageViewer extends React.Component {
                 <Carousel indicator={IndicatorDots} frames={items}>
                 </Carousel>
             </div>
-        )
+        );
     }
 
 }
@@ -63,5 +63,5 @@ class ImageViewer extends React.Component {
  * @param  {array} imgs  图片数组
  */
 export default (initIndex, imgs) => {
-    Popup.show(<ImageViewer imgs={imgs} initIndex={initIndex} />, { transitionName: 'am-zoom', wrapProps })
-}
+    Popup.show(<ImageViewer imgs={imgs} initIndex={initIndex} />, { transitionName: 'am-zoom', wrapProps });
+};

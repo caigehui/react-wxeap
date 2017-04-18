@@ -4,7 +4,6 @@ import {
     Icon,
     Popover,
     Menu,
-    ActivityIndicator,
     Badge
 } from 'antd-mobile';
 import MobileDetect from '../../utils/mobileDetect';
@@ -46,7 +45,7 @@ const inlineStyles = {
         width: 60,
         height: 90
     }
-}
+};
 
 export default class Navigation extends React.Component {
 
@@ -77,7 +76,7 @@ export default class Navigation extends React.Component {
         this.setState({
             showPopover: false,
         });
-        this.props.onPopoverSelect(opt.props.value, 0)
+        this.props.onPopoverSelect(opt.props.value, 0);
     }
 
     onPopoverClick = (showPopover) => {
@@ -109,7 +108,7 @@ export default class Navigation extends React.Component {
         this.setState({
             showMenu: false,
             navTitle: this.getNavTitle(menuValue, this.props.menuData)
-        })
+        });
         this.props.onMenuSelect && this.props.onMenuSelect(menuValue);
     }
 
@@ -129,12 +128,12 @@ export default class Navigation extends React.Component {
             this.setState({
                 showMenu: !this.state.showMenu,
                 switchCompany: !this.state.switchCompany
-            })
+            });
         } else {
             this.setState({
                 showMenu: true,
                 switchCompany: true
-            })
+            });
         }
     }
 
@@ -143,7 +142,7 @@ export default class Navigation extends React.Component {
         this.setState({
             showMenu: false,
             switchCompany: false,
-        })
+        });
         this.props.onCompanySelect && this.props.onCompanySelect(companyValue);
     }
 
@@ -153,7 +152,7 @@ export default class Navigation extends React.Component {
             offsetX = -26;
         }
 
-        const { showMenu, showPopover, switchCompany, mock, navTitle } = this.state;
+        const { showMenu, showPopover, switchCompany, navTitle } = this.state;
         const { menuData, menuValue, addOptions, homeMode, title, companyData, companyValue, messages } = this.props;
 
         const menu = (
@@ -168,7 +167,7 @@ export default class Navigation extends React.Component {
 
         let leftProps = {
             onLeftClick: this.props.onBack
-        }
+        };
         if (homeMode) {
             leftProps = {
                 iconName: MobileDetect.isWechat?null:'left',
@@ -187,7 +186,7 @@ export default class Navigation extends React.Component {
                             </div> : null}
                     </div>
                 )
-            }
+            };
         }
 
         return (
@@ -229,7 +228,7 @@ export default class Navigation extends React.Component {
                 </div>
                 {showMenu ? menu : null}
             </div>
-        )
+        );
     }
 
 }

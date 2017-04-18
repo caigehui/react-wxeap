@@ -23,10 +23,10 @@ const styles = {
         width: '25%',
         backgroundColor: 'rgb(220,220,225)',
     }
-}
+};
 
 
-let cacheTasks = {}
+let cacheTasks = {};
 
 export default class extends React.Component {
 
@@ -50,7 +50,7 @@ export default class extends React.Component {
     constructor(props) {
         super(props);
         const dataSource = new ListView.DataSource({
-            rowHasChanged: (row1, row2) => true,
+            rowHasChanged: () => true,
         });
 
         this.state = {
@@ -59,7 +59,7 @@ export default class extends React.Component {
             isLoading: false,
             page: 1,
             allLoaded: false
-        }
+        };
     }
 
     reload = () => {
@@ -89,17 +89,17 @@ export default class extends React.Component {
                 cacheTasks[this.props.listId] = [...originTasks, ...tasks];
             } else {
                 let newTasks = this.state.page === 1 ? [] : cacheTasks[this.props.listId] || [];
-                newTasks.splice(this.props.pageSize * (page - 1), this.props.pageSize, ...tasks)
+                newTasks.splice(this.props.pageSize * (page - 1), this.props.pageSize, ...tasks);
                 this.setState({
                     dataSource: this.state.dataSource.cloneWithRows(newTasks),
                     refreshing: false,
                     isLoading: false,
                     allLoaded
-                })
-                cacheTasks[this.props.listId] = newTasks
+                });
+                cacheTasks[this.props.listId] = newTasks;
             }
         } catch (err) {
-            console.warn(err)
+            console.warn(err);
         }
 
     }
@@ -155,6 +155,6 @@ export default class extends React.Component {
                         onRefresh={this.onRefresh} /> : null}
                     {...this.props} />
             </div>
-        )
+        );
     }
 }

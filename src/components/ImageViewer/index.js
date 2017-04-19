@@ -1,5 +1,5 @@
-//图片预览
-//直接调用WxPhotoGallery.show(initIndex, imgs)
+// 图片预览
+// 直接调用WxPhotoGallery.show(initIndex, imgs)
 import React from 'react';
 import {
     Popup
@@ -41,7 +41,7 @@ class ImageViewer extends React.Component {
             if (i < initIndex) newImgs.push(img);
         });
         const items = newImgs.map((img, i) =>
-            <PinchView key={i} backgroundColor="transparent" maxScale={2} containerRatio={document.documentElement.clientHeight*100/document.documentElement.clientWidth}>
+            <PinchView key={i} backgroundColor="transparent" maxScale={2} containerRatio={document.documentElement.clientHeight * 100 / document.documentElement.clientWidth}>
                 <img style={styles.img} src={img.url} />
             </PinchView>
         );

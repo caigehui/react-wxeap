@@ -38,21 +38,21 @@ export default function compressImage(src, orientation, maxWidth, cb) {
             };
             switch (orientation) {
                 case 6:
-                    //需要顺时针（向左）90度旋转  
+                    // 需要顺时针（向左）90度旋转  
                     canvas.width = h;
                     canvas.height = w;
                     ctx.rotate(90 * Math.PI / 180);
                     ctx.drawImage(img, 0, -h, w, h);
                     break;
                 case 8:
-                    //需要逆时针（向右）90度旋转  
+                    // 需要逆时针（向右）90度旋转  
                     canvas.width = h;
                     canvas.height = w;
                     ctx.rotate(270 * Math.PI / 180);
                     ctx.drawImage(img, -w, 0, w, h);
                     break;
                 case 3:
-                    //需要180度旋转  
+                    // 需要180度旋转  
                     canvas.width = w;
                     canvas.height = h;
                     ctx.rotate(180 * Math.PI / 180);
@@ -65,7 +65,7 @@ export default function compressImage(src, orientation, maxWidth, cb) {
             }
             // get image type
             let type = src.substring(src.indexOf(':') + 1, src.indexOf(';'));
-            //convert to base64
+            // convert to base64
             let base64Url = canvas.toDataURL(type);
             cb(base64Url);
         }

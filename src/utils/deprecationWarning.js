@@ -3,7 +3,7 @@ import warning from 'warning';
 const warned = {};
 
 export default function deprecationWarning(oldname, newname, link) {
-  //avoid test warnings
+  // avoid test warnings
   if (typeof global.it === 'function') {
     return;
   }

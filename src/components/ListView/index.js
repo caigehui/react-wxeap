@@ -76,7 +76,7 @@ export default class extends React.Component {
 
     fill = (tasks, allLoaded, page) => {
         try {
-            //作向下兼容处理
+            // 作向下兼容处理
             if (!page) {
                 let originTasks = this.state.page === 1 ? [] : cacheTasks[this.props.listId];
                 this.setState({
@@ -111,7 +111,7 @@ export default class extends React.Component {
     onEndReached = () => {
         const { isLoading, allLoaded, page } = this.state;
         if (isLoading === false && allLoaded === false) {
-            if (!cacheTasks[this.props.listId] || cacheTasks[this.props.listId].length === 0) return;/*初始化不加载 */
+            if (!cacheTasks[this.props.listId] || cacheTasks[this.props.listId].length === 0) return;/* 初始化不加载 */
             this.setState({
                 page: page + 1,
                 isLoading: true

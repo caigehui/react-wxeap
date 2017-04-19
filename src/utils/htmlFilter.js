@@ -6,7 +6,7 @@
 export default function htmlFilter(str) {
     let pptn = /<\/p>/gi;
     let wrapptn = /<br\s*\/?>/gi;
-    let startptn = /<\/?[^>]*>/g;      //过滤标签开头
+    let startptn = /<\/?[^>]*>/g;      // 过滤标签开头
     let nbspptn = /&nbsp;/ig;
     let quotptn = /&quot;/ig;
     let ampptn = /&amp;/ig;

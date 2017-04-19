@@ -170,8 +170,8 @@ export default class Navigation extends React.Component {
         };
         if (homeMode) {
             leftProps = {
-                iconName: MobileDetect.isWechat?null:'left',
-                onLeftClick: MobileDetect.isWechat?null:this.props.onBack,
+                iconName: MobileDetect.isWechat ? null : 'left',
+                onLeftClick: MobileDetect.isWechat ? null : this.props.onBack,
                 leftContent: (
                     <div style={inlineStyles.leftContent}>
                         <div key="1" style={inlineStyles.menu} onClick={this.onMenuClick} >

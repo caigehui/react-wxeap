@@ -2,8 +2,7 @@
 `ListView`是高度封装的列表组件，集成了下拉刷新和上拉下载
 
 
-```js
-
+```
 import { ListView } from 'react-wxeap'
 
 	onFetch = (page, fill) => {

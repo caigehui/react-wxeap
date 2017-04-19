@@ -5,7 +5,7 @@
 示例：
 
 **业务模型-model**
-```js
+```
 export default {
   namespace: 'app',
   state: {
@@ -26,7 +26,7 @@ export default {
 ```
 
 **业务视图-route**
-```js
+```
 import { bind } from 'react-wxeap';
 
 class App extends React.Component {

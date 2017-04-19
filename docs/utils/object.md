@@ -3,7 +3,7 @@
 **compareObject**:
 比较两个对象是否相同
 
-```js
+```
 
 import { compareObject } from 'react-wxeap'
 

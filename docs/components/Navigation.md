@@ -1,11 +1,12 @@
 # Navigation
 
 `Navigation`有两种模式:
+
 * 正常模式
 * 主页模式
 
 一般使用正常模式即可：
-```js
+```
 import { Navigation } from 'react-wxeap'
 
 <Navigation onBack={() => {

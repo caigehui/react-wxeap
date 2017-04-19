@@ -1,7 +1,7 @@
 # request 
 网络请求的方法
 
-```js
+```
 import { request } from 'react-wxeap'
 
 request('http://www.baidu.com') //get

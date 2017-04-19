@@ -1,6 +1,7 @@
 # mobileDetect
 
 设备/微信判断：
+
 * iOSVer
 * androidVer
 * isIOS

@@ -1,6 +1,6 @@
 # ImageViewer
 
-```jsx
+```
 import { ImageViewer } from 'react-wxeap'
 
 let files = [

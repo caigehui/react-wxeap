@@ -2,7 +2,7 @@
 
 1.**在入口出引入 MobileApp**:
 
-```js
+```
 import { MobileApp } from 'react-wxeap';
 ```
 
@@ -14,7 +14,7 @@ import { MobileApp } from 'react-wxeap';
 * component: 业务视图
 * createForm: 是否启动表单模式
 
-```js
+```
 let routes = [
   {
     name: 'TasksList',
@@ -38,7 +38,7 @@ let routes = [
 * origin: 调试服务器的EAP地址
 * auth: 调试的身份认证地址
 
-```js
+```
 let options = {
   module: 'wxcsm',
   origin: 'http://192.168.0.92/WxSoft.EAP',
@@ -47,7 +47,7 @@ let options = {
 ```
 
 4.**启动应用**
-```js
+```
 const app = new MobileApp(routes, options);
 app.start();
 ```
@@ -58,7 +58,7 @@ app.start();
 
 > 可控组件：组件的值由状态控制
 
-```js
+```
 class Form extends React.Component {
   submit = () => {
     this.props.form.validateFields((error, value) => {

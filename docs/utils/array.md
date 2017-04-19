@@ -1,12 +1,13 @@
 # Array的扩展
 
 `React WxEAP`提供了四个常用的扩展方法，他们都不会改变原数组:
+
 * removeByCondition
 * findByCondition
 * searchByCondition
 * removeObjects
 
-```js
+```
 let a = [
     {   
         id: 0,

@@ -2,7 +2,7 @@
 
 自带压缩功能的图片选择器
 
-```jsx
+```
 import { ImagePicker } from 'react-wxeap'
 ...
 <ImagePicker

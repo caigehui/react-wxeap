@@ -1,5 +1,6 @@
 ## 1.0.0-beta0
 * 新增Flex布局的基本元素`View`
+* 新增FilterBar
 * 重做Navigation组件，拆分职责
 
 ## 0.9.x

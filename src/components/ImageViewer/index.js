@@ -31,6 +31,11 @@ const styles = {
 };
 class ImageViewer extends React.Component {
 
+    static propTypes = {
+        imgs: React.PropTypes.array,
+        initIndex: React.PropTypes.number
+    }
+
     render() {
         const { imgs, initIndex } = this.props;
         let newImgs = [];

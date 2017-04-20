@@ -3,6 +3,7 @@
 * 新增`FilterBar`
 * 重做`Navigation`组件，拆分职责
 * 调整`constants.js`至src目录下
+* 调整`ListView`,新增自定义allLoadedText
 
 ## v0.9.2 2017-4-18 by gehui.cai
 * 引入eslint检查语法

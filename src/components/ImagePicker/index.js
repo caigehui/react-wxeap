@@ -5,6 +5,7 @@ export default class ImagePickerCompress extends React.Component {
 
     static propTypes = {
         maxWidth: React.PropTypes.number,
+        onChange: React.PropTypes.func
     }
 
     static defaultProps = {

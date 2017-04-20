@@ -9,7 +9,8 @@ const style = {
 export default class View extends React.Component {
     
     static propTypes = {
-        style: PropTypes.object
+        style: PropTypes.object,
+        children: PropTypes.any
     }
 
     render() {

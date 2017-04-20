@@ -55,7 +55,7 @@ html, body, :global(#root) {
 }
 
 :global(.am-navbar) {
-  border-bottom: 1px solid rgb(220, 220, 220);
+  border-bottom: 1px solid rgb(220, 220, 220)!important;
 }
 
 

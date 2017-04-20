@@ -1,4 +1,4 @@
-## v1.0.0-beta0 2017-4-19 by gehui.cai
+## v1.0.0-beta 2017-4-19 by gehui.cai
 * 新增Flex布局的基本元素`View`
 * 新增`FilterBar`
 * 重做`Navigation`组件，拆分职责

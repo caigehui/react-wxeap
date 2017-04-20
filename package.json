@@ -1,10 +1,11 @@
 {
   "name": "react-wxeap",
-  "version": "1.0.0-beta0",
+  "version": "1.0.0-beta1",
   "description": "cnwxsoft web framework",
   "scripts": {
     "pb": "npm run build && npm publish",
     "build": "npm run lint && cp -r src/* lib && babel src -d lib",
+    "build-cmd": "npm run lint && xcopy src lib /y/s && babel src -d lib",
     "lint": "eslint --ext .js src --fix"
   },
   "main": "lib/index.js",

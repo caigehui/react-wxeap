@@ -1,3 +1,9 @@
+## v1.0.0-beta0 2017-4-19 by gehui.cai
+* 新增Flex布局的基本元素`View`
+* 新增`FilterBar`
+* 重做`Navigation`组件，拆分职责
+* 调整`constants.js`至src目录下
+
 ## v0.9.2 2017-4-18 by gehui.cai
 * 引入eslint检查语法
 

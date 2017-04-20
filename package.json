@@ -4,7 +4,7 @@
   "description": "cnwxsoft web framework",
   "scripts": {
     "pb": "npm run build && npm publish",
-    "build": "npm run lint && babel src --out-dir lib",
+    "build": "npm run lint && cp -r src/* lib && babel src -d lib",
     "lint": "eslint --ext .js src --fix"
   },
   "main": "lib/index.js",

@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 
 const style = {
     display: 'flex',
-    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap'
 };
@@ -15,8 +14,8 @@ export default class View extends React.Component {
 
     render() {
         return (
-            <div style={{ ...style, ...this.props.style }}>
-                {this.props.children}
+            <div {...this.props} style={{ ...style, ...this.props.style }}>
+                {React.Children.map(this.props.children, child => child)}
             </div>
         );
     }

@@ -192,39 +192,39 @@ export default class Navigation extends React.Component {
         return (
             <div >
                 <NavBar
-                        {...leftProps}
-                        mode="light"
-                        rightContent={
-                            !homeMode ? null : [
-                                companyData[0].children.length > 1 ? <Icon key="switch" onClick={this.onSwitchCompanyClick} type={require('../../assets/switch.svg')} /> : null,
-                                <Popover key="pop" mask
-                                    visible={showPopover}
-                                    overlay={addOptions.map((option, i) => <Item
-                                        key={i}
-                                        value={option}
-                                        icon={<Icon type={require('../../assets/add.svg')} size="xs" />}
-                                    >{`新增${option}`}</Item>)}
-                                    popupAlign={{
-                                        overflow: { adjustY: 0, adjustX: 0 },
-                                        offset: [offsetX, 15],
-                                    }}
-                                    onVisibleChange={this.onPopoverClick}
-                                    onSelect={this.onPopoverSelect}>
-                                    <div style={{
-                                        height: '100%',
-                                        padding: '0 0.3rem',
-                                        marginRight: '-0.3rem',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                    }}
-                                    >
-                                        <Icon type={require('../../assets/new1.svg')} size="xs" />
-                                    </div>
-                                </Popover>
-                            ]}>
-                        {!homeMode ? title : navTitle}
-                    </NavBar>
-                    <div onClick={() => this.setState({ showMenu: false })} style={showMenu ? inlineStyles.menuActive : {}}>
+                    {...leftProps}
+                    mode="light"
+                    rightContent={
+                        !homeMode ? null : [
+                            companyData[0].children.length > 1 ? <Icon key="switch" onClick={this.onSwitchCompanyClick} type={require('../../assets/switch.svg')} /> : null,
+                            <Popover key="pop" mask
+                                visible={showPopover}
+                                overlay={addOptions.map((option, i) => <Item
+                                    key={i}
+                                    value={option}
+                                    icon={<Icon type={require('../../assets/add.svg')} size="xs" />}
+                                >{`新增${option}`}</Item>)}
+                                popupAlign={{
+                                    overflow: { adjustY: 0, adjustX: 0 },
+                                    offset: [offsetX, 15],
+                                }}
+                                onVisibleChange={this.onPopoverClick}
+                                onSelect={this.onPopoverSelect}>
+                                <div style={{
+                                    height: '100%',
+                                    padding: '0 0.3rem',
+                                    marginRight: '-0.3rem',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                }}
+                                >
+                                    <Icon type={require('../../assets/new1.svg')} size="xs" />
+                                </div>
+                            </Popover>
+                        ]}>
+                    {!homeMode ? title : navTitle}
+                </NavBar>
+                <div onClick={() => this.setState({ showMenu: false })} style={showMenu ? inlineStyles.menuActive : {}}>
                 </div>
                 {showMenu ? menu : null}
             </div>

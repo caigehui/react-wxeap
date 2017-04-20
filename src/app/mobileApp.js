@@ -4,7 +4,7 @@ import { Router, Route } from 'dva/router';
 import { locationChangeMiddleware } from './middleware';
 import { useRouterHistory } from 'dva/router';
 import { createHashHistory } from 'history';
-import * as CONSTANTS from './constants';
+import * as CONSTANTS from '../constants';
 
 export default class MobileApp {
 

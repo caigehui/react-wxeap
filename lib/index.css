@@ -57,3 +57,9 @@ html, body, :global(#root) {
 :global(.am-navbar) {
   border-bottom: 1px solid rgb(220, 220, 220);
 }
+
+
+/* FilterBar菜单 */
+:global(.am-menu .am-flexbox .am-flexbox-item:first-child) { flex: 0.5}
+:global(.am-menu .am-flexbox .am-flexbox-item:last-child) { flex: 1}
+:global(.am-menu .am-flexbox .am-flexbox-item:first-child .am-list .am-list-item .am-list-line) { border-bottom: 1px solid #ddd;}

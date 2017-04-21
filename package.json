@@ -1,6 +1,6 @@
 {
   "name": "react-wxeap",
-  "version": "1.0.0-beta4",
+  "version": "1.0.0-beta6",
   "description": "cnwxsoft web framework",
   "scripts": {
     "pb": "npm run build && npm publish",

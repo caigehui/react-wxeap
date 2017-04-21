@@ -35,6 +35,7 @@ export default class extends React.Component {
         listId: PropTypes.string.isRequired,
         refreshable: PropTypes.bool,
         header: PropTypes.string,
+        renderHeader: PropTypes.func,
         pageSize: PropTypes.number.isRequired,
         renderRow: PropTypes.func.isRequired,
         onFetch: PropTypes.func.isRequired,
@@ -135,7 +136,7 @@ export default class extends React.Component {
     }
 
     render() {
-        const { header, pageSize, renderRow, refreshable, allLoadedText } = this.props;
+        const { header, pageSize, renderRow, refreshable, allLoadedText, renderHeader } = this.props;
         const { allLoaded, isLoading, refreshing } = this.state;
         let listView = (
             <ListView
@@ -143,7 +144,7 @@ export default class extends React.Component {
                 style={styles.listView}
                 dataSource={this.state.dataSource}
                 initialListSize={0}
-                renderHeader={header ? () => <span>{header}</span> : null}
+                renderHeader={renderHeader || header ? () => <span>{header}</span> : null}
                 renderFooter={() =>
                     <div style={styles.footer}>
                         <div style={styles.sep} />

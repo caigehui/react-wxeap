@@ -10,6 +10,10 @@ html, body, :global(#root) {
     border-top: 0px!important
 }
 
+:global(.am-list-header) {
+  padding: 0px!important
+}
+
 :global(.am-list-item .am-input-control input) {
   text-align: right;
   font-size: 28px!important;

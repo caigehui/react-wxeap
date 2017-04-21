@@ -1,9 +1,19 @@
+# CHANGELOG
+
 ## v1.0.0-beta 2017-4-19 by gehui.cai
 * 新增Flex布局的基本元素`View`
-* 新增`FilterBar`
-* 重做`Navigation`组件，拆分职责
+	* 以后的布局使用`View` 
+* 新增`FilterBar`，使用方法参考文档
+* 重做`Navigation`组件
+	* 移除了所有按钮，只保留返回按钮
+	* 识别微信端，自动隐藏导航条
+	* 根据`title`修改网页标题 
 * 调整`constants.js`至src目录下
-* 调整`ListView`,新增自定义allLoadedText
+* 调整`ListView`
+	* 新增属性：`allLoadedText`
+	* 新增方法：`scrollTo`
+	* 新增方法: `renderHeader`
+	* 修改`header`的`padding`为0
 
 ## v0.9.2 2017-4-18 by gehui.cai
 * 引入eslint检查语法

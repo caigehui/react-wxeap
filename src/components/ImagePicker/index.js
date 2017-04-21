@@ -1,11 +1,22 @@
 import React from 'react';
 import { ImagePicker } from 'antd-mobile';
 import compressImage from '../../utils/compressImage';
+import MobileDetect from '../../utils/MobileDetect';
+
 export default class ImagePickerCompress extends React.Component {
 
     static propTypes = {
         maxWidth: React.PropTypes.number,
         onChange: React.PropTypes.func
+    }
+
+    componentDidMount() {
+        if (MobileDetect.isAndroid) {
+            let cameras = document.querySelector('input[type=\'file\']');
+            for (let i = 0; i < cameras.length; i++) {
+                cameras[i].setAttribute('capture', 'camera');
+            }
+        }
     }
 
     static defaultProps = {

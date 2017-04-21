@@ -9,7 +9,7 @@ export default class ImagePickerCompress extends React.Component {
     }
 
     static defaultProps = {
-        maxWidth: 1024
+        maxWidth: 1080
     }
 
     onChange = (files, type, index) => {

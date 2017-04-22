@@ -13,9 +13,9 @@ export default class MobileApp {
      * @param {array} routes 
      * @param {object} options 
      */
-    constructor(routes, options) {
+    constructor(routes, options, middlewares) {
         this.mobileApp = dva({
-            onAction: [locationChangeMiddleware],
+            onAction: [locationChangeMiddleware, ...middlewares],
             history: useRouterHistory(createHashHistory)({ queryKey: false }),//移除_k参数 
         });
         this.addModel(routes);

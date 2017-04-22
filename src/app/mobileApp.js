@@ -4,18 +4,19 @@ import { Router, Route } from 'dva/router';
 import { locationChangeMiddleware } from './middleware';
 import { useRouterHistory } from 'dva/router';
 import { createHashHistory } from 'history';
-import * as CONSTANTS from './constants';
+import * as CONSTANTS from '../constants';
 
 export default class MobileApp {
 
     /**
      * 初始化App
      * @param {array} routes 
-     * @param {object} options 
+     * @param {object} options
+     * @param {array} middlewares 
      */
-    constructor(routes, options) {
+    constructor(routes, options, middlewares = []) {
         this.mobileApp = dva({
-            onAction: [locationChangeMiddleware],
+            onAction: [locationChangeMiddleware, ...middlewares],
             history: useRouterHistory(createHashHistory)({ queryKey: false }),//移除_k参数 
         });
         this.addModel(routes);

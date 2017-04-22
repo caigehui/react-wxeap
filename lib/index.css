@@ -1,13 +1,19 @@
-
 html, body, :global(#root) {
   height: 100%;
+  width: 100%;
+  margin: 0!important
 }
 
+
 :global(.am-list-body:after) {
-    border-bottom: 0px
+    border-bottom: 0px!important
 }
 :global(.am-list-body) {
-    border-top: 0px
+    border-top: 0px!important
+}
+
+:global(.am-list-header) {
+  padding: 0px!important
 }
 
 :global(.am-list-item .am-input-control input) {
@@ -44,7 +50,7 @@ html, body, :global(#root) {
 
 /*刷新控件*/
 :global(.am-refresh-control-loading) {
-    height: 100px;
+    height: 100px!important;
     display: flex!important;
     justify-content: center;
     align-items: center;
@@ -55,5 +61,17 @@ html, body, :global(#root) {
 }
 
 :global(.am-navbar) {
-  border-bottom: 1px solid rgb(220, 220, 220);
+  border-bottom: 1px solid rgb(220, 220, 220)!important;
+}
+
+
+/* FilterBar菜单 */
+:global(.am-menu .am-flexbox .am-flexbox-item:first-child) { flex: 0.5}
+:global(.am-menu .am-flexbox .am-flexbox-item:last-child) { flex: 1}
+:global(.am-menu .am-flexbox .am-flexbox-item:first-child .am-list .am-list-item .am-list-line) { border-bottom: 1px solid #ddd!important;}
+
+/* 图标大小 */
+:global(.am-icon-xxs) {
+  width: 15px!important;
+  height: 15px!important;
 }

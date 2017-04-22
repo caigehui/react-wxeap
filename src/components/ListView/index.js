@@ -35,16 +35,19 @@ export default class extends React.Component {
         listId: PropTypes.string.isRequired,
         refreshable: PropTypes.bool,
         header: PropTypes.string,
+        renderHeader: PropTypes.func,
         pageSize: PropTypes.number.isRequired,
         renderRow: PropTypes.func.isRequired,
         onFetch: PropTypes.func.isRequired,
-        renderSeparator: PropTypes.func
+        renderSeparator: PropTypes.func,
+        allLoadedText: PropTypes.string
     }
 
     static defaultProps = {
         refreshable: true,
         listId: 'temp',
-        pageSize: 4
+        pageSize: 4,
+        allLoadedText: '没有更多了'
     }
 
     constructor(props) {
@@ -66,6 +69,10 @@ export default class extends React.Component {
         this.onRefresh();
     }
 
+    scrollTo = (y) => {
+        this.listView.scrollTo(0, y);
+    }
+
     componentDidMount() {
         this.onRefresh();
     }
@@ -85,7 +92,7 @@ export default class extends React.Component {
                     isLoading: false,
                     allLoaded
                 });
-                
+
                 cacheTasks[this.props.listId] = [...originTasks, ...tasks];
             } else {
                 let newTasks = this.state.page === 1 ? [] : cacheTasks[this.props.listId] || [];
@@ -129,31 +136,34 @@ export default class extends React.Component {
     }
 
     render() {
-        const { header, pageSize, renderRow, refreshable } = this.props;
+        const { header, pageSize, renderRow, refreshable, allLoadedText, renderHeader } = this.props;
         const { allLoaded, isLoading, refreshing } = this.state;
+        let listView = (
+            <ListView
+                ref={o => this.listView = o}
+                style={styles.listView}
+                dataSource={this.state.dataSource}
+                initialListSize={0}
+                renderHeader={renderHeader || header ? () => <span>{header}</span> : null}
+                renderFooter={() =>
+                    <div style={styles.footer}>
+                        <div style={styles.sep} />
+                        {allLoaded ? allLoadedText : isLoading ? '加载中...' : '加载完毕'}
+                        <div style={styles.sep} />
+                    </div>}
+                renderRow={renderRow}
+                pageSize={pageSize}
+                scrollRenderAheadDistance={0}
+                scrollEventThrottle={20}
+                onEndReached={this.onEndReached}
+                onEndReachedThreshold={30}
+                refreshControl={refreshable ? <RefreshControl
+                    refreshing={refreshing}
+                    onRefresh={this.onRefresh} /> : null}
+                {...this.props} />);
         return (
             <div>
-                <ListView
-                    style={styles.listView}
-                    dataSource={this.state.dataSource}
-                    initialListSize={0}
-                    renderHeader={header ? () => <span>{header}</span> : null}
-                    renderFooter={() =>
-                        <div style={styles.footer}>
-                            <div style={styles.sep} />
-                            {allLoaded ? '没有更多了' : isLoading ? '加载中...' : '加载完毕'}
-                            <div style={styles.sep} />
-                        </div>}
-                    renderRow={renderRow}
-                    pageSize={pageSize}
-                    scrollRenderAheadDistance={0}
-                    scrollEventThrottle={20}
-                    onEndReached={this.onEndReached}
-                    onEndReachedThreshold={30}
-                    refreshControl={refreshable ? <RefreshControl
-                        refreshing={refreshing}
-                        onRefresh={this.onRefresh} /> : null}
-                    {...this.props} />
+                {listView}
             </div>
         );
     }

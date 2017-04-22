@@ -38,7 +38,7 @@
     "no-multi-spaces": 2,
     "no-multiple-empty-lines": 2,
     "no-unreachable": 2,
-    "react/prop-types": 0,
+    "react/prop-types": 2,
     "array-bracket-spacing": [
       "error",
       "never"

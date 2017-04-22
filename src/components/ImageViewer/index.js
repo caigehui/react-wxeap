@@ -12,7 +12,7 @@ const styles = {
     carouselContainer: {
         width: document.documentElement.clientWidth,
         height: document.documentElement.clientHeight,
-        display: 'flex',
+        display: '-webkit-flex',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
@@ -30,6 +30,11 @@ const styles = {
     }
 };
 class ImageViewer extends React.Component {
+
+    static propTypes = {
+        imgs: React.PropTypes.array,
+        initIndex: React.PropTypes.number
+    }
 
     render() {
         const { imgs, initIndex } = this.props;

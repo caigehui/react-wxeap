@@ -11,9 +11,10 @@ export default class MobileApp {
     /**
      * 初始化App
      * @param {array} routes 
-     * @param {object} options 
+     * @param {object} options
+     * @param {array} middlewares 
      */
-    constructor(routes, options, middlewares) {
+    constructor(routes, options, middlewares = []) {
         this.mobileApp = dva({
             onAction: [locationChangeMiddleware, ...middlewares],
             history: useRouterHistory(createHashHistory)({ queryKey: false }),//移除_k参数 

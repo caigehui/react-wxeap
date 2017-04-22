@@ -12,7 +12,7 @@ const styles = {
     carouselContainer: {
         width: document.documentElement.clientWidth,
         height: document.documentElement.clientHeight,
-        display: 'flex',
+        display: '-webkit-flex',
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',

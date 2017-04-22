@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 const style = {
-    display: 'flex',
+    display: '-webkit-flex',
     flexDirection: 'row',
     flexWrap: 'wrap'
 };

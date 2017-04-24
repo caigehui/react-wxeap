@@ -1,8 +1,10 @@
 # CHANGELOG
 
+## v1.0.2 2017-4-24 by gehui.cai
+* 【修复】在`ListView`中给`input`加上`capture=“camera”`兼容Android设备的拍照问题
+
 ## v1.0.1 2017-4-24 by gehui.cai 
 * 【新增】`ListView`新增`nocache`属性以支持不缓存列表数据
-
 
 ## v1.0.0 2017-4-24 by gehui.cai
 * 【新增】Flex布局的基本元素`View`

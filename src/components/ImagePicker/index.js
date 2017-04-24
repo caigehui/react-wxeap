@@ -11,8 +11,11 @@ export default class ImagePickerCompress extends React.Component {
     }
 
     componentDidMount() {
+        /**
+         * 兼容部分安卓机的相机拍照
+         */
         if (MobileDetect.isAndroid) {
-            let cameras = document.querySelector('input[type=\'file\']');
+            let cameras = document.querySelectorAll('input[type=\'file\']');
             for (let i = 0; i < cameras.length; i++) {
                 cameras[i].setAttribute('capture', 'camera');
             }

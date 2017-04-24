@@ -81,3 +81,12 @@ class Form extends React.Component {
   }
 }
 ```
+
+## 引用Redux中间件
+
+可以通过第三个参数传递Redux中间件
+
+```
+const app = new MobileApp(routes, options, [locationListener]);
+app.start();
+```

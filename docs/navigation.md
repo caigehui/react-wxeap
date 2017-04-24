@@ -15,6 +15,7 @@
 * [ListView](./components/ListView.md)
 * [Navigation](./components/Navigation.md)
 * [Seperator](./components/Seperator.md)
+* [FilterBar](./components/FilterBar.md)
 
 [工具和扩展]()
 
@@ -23,7 +24,7 @@
 * [delay](./utils/delay.md)
 * [htmlFilter](./utils/htmlFilter.md)
 * [mobileDetect](./utils/mobileDetect.md)
-* [object](./utils/object.md)
+* [Object](./utils/object.md)
 * [request](./utils/request.md)
 * [storage](./utils/storage.md)
 * [wrapProps](./utils/wrapProps.md)

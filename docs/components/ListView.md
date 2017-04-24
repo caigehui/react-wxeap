@@ -6,7 +6,7 @@
 import { ListView } from 'react-wxeap'
 
 	onFetch = (page, fill) => {
-		
+		fill([], true, page)
 	}
 
     ...
@@ -49,3 +49,9 @@ import { ListView } from 'react-wxeap'
 | renderRow | 渲染每一行  |  (rowData: object): any |   |
 | onFetch | 触发网络请求 | (page: number, fill: func): void |  |
 | renderSeparator | 渲染分割线 | (sectionId: number, rowId: number): any| |
+| nocache | 是否关闭数据缓存 | book | false |
+
+`fill`方法：
+* data：数据，必须是Array
+* allLoaded: 是否全部加载
+* page: 填充数据的页数，如果为1，那么data将替换第一页

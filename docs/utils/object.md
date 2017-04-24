@@ -3,8 +3,7 @@
 **compareObject**:
 比较两个对象是否相同
 
-```
-
+```javascript
 import { compareObject } from 'react-wxeap'
 
 let m = { a: 1, b: 2 };

@@ -7,7 +7,7 @@
 * searchByCondition
 * removeObjects
 
-```
+```javascript
 let a = [
     {   
         id: 0,

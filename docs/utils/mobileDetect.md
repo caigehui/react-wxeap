@@ -13,3 +13,14 @@
 * isMobile
 * isWechat
 * wechatVer
+
+## Usage
+
+```javascript
+import { MobileDetect }from 'react-wxeap';
+
+let iOSVersion = MobileDetect.iOSVer; // iOS版本
+
+let isAndroid = MobileDetect.isAndroid; // 是否是Android平台
+
+```

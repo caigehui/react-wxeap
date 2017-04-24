@@ -1,6 +1,7 @@
 import 'babel-polyfill';
 import './index.css';
 import './utils/array';
+import './utils/orientationListener.js';
 import MobileApp from './app/mobileApp';
 import bind from './app/bind';
 import { routerRedux } from 'dva/router';

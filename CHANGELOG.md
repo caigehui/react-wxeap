@@ -1,6 +1,10 @@
 # CHANGELOG
 
-## v1.0.0-beta 2017-4-19 by gehui.cai
+## v1.0.1 2017-4-24 by gehui.cai 
+* 【新增】`ListView`新增`nocache`属性以支持不缓存列表数据
+
+
+## v1.0.0 2017-4-24 by gehui.cai
 * 【新增】Flex布局的基本元素`View`
 	* 以后的布局使用`View` 
 * 【新增】`FilterBar`，使用方法参考文档
@@ -15,6 +19,9 @@
 	* 新增方法: `renderHeader`
 	* 修改`header`的`padding`为0
 * 【新增】`mobileApp`添加了一个参数`middlewares`以支持自定义中间件
+* 【新增】`orientationListener.js`文件监听手机屏幕旋转，如果发生旋转则自动刷新重置布局
+* 【修复】`ListView`有时无法加载更多内容的BUG
+
 
 ## v0.9.2 2017-4-18 by gehui.cai
 * 引入eslint检查语法

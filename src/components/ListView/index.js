@@ -40,14 +40,16 @@ export default class extends React.Component {
         renderRow: PropTypes.func.isRequired,
         onFetch: PropTypes.func.isRequired,
         renderSeparator: PropTypes.func,
-        allLoadedText: PropTypes.string
+        allLoadedText: PropTypes.string,
+        nocache: PropTypes.bool
     }
 
     static defaultProps = {
         refreshable: true,
         listId: 'temp',
         pageSize: 4,
-        allLoadedText: '没有更多了'
+        allLoadedText: '没有更多了',
+        nocache: false
     }
 
     constructor(props) {
@@ -55,7 +57,9 @@ export default class extends React.Component {
         const dataSource = new ListView.DataSource({
             rowHasChanged: () => true,
         });
-
+        if(props.nocache) {
+            cacheTasks[props.listId] = [];
+        }
         this.state = {
             dataSource: dataSource.cloneWithRows(cacheTasks[props.listId] || []),
             refreshing: false,
@@ -153,10 +157,10 @@ export default class extends React.Component {
                     </div>}
                 renderRow={renderRow}
                 pageSize={pageSize}
-                scrollRenderAheadDistance={0}
+                scrollRenderAheadDistance={200}
                 scrollEventThrottle={20}
                 onEndReached={this.onEndReached}
-                onEndReachedThreshold={30}
+                onEndReachedThreshold={100}
                 refreshControl={refreshable ? <RefreshControl
                     refreshing={refreshing}
                     onRefresh={this.onRefresh} /> : null}

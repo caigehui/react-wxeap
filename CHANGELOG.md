@@ -1,4 +1,11 @@
-# CHANGELOG
+# 更新日志
+
+严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
+
+## v1.1.0-alpha 2017-4-26 by gehui.cai  
+* 【优化】优化屏幕旋转的监听，不刷新页面而是刷新router，提升页面性能
+* 【优化】FilterBar更改样式，允许空格
+* 【优化】微信和QQ浏览器不兼容orientationchange事件的问题
 
 ## v1.0.4 2017-4-26 by gehui.cai
 * 【修复】`ImageViewer`的错误

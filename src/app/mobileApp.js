@@ -1,3 +1,5 @@
+import './mobileApp.css';
+import OrientationListener from '../utils/orientationListener.js';
 import React from 'react';
 import dva from 'dva';
 import { Router, Route } from 'dva/router';
@@ -22,6 +24,10 @@ export default class MobileApp {
         this.addModel(routes);
         this.addRouter(routes);
         this.configureAPI(options);
+
+        OrientationListener(() => {
+            this.router.forceUpdate();
+        });
     }
 
     /**
@@ -47,7 +53,7 @@ export default class MobileApp {
     addRouter(routes) {
         this.mobileApp.router(({ history }) => {
             return (
-                <Router history={history}>
+                <Router ref={o => this.router = o} history={history}>
                     {routes.map(route => <Route key={route.path} path={route.path} component={route.component} />)}
                 </Router>
             );

@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.0.4 2017-4-26 by gehui.cai
+* 【修复】`ImageViewer`的错误
+
+## v1.0.3 2017-4-25 by gehui.cai
+* 【修改】文档更新
+
 ## v1.0.2 2017-4-24 by gehui.cai
 * 【修复】在`ListView`中给`input`加上`capture=“camera”`兼容Android设备的拍照问题
 

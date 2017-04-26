@@ -1,3 +1,6 @@
+/**
+ * react web 入口
+ */
 import 'babel-polyfill';
 import './utils/array';
 export { default as MobileApp } from './app/mobileApp';
@@ -25,6 +28,3 @@ export {
     SessionStorage,
     MobileDetect
 };
-
-// npm config set registry https://registry.npm.taobao.org
-// npm config set registry http://registry.npmjs.org

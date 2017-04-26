@@ -11,4 +11,5 @@ node_modules
 config.gypi
 CVS
 npm-debug.log
-lib
+lib/
+lib/README.md

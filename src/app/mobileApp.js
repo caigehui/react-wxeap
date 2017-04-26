@@ -3,7 +3,7 @@ import OrientationListener from '../utils/orientationListener.js';
 import React from 'react';
 import dva from 'dva';
 import { Router, Route } from 'dva/router';
-import { locationChangeMiddleware } from './middleware';
+import mobileMiddleware from './mobileMiddleware';
 import { useRouterHistory } from 'dva/router';
 import { createHashHistory } from 'history';
 import * as CONSTANTS from '../constants';
@@ -18,7 +18,7 @@ export default class MobileApp {
      */
     constructor(routes, options, middlewares = []) {
         this.mobileApp = dva({
-            onAction: [locationChangeMiddleware, ...middlewares],
+            onAction: [mobileMiddleware, ...middlewares],
             history: useRouterHistory(createHashHistory)({ queryKey: false }),//移除_k参数 
         });
         this.addModel(routes);

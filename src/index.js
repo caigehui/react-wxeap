@@ -3,5 +3,5 @@
  */
 import './utils/array';
 export { DEV_MODE } from './constants';
-export { default as delay } from './utils/delay';
-export { compareObject } from './utils/object';
+export { default as delay } from './utils/extensions/array';
+export { compareObject } from './utils/extensions/object';

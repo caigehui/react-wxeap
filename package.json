@@ -1,13 +1,22 @@
 {
   "name": "react-wxeap",
-  "version": "1.1.0-alpha8",
+  "version": "1.1.0-alpha9",
   "description": "cnwxsoft web framework",
   "scripts": {
+    "lint": "eslint --ext .js src --fix",
     "pb": "npm run build && npm publish",
     "pb-cmd": "npm run build-cmd && npm publish",
-    "build": "npm run lint && rm -r lib/*  && cp -r src/* lib && babel src -d lib",
-    "build-cmd": "npm run lint && xcopy src lib /y/s && babel src -d lib",
-    "lint": "eslint --ext .js src --fix"
+    "build": "npm run lint && npm run transfer && npm run compile",
+    "transfer": "npm run clean && npm run copy",
+    "clean": "rm -r lib/*",
+    "copy": "cp -r src/* lib && cp *.md docs && npm run docs",
+    "docs": "mv docs/README.md docs/index.md",
+    "compile": "babel src -d lib",
+    "build-cmd": "npm run lint && npm run transfer-cmd && compile",
+    "transfer-cmd": "npm run clean-cmd && npm run copy-cmd",
+    "copy-cmd": "xcopy src lib /y/s && xcopy *.md docs /y && npm run docs-cmd",
+    "docs-cmd": "rename dist\\README.md index.md",
+    "clean-cmd": "rd /s/q lib && md lib"
   },
   "main": "lib/index",
   "author": "cnwxsoft",

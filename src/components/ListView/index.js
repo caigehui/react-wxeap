@@ -57,7 +57,7 @@ export default class extends React.Component {
         const dataSource = new ListView.DataSource({
             rowHasChanged: () => true,
         });
-        if(props.nocache) {
+        if (props.nocache) {
             cacheData[props.listId] = [];
         }
         this.state = {
@@ -159,6 +159,7 @@ export default class extends React.Component {
                 pageSize={pageSize}
                 scrollRenderAheadDistance={200}
                 scrollEventThrottle={20}
+                scrollerOptions={{ scrollbars: true }}
                 onEndReached={this.onEndReached}
                 onEndReachedThreshold={100}
                 refreshControl={refreshable ? <RefreshControl

@@ -7,7 +7,8 @@ import mobileMiddleware from './mobileMiddleware';
 import { useRouterHistory } from 'dva/router';
 import { createHashHistory } from 'history';
 import * as CONSTANTS from '../constants';
-
+import { persistStore, autoRehydrate } from 'redux-persist';
+import { asyncSessionStorage } from 'redux-persist/storages';
 export default class MobileApp {
 
     /**
@@ -19,7 +20,11 @@ export default class MobileApp {
     constructor(routes, options, middlewares = []) {
         this.mobileApp = dva({
             onAction: [mobileMiddleware, ...middlewares],
-            history: useRouterHistory(createHashHistory)({ queryKey: false }),//移除_k参数 
+            extraEnhancers: [autoRehydrate()],
+            history: useRouterHistory(createHashHistory)({ queryKey: true }),// 不移除_k参数 
+            onError(e) {
+                console.error('Global onError:', e);
+            },
         });
         this.addModel(routes);
         this.addRouter(routes);
@@ -37,9 +42,11 @@ export default class MobileApp {
         if (CONSTANTS.DEV_MODE && this.auth && this.auth.length > 0) {
             fetch(this.origin + this.auth, { credentials: 'include' }).then(() => {
                 this.mobileApp.start('#root');
+                persistStore(this.mobileApp._store, { storage: asyncSessionStorage });
             });
         } else {
             this.mobileApp.start('#root');
+            persistStore(this.mobileApp._store, { storage: asyncSessionStorage });
         }
     }
 

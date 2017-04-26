@@ -4,6 +4,11 @@
 export const DEV_MODE = process.env.NODE_ENV !== 'production';
 
 /**
+ * 是否为浏览器环境
+ */
+export const IS_WEB = window ? true : false;
+
+/**
  * 主题颜色
  */
 export const PRIMARY_COLOR = 'rgb(0, 126, 218)';

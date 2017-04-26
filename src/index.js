@@ -1,7 +1,7 @@
 /**
  * react-native 入口
  */
-import './utils/array';
+import './utils/extensions/array';
 export { DEV_MODE } from './constants';
 export { default as delay } from './utils/extensions/array';
 export { compareObject } from './utils/extensions/object';

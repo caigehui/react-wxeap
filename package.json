@@ -12,10 +12,10 @@
     "copy": "cp -r src/* lib && cp *.md docs && npm run docs",
     "docs": "mv docs/README.md docs/index.md",
     "compile": "babel src -d lib",
-    "build-cmd": "npm run lint && npm run transfer-cmd && compile",
+    "build-cmd": "npm run lint && npm run transfer-cmd && npm run compile",
     "transfer-cmd": "npm run clean-cmd && npm run copy-cmd",
     "copy-cmd": "xcopy src lib /y/s && xcopy *.md docs /y && npm run docs-cmd",
-    "docs-cmd": "rename dist\\README.md index.md",
+    "docs-cmd": "del docs\\index.md && rename docs\\README.md index.md",
     "clean-cmd": "rd /s/q lib && md lib"
   },
   "main": "lib/index",

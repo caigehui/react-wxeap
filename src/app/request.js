@@ -1,6 +1,6 @@
 import fetch from 'dva/fetch';
 import { Toast } from 'antd-mobile';
-
+import backToHome from '../utils/backToHome';
 function parseJSON(response) {
 	return response.json();
 }
@@ -26,8 +26,8 @@ function validation(responseJson) {
 			responseJson.errmsg && delete responseJson.errmsg;
 			return { data: responseJson || {}, err: null };
 		case 4001: // 会话丢失，刷新页面
-			Toast.info('连接超时，即将刷新页面', 2, () => {
-				location.reload();
+			Toast.info('连接超时，即将返回主页', 2, () => {
+				backToHome();
 			});
 			throw responseJson.errmsg;
 		default:

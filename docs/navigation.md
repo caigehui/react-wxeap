@@ -26,9 +26,6 @@
 * # extensions
 * [Array](./utils/extensions/array.md)
 * [Object](./utils/object.md)
-- - - -
-* # storage
-* [storage](./utils/storage.md)
 - - - - 
 * [delay](./utils/delay.md)
 * [htmlFilter](./utils/htmlFilter.md)

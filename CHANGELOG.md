@@ -3,7 +3,8 @@
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
 ## 1.1.0-beta
-* 【优化】引入`redux-persist`
+* 【优化】引入`redux-persist`，实现数据持久化
+* 【移除】移除`sessionStorage`和`localStorage`
 
 ## 1.1.0-alpha 
 `2017-4-26` 

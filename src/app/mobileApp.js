@@ -8,7 +8,6 @@ import { useRouterHistory } from 'dva/router';
 import { createHashHistory } from 'history';
 import * as CONSTANTS from '../constants';
 import { persistStore, autoRehydrate } from 'redux-persist';
-import { asyncSessionStorage } from 'redux-persist/storages';
 export default class MobileApp {
 
     /**
@@ -26,6 +25,7 @@ export default class MobileApp {
                 console.error('Global onError:', e);
             },
         });
+        this.routes = routes;
         this.addModel(routes);
         this.addRouter(routes);
         this.configureAPI(options);
@@ -42,12 +42,25 @@ export default class MobileApp {
         if (CONSTANTS.DEV_MODE && this.auth && this.auth.length > 0) {
             fetch(this.origin + this.auth, { credentials: 'include' }).then(() => {
                 this.mobileApp.start('#root');
-                persistStore(this.mobileApp._store, { storage: asyncSessionStorage });
+                this.persist();
             });
         } else {
             this.mobileApp.start('#root');
-            persistStore(this.mobileApp._store, { storage: asyncSessionStorage });
+            this.persist();
         }
+    }
+
+    persist() {
+        // 获取白名单
+        let whitelist = [];
+        for(let route of this.routes) {
+            if(route.model.persist) {
+                whitelist.push(route.model.namespace);
+            }
+        }
+        persistStore(this.mobileApp._store, { 
+            whitelist
+        });
     }
 
     addModel(routes) {

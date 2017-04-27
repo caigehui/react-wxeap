@@ -1,11 +1,31 @@
-# React WxEAP API参考
+# react-wxeap 
+cnwxsoft react framework
 
-`React WxEAP`目前支持以下平台
+[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://www.npmjs.com/package/react-wxeap)
 
-* 移动Web
-* ~~PCWeb~~
-* ~~App~~
+### Documentation
+check docs directory
 
-模板工程地址:
+### Code Convention
 
-> http://192.168.0.7:8080/svn/wxapp/trunk/code/react-wxeap-mobile-template
+Publish new version, automatically lint and build, for Mac OS: 
+>$ npm run pb
+
+for windows:
+>$ npm run pb-cmd
+
+Only lint 
+>$ npm run lint
+
+Only build, for Mac OS: 
+>$ npm run build
+
+for windows:
+>$ npm run build-cmd
+
+### CDN
+Taobao cdn:
+>npm config set registry https://registry.npm.taobao.org 
+
+origin:
+>npm config set registry http://registry.npmjs.org

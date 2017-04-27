@@ -1,7 +1,8 @@
-
 /**
- * 监听屏幕旋转，刷新页面
+ * 监听手机屏幕旋转
+ * @param {func} onChange 
  */
-window.addEventListener('onorientationchange' in window ? 'orientationchange' : 'resize', () => {
-    location.reload(false);
-}, false);
+export default function OrientationListener(onChange) {
+    window.addEventListener('resize', onChange, false);
+}
+

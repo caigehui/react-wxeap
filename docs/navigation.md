@@ -1,14 +1,17 @@
-# ReactWxEAP
+# react-wxeap
+[gimmick:theme](yeti)
 
-[简介](index.md)
+[首页](index.md)
+[更新日志](CHANGELOG.md)
+[规范](RULES.md)
+[TODO](TODO.md)
+[App]()
 
-[生命周期]()
+* [mobileApp](./app/mobileApp.md)
+* [bind](./app/bind.md)
+* [request](./app/request.md)
 
-* [全局配置-MobileApp](./lifecycle/MobileApp.md)
-* [绑定-bind](./lifecycle/bind.md)
-
-
-[组件]()
+[Components]()
 
 * [ImagePicker](./components/ImagePicker.md)
 * [ImageViewer](./components/ImageViewer.md)
@@ -16,15 +19,16 @@
 * [Navigation](./components/Navigation.md)
 * [Seperator](./components/Seperator.md)
 * [FilterBar](./components/FilterBar.md)
+* [View](./components/View.md)
 
-[工具和扩展]()
+[Utils]()
 
-* [Array](./utils/array.md)
-* [backToHome](./utils/backToHome.md)
+* # extensions
+* [Array](./utils/extensions/array.md)
+* [Object](./utils/object.md)
+- - - - 
 * [delay](./utils/delay.md)
 * [htmlFilter](./utils/htmlFilter.md)
 * [mobileDetect](./utils/mobileDetect.md)
-* [Object](./utils/object.md)
-* [request](./utils/request.md)
-* [storage](./utils/storage.md)
+* [backToHome](./utils/backToHome.md)
 * [wrapProps](./utils/wrapProps.md)

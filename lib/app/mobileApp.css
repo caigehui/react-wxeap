@@ -75,3 +75,8 @@ html, body, :global(#root) {
   width: 15px!important;
   height: 15px!important;
 }
+
+/* FilterBar的list允许空格 */
+:global(.am-menu .am-flexbox .am-flexbox-item .am-list .am-list-item .am-list-line .am-list-content) {
+  white-space: pre!important
+}

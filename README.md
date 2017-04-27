@@ -1,15 +1,31 @@
 # react-wxeap 
-cnwxsoft web framework based on [ant-design](https://ant.design) and [dva](https://github.com/dvajs/dva)
+cnwxsoft react framework
 
 [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://www.npmjs.com/package/react-wxeap)
 
-# Code Convention
+### Documentation
+check docs directory
 
-1.Intall node_modules
-> npm install
+### Code Convention
 
-2.Publish new version, automatically lint and build
-> npm run pb
+Publish new version, automatically lint and build, for Mac OS: 
+>$ npm run pb
 
+for windows:
+>$ npm run pb-cmd
 
+Only lint 
+>$ npm run lint
 
+Only build, for Mac OS: 
+>$ npm run build
+
+for windows:
+>$ npm run build-cmd
+
+### CDN
+Taobao cdn:
+>npm config set registry https://registry.npm.taobao.org 
+
+origin:
+>npm config set registry http://registry.npmjs.org

@@ -1,4 +1,6 @@
-# 全局配置-MobileApp
+# mobileApp
+
+## 配置
 
 1.**在入口出引入 MobileApp**:
 

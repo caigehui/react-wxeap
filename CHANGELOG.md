@@ -2,18 +2,22 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
-## 1.1.0-beta
-* 【优化】引入`redux-persist`，实现数据持久化
-* 【移除】移除`sessionStorage`和`localStorage`
+## 1.1.1
+`2017-4-28`
 
-## 1.1.0-alpha 
-`2017-4-26` 
+* 【优化】`MobileApp`加入了错误提示
+
+
+## 1.1.0
+`2017-4-27` 
 
 * 【优化】动态识别web和rn的入口文件
 * 【新增】react-native的生命周期的支持
 * 【优化】新增屏幕变化的监听方法，不刷新页面而是刷新router，提升页面性能
 * 【优化】更改`FilterBar`样式，允许有空格
 * 【优化】新增会话丢失的全局错误处理，现在丢失会话会自动刷新页面
+* 【优化】引入`redux-persist`，实现数据持久化
+* 【移除】移除`sessionStorage`和`localStorage`
 
 ## 1.0.4
 `2017-4-26`

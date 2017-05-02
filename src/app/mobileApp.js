@@ -53,12 +53,12 @@ export default class MobileApp {
     persist() {
         // 获取白名单
         let whitelist = [];
-        for(let route of this.routes) {
-            if(route.model.persist) {
+        for (let route of this.routes) {
+            if (route.model.persist) {
                 whitelist.push(route.model.namespace);
             }
         }
-        persistStore(this.mobileApp._store, { 
+        persistStore(this.mobileApp._store, {
             whitelist
         });
     }
@@ -66,7 +66,12 @@ export default class MobileApp {
     addModel(routes) {
         for (let route of routes) {
             const { model } = route;
-            this.mobileApp.model(model);
+            if (!model) {
+                console.error(`react-wxeap->mobileApp: 路由\'${route.path}\'缺少model`);
+            } else {
+                this.mobileApp.model(model);
+            }
+
         }
     }
 
@@ -74,7 +79,12 @@ export default class MobileApp {
         this.mobileApp.router(({ history }) => {
             return (
                 <Router ref={o => this.router = o} history={history}>
-                    {routes.map(route => <Route key={route.path} path={route.path} component={route.component} />)}
+                    {routes.map(route => {
+                        if (!route.component || !route.path) {
+                            console.error(`react-wxeap->mobileApp: 路由配置失败 \'${route.path}\'`);
+                        }
+                        return <Route key={route.path} path={route.path} component={route.component} />;
+                    })}
                 </Router>
             );
         });

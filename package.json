@@ -1,6 +1,6 @@
 {
   "name": "react-wxeap",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "cnwxsoft web framework",
   "scripts": {
     "lint": "eslint --ext .js src --fix",
@@ -20,6 +20,10 @@
   },
   "main": "lib/index",
   "author": "cnwxsoft",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caigehui/react-wxeap.git"
+  },
   "license": "MIT",
   "dependencies": {
     "babel-runtime": "^6.9.2",

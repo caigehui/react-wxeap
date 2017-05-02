@@ -53,7 +53,7 @@ class ImageViewer extends React.Component {
 
         return (
             <div style={styles.carouselContainer} onClick={Popup.hide}>
-                <Carousel indicator={IndicatorDots} frames={items}>
+                <Carousel loop widgets={[IndicatorDots]} frames={items}>
                 </Carousel>
             </div>
         );

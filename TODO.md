@@ -1,7 +1,8 @@
 # TODO
 
-## Feature-1.2.0
-* 支持`react-native`的生命周期
+## Feature-2.0.0
+* 支持`react-native`
+* 整合`react-navigation`
 
 ## Feature-1.1.0
 * 工程结构调整

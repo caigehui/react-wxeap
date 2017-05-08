@@ -2,6 +2,10 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.0.0-alpha
+
+* 【新增】`rnApp.js`作为React Native端入口
+
 ## 1.1.3
 `2017-5-2`
 * 【修复】更新`re-carousel`以修复图片预览的BUG

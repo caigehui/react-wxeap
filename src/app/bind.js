@@ -1,5 +1,6 @@
 import { connect } from 'dva';
 import { createForm } from 'rc-form';
+import { IS_WEB } from '../constants';
 
 /**
  * 绑定视图到应用中
@@ -10,8 +11,10 @@ import { createForm } from 'rc-form';
 export default function bind(mapStateToProps, options = {}) {
     return (component) => {
         let enhancedComponent = connect(mapStateToProps)(component);
-        if (options.createForm) {
-            enhancedComponent = createForm()(enhancedComponent);
+        if (IS_WEB) {
+            if (options.createForm) {
+                enhancedComponent = createForm()(enhancedComponent);
+            }
         }
         return enhancedComponent;
     };

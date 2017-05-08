@@ -12,7 +12,7 @@ cnwxsoft react framework, based on [redux](https://github.com/reactjs/redux), [r
 
 
 ## Documentation
-[https://caigehui.github.io/reactwxeap](https://caigehui.github.io/reactwxeap)
+[Check docs under cnwxsoft LAN](http://192.168.0.7/reactwxeap)
 
 ## Usage
 

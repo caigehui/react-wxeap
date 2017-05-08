@@ -4,6 +4,7 @@ import {
     ListView,
     RefreshControl
 } from 'antd-mobile';
+
 const styles = {
     listView: {
         height: document.documentElement.clientHeight - ((MobileDetect.isWechat ? 0 : 90)),

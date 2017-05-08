@@ -1,4 +1,3 @@
-import fetch from 'dva/fetch';
 import { Toast } from 'antd-mobile';
 import backToHome from '../utils/backToHome';
 function parseJSON(response) {

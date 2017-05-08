@@ -13,3 +13,10 @@ CVS
 npm-debug.log
 src/**
 src
+.babelrc
+docs
+.editorconfig
+.gitignore
+.npmignore
+.gitattributes
+.eslintrc

@@ -1,5 +1,7 @@
 # mobileApp
 
+适用于移动web端
+
 ## 配置
 
 1.**在入口出引入 MobileApp**:
@@ -12,7 +14,7 @@ import { MobileApp } from 'react-wxeap';
 
 * name: 页面的名称
 * path: 页面的路径
-* model: 业务模型
+* model: 业务模型，写法参考[https://github.com/dvajs/dva/blob/master/docs/API_zh-CN.md#model](https://github.com/dvajs/dva/blob/master/docs/API_zh-CN.md#model)
 * component: 业务视图
 * createForm: 是否启动表单模式
 
@@ -91,4 +93,23 @@ class Form extends React.Component {
 ```
 const app = new MobileApp(routes, options, [locationListener]);
 app.start();
+```
+
+## 数据持久化
+
+支持自动恢复页面关闭前model的state
+
+只需要在model中设置`persist: true`即可:
+
+```
+export default {
+  namespace: '...',
+  state: {
+    ...
+  },
+  reducers: {
+    ...
+  },
+  persist: true
+}
 ```

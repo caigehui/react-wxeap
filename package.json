@@ -1,6 +1,6 @@
 {
   "name": "react-wxeap",
-  "version": "1.1.3",
+  "version": "2.0.0-beta.0",
   "description": "cnwxsoft web framework",
   "scripts": {
     "lint": "eslint --ext .js src --fix",
@@ -11,7 +11,7 @@
     "clean": "rm -r lib/*",
     "copy": "cp -r src/* lib && cp *.md docs && npm run docs",
     "docs": "mv docs/README.md docs/index.md",
-    "compile": "babel src -d lib",
+    "compile": "babel src -d lib --ignore request.js,rnApp.js,middleware.js",
     "build-cmd": "npm run lint && npm run transfer-cmd && npm run compile",
     "transfer-cmd": "npm run clean-cmd && npm run copy-cmd",
     "copy-cmd": "xcopy src lib /y/s && xcopy *.md docs /y && npm run docs-cmd",

@@ -3,7 +3,7 @@ import OrientationListener from '../utils/orientationListener.js';
 import React from 'react';
 import dva from 'dva';
 import { Router, Route } from 'dva/router';
-import mobileMiddleware from './mobileMiddleware';
+import middleware from './middleware';
 import { useRouterHistory } from 'dva/router';
 import { createHashHistory } from 'history';
 import * as CONSTANTS from '../constants';
@@ -14,11 +14,11 @@ export default class MobileApp {
      * 初始化App
      * @param {array} routes 
      * @param {object} options
-     * @param {array} middlewares 
+     * @param {array} otherMiddlewares 
      */
-    constructor(routes, options, middlewares = []) {
+    constructor(routes, options, otherMiddlewares = []) {
         this.mobileApp = dva({
-            onAction: [mobileMiddleware, ...middlewares],
+            onAction: [middleware, ...otherMiddlewares],
             extraEnhancers: [autoRehydrate()],
             history: useRouterHistory(createHashHistory)({ queryKey: true }),// 不移除_k参数 
             onError(e) {

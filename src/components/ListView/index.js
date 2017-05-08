@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react';
+import MobileDetect from '../../utils/mobileDetect'
 import {
     ListView,
     RefreshControl
 } from 'antd-mobile';
 const styles = {
     listView: {
-        height: document.documentElement.clientHeight * 11 / 12,
+        height: document.documentElement.clientHeight - ((MobileDetect.isWechat ? 0 : 90)),
         width: document.documentElement.clientWidth,
         backgroundColor: 'rgb(245,245,249)'
     },

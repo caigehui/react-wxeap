@@ -43,15 +43,20 @@ import { ListView } from 'react-wxeap'
 | 属性 | 说明 | 类型 | 默认值 |
 | ----|-----|------|------ |
 | listId    | 列表的唯一标识，必须指定     | string  | 'temp'  |
+| style | 样式，一般设置宽高和背景色 | object | |
 | refreshable    | 是否允许下拉刷新  | bool |  true  |
-| header   | 列表的标题，没有标题或为空字符串则不渲染列表的header  | string | undefined  |
+| header   | 列表的标题，没有标题或为空字符串则不渲染列表的header，如果指定了`renderHeader`，该属性无效  | string | undefined  |
+| renderHeader | 自定义Header | func | |
 | pageSize | 每页的页数，通常跟网络请求的分页的页数一致  | number |  4 |
 | renderRow | 渲染每一行  |  (rowData: object): any |   |
 | onFetch | 触发网络请求 | (page: number, fill: func): void |  |
 | renderSeparator | 渲染分割线 | (sectionId: number, rowId: number): any| |
-| nocache | 是否关闭数据缓存 | book | false |
+| nocache | 是否关闭数据缓存 | bool | false |
+| allLoadedText | 全部加载完后的文本 | string | '没有更多了' |
+| footerHidden | 是否隐藏footer | bool | false |
 
 `fill`方法：
+
 * data：数据，必须是Array
 * allLoaded: 是否全部加载
 * page: 填充数据的页数，如果为1，那么data将替换第一页

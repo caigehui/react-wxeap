@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import MobileDetect from '../../utils/mobileDetect'
+import MobileDetect from '../../utils/mobileDetect';
 import {
     ListView,
     RefreshControl
@@ -43,7 +43,9 @@ export default class extends React.Component {
         onFetch: PropTypes.func.isRequired,
         renderSeparator: PropTypes.func,
         allLoadedText: PropTypes.string,
-        nocache: PropTypes.bool
+        nocache: PropTypes.bool,
+        footerHidden: PropTypes.bool,
+        style: PropTypes.object
     }
 
     static defaultProps = {
@@ -51,7 +53,8 @@ export default class extends React.Component {
         listId: 'temp',
         pageSize: 4,
         allLoadedText: '没有更多了',
-        nocache: false
+        nocache: false,
+        footerHidden: false
     }
 
     constructor(props) {
@@ -147,11 +150,10 @@ export default class extends React.Component {
         let listView = (
             <ListView
                 ref={o => this.listView = o}
-                style={styles.listView}
                 dataSource={this.state.dataSource}
                 initialListSize={0}
                 renderHeader={renderHeader || header ? () => <span>{header}</span> : null}
-                renderFooter={() =>
+                renderFooter={() => this.props.footerHidden ? null :
                     <div style={styles.footer}>
                         <div style={styles.sep} />
                         {allLoaded ? allLoadedText : isLoading ? '加载中...' : '加载完毕'}
@@ -167,7 +169,8 @@ export default class extends React.Component {
                 refreshControl={refreshable ? <RefreshControl
                     refreshing={refreshing}
                     onRefresh={this.onRefresh} /> : null}
-                {...this.props} />);
+                {...this.props} 
+                 style={{...styles.listView, ...this.props.style}}/>);
         return (
             <div>
                 {listView}

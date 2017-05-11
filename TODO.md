@@ -2,7 +2,9 @@
 
 ## Feature-2.0.0
 * 支持`react-native`
-* 整合`react-navigation`
+* 新增`InputBox`
+* 新增`OrgPicker`
+* 优化`FilterBar`
 
 ## Feature-1.1.0
 * 工程结构调整

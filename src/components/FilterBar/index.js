@@ -66,7 +66,14 @@ export default class FilterBar extends React.Component {
     static propTypes = {
         conditions: PropTypes.array,
         values: PropTypes.array,
-        onChange: PropTypes.func
+        onChange: PropTypes.func,
+        onClick: PropTypes.func
+    }
+
+    static defaultProps = {
+        onClick: (i, cb) => {
+            cb(null);
+        }
     }
 
     constructor(props) {
@@ -113,12 +120,20 @@ export default class FilterBar extends React.Component {
     }
 
     onItemClick = (i) => {
-        const { selectedIndex } = this.state;
-        if (i === selectedIndex) {
-            this.hideMenu();
-        } else {
-            this.setState({ selectedIndex: i });
-        }
+        this.props.onClick(i, label => {
+            if (!label) {
+                const { selectedIndex } = this.state;
+                if (i === selectedIndex) {
+                    this.hideMenu();
+                } else {
+                    this.setState({ selectedIndex: i });
+                }
+            }else {
+                const { labels } = this.state;
+                labels[i] = label;
+                this.setState({ labels });
+            }
+        });
     }
 
     hideMenu = () => {

@@ -15,17 +15,20 @@ class InputBox extends React.Component {
         onConfirm: React.PropTypes.func,
         title: React.PropTypes.string,
         placeholder: React.PropTypes.string,
-        maxLength: React.PropTypes.number
+        maxLength: React.PropTypes.number,
+        minLength: React.PropTypes.number
     }
 
     state = {
         maxLength: 0,
+        minLength: 0,
         title: '输入',
         placeholder: '请输入',
         value: ''
     }
 
     onConfirm = () => {
+        if(this.state.value.length < this.props.minLength) return Toast.info(`请输入至少${this.props.minLength}个字符`, 2);
         this.props.onConfirm && this.props.onConfirm(this.state.value);
         Popup.hide();
     }

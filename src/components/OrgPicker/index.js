@@ -3,10 +3,10 @@ import wrapProps from '../../utils/wrapProps';
 import request from '../../app/request';
 import View from '../View';
 import ListView from '../ListView';
-import { Popup, NavBar, Icon, List } from 'antd-mobile'
+import { Popup, NavBar, Icon, List } from 'antd-mobile';
 const ListItem = List.Item;
 
-const colors = ['rgb(78, 168, 236)', 'rgb(26, 193, 148)', 'rgb(242, 114, 93)', 'rgb(247, 181, 92)']
+const colors = ['rgb(78, 168, 236)', 'rgb(26, 193, 148)', 'rgb(242, 114, 93)', 'rgb(247, 181, 92)'];
 
 class OrgPicker extends React.Component {
 
@@ -30,7 +30,7 @@ class OrgPicker extends React.Component {
             index: [],
             loading: true,
             org: []
-        }
+        };
     }
 
     componentDidMount() {
@@ -47,9 +47,9 @@ class OrgPicker extends React.Component {
                 index: [...this.state.index, data.org[0]],
                 org: data.org,
                 loading: false
-            })
+            });
             this.fill([''], true);
-        })
+        });
 
     }
 
@@ -73,13 +73,14 @@ class OrgPicker extends React.Component {
             case 'dptCheck':
                 this.setState({
                     checked: this.state.checked.searchByCondition(a => a.id === item.id) ? this.state.checked.removeByCondition(a => a.id === item.id) : [...this.state.checked, item]
-                })
+                });
                 break;
             case 'empRadio':
             case 'dptRadio':
                 this.setState({
                     checked: [item]
-                })
+                });
+                setTimeout(this.onConfirm, 100)
                 break;
         }
     }
@@ -97,7 +98,7 @@ class OrgPicker extends React.Component {
         }
         this.setState({
             index: newIndex
-        })
+        });
         this.request(dptId);
     }
 
@@ -108,7 +109,7 @@ class OrgPicker extends React.Component {
                     加载中...
                 </View>
             </View>
-        )
+        );
     }
 
     renderNoEmp() {
@@ -118,7 +119,7 @@ class OrgPicker extends React.Component {
                     该部门是空的
                 </View>
             </View>
-        )
+        );
     }
 
     renderCheckedContainer() {
@@ -127,13 +128,11 @@ class OrgPicker extends React.Component {
         let checkedEl = [];
         checked.map((item, i) => {
             checkedEl.push(<div key={i} style={{
-                ...styles.item, color
-                : 'rgb(213, 76, 60)'
+                ...styles.item, color: 'rgb(213, 76, 60)'
             }} >{item.name}</div>);
             if (i === checked.length - 1) return;
             checkedEl.push(<div key={`${i}-sep`} style={{
-                ...styles.item, padding: 0, color
-                : 'rgb(150, 150, 150)'
+                ...styles.item, padding: 0, color: 'rgb(150, 150, 150)'
             }}>、</div>);
         });
         return (
@@ -143,7 +142,7 @@ class OrgPicker extends React.Component {
                 </div>
                 {checkedEl}
             </View>
-        )
+        );
     }
 
     renderIndexContainer() {
@@ -151,18 +150,19 @@ class OrgPicker extends React.Component {
         if (index.length === 0) return null;
         let el = [];
         index.map((dpt, i) => {
-            el.push(<div key={i} onClick={() => { i !== index.length - 1 && this.dptLink(dpt.id) }} style={i === index.length - 1 ? { ...styles.item, color: 'rgb(150, 150 ,150)' } : styles.item}>{dpt.name}</div>)
-            el.push(<div key={`${i}-sep`} style={{
-                ...styles.item, padding: 0, color
-                : 'rgb(150, 150, 150)'
-            }}>></div>)
+            el.push(<div key={i} onClick={() => {
+                i !== index.length - 1 && this.dptLink(dpt.id);
+            }} style={i === index.length - 1 ? { ...styles.item, color: 'rgb(150, 150 ,150)' } : styles.item}>{dpt.name}</div>);
             if (i === index.length - 1) return;
-        })
+            el.push(<div key={`${i}-sep`} style={{
+                ...styles.item, padding: 0
+            }}><Icon type="right" color="rgb(150, 150, 150)" size="md"/></div>);
+        });
         return (
             <View style={styles.indexContainer}>
                 {el}
             </View>
-        )
+        );
     }
 
     renderPickerContainer() {
@@ -181,10 +181,10 @@ class OrgPicker extends React.Component {
                                                 return (
                                                     <ListItem
                                                         key={i}
-                                                        onClick={() => item.type === 'emp'? this.onChange(item) : this.onClick(item.id)}
+                                                        onClick={() => item.type === 'emp' ? this.onChange(item) : this.onClick(item.id)}
                                                         thumb={
                                                             item.face === 'none' ?
-                                                                <div style={{...styles.icon, backgroundColor:colors[i%colors.length]}} >{item.name.substring(item.name.length - (item.name.length > 2 ? 2 : 1), item.name.length)}</div>
+                                                                <div style={{ ...styles.icon, backgroundColor: colors[i % colors.length] }} >{item.name.substring(item.name.length - (item.name.length > 2 ? 2 : 1), item.name.length)}</div>
                                                                 :
                                                                 <img src={item.type === 'dpt' ? require('../../assets/org.png') : item.face} style={styles.icon} />}
                                                         extra={item.type === 'emp' ?
@@ -198,12 +198,12 @@ class OrgPicker extends React.Component {
                                                         {item.name}
                                                         {item.type === 'dpt' ? null : <span style={styles.job}>{item.job}</span>}
                                                     </ListItem>
-                                                )
+                                                );
                                             } else
                                                 return null;
                                         })}
                                     </List>
-                                )
+                                );
                             case 'dptCheck':
                             case 'dptRadio':
                                 return (
@@ -213,7 +213,8 @@ class OrgPicker extends React.Component {
                                                 return (
                                                     <ListItem
                                                         key={i}
-                                                        thumb={<img src={item.type === 'all' ? require('../../assets/org-prt.png') : require('../../assets/org.png')} style={styles.icon} />}
+                                                        thumb={<img src={item.type === 'all' ? require('../../assets/org-prt.png') : require('../../assets/org.png')} style={item.type === 'all' 
+                                                        ? styles.icon : {...styles.icon, marginLeft: 20}} />}
                                                         extra={item.isLeaf || item.type === 'all' ?
                                                             (checked.searchByCondition(a => a.id === item.id) ?
                                                                 <Icon type="check"
@@ -226,18 +227,18 @@ class OrgPicker extends React.Component {
                                                         onClick={() => item.isLeaf || item.type === 'all' ? this.onChange(item) : this.onClick(item.id)}>
                                                         {item.name}
                                                     </ListItem>
-                                                )
+                                                );
                                             } else {
-                                                return null
+                                                return null;
                                             }
                                         })}
                                     </List>
-                                )
+                                );
                         }
                     })()
                 }
             </div>
-        )
+        );
     }
 
     renderHeader = () => {
@@ -246,7 +247,7 @@ class OrgPicker extends React.Component {
                 {this.renderCheckedContainer()}
                 {this.renderIndexContainer()}
             </div>
-        )
+        );
     }
 
     render() {
@@ -258,7 +259,7 @@ class OrgPicker extends React.Component {
                     iconName={require('../../assets/close.svg')}
                     mode="light"
                     onLeftClick={Popup.hide}
-                    rightContent={<div style={styles.tick} onClick={this.onConfirm}
+                    rightContent={this.props.type === 'empRadio' || this.props.type === 'dptRadio' ? null : <div style={styles.tick} onClick={this.onConfirm}
                     >
                         <Icon type={require('../../assets/tick.svg')} />
                     </div>}
@@ -271,10 +272,10 @@ class OrgPicker extends React.Component {
                     renderRow={() => this.state.loading ? this.renderLoading() : this.state.org.length === 1 ? this.renderNoEmp() : this.renderPickerContainer()}
                     onFetch={(page, fill) => {
                         this.fill = fill;
-                        fill([''], true)
+                        fill([''], true);
                     }} />
             </div>
-        )
+        );
     }
 }
 
@@ -342,7 +343,7 @@ const styles = {
         marginLeft: 15,
         fontSize: 22
     }
-}
+};
 
 export default (options) => {
     Popup.show(<OrgPicker {...options} />, { transitionName: 'am-fade', wrapProps });

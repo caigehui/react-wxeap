@@ -4,9 +4,10 @@ import request from '../../app/request';
 import View from '../View';
 import ListView from '../ListView';
 import { Popup, NavBar, Icon, List } from 'antd-mobile';
+import * as COLORS from '../../constants';
 const ListItem = List.Item;
 
-const colors = ['rgb(78, 168, 236)', 'rgb(26, 193, 148)', 'rgb(242, 114, 93)', 'rgb(247, 181, 92)'];
+const colors = [COLORS.BLUE_COLOR, COLORS.RED_COLOR, COLORS.GREEN_COLOR, COLORS.YELLOW_COLOR];
 
 class OrgPicker extends React.Component {
 
@@ -80,7 +81,7 @@ class OrgPicker extends React.Component {
                 this.setState({
                     checked: [item]
                 });
-                setTimeout(this.onConfirm, 100)
+                setTimeout(this.onConfirm, 100);
                 break;
         }
     }
@@ -128,16 +129,16 @@ class OrgPicker extends React.Component {
         let checkedEl = [];
         checked.map((item, i) => {
             checkedEl.push(<div key={i} style={{
-                ...styles.item, color: 'rgb(213, 76, 60)'
+                ...styles.item, color: COLORS.RED_COLOR
             }} >{item.name}</div>);
             if (i === checked.length - 1) return;
             checkedEl.push(<div key={`${i}-sep`} style={{
-                ...styles.item, padding: 0, color: 'rgb(150, 150, 150)'
+                ...styles.item, padding: 0, color: COLORS.SUBTITLE_COLOR
             }}>、</div>);
         });
         return (
             <View style={styles.checkedContainer}>
-                <div style={{ ...styles.item, color: 'rgb(60, 60, 60)' }}>
+                <div style={{ ...styles.item, color: COLORS.TITLE_COLOR }}>
                     已选择：
                 </div>
                 {checkedEl}
@@ -152,11 +153,11 @@ class OrgPicker extends React.Component {
         index.map((dpt, i) => {
             el.push(<div key={i} onClick={() => {
                 i !== index.length - 1 && this.dptLink(dpt.id);
-            }} style={i === index.length - 1 ? { ...styles.item, color: 'rgb(150, 150 ,150)' } : styles.item}>{dpt.name}</div>);
+            }} style={i === index.length - 1 ? { ...styles.item, color: COLORS.SUBTITLE_COLOR } : styles.item}>{dpt.name}</div>);
             if (i === index.length - 1) return;
             el.push(<div key={`${i}-sep`} style={{
                 ...styles.item, padding: 0
-            }}><Icon type="right" color="rgb(150, 150, 150)" size="md"/></div>);
+            }}><Icon type="right" color={COLORS.SUBTITLE_COLOR} size="md"/></div>);
         });
         return (
             <View style={styles.indexContainer}>
@@ -190,11 +191,11 @@ class OrgPicker extends React.Component {
                                                         extra={item.type === 'emp' ?
                                                             (checked.searchByCondition(a => a.id === item.id) ?
                                                                 <Icon type="check"
-                                                                    size="md" color="rgb(0, 126, 218)" />
+                                                                    size="md" color={COLORS.PRIMARY_COLOR} />
                                                                 : null)
                                                             :
                                                             <Icon type="right"
-                                                                size="md" color="rgb(150, 150, 150)" />}>
+                                                                size="md" color={COLORS.SUBTITLE_COLOR}/>}>
                                                         {item.name}
                                                         {item.type === 'dpt' ? null : <span style={styles.job}>{item.job}</span>}
                                                     </ListItem>
@@ -218,11 +219,11 @@ class OrgPicker extends React.Component {
                                                         extra={item.isLeaf || item.type === 'all' ?
                                                             (checked.searchByCondition(a => a.id === item.id) ?
                                                                 <Icon type="check"
-                                                                    size="md" color="rgb(0, 126, 218)" />
+                                                                    size="md" color={COLORS.PRIMARY_COLOR} />
                                                                 : null)
                                                             :
                                                             <Icon type="right"
-                                                                size="md" color="rgb(150, 150, 150)" />
+                                                                size="md" color={COLORS.SUBTITLE_COLOR} />
                                                         }
                                                         onClick={() => item.isLeaf || item.type === 'all' ? this.onChange(item) : this.onClick(item.id)}>
                                                         {item.name}
@@ -265,7 +266,7 @@ class OrgPicker extends React.Component {
                     </div>}
                 >{this.getNavTitle()}</NavBar>
                 <ListView
-                    style={{ height: document.documentElement.clientHeight - 90, width: '100%', backgroundColor: 'rgb(245,245,249)' }}
+                    style={{ height: document.documentElement.clientHeight - 90, width: '100%', backgroundColor: COLORS.BACKGROUND_COLOR }}
                     refreshable={false}
                     footerHidden={true}
                     renderHeader={this.renderHeader}
@@ -285,23 +286,22 @@ const styles = {
         backgroundColor: 'white'
     },
     checkedContainer: {
-        marginLeft: '5%',
-        width: '95%',
+        paddingLeft: 30,
+        width: '100%',
         paddingTop: 15,
         paddingBottom: 15,
         alignSelf: 'center',
-        borderBottom: '1px solid rgb(220,220,220)'
     },
     indexContainer: {
-        marginLeft: '5%',
-        width: '95%',
+        paddingLeft: 30,
+        width: '100%',
         paddingTop: 15,
         paddingBottom: 15,
         alignSelf: 'center'
     },
     pickerContainer: {
-        borderTop: '1px solid rgb(220,220,220)',
-        borderBottom: '1px solid rgb(220,220,220)',
+        borderTop: `1px solid ${COLORS.BORDER_COLOR}`,
+        borderBottom: `1px solid ${COLORS.BORDER_COLOR}`,
         width: '100%',
     },
     loading: {
@@ -310,11 +310,11 @@ const styles = {
         height: 100,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgb(245,245,249)'
+        backgroundColor: COLORS.BACKGROUND_COLOR
     },
     loadingText: {
         fontSize: 28,
-        color: 'rgb(60, 60, 60)',
+        color: COLORS.TITLE_COLOR,
     },
     icon: {
         width: 70,

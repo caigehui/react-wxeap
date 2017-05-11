@@ -16,6 +16,7 @@
 
 * [ImagePicker](./components/ImagePicker.md)
 * [ImageViewer](./components/ImageViewer.md)
+* [InputBox](./components/InputBox.md)
 * [ListView](./components/ListView.md)
 * [Navigation](./components/Navigation.md)
 * [Seperator](./components/Seperator.md)

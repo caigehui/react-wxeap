@@ -169,8 +169,9 @@ export default class extends React.Component {
                 refreshControl={refreshable ? <RefreshControl
                     refreshing={refreshing}
                     onRefresh={this.onRefresh} /> : null}
-                {...this.props} 
-                 style={{...styles.listView, ...this.props.style}}/>);
+                {...this.props}
+                useZscroller={true}
+                style={{ ...styles.listView, ...this.props.style }} />);
         return (
             <div>
                 {listView}

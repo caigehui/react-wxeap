@@ -7,7 +7,6 @@ import {
 import { PinchView } from 'react-pinch-zoom-pan';
 import Carousel from 're-carousel';
 import IndicatorDots from './IndicatorDots';
-import wrapProps from '../../utils/wrapProps';
 const styles = {
     carouselContainer: {
         width: document.documentElement.clientWidth,
@@ -36,6 +35,10 @@ class ImageViewer extends React.Component {
         initIndex: React.PropTypes.number
     }
 
+    componentWillUnmount() {
+        Popup.hide();
+    }
+
     render() {
         const { imgs, initIndex } = this.props;
         let newImgs = [];
@@ -53,7 +56,7 @@ class ImageViewer extends React.Component {
 
         return (
             <div style={styles.carouselContainer} onClick={Popup.hide}>
-                <Carousel loop widgets={[IndicatorDots]} frames={items}>
+                <Carousel loop={items.length === 1 ? false : true } widgets={[IndicatorDots]} frames={items}>
                 </Carousel>
             </div>
         );
@@ -68,5 +71,5 @@ class ImageViewer extends React.Component {
  * @param  {array} imgs  图片数组
  */
 export default (initIndex, imgs) => {
-    Popup.show(<ImageViewer imgs={imgs} initIndex={initIndex} />, { transitionName: 'am-zoom', wrapProps });
+    Popup.show(<ImageViewer imgs={imgs} initIndex={initIndex} />, { transitionName: 'am-fade' });
 };

@@ -12,6 +12,7 @@ Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语�
 * 【优化】列表支持隐藏`Footer`
 * 【修复】修复`FilterBar`切换条件时不会隐藏菜单的BUG
 * 【新增】`Navigation`和`MobileDetect`对`App`的支持
+* 【修复】`ImageViewer`出现的几个问题
 
 ## 1.1.3
 `2017-5-2`

@@ -1,6 +1,6 @@
 {
   "name": "react-wxeap",
-  "version": "2.0.0-beta.8",
+  "version": "2.0.0-beta.9",
   "description": "cnwxsoft web framework",
   "scripts": {
     "lint": "eslint --ext .js src --fix",
@@ -38,7 +38,7 @@
     "rc-form": "^1.3.1",
     "rc-tween-one": "^1.1.2",
     "re-carousel": "^2.0.2",
-    "react-pinch-zoom-pan": "^1.3.0",
+    "react-pinch-zoom-pan": "1.4.0",
     "redux-persist": "^4.6.0"
   },
   "devDependencies": {

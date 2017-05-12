@@ -27,7 +27,7 @@ export default class Navigation extends React.Component {
 
         const { title, onBack, hide } = this.props;
         return (
-            hide || MobileDetect.isWechat ?
+            hide || MobileDetect.isWechat || MobileDetect.isApp ?
                 <div/> :
                 <NavBar
                     mode="light" onLeftClick={onBack}>

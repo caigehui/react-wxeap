@@ -8,6 +8,8 @@ import { useRouterHistory } from 'dva/router';
 import { createHashHistory } from 'history';
 import * as CONSTANTS from '../constants';
 import { persistStore, autoRehydrate } from 'redux-persist';
+import { Toast } from 'antd-mobile';
+
 export default class MobileApp {
 
     /**
@@ -23,6 +25,7 @@ export default class MobileApp {
             history: useRouterHistory(createHashHistory)({ queryKey: true }),// 不移除_k参数 
             onError(e) {
                 console.error('Global onError:', e);
+                Toast.info(e, 2);
             },
         });
         this.routes = routes;

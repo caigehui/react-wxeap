@@ -23,6 +23,8 @@ export { default as wrapProps } from './utils/wrapProps';
 export { default as backToHome } from './utils/backToHome';
 export { default as htmlFilter } from './utils/htmlFilter';
 import * as MobileDetect from './utils/mobileDetect';
+import * as CONST from './constants';
 export {
-    MobileDetect
+    MobileDetect,
+    CONST
 };

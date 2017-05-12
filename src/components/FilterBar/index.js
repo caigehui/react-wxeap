@@ -120,14 +120,10 @@ export default class FilterBar extends React.Component {
     }
 
     onItemClick = (i) => {
+        this.setState({ selectedIndex: -1 });
         this.props.onClick(i, label => {
             if (!label) {
-                const { selectedIndex } = this.state;
-                if (i === selectedIndex) {
-                    this.hideMenu();
-                } else {
-                    this.setState({ selectedIndex: i });
-                }
+                this.setState({ selectedIndex: i });
             }else {
                 const { labels } = this.state;
                 labels[i] = label;

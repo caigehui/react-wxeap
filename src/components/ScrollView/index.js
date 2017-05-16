@@ -11,38 +11,33 @@ export default class ScrollView extends Component {
         children: PropTypes.any
     }
 
-    static defaultProps = {
-        height: document.documentElement.clientHeight - ((MobileDetect.isWechat || MobileDetect.isApp ? 0 : 90)),
-        width: document.documentElement.clientWidth,
-        backgroundColor: 'transparent'
-    }
-
     constructor(props) {
         super(props);
         const dataSource = new ListView.DataSource({
             rowHasChanged: () => true,
         });
         this.state = {
-            dataSource: dataSource.cloneWithRows(['']),
+            dataSource: dataSource.cloneWithRows([]),
         };
     }
 
     renderRow = () => {
-        return (
-            <div>
-                {this.props.children}
-            </div>
-        );
+        return null;
     }
 
     render() {
+        const style = {
+            height: document.documentElement.clientHeight - ((MobileDetect.isWechat || MobileDetect.isApp ? 0 : 90)),
+            width: document.documentElement.clientWidth,
+            backgroundColor: 'transparent'
+        };
         return (
             <ListView
                 style={{
-                    height: this.props.height,
-                    width: this.props.width,
-                    backgroundColor: this.props.backgroundColor
+                    ...style,
+                    ...this.props
                 }}
+                renderHeader={() => <div>{this.props.children}</div>}
                 dataSource={this.state.dataSource}
                 useZscroller={true}
                 scrollerOptions={{ scrollbars: true }}

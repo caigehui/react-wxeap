@@ -17,6 +17,7 @@ export { default as Navigation } from './components/Navigation';
 export { default as ImagePicker } from './components/ImagePicker';
 export { default as View } from './components/View';
 export { default as FilterBar } from './components/FilterBar';
+export { default as ScrollView } from './components/ScrollView';
 export { default as request } from './app/request';
 export { default as delay } from './utils/delay';
 export { default as wrapProps } from './utils/wrapProps';

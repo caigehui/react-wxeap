@@ -8,6 +8,7 @@ Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语�
 * 【新增】`rnApp.js`作为`React Native`端入口
 * 【新增】`InputBox`组件，适用于评论等业务
 * 【新增】`OrgPicker`组件，用于选择部门或人员，支持单选和多选
+* 【新增】`ScrollView`组件，用于内嵌滚动视图
 * 【优化】调整列表默认高度
 * 【优化】列表支持隐藏`Footer`
 * 【修复】修复`FilterBar`切换条件时不会隐藏菜单的BUG

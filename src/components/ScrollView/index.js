@@ -7,13 +7,14 @@ export default class ScrollView extends Component {
     static propTypes = {
         height: PropTypes.number,
         width: PropTypes.number,
-        backgroundColor: PropTypes.string
+        backgroundColor: PropTypes.string,
+        children: PropTypes.any
     }
 
     static defaultProps = {
         height: document.documentElement.clientHeight - ((MobileDetect.isWechat || MobileDetect.isApp ? 0 : 90)),
         width: document.documentElement.clientWidth,
-        backgroundColor: 'transparent' 
+        backgroundColor: 'transparent'
     }
 
     constructor(props) {
@@ -21,23 +22,34 @@ export default class ScrollView extends Component {
         const dataSource = new ListView.DataSource({
             rowHasChanged: () => true,
         });
-        state = {
-            dataSource: dataSource.cloneWithRows([props.children]),
-        }
+        this.state = {
+            dataSource: dataSource.cloneWithRows(['']),
+        };
     }
 
-    renderRow = (children) => {
-        return children
+    renderRow = () => {
+        return (
+            <div>
+                {this.props.children}
+            </div>
+        );
     }
 
     render() {
-        <ListView 
-            dataSource={this.state.dataSource}
-            useZscroller={true}
-            scrollerOptions={{ scrollbars: true }}
-            renderRow={this.renderRow}
-            pageSize={1}
-        />
+        return (
+            <ListView
+                style={{
+                    height: this.props.height,
+                    width: this.props.width,
+                    backgroundColor: this.props.backgroundColor
+                }}
+                dataSource={this.state.dataSource}
+                useZscroller={true}
+                scrollerOptions={{ scrollbars: true }}
+                renderRow={this.renderRow}
+                pageSize={1}
+            />
+        );
     }
 
 }

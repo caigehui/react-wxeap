@@ -13,6 +13,7 @@ Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语�
 * 【修复】修复`FilterBar`切换条件时不会隐藏菜单的BUG
 * 【新增】`Navigation`和`MobileDetect`对`App`的支持
 * 【修复】`ImageViewer`出现的几个问题
+* 【优化】`ListView`的`reload`方法有200毫秒延迟防止数据不到位
 
 ## 1.1.3
 `2017-5-2`

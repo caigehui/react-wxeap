@@ -75,7 +75,10 @@ export default class extends React.Component {
     }
 
     reload = () => {
-        this.onRefresh();
+        // 延时处理，防止提前刷新导致数据不到位的情况出现
+        setTimeout(() => {
+            this.onRefresh();
+        }, 200);
     }
 
     scrollTo = (y) => {

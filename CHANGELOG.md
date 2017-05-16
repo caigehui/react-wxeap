@@ -3,7 +3,7 @@
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
 ## 2.0.0
-`2017-5-10`
+`2017-5-16`
 
 * 【新增】`rnApp.js`作为`React Native`端入口
 * 【新增】`InputBox`组件，适用于评论等业务

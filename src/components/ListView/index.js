@@ -7,7 +7,7 @@ import {
 
 const styles = {
     listView: {
-        height: document.documentElement.clientHeight - ((MobileDetect.isWechat ? 0 : 90)),
+        height: document.documentElement.clientHeight - ((MobileDetect.isWechat || MobileDetect.isApp ? 0 : 90)),
         width: document.documentElement.clientWidth,
         backgroundColor: 'rgb(245,245,249)'
     },

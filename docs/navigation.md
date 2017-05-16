@@ -19,6 +19,7 @@
 * [InputBox](./components/InputBox.md)
 * [ListView](./components/ListView.md)
 * [Navigation](./components/Navigation.md)
+* [OrgPicker](./components/OrgPicker.md)
 * [Seperator](./components/Seperator.md)
 * [FilterBar](./components/FilterBar.md)
 * [View](./components/View.md)

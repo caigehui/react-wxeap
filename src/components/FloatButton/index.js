@@ -10,7 +10,7 @@ export default class FloatButton extends React.Component {
         style: React.PropTypes.object,
         type: React.PropTypes.any,
         color: React.PropTypes.string,
-        size: React.PropTypes.oneOf['xxs','xs','sm','md','lg']
+        size: React.PropTypes.oneOf(['xxs','xs','sm','md','lg'])
     }
 
     static defaultProps = {

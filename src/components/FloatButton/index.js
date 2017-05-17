@@ -3,7 +3,7 @@ import View from '../View';
 import { Icon } from 'antd-mobile';
 
 
-export default class AddTweetBtn extends React.Component {
+export default class FloatButton extends React.Component {
 
     static propTypes = {
         onClick: React.PropTypes.func,

@@ -2,7 +2,8 @@ import React, { PropTypes } from 'react';
 import MobileDetect from '../../utils/mobileDetect';
 import {
     ListView,
-    RefreshControl
+    RefreshControl,
+    Icon
 } from 'antd-mobile';
 
 const styles = {
@@ -82,6 +83,7 @@ export default class extends React.Component {
         };
 
         this.firstLoaded = true;
+        this.onTopReached = false;
     }
 
     componentDidMount() {
@@ -210,6 +212,20 @@ export default class extends React.Component {
         }
     }
 
+    /**
+     * 列表滚动
+     */
+    onScroll = () => {
+
+    }
+
+    /**
+     * 渲染反向列表的加载图片
+     */
+    renderReverseHeader = () => {
+
+    }
+
     render() {
         const { header, pageSize, renderRow, refreshable, allLoadedText, renderHeader, scrollBarDiabled, mode } = this.props;
         const { allLoaded, isLoading, refreshing } = this.state;
@@ -233,9 +249,11 @@ export default class extends React.Component {
                 onEndReached={this.onEndReached}
                 onEndReachedThreshold={100}
                 refreshControl={refreshable && mode === 'default' ? <RefreshControl
+                    icon={<Icon type={require('../../assets/loading.svg')}>}
                     refreshing={refreshing}
                     onRefresh={this.onRefresh} /> : null}
                 {...this.props}
+                onScroll={this.onScroll}
                 useZscroller={true}
                 style={{ ...styles.listView, ...this.props.style }} />);
         return (

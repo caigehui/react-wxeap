@@ -39,6 +39,13 @@ class ImageViewer extends React.Component {
         Popup.hide();
     }
 
+    componentDidMount() {
+        this.request(0);
+        window.addEventListener('resize', () => {
+            this.forceUpdate();
+        }, false);
+    }
+
     render() {
         const { imgs, initIndex } = this.props;
         let newImgs = [];
@@ -56,7 +63,7 @@ class ImageViewer extends React.Component {
 
         return (
             <div style={styles.carouselContainer} onClick={Popup.hide}>
-                <Carousel loop={items.length === 1 ? false : true } widgets={[IndicatorDots]} frames={items}>
+                <Carousel loop={items.length === 1 ? false : true} widgets={[IndicatorDots]} frames={items}>
                 </Carousel>
             </div>
         );

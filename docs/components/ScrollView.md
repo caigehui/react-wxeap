@@ -23,7 +23,7 @@ class Eample extends React.Component {
 
 | 属性 | 说明 | 类型 | 默认值 |
 | ----|-----|------|------ |
-| height    | 高度     | number  |  document.documentElement.clientHeight - ((MobileDetect.isWechat || MobileDetect.isApp ? 0 : 90))  |
+| height    | 高度     | number  |   |
 | width | 宽度 | number | document.documentElement.clientWidth |
 | backgroundColor    | 背景颜色  | string |  transparent  |
 

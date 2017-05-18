@@ -1,6 +1,7 @@
 # ListView
 `ListView`是高度封装的列表组件，集成了下拉刷新和上拉下载
 
+note: 新增了
 
 ```
 import { ListView } from 'react-wxeap'
@@ -47,6 +48,7 @@ import { ListView } from 'react-wxeap'
 | refreshable    | 是否允许下拉刷新  | bool |  true  |
 | header   | 列表的标题，没有标题或为空字符串则不渲染列表的header，如果指定了`renderHeader`，该属性无效  | string | undefined  |
 | renderHeader | 自定义Header | func | |
+| renderFooter | 自定义Footer | func | |
 | pageSize | 每页的页数，通常跟网络请求的分页的页数一致  | number |  4 |
 | renderRow | 渲染每一行  |  (rowData: object): any |   |
 | onFetch | 触发网络请求 | (page: number, fill: func): void |  |
@@ -54,9 +56,11 @@ import { ListView } from 'react-wxeap'
 | nocache | 是否关闭数据缓存 | bool | false |
 | allLoadedText | 全部加载完后的文本 | string | '没有更多了' |
 | footerHidden | 是否隐藏footer | bool | false |
+| mode | 列表的模式, `default`为正常模式，从上到下滚动；`reverse`是反转模式，从下到上滚动，此时，`refreshable`, `header`, `renderHeader`, `renderFooter`, `allLoadedText`, `footerHidden`属性无效  | 'default'/'reverse' |
 
-`fill`方法：
+原型方法：
 
-* data：数据，必须是Array
-* allLoaded: 是否全部加载
-* page: 填充数据的页数，如果为1，那么data将替换第一页
+* fill(data, allLoaded, page): data 需要填充的数据的数组，allLoaded 是否全部加载，page 需要填充的页数
+* reload() : 直接触发下拉刷新
+* scrollTo(y) : 滚动到y轴的指定位置，有动画效果
+* locateToBottom(): 直接定位到列表最低端，无动画效果  

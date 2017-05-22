@@ -1,6 +1,6 @@
 {
   "name": "react-wxeap",
-  "version": "2.0.1",
+  "version": "2.1.0-alpha.0",
   "description": "cnwxsoft web framework",
   "scripts": {
     "lint": "eslint --ext .js src --fix",
@@ -39,7 +39,8 @@
     "rc-tween-one": "^1.1.2",
     "re-carousel": "^2.0.2",
     "react-pinch-zoom-pan": "1.4.0",
-    "redux-persist": "^4.6.0"
+    "redux-persist": "^4.6.0",
+    "react-chatview": "^0.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

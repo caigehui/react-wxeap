@@ -125,7 +125,6 @@ export default class extends React.Component {
      */
     fill = (data, allLoaded, page) => {
         try {
-            data = this.props.mode === 'default' ? data : data.reverse();
             if (!page) {
                 let originData = this.state.page === 1 ? [] : cacheData[this.props.listId];
                 this.setState({
@@ -185,7 +184,7 @@ export default class extends React.Component {
     }
 
     render() {
-        const { header, pageSize, renderRow, refreshable, allLoadedText, renderHeader, scrollBarDiabled } = this.props;
+        const { header, pageSize, renderRow, refreshable, allLoadedText, renderHeader } = this.props;
         const { allLoaded, isLoading, refreshing } = this.state;
         let listView = (
             <ListView

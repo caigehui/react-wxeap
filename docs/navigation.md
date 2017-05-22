@@ -27,6 +27,7 @@
 * # 组件
 * [ImagePicker](./components/ImagePicker.md)
 * [ListView](./components/ListView.md)
+* [ChatView](./components/ChatView.md)
 * [Navigation](./components/Navigation.md)
 * [Seperator](./components/Seperator.md)
 * [FilterBar](./components/FilterBar.md)

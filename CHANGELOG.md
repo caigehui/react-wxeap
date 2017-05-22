@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.2.0
+`2017-5-22`
+
+* 【新增】`datetimeFormat`用于转换时间字符串
+
 ## 2.1.1
 `2017-5-22`
 

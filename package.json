@@ -39,8 +39,7 @@
     "rc-tween-one": "^1.1.2",
     "re-carousel": "^2.0.2",
     "react-pinch-zoom-pan": "1.4.0",
-    "redux-persist": "^4.6.0",
-    "react-chatview": "^0.1.1"
+    "redux-persist": "^4.6.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

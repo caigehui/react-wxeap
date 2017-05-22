@@ -41,6 +41,7 @@ const styles = {
         backgroundColor: 'rgba(0,0,0,0.4)',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 40
+        borderRadius: 40,
+        zIndex: 999
     }
 };

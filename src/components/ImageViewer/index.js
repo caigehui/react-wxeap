@@ -32,7 +32,14 @@ class ImageViewer extends React.Component {
 
     static propTypes = {
         imgs: React.PropTypes.array,
-        initIndex: React.PropTypes.number
+        initIndex: React.PropTypes.number,
+        enableIndicators: React.PropTypes.bool
+    }
+
+    static defaultProps = {
+        imgs: [],
+        initIndex: 0,
+        enableIndicators: true
     }
 
     componentWillUnmount() {
@@ -40,7 +47,6 @@ class ImageViewer extends React.Component {
     }
 
     componentDidMount() {
-        this.request(0);
         window.addEventListener('resize', () => {
             this.forceUpdate();
         }, false);
@@ -63,7 +69,7 @@ class ImageViewer extends React.Component {
 
         return (
             <div style={styles.carouselContainer} onClick={Popup.hide}>
-                <Carousel loop={items.length === 1 ? false : true} widgets={[IndicatorDots]} frames={items}>
+                <Carousel loop={items.length === 1 ? false : true} widgets={this.props.enableIndicators ? [IndicatorDots] : null} frames={items}>
                 </Carousel>
             </div>
         );

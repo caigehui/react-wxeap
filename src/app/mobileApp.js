@@ -34,9 +34,12 @@ export default class MobileApp {
         this.configureAPI(options);
 
         OrientationListener(() => {
-            this.router.forceUpdate();
+            this.refreshUI();
         });
+        MobileApp.instance = this;
     }
+
+    static instance = null
 
     /**
      * 启动应用
@@ -51,6 +54,10 @@ export default class MobileApp {
             this.mobileApp.start('#root');
             this.persist();
         }
+    }
+
+    refreshUI = () => {
+        this.router.forceUpdate();
     }
 
     persist() {

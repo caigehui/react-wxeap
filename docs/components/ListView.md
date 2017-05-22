@@ -56,11 +56,9 @@ import { ListView } from 'react-wxeap'
 | nocache | 是否关闭数据缓存 | bool | false |
 | allLoadedText | 全部加载完后的文本 | string | '没有更多了' |
 | footerHidden | 是否隐藏footer | bool | false |
-| mode | 列表的模式, `default`为正常模式，从上到下滚动；`reverse`是反转模式，从下到上滚动，此时，`refreshable`, `header`, `renderHeader`, `renderFooter`, `allLoadedText`, `footerHidden`属性无效  | 'default'/'reverse' |
 
 原型方法：
 
 * fill(data, allLoaded, page): data 需要填充的数据的数组，allLoaded 是否全部加载，page 需要填充的页数
 * reload() : 直接触发下拉刷新
-* scrollTo(y) : 滚动到y轴的指定位置，有动画效果
-* locateToBottom(): 直接定位到列表最低端，无动画效果  
+* scrollToTop() : 会回到顶部

@@ -48,8 +48,6 @@ export default class extends React.Component {
         nocache: PropTypes.bool,
         footerHidden: PropTypes.bool,
         style: PropTypes.object,
-        scrollBarDiabled: PropTypes.bool,
-        mode: PropTypes.oneOf(['default', 'reverse'])
     }
 
     static defaultProps = {
@@ -81,9 +79,6 @@ export default class extends React.Component {
             page: 1,
             allLoaded: false
         };
-
-        this.firstLoaded = true;
-        this.onTopReached = false;
     }
 
     componentDidMount() {
@@ -95,22 +90,10 @@ export default class extends React.Component {
          * 获取Scroller
          */
         this.scroller = this.listView.refs.listview.refs.listviewscroll.domScroller.scroller;
-        this.domScroller = this.listView.refs.listview.refs.listviewscroll.domScroller;
         /**
          * 设置最大scrollTo的距离
          */
         this.scroller.__maxScrollTop = 20000;
-
-        this.props.mode === 'reverse' && this.locateToBottom();
-    }
-
-    componentDidUpdate() {
-
-        if(this.firstLoaded && this.firstFill) {
-            this.props.mode === 'reverse' && this.locateToBottom();
-            this.firstLoaded = false;
-            this.firstFill = false;
-        }
     }
 
     /**
@@ -126,15 +109,8 @@ export default class extends React.Component {
     /**
      * 滚动到指定位置
      */
-    scrollTo = (y) => {
-        this.scroller.scrollTo(0, y, true);
-    }
-
-    /**
-     * ListView定位到最底部
-     */
-    locateToBottom = () => {
-        this.scroller.scrollTo(0, this.domScroller.content.clientHeight - this.domScroller.clientSize.y);
+    scrollToTop = () => {
+        this.scroller.scrollTo(0, 0, true);
     }
 
     /**
@@ -150,9 +126,6 @@ export default class extends React.Component {
     fill = (data, allLoaded, page) => {
         try {
             data = this.props.mode === 'default' ? data : data.reverse();
-            if(this.firstLoaded) {
-                this.firstFill = true;
-            } 
             if (!page) {
                 let originData = this.state.page === 1 ? [] : cacheData[this.props.listId];
                 this.setState({
@@ -189,7 +162,6 @@ export default class extends React.Component {
      * 列表滚动到底部
      */
     onEndReached = () => {
-        if(this.props.mode === 'reverse') return;
         const { isLoading, allLoaded, page } = this.state;
         if (isLoading === false && allLoaded === false) {
             if (!cacheData[this.props.listId] || cacheData[this.props.listId].length === 0) return;/* 初始化不加载 */
@@ -212,48 +184,33 @@ export default class extends React.Component {
         }
     }
 
-    /**
-     * 列表滚动
-     */
-    onScroll = () => {
-
-    }
-
-    /**
-     * 渲染反向列表的加载图片
-     */
-    renderReverseHeader = () => {
-
-    }
-
     render() {
-        const { header, pageSize, renderRow, refreshable, allLoadedText, renderHeader, scrollBarDiabled, mode } = this.props;
+        const { header, pageSize, renderRow, refreshable, allLoadedText, renderHeader, scrollBarDiabled } = this.props;
         const { allLoaded, isLoading, refreshing } = this.state;
         let listView = (
             <ListView
                 ref={o => this.listView = o}
                 dataSource={this.state.dataSource}
                 initialListSize={0}
-                renderHeader={mode === 'default' ? (renderHeader || header ? () => <span>{header}</span> : null) : this.renderReverseHeader}
-                renderFooter={mode === 'default' ? (this.props.renderFooter ? () => this.props.renderFooter(allLoaded, isLoading) : () => this.props.footerHidden ? null :
+                renderHeader={renderHeader || header ? () => <span>{header}</span> : null}
+                renderFooter={this.props.renderFooter ? () => this.props.renderFooter(allLoaded, isLoading) : () => this.props.footerHidden ? null :
                     <div style={styles.footer}>
                         <div style={styles.sep} />
                         {allLoaded ? allLoadedText : isLoading ? '加载中...' : '加载完毕'}
                         <div style={styles.sep} />
-                    </div>) : null}
+                    </div>}
                 renderRow={renderRow}
                 pageSize={pageSize}
                 scrollRenderAheadDistance={200}
                 scrollEventThrottle={20}
-                scrollerOptions={{ scrollbars: !scrollBarDiabled }}
+                scrollerOptions={{ scrollbars: true }}
                 onEndReached={this.onEndReached}
                 onEndReachedThreshold={100}
-                refreshControl={refreshable && mode === 'default' ? <RefreshControl
-                    icon={<Icon type={require('../../assets/loading.svg')}>}
+                refreshControl={refreshable ? <RefreshControl
+                    icon={<Icon type={require('../../assets/loading.svg')} />}
                     refreshing={refreshing}
                     onRefresh={this.onRefresh} /> : null}
                 {...this.props}
-                onScroll={this.onScroll}
                 useZscroller={true}
                 style={{ ...styles.listView, ...this.props.style }} />);
         return (

@@ -1,6 +1,6 @@
 {
   "name": "react-wxeap",
-  "version": "2.1.0-alpha.0",
+  "version": "2.1.1",
   "description": "cnwxsoft web framework",
   "scripts": {
     "lint": "eslint --ext .js src --fix",
@@ -44,7 +44,8 @@
     "react": "~15.4.1",
     "react-dom": "~15.4.1",
     "react-pinch-zoom-pan": "1.4.0",
-    "redux-persist": "^4.8.0"
+    "redux-persist": "^4.8.0",
+    "lodash.clone": "^4.5.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

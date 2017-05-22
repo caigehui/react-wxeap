@@ -7,7 +7,7 @@ export default class Navigation extends React.Component {
     static propTypes = {
         onBack: PropTypes.func,
         title: PropTypes.string,
-        hide: PropTypes.bool
+        hide: PropTypes.bool,
     }
 
     static defaultProps = {
@@ -30,7 +30,7 @@ export default class Navigation extends React.Component {
             hide || MobileDetect.isWechat || MobileDetect.isApp ?
                 <div/> :
                 <NavBar
-                    mode="light" onLeftClick={onBack}>
+                    mode="light" onLeftClick={onBack} iconName={onBack ? 'left' : null}>
                     {title}
                 </NavBar>
         );

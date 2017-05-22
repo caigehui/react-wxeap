@@ -4,6 +4,9 @@
 
 `Navigation`在微信浏览器中会自动隐藏
 如果想强制隐藏，直接加上`hide`属性即可
+
+如果想隐藏左边的按钮，不指定`onBack`即可
+
 ```
 import { Navigation } from 'react-wxeap'
 

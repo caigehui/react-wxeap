@@ -13,5 +13,6 @@ module.exports = {
   isMobile: (md.mobile() !== null ? true : false),
   isWechat: md.match('MicroMessenger') ? true : false,
   wechatVer: md.version('MicroMessenger') ? md.version('MicroMessenger') : null,
-  isApp: md.match('wxeap-app') ? true : false
+  isApp: md.match('wxeap-app') ? true : false,
+  isAppOrWX: md.version('MicroMessenger') || md.match('wxeap-app') ? true : false
 };

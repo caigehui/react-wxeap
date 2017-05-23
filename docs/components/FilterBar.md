@@ -46,4 +46,7 @@ render() {
 this.filterBar.setLabels(['条件1', '条件2', ''])
 ```
 
-note: 如果数组中有空字符串，代表对应条件的`label`不变
+> 如果`setLabels`数组中有空字符串，代表对应条件的`label`不变
+
+> 如果conditions的某个条件第一个value是`datePicker`，则为选择时间界面
+

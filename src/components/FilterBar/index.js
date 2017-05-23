@@ -54,7 +54,7 @@ const styles = {
         position: 'absolute',
         left: 0,
         right: 0,
-        bottom: -80,
+        bottom: 0,
         backgroundColor: 'rgba(0,0,0,0.4)',
         zIndex: 1
     }
@@ -123,12 +123,12 @@ export default class FilterBar extends React.Component {
         this.setState({ selectedIndex: -1 });
         this.props.onClick(i, label => {
             if (!label) {
-                if(i === this.state.selectedIndex) {
+                if (i === this.state.selectedIndex) {
                     this.setState({ selectedIndex: -1 });
-                }else {
+                } else {
                     this.setState({ selectedIndex: i });
                 }
-            }else {
+            } else {
                 const { labels } = this.state;
                 labels[i] = label;
                 this.setState({ labels });
@@ -198,7 +198,7 @@ export default class FilterBar extends React.Component {
                             (() => {
                                 // 获取Menu的data,value,onChange
                                 const data = conditions[selectedIndex];
-                                const level = data.searchByCondition(a => a.hasOwnProperty('children')) ? 2 : 1;
+                                const style = { ...styles.menu, top: this.state.offsetTop + BAR_HEIGHT + 1 };
                                 const value = values[selectedIndex];
                                 const onChange = (newValue) => {
                                     if (newValue.toString() === value.toString()) return;
@@ -217,9 +217,12 @@ export default class FilterBar extends React.Component {
                                     }), selectedIndex);
                                     this.hideMenu();
                                 };
-                                const style = { ...styles.menu, top: this.state.offsetTop + BAR_HEIGHT + 1 };
+
+                                const level = data.searchByCondition(a => a.hasOwnProperty('children')) ? 2 : 1;
+                                const height = Math.min(data.length * 100, 500);
                                 return (
                                     <Menu
+                                        height={height}
                                         style={style}
                                         data={data}
                                         level={level}

@@ -18,8 +18,8 @@ datetimeFormat的参数:
 ```
 import { datetimeFormat } from 'react-wxeap'
 
-console.log(datetimeFormat(2017-5-5 22:00:59)) // 5月5日 22:00
+console.log(datetimeFormat('2017-5-5 22:00:59')) // 5月5日 22:00
 
-console.log(datetimeFormat(2017/5/5 22:00:59, 'YYYY/MM/DD HH:mm:ss', true)) // 5月5日
+console.log(datetimeFormat('2017/5/5 22:00:59', 'YYYY/MM/DD HH:mm:ss', true)) // 5月5日
 
 ```

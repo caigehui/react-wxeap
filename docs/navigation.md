@@ -45,3 +45,4 @@
 * [mobileDetect](./utils/mobileDetect.md)
 * [backToHome](./utils/backToHome.md)
 * [wrapProps](./utils/wrapProps.md)
+* [datetimeFormat](./utils/datetimeFormat.md)

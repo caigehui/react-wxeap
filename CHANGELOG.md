@@ -2,6 +2,22 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.2.5
+`2017-5-25`
+
+* 【修复】现在日期会本地化
+
+## 2.2.3
+`2017-5-24`
+
+* 【新增】`Navigation`新增autoHide
+
+
+## 2.2.2
+`2017-5-24`
+
+* 【优化】`Navigation`支持扩展
+
 ## 2.2.1
 `2017-5-23`
 

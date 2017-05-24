@@ -1,4 +1,5 @@
 import moment from 'moment';
+import 'moment/locale/zh-cn';
 
 export default function datetimeFormat(datetime, format = 'YYYY-MM-DD HH:mm:ss', omitTime) {
     let time = omitTime ? '' : ' HH:mm';

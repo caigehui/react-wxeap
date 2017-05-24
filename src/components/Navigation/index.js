@@ -8,11 +8,14 @@ export default class Navigation extends React.Component {
         onBack: PropTypes.func,
         title: PropTypes.string,
         hide: PropTypes.bool,
+        autoHide: PropTypes.bool,
+        rightContent: PropTypes.any
     }
 
     static defaultProps = {
         title: ' ',
-        hide: false
+        hide: false,
+        autoHide: true
     }
 
     componentDidMount() {
@@ -25,12 +28,12 @@ export default class Navigation extends React.Component {
 
     render() {
 
-        const { title, onBack, hide } = this.props;
+        const { title, onBack, hide, autoHide, rightContent } = this.props;
         return (
-            hide || MobileDetect.isWechat || MobileDetect.isApp ?
+            autoHide && (hide || MobileDetect.isWechat || MobileDetect.isApp) ?
                 <div/> :
                 <NavBar
-                    mode="light" onLeftClick={onBack} iconName={onBack ? 'left' : null}>
+                    mode="light" rightContent={rightContent} onLeftClick={onBack} iconName={onBack ? 'left' : null}>
                     {title}
                 </NavBar>
         );

@@ -17,6 +17,7 @@ export { default as OrgPicker } from './components/OrgPicker';
 export { default as Navigation } from './components/Navigation';
 export { default as FloatButton } from './components/FloatButton';
 export { default as ImagePicker } from './components/ImagePicker';
+export { default as DatePicker } from './components/DatePicker';
 export { default as View } from './components/View';
 export { default as FilterBar } from './components/FilterBar';
 export { default as ScrollView } from './components/ScrollView';

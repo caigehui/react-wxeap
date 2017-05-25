@@ -95,10 +95,10 @@ export default class FilterBar extends React.Component {
 
     setLabel = (label, i) => {
         let labels = this.state.labels;
-        labels.splice(i, 1, label)
+        labels.splice(i, 1, label);
         this.setState({
             labels
-        })
+        });
     }
 
     componentDidMount() {
@@ -138,7 +138,7 @@ export default class FilterBar extends React.Component {
                 }
             } else {
                 let labels = this.state.labels;
-                labels.splice(i, 1, label)
+                labels.splice(i, 1, label);
                 this.setState({ labels });
             }
         });

@@ -52,6 +52,7 @@ class OrgPicker extends React.Component {
                 loading: false
             });
             this.fill([''], true);
+            this.listView.scrollToTop();
         });
 
     }
@@ -268,6 +269,7 @@ class OrgPicker extends React.Component {
                     </div>}
                 >{this.getNavTitle()}</NavBar>
                 <ListView
+                    ref={o => this.listView = o}
                     style={{ height: document.documentElement.clientHeight - 90, width: '100%', backgroundColor: COLORS.BACKGROUND_COLOR }}
                     refreshable={false}
                     footerHidden={true}

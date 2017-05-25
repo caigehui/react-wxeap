@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Popup, Tabs, Icon } from 'antd-mobile';
-import View  from '../View';
+import View from '../View';
 import moment from 'moment';
 
 const TabPane = Tabs.TabPane;
@@ -15,7 +15,7 @@ const row2 = [
     '上周',
     '本月',
     '上月'
-]
+];
 
 class DatePicker extends React.Component {
 
@@ -58,14 +58,14 @@ class DatePicker extends React.Component {
             })(),
             currents: (() => { // 自定义日期范围的年月时间点
                 let current = props.checked.start ? moment(props.checked.start, props.format) : moment();
-                return [current, current, current, current]
+                return [current, current, current, current];
             })(),
             selectedDate: {
                 start: props.checked.start ? moment(props.checked.start, props.format) : '',
                 end: props.checked.end ? moment(props.checked.end, props.format) : ''
             }
 
-        }
+        };
     }
 
     componentDidMount() {
@@ -78,48 +78,48 @@ class DatePicker extends React.Component {
      * 点击各个Item
      */
     onClick = (label) => {
-        if (label === '自定义日期') return this.setState({ isCustomDate: true })
+        if (label === '自定义日期') return this.setState({ isCustomDate: true });
         const { format } = this.props;
         const checked = {
             label,
             start: (() => {
                 switch (label) {
                     case '今日':
-                        return moment().format(format)
+                        return moment().format(format);
                     case '昨日':
-                        return moment().subtract(1, 'days').format(format)
+                        return moment().subtract(1, 'days').format(format);
                     case '本周':
-                        return moment().startOf('week').format(format)
+                        return moment().startOf('week').format(format);
                     case '上周':
-                        return moment().subtract(1, 'weeks').startOf('week').format(format)
+                        return moment().subtract(1, 'weeks').startOf('week').format(format);
                     case '本月':
-                        return moment().startOf('month').format(format)
+                        return moment().startOf('month').format(format);
                     case '上月':
-                        return moment().subtract(1, 'months').startOf('month').format(format)
+                        return moment().subtract(1, 'months').startOf('month').format(format);
                     default:
-                        return ''
+                        return '';
                 }
             })(),
             end: (() => {
                 switch (label) {
                     case '今日':
-                        return moment().format(format)
+                        return moment().format(format);
                     case '昨日':
-                        return moment().subtract(1, 'days').format(format)
+                        return moment().subtract(1, 'days').format(format);
                     case '本周':
-                        return moment().endOf('week').format(format)
+                        return moment().endOf('week').format(format);
                     case '上周':
-                        return moment().subtract(1, 'weeks').endOf('week').format(format)
+                        return moment().subtract(1, 'weeks').endOf('week').format(format);
                     case '本月':
-                        return moment().endOf('month').format(format)
+                        return moment().endOf('month').format(format);
                     case '上月':
-                        return moment().subtract(1, 'months').endOf('month').format(format)
+                        return moment().subtract(1, 'months').endOf('month').format(format);
                     default:
-                        return ''
+                        return '';
                 }
             })(),
             type: ''
-        }
+        };
         this.setState({
             checked
         });
@@ -135,7 +135,7 @@ class DatePicker extends React.Component {
     onTabChange = (key) => {
         this.setState({
             tab: key
-        })
+        });
     }
 
     /**
@@ -147,7 +147,7 @@ class DatePicker extends React.Component {
                 start: '',
                 end: ''
             }
-        })
+        });
     }
 
     /**
@@ -195,7 +195,7 @@ class DatePicker extends React.Component {
                         return '季度';
                 }
             })()
-        }
+        };
         this.props.onSelect && this.props.onSelect(checked);
         Popup.hide();
     }
@@ -208,7 +208,7 @@ class DatePicker extends React.Component {
         const selectedDate = {
             start: moment(this.state.selectedDate.start),
             end: moment(this.state.selectedDate.end)
-        }
+        };
         let current = isDay ? currents[0] : currents[1]; // 日历的时间轴
         let lastMonthEndDay = moment(current.subtract(1, 'months').endOf('month')); // 上个月最后一天
         current.add(1, 'months');
@@ -223,20 +223,20 @@ class DatePicker extends React.Component {
                     <View>
                         <View style={{ ...styles.icon, marginRight: 20 }} onClick={() => {
                             let { currents } = this.state;
-                            currents.splice(isDay ? 0 : 1, 1, current.subtract(1, 'years'))
+                            currents.splice(isDay ? 0 : 1, 1, current.subtract(1, 'years'));
                             this.setState({
                                 currents
-                            })
+                            });
                         }}>
                             <Icon type="left" color="rgb(160, 160, 160)" />
                         </View>
                         {current.format('YYYY年')}
                         <View style={{ ...styles.icon, marginLeft: 20 }} onClick={() => {
                             let { currents } = this.state;
-                            currents.splice(isDay ? 0 : 1, 1, current.add(1, 'years'))
+                            currents.splice(isDay ? 0 : 1, 1, current.add(1, 'years'));
                             this.setState({
                                 currents
-                            })
+                            });
                         }}>
                             <Icon type="right" color="rgb(160, 160, 160)" />
                         </View>
@@ -244,20 +244,20 @@ class DatePicker extends React.Component {
                     <View>
                         <View style={{ ...styles.icon, marginRight: 20 }} onClick={() => {
                             let { currents } = this.state;
-                            currents.splice(isDay ? 0 : 1, 1, current.subtract(1, 'months'))
+                            currents.splice(isDay ? 0 : 1, 1, current.subtract(1, 'months'));
                             this.setState({
                                 currents
-                            })
+                            });
                         }}>
                             <Icon type="left" color="rgb(160, 160, 160)" />
                         </View>
                         {current.format('M月')}
                         <View style={{ ...styles.icon, marginLeft: 20 }} onClick={() => {
                             let { currents } = this.state;
-                            currents.splice(isDay ? 0 : 1, 1, current.add(1, 'months'))
+                            currents.splice(isDay ? 0 : 1, 1, current.add(1, 'months'));
                             this.setState({
                                 currents
-                            })
+                            });
                         }} >
                             <Icon type="right" color="rgb(160, 160, 160)" />
                         </View>
@@ -275,7 +275,7 @@ class DatePicker extends React.Component {
                                     let tip = '';
                                     // 表头
                                     if (i === 0) {
-                                        style = { ...style, borderBottom: '1px solid rgb(220, 220, 220)' }
+                                        style = { ...style, borderBottom: '1px solid rgb(220, 220, 220)' };
                                         switch (j) {
                                             case 0:
                                                 label = '一';
@@ -303,7 +303,7 @@ class DatePicker extends React.Component {
 
                                     // 周末的日期
                                     if (j > 4) {
-                                        textStyle = { ...textStyle, ...styles.weekends }
+                                        textStyle = { ...textStyle, ...styles.weekends };
                                     }
 
                                     const setSelectedDay = (date) => {
@@ -317,7 +317,7 @@ class DatePicker extends React.Component {
                                         } else {
                                             // 日历
                                             if (selectedDate.start && date.isSame(selectedDate.start, 'day')) {
-                                                tip = '开始'
+                                                tip = '开始';
                                                 textStyle = { ...textStyle, ...styles.daySelected };
                                             } else if (selectedDate.end && date.isAfter(selectedDate.start) && date.isBefore(selectedDate.end)) {
                                                 textStyle = { ...textStyle, ...styles.daySelected };
@@ -326,32 +326,28 @@ class DatePicker extends React.Component {
                                                 textStyle = { ...textStyle, ...styles.daySelected };
                                             }
                                         }
-                                    }
+                                    };
                                     let date = null;
 
                                     // 上个月的日期
                                     if (i === 1 && j < startDay - 1) {
-                                        textStyle = { ...textStyle, ...styles.inactive }
+                                        textStyle = { ...textStyle, ...styles.inactive };
                                         date = moment(lastMonthEndDay.subtract(startDay - 2 - j, 'days'));
-                                        lastMonthEndDay.add(startDay - 2 - j, 'days')
+                                        lastMonthEndDay.add(startDay - 2 - j, 'days');
                                         label = date.format('D');
                                         setSelectedDay(date);
-                                    }
-                                    // 下个月的日期
-                                    else if ((i == Math.ceil(dayNum / 7) && j >= dayNum % 7 - 1) || i > Math.ceil(dayNum / 7)) {
+                                    } else if ((i === Math.ceil(dayNum / 7) && j >= dayNum % 7 - 1) || i > Math.ceil(dayNum / 7)) {
                                         let offsetY = i - Math.ceil(dayNum / 7);
                                         let offsetX = j - dayNum % 7 + 1;
-                                        textStyle = { ...textStyle, ...styles.inactive }
+                                        textStyle = { ...textStyle, ...styles.inactive };
                                         date = moment(nextMonthStartDay.add(offsetY * 7 + offsetX, 'days'));
                                         label = date.format('D');
                                         nextMonthStartDay.subtract(offsetY * 7 + offsetX, 'days');
                                         setSelectedDay(date);
-                                    }
-                                    // 本月的日期
-                                    else if (i > 0) {
+                                    } else if (i > 0) {
                                         let offsetY = i - 1;
                                         let offsetX = j - startDay + 1;
-                                        date = moment(current.startOf('month').add(offsetY * 7 + offsetX, 'days'))
+                                        date = moment(current.startOf('month').add(offsetY * 7 + offsetX, 'days'));
                                         label = date.format('D');
                                         setSelectedDay(date);
                                     }
@@ -368,14 +364,14 @@ class DatePicker extends React.Component {
                                                                 start: date.isBefore(selectedDate.start) ? date : selectedDate.start,
                                                                 end: date.isBefore(selectedDate.start) ? selectedDate.start : date
                                                             }
-                                                        })
+                                                        });
                                                     } else {
                                                         this.setState({
                                                             selectedDate: {
                                                                 start: date,
                                                                 end: date
                                                             }
-                                                        })
+                                                        });
                                                     }
                                                 } else {
                                                     // 周历
@@ -384,7 +380,7 @@ class DatePicker extends React.Component {
                                                             start: moment(date.startOf('week')),
                                                             end: moment(date.endOf('week'))
                                                         }
-                                                    })
+                                                    });
                                                 }
 
                                             }}>
@@ -398,7 +394,7 @@ class DatePicker extends React.Component {
 
                                             </View>
                                         </View>
-                                    )
+                                    );
                                 }
                             }
                             return el;
@@ -406,7 +402,7 @@ class DatePicker extends React.Component {
                     }
                 </View>
             </View>
-        )
+        );
     }
 
     /**
@@ -417,7 +413,7 @@ class DatePicker extends React.Component {
         const selectedDate = {
             start: moment(this.state.selectedDate.start),
             end: moment(this.state.selectedDate.end)
-        }
+        };
         const current = currents[2];
         return (
             <View style={styles.calendar}>
@@ -425,20 +421,20 @@ class DatePicker extends React.Component {
                     <View>
                         <View style={{ ...styles.icon, marginRight: 20 }} onClick={() => {
                             let { currents } = this.state;
-                            currents.splice(2, 1, current.subtract(1, 'years'))
+                            currents.splice(2, 1, current.subtract(1, 'years'));
                             this.setState({
                                 currents
-                            })
+                            });
                         }}>
                             <Icon type="left" color="rgb(160, 160, 160)" />
                         </View>
                         {current.format('YYYY年')}
                         <View style={{ ...styles.icon, marginLeft: 20 }} onClick={() => {
                             let { currents } = this.state;
-                            currents.splice(2, 1, current.add(1, 'years'))
+                            currents.splice(2, 1, current.add(1, 'years'));
                             this.setState({
                                 currents
-                            })
+                            });
                         }}>
                             <Icon type="right" color="rgb(160, 160, 160)" />
                         </View>
@@ -454,7 +450,7 @@ class DatePicker extends React.Component {
                                     let label = `${i * 3 + j + 1}月`;
                                     if (current.isSame(selectedDate.start, 'year')) {
                                         if (i * 3 + j === selectedDate.start.month()) {
-                                            style = { ...style, ...styles.monthSelected }
+                                            style = { ...style, ...styles.monthSelected };
                                         }
                                     }
                                     el.push(
@@ -464,11 +460,11 @@ class DatePicker extends React.Component {
                                                     start: moment(current).month(i * 3 + j).startOf('month'),
                                                     end: moment(current).month(i * 3 + j).endOf('month')
                                                 }
-                                            })
+                                            });
                                         }}>
                                             {label}
                                         </View>
-                                    )
+                                    );
                                 }
                             }
                             return el;
@@ -476,7 +472,7 @@ class DatePicker extends React.Component {
                     }
                 </View>
             </View>
-        )
+        );
     }
 
     /**
@@ -487,7 +483,7 @@ class DatePicker extends React.Component {
         const selectedDate = {
             start: moment(this.state.selectedDate.start),
             end: moment(this.state.selectedDate.end)
-        }
+        };
         const current = currents[3];
         return (
             <View style={styles.calendar}>
@@ -495,20 +491,20 @@ class DatePicker extends React.Component {
                     <View>
                         <View style={{ ...styles.icon, marginRight: 20 }} onClick={() => {
                             let { currents } = this.state;
-                            currents.splice(3, 1, current.subtract(1, 'years'))
+                            currents.splice(3, 1, current.subtract(1, 'years'));
                             this.setState({
                                 currents
-                            })
+                            });
                         }}>
                             <Icon type="left" color="rgb(160, 160, 160)" />
                         </View>
                         {current.format('YYYY年')}
                         <View style={{ ...styles.icon, marginLeft: 20 }} onClick={() => {
                             let { currents } = this.state;
-                            currents.splice(3, 1, current.add(1, 'years'))
+                            currents.splice(3, 1, current.add(1, 'years'));
                             this.setState({
                                 currents
-                            })
+                            });
                         }}>
                             <Icon type="right" color="rgb(160, 160, 160)" />
                         </View>
@@ -522,28 +518,28 @@ class DatePicker extends React.Component {
                                 let style = styles.season;
                                 if (current.isSame(selectedDate.start, 'year')) {
                                     if (i + 1 === selectedDate.start.quarter()) {
-                                        style = { ...style, ...styles.seasonSelected }
+                                        style = { ...style, ...styles.seasonSelected };
                                     }
                                 }
                                 el.push(
                                     <View key={i} style={style} onClick={() => {
                                         this.setState({
                                             selectedDate: {
-                                                start: moment(current).quarter(i+1).startOf('quarter'),
-                                                end: moment(current).quarter(i+1).endOf('quarter')
+                                                start: moment(current).quarter(i + 1).startOf('quarter'),
+                                                end: moment(current).quarter(i + 1).endOf('quarter')
                                             }
-                                        })
+                                        });
                                     }}>
                                         {`${i + 1}季度`}
                                     </View>
-                                )
+                                );
                             }
                             return el;
                         })()
                     }
                 </View>
             </View>
-        )
+        );
     }
 
 
@@ -580,25 +576,33 @@ class DatePicker extends React.Component {
                         </View>
                     </View>
                 </View>
-            )
+            );
         return (
             <View style={{ ...styles.container, height: document.documentElement.clientHeight }} onClick={Popup.hide}>
                 <View style={{ ...styles.insideContainer, width: document.documentElement.clientWidth - 120 }} onClick={e => e.stopPropagation()}>
                     <View style={styles.row}>
-                        {row1.map(name => <View key={name} style={name === checked.label ? { ...styles.item, ...styles.itemSelected } : styles.item} onClick={(e) => { e.stopPropagation(); this.onClick(name); }}>{name}</View>)}
+                        {row1.map(name => <View key={name} style={name === checked.label ? { ...styles.item, ...styles.itemSelected } : styles.item} onClick={(e) => {
+ e.stopPropagation(); this.onClick(name); 
+}}>{name}</View>)}
                     </View>
                     <View style={styles.row}>
-                        {row2.map(name => <View key={name} style={name === checked.label ? { ...styles.item, ...styles.itemSelected } : styles.item} onClick={(e) => { e.stopPropagation(); this.onClick(name); }}>{name}</View>)}
+                        {row2.map(name => <View key={name} style={name === checked.label ? { ...styles.item, ...styles.itemSelected } : styles.item} onClick={(e) => {
+ e.stopPropagation(); this.onClick(name); 
+}}>{name}</View>)}
                     </View>
                     <View style={styles.row}>
-                        <View style={'自定义日期' === checked.label ? { ...styles.item, ...styles.itemSelected } : styles.item} onClick={(e) => { e.stopPropagation(); this.onClick('自定义日期'); }}>{'自定义日期' === checked.label ? `${checked.start} 至 ${checked.end}` : '自定义日期范围'}</View>
+                        <View style={'自定义日期' === checked.label ? { ...styles.item, ...styles.itemSelected } : styles.item} onClick={(e) => {
+ e.stopPropagation(); this.onClick('自定义日期'); 
+}}>{'自定义日期' === checked.label ? `${checked.start} 至 ${checked.end}` : '自定义日期范围'}</View>
                     </View>
                     <View style={styles.row}>
-                        <View style={'全部日期' === checked.label ? { ...styles.item, ...styles.itemSelected } : styles.item} onClick={(e) => { e.stopPropagation(); this.onClick('全部日期'); }}>全部日期</View>
+                        <View style={'全部日期' === checked.label ? { ...styles.item, ...styles.itemSelected } : styles.item} onClick={(e) => {
+ e.stopPropagation(); this.onClick('全部日期'); 
+}}>全部日期</View>
                     </View>
                 </View>
             </View>
-        )
+        );
     }
 
 }
@@ -779,7 +783,7 @@ const styles = {
         alignItems: 'center',
         justifyContent: 'center'
     }
-}
+};
 
 export default (options) => {
     Popup.show(<DatePicker {...options} />, { transitionName: 'am-fade' });

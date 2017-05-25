@@ -2,6 +2,12 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.3.0
+`2017-5-25`
+
+* 【优化】`FilterBar`支持设置单个label
+* 【新增】新增`DatePicker`
+
 ## 2.2.6 
 `2017-5-25`
 

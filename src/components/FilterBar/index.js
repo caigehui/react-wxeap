@@ -93,6 +93,14 @@ export default class FilterBar extends React.Component {
         this.setState({ labels: labels });
     }
 
+    setLabel = (label, i) => {
+        let labels = this.state.labels;
+        labels.splice(i, 1, label)
+        this.setState({
+            labels
+        })
+    }
+
     componentDidMount() {
         this.setState({ offsetTop: findDOMNode(this.bar).offsetTop });
     }
@@ -129,8 +137,8 @@ export default class FilterBar extends React.Component {
                     this.setState({ selectedIndex: i });
                 }
             } else {
-                const { labels } = this.state;
-                labels[i] = label;
+                let labels = this.state.labels;
+                labels.splice(i, 1, label)
                 this.setState({ labels });
             }
         });

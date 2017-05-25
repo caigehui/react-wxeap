@@ -35,7 +35,9 @@ class OrgPicker extends React.Component {
     }
 
     componentDidMount() {
-        this.request(0);
+        setTimeout(() => {
+            this.request(0);
+        }, 250);
         window.addEventListener('resize', () => {
             this.forceUpdate();
         }, false);
@@ -157,10 +159,10 @@ class OrgPicker extends React.Component {
             if (i === index.length - 1) return;
             el.push(<div key={`${i}-sep`} style={{
                 ...styles.item, padding: 0
-            }}><Icon type="right" color={COLORS.SUBTITLE_COLOR} size="md"/></div>);
+            }}><Icon type="right" color={COLORS.SUBTITLE_COLOR} size="md" /></div>);
         });
         return (
-            <View style={styles.indexContainer}>
+            <View style={{...styles.indexContainer, width: document.documentElement.clientWidth - 50}}>
                 {el}
             </View>
         );
@@ -195,7 +197,7 @@ class OrgPicker extends React.Component {
                                                                 : null)
                                                             :
                                                             <Icon type="right"
-                                                                size="md" color={COLORS.SUBTITLE_COLOR}/>}>
+                                                                size="md" color={COLORS.SUBTITLE_COLOR} />}>
                                                         {item.name}
                                                         {item.type === 'dpt' ? null : <span style={styles.job}>{item.job}</span>}
                                                     </ListItem>
@@ -214,8 +216,8 @@ class OrgPicker extends React.Component {
                                                 return (
                                                     <ListItem
                                                         key={i}
-                                                        thumb={<img src={item.type === 'all' ? require('../../assets/org-prt.png') : require('../../assets/org.png')} style={item.type === 'all' 
-                                                        ? styles.icon : {...styles.icon, marginLeft: 20}} />}
+                                                        thumb={<img src={item.type === 'all' ? require('../../assets/org-prt.png') : require('../../assets/org.png')} style={item.type === 'all'
+                                                            ? styles.icon : { ...styles.icon, marginLeft: 20 }} />}
                                                         extra={item.isLeaf || item.type === 'all' ?
                                                             (checked.searchByCondition(a => a.id === item.id) ?
                                                                 <Icon type="check"
@@ -294,7 +296,6 @@ const styles = {
     },
     indexContainer: {
         paddingLeft: 30,
-        width: '100%',
         paddingTop: 15,
         paddingBottom: 15,
         alignSelf: 'center'

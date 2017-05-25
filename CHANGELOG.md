@@ -2,8 +2,14 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
-## 2.2.5
+## 2.2.6 
 `2017-5-25`
+
+* 【修复】`Navigation`的标题在微信中一直闪烁的BUG
+* 【修复】`OrgPicker`的一些小错误
+
+## 2.2.5
+`2017-5-24`
 
 * 【修复】现在日期会本地化
 

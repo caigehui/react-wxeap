@@ -60,3 +60,4 @@ import { ListView } from 'react-wxeap'
 * fill(data, allLoaded, page): data 需要填充的数据的数组，allLoaded 是否全部加载，page 需要填充的页数
 * reload() : 直接触发下拉刷新
 * scrollToTop() : 会回到顶部
+* refreshUI() : 刷新当前UI

@@ -66,6 +66,7 @@ class OrgPicker extends React.Component {
     }
 
     onConfirm = () => {
+        if(this.state.checked.length === 0) return;
         this.props.onConfirm && this.props.onConfirm(this.state.checked);
         Popup.hide();
     }
@@ -265,7 +266,7 @@ class OrgPicker extends React.Component {
                     onLeftClick={Popup.hide}
                     rightContent={this.props.type === 'empRadio' || this.props.type === 'dptRadio' ? null : <div style={styles.tick} onClick={this.onConfirm}
                     >
-                        <Icon type={require('../../assets/tick.svg')} />
+                        <Icon type={require('../../assets/tick.svg')} color={this.state.checked.length > 0 ? COLORS.PRIMARY_COLOR : 'rgba(74, 144, 226, 0.3)'}/>
                     </div>}
                 >{this.getNavTitle()}</NavBar>
                 <ListView

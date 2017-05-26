@@ -2,6 +2,16 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.3.3
+`2017-5-26`
+
+* 【修复】`OrgPicker`没有选人时不能打钩
+
+## 2.3.2
+`2017-5-26`
+
+* 【优化】`ListView`提供一个`refreshUI`方法
+
 ## 2.3.1
 `2017-5-25`
 

@@ -21,11 +21,17 @@ onFilterChange = (values, index) => {
     this.setState({ values })
 }
 
+onClick = (i, cb) => {
+    // 当点击第一个条件时，将label改为'自定义'
+    if(i !== 0) return cb(null) // 当不是第一个条件时，回调传入空
+    cb('自定义') // 将label改为自定义
+}
+
 ...
 render() {
     return (
         ...
-        <FilterBar ref={o => this.filterBar = o} conditions={this.conditions} values={this.state.values} onChange={this.onFilterChange}>
+        <FilterBar ref={o => this.filterBar = o} conditions={this.conditions} values={this.state.values} onChange={this.onFilterChange} onClick={this.onClick}>
         ...
     )
 }
@@ -41,12 +47,8 @@ render() {
 | onChange   | 条件更改的回调: values为更改后的valus，index为更改的第几个条件  | (values: Array, index: number): void |   |
 | onClick | 点击FilterBar, 有两个参数: i和cb，i代表点击第几个条件，cb为回调函数，传入name即可更改该条件的Label，不弹出下拉菜单；传null则不更改，并弹出下拉菜单 | func | |
 
-`FilterBar`实例有一个方法`setLabels`，调用并传一个数组即可更改`Labels`，例如一个`FilterBar`有三个条件：
+`FilterBar`实例有一个方法`setLabel`,传入要修改的label值和label的位置
 ```
-this.filterBar.setLabels(['条件1', '条件2', ''])
+this.filterBar.setLabel('label', 0)
 ```
-
-> 如果`setLabels`数组中有空字符串，代表对应条件的`label`不变
-
-> 如果conditions的某个条件第一个value是`datePicker`，则为选择时间界面
 

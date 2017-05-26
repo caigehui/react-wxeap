@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Popup, Tabs, Icon } from 'antd-mobile';
 import View from '../View';
 import moment from 'moment';
+import wrapProps from '../../utils/wrapProps';
 
 const TabPane = Tabs.TabPane;
 
@@ -786,5 +787,5 @@ const styles = {
 };
 
 export default (options) => {
-    Popup.show(<DatePicker {...options} />, { transitionName: 'am-fade' });
+    Popup.show(<DatePicker {...options} />, { transitionName: 'am-fade', wrapProps });
 };

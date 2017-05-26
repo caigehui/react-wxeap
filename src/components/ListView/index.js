@@ -107,6 +107,15 @@ export default class extends React.Component {
     }
 
     /**
+     * 刷新UI不刷新数据
+     */
+    refreshUI = () => {
+        this.setState({
+            dataSource: this.state.dataSource.cloneWithRows(this.getListData())
+        });
+    }
+
+    /**
      * 滚动到指定位置
      */
     scrollToTop = () => {

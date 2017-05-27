@@ -29,7 +29,9 @@ export { default as htmlFilter } from './utils/htmlFilter';
 export { default as datetimeFormat} from './utils/datetimeFormat';
 import * as MobileDetect from './utils/mobileDetect';
 import * as CONST from './constants';
+import * as Acc from './utils/acc';
 export {
     MobileDetect,
-    CONST
+    CONST,
+    Acc
 };

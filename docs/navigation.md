@@ -24,6 +24,7 @@
 * [ImageViewer](./components/ImageViewer.md)
 * [InputBox](./components/InputBox.md)
 * [OrgPicker](./components/OrgPicker.md)
+* [DatePicker](./components/DatePicker.md)
 - - - - 
 * # 组件
 * [ImagePicker](./components/ImagePicker.md)

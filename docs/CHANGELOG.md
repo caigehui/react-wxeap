@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.4.0
+`2017-5-27`
+
+* 【调整】调整图片的路径，统一变为Hash
+
 ## 2.3.3
 `2017-5-26`
 

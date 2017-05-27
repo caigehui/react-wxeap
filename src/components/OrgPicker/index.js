@@ -5,6 +5,7 @@ import View from '../View';
 import ListView from '../ListView';
 import { Popup, NavBar, Icon, List } from 'antd-mobile';
 import * as COLORS from '../../constants';
+import * as Acc from '../../utils/acc';
 const ListItem = List.Item;
 
 const colors = [COLORS.BLUE_COLOR, COLORS.RED_COLOR, COLORS.GREEN_COLOR, COLORS.YELLOW_COLOR];
@@ -188,10 +189,13 @@ class OrgPicker extends React.Component {
                                                         key={i}
                                                         onClick={() => item.type === 'emp' ? this.onChange(item) : this.onClick(item.id)}
                                                         thumb={
-                                                            item.face === 'none' ?
+                                                            item.type === 'dpt' ? 
+                                                            <img src={require('../../assets/org.png')} style={styles.icon} />
+                                                            :
+                                                            !item.avatarHash ?
                                                                 <div style={{ ...styles.icon, backgroundColor: colors[i % colors.length] }} >{item.name.substring(item.name.length - (item.name.length > 2 ? 2 : 1), item.name.length)}</div>
                                                                 :
-                                                                <img src={item.type === 'dpt' ? require('../../assets/org.png') : item.face} style={styles.icon} />}
+                                                                <img src={Acc.getThumbUrl(item.avatarHash)} style={styles.icon} />}
                                                         extra={item.type === 'emp' ?
                                                             (checked.searchByCondition(a => a.id === item.id) ?
                                                                 <Icon type="check"

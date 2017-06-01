@@ -96,6 +96,10 @@ export default class extends React.Component {
         this.scroller.__maxScrollTop = 20000;
     }
 
+    componentWillReceiveProps() {
+        this.refreshUI();
+    }
+
     /**
      * 触发刷新
      */

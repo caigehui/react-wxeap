@@ -2,11 +2,11 @@ import React from 'react';
 import wrapProps from '../../utils/wrapProps';
 import request from '../../app/request';
 import View from '../View';
+import Cell from '../Cell';
 import ListView from '../ListView';
 import { Popup, NavBar, Icon, List } from 'antd-mobile';
 import * as COLORS from '../../constants';
 import * as Acc from '../../utils/acc';
-const ListItem = List.Item;
 
 const colors = [COLORS.BLUE_COLOR, COLORS.RED_COLOR, COLORS.GREEN_COLOR, COLORS.YELLOW_COLOR];
 
@@ -39,9 +39,9 @@ class OrgPicker extends React.Component {
 
     componentDidMount() {
         setTimeout(() => {
-            if(this.state.index.length === 0) {
+            if (this.state.index.length === 0) {
                 this.request(0);
-            }else {
+            } else {
                 let id = this.state.index[this.state.index.length - 1].id;
                 this.request(id);
                 this.setState({
@@ -78,7 +78,7 @@ class OrgPicker extends React.Component {
     }
 
     onConfirm = () => {
-        if(this.state.checked.length === 0) return;
+        if (this.state.checked.length === 0) return;
         this.props.onConfirm && this.props.onConfirm(this.state.checked);
         Popup.hide();
     }
@@ -140,14 +140,23 @@ class OrgPicker extends React.Component {
         );
     }
 
+    onCheckedClick = (item) => {
+        const { checked } = this.state;
+        this.setState({
+            checked: checked.removeByCondition(i => i.id === item.id)
+        });
+    }
+
     renderCheckedContainer() {
         const { checked } = this.state;
         if (checked.length === 0) return null;
         let checkedEl = [];
         checked.map((item, i) => {
-            checkedEl.push(<div key={i} style={{
-                ...styles.item, color: COLORS.RED_COLOR
-            }} >{item.name}</div>);
+            checkedEl.push(<div key={i}
+                onClick={() => this.onCheckedClick(item)}
+                style={{
+                    ...styles.item, color: COLORS.RED_COLOR
+                }} >{item.name}</div>);
             if (i === checked.length - 1) return;
             checkedEl.push(<div key={`${i}-sep`} style={{
                 ...styles.item, padding: 0, color: COLORS.SUBTITLE_COLOR
@@ -177,14 +186,14 @@ class OrgPicker extends React.Component {
             }}><Icon type="right" color={COLORS.SUBTITLE_COLOR} size="md" /></div>);
         });
         return (
-            <View style={{...styles.indexContainer, width: document.documentElement.clientWidth - 50}}>
+            <View style={{ ...styles.indexContainer, width: document.documentElement.clientWidth - 50 }}>
                 {el}
             </View>
         );
     }
 
     renderPickerContainer() {
-        const { org, checked } = this.state;
+        const { org, checked, index } = this.state;
         return (
             <div style={styles.pickerContainer}>
                 {
@@ -194,34 +203,41 @@ class OrgPicker extends React.Component {
                             case 'empRadio':
                                 return (
                                     <List>
-                                        {org.map((item, i) => {
-                                            if (item.type !== 'all') {
-                                                return (
-                                                    <ListItem
-                                                        key={i}
-                                                        onClick={() => item.type === 'emp' ? this.onChange(item) : this.onClick(item.id)}
-                                                        thumb={
-                                                            item.type === 'dpt' ? 
-                                                            <img src={require('../../assets/org.png')} style={styles.icon} />
-                                                            :
-                                                            !item.avatarHash ?
-                                                                <div style={{ ...styles.icon, backgroundColor: colors[item.id % colors.length] }} >{item.name.substring(item.name.length - (item.name.length > 2 ? 2 : 1), item.name.length)}</div>
-                                                                :
-                                                                <img src={Acc.getThumbUrl(item.avatarHash)} style={styles.icon} />}
-                                                        extra={item.type === 'emp' ?
-                                                            (checked.searchByCondition(a => a.id === item.id) ?
-                                                                <Icon type="check"
-                                                                    size="md" color={COLORS.PRIMARY_COLOR} />
-                                                                : null)
-                                                            :
-                                                            <Icon type="right"
-                                                                size="md" color={COLORS.SUBTITLE_COLOR} />}>
-                                                        {item.name}
-                                                        {item.type === 'dpt' ? null : <span style={styles.job}>{item.job}</span>}
-                                                    </ListItem>
-                                                );
-                                            } else
-                                                return null;
+                                        {org.map(item => {
+                                            if (item.type === 'all') return null;
+                                            return (
+                                                <Cell
+                                                    key={item.id}
+                                                    checkable={item.type === 'emp'}
+                                                    checked={checked.searchByCondition(a => a.id === item.id)}
+                                                    onClick={() => item.type === 'emp' ? this.onChange(item) : this.onClick(item.id)}
+                                                    onCheck={() => this.onChange(item)}
+                                                    renderContent={() =>
+                                                        <View style={styles.cell}>
+                                                            {
+                                                                item.type === 'dpt' ?
+                                                                    <img src={require('../../assets/org.png')} style={styles.icon} />
+                                                                    :
+                                                                    !item.avatarHash ?
+                                                                        <div style={{ ...styles.icon, backgroundColor: colors[item.id % colors.length] }} >{item.name.substring(item.name.length - (item.name.length > 2 ? 2 : 1), item.name.length)}</div>
+                                                                        :
+                                                                        <img src={Acc.getThumbUrl(item.avatarHash)} style={styles.icon} />
+                                                            }
+                                                            <View style={styles.label}>
+                                                                {item.name}
+                                                                {item.type === 'dpt' ? null : <span style={styles.job}>{item.job}</span>}
+                                                            </View>
+                                                            {
+                                                                item.type === 'dpt' ?
+                                                                    <View style={styles.arrow}>
+                                                                        <Icon type="right"
+                                                                            size="md" color={COLORS.SUBTITLE_COLOR} />
+                                                                    </View>
+                                                                    : null
+                                                            }
+                                                        </View>} />
+
+                                            );
                                         })}
                                     </List>
                                 );
@@ -229,27 +245,34 @@ class OrgPicker extends React.Component {
                             case 'dptRadio':
                                 return (
                                     <List>
-                                        {org.map((item, i) => {
-                                            if (item.type !== 'emp') {
+                                        {org.map(item => {
+                                            if (item.type === 'dpt' || (index.length === 1 && item.type === 'all')) {
                                                 return (
-                                                    <ListItem
-                                                        key={i}
-                                                        thumb={<img src={item.type === 'all' ? require('../../assets/org-prt.png') : require('../../assets/org.png')} style={item.type === 'all'
-                                                            ? styles.icon : { ...styles.icon, marginLeft: 20 }} />}
-                                                        extra={item.isLeaf || item.type === 'all' ?
-                                                            (checked.searchByCondition(a => a.id === item.id) ?
-                                                                <Icon type="check"
-                                                                    size="md" color={COLORS.PRIMARY_COLOR} />
-                                                                : null)
-                                                            :
-                                                            <Icon type="right"
-                                                                size="md" color={COLORS.SUBTITLE_COLOR} />
-                                                        }
-                                                        onClick={() => item.isLeaf || item.type === 'all' ? this.onChange(item) : this.onClick(item.id)}>
-                                                        {item.name}
-                                                    </ListItem>
+                                                    <Cell
+                                                        key={item.id}
+                                                        checked={checked.searchByCondition(a => a.id === item.id)}
+                                                        checkable
+                                                        onClick={() => item.isLeaf || (index.length === 1 && item.type === 'all') ? this.onChange(item) : this.onClick(item.id)}
+                                                        onCheck={() => this.onChange(item)}
+                                                        renderContent={() =>
+                                                            <View style={styles.cell}>
+                                                                <img src={index.length === 1 && item.type === 'all' ? require('../../assets/org-prt.png') : require('../../assets/org.png')}
+                                                                    style={styles.icon} />
+                                                                <View style={styles.label}>
+                                                                    {item.name}
+                                                                </View>
+                                                                {
+                                                                    !item.isLeaf && !(index.length === 1 && item.type === 'all') ?
+                                                                        <View style={styles.arrow}>
+                                                                            <Icon type="right"
+                                                                                size="md" color={COLORS.SUBTITLE_COLOR} />
+                                                                        </View>
+                                                                        : null
+                                                                }
+                                                            </View>
+                                                        } />
                                                 );
-                                            } else {
+                                            }else {
                                                 return null;
                                             }
                                         })}
@@ -280,7 +303,7 @@ class OrgPicker extends React.Component {
                     onLeftClick={Popup.hide}
                     rightContent={this.props.type === 'empRadio' || this.props.type === 'dptRadio' ? null : <div style={styles.tick} onClick={this.onConfirm}
                     >
-                        <Icon type={require('../../assets/tick.svg')} color={this.state.checked.length > 0 ? COLORS.PRIMARY_COLOR : 'rgba(74, 144, 226, 0.3)'}/>
+                        <Icon type={require('../../assets/tick.svg')} color={this.state.checked.length > 0 ? COLORS.PRIMARY_COLOR : 'rgba(74, 144, 226, 0.3)'} />
                     </div>}
                 >{this.getNavTitle()}</NavBar>
                 <ListView
@@ -334,6 +357,20 @@ const styles = {
         fontSize: 28,
         color: COLORS.TITLE_COLOR,
     },
+    cell: {
+        height: '100%',
+        width: '100%',
+        alignItems: 'center',
+        borderBottom: `1px solid ${COLORS.BORDER_COLOR}`
+    },
+    label: {
+        marginLeft: 20,
+        flex: 1,
+        height: '100%',
+        alignItems: 'center',
+        color: COLORS.TITLE_COLOR,
+        fontSize: 32
+    },
     icon: {
         display: '-webkit-flex',
         width: 70,
@@ -353,6 +390,12 @@ const styles = {
         paddingLeft: 5,
         paddingRight: 5,
         borderRadius: 6
+    },
+    arrow: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%',
+        width: 60
     },
     job: {
         color: 'white',

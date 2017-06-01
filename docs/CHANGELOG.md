@@ -2,6 +2,13 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.6.0
+`2017-6-1`
+
+* 【新增】`Cell`
+* 【新增】`Search`
+* 【优化】使用`Cell`优化`OrgPicker`
+
 ## 2.5.0
 `2017-6-1`
 

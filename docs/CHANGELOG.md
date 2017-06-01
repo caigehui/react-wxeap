@@ -2,10 +2,23 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.5.0
+`2017-6-1`
+
+* 【新增】`DefaultAvatar`作为默认头像
+* 【优化】`OrgPicker`没有人物头像时的背景色现在会跟Id绑定
+* 【优化】`DatePicker`在iPhone4s上的显示效果
+
+## 2.4.1
+`2017-5-31`
+
+* 【优化】`OrgPicker`现在再次打开会停留在上次浏览的部门
+
 ## 2.4.0
 `2017-5-27`
 
 * 【调整】调整图片的路径，统一变为Hash
+* 【新增】util新增`acc.js`用于获取图片地址，详见文档
 
 ## 2.3.3
 `2017-5-26`

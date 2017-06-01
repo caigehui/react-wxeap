@@ -628,7 +628,7 @@ const styles = {
         alignItems: 'center',
         backgroundColor: 'white',
         borderRadius: 12,
-        height: 910,
+        height: document.documentElement.clientHeight <= 960 ? 800 : 910,
     },
     row: {
         marginTop: 10,
@@ -657,11 +657,11 @@ const styles = {
     },
     tabs: {
         width: '95%',
-        height: 819
+        height: document.documentElement.clientHeight <= 960 ? 709 : 819
     },
     calendar: {
         width: '100%',
-        height: 722,
+        height: document.documentElement.clientHeight <= 960 ? 612 : 722,
     },
     picker: {
         color: 'rgb(60, 60, 60)',
@@ -677,7 +677,7 @@ const styles = {
         alignItems: 'center'
     },
     days: {
-        height: 642,
+        height: document.documentElement.clientHeight <= 960 ? 532 : 642,
         width: '100%',
         overflow: 'hidden'
     },

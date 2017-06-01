@@ -42,6 +42,7 @@
 * [Array](./utils/extensions/array.md)
 * [Object](./utils/object.md)
 - - - - 
+* [acc](./utils/acc.md)
 * [delay](./utils/delay.md)
 * [htmlFilter](./utils/htmlFilter.md)
 * [mobileDetect](./utils/mobileDetect.md)

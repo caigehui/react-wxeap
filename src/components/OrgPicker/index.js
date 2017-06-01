@@ -25,11 +25,13 @@ class OrgPicker extends React.Component {
         companyId: 0
     }
 
+    static indexForType = {}
+
     constructor(props) {
         super(props);
         this.state = {
             checked: props.checked,
-            index: [],
+            index: OrgPicker.indexForType[props.type] || [],
             loading: true,
             org: []
         };
@@ -37,7 +39,15 @@ class OrgPicker extends React.Component {
 
     componentDidMount() {
         setTimeout(() => {
-            this.request(0);
+            if(this.state.index.length === 0) {
+                this.request(0);
+            }else {
+                let id = this.state.index[this.state.index.length - 1].id;
+                this.request(id);
+                this.setState({
+                    index: this.state.index.removeByCondition(i => i.id === id)
+                });
+            }
         }, 250);
         window.addEventListener('resize', () => {
             this.forceUpdate();
@@ -47,8 +57,9 @@ class OrgPicker extends React.Component {
     request = (dptId) => {
         this.setState({ loading: true });
         request(`${API}EAPOrg/QueryOrg?dptId=${dptId}&companyId=${this.props.companyId}`).then(({ data }) => {
+            OrgPicker.indexForType[this.props.type] = [...this.state.index, data.org[0]];
             this.setState({
-                index: [...this.state.index, data.org[0]],
+                index: OrgPicker.indexForType[this.props.type],
                 org: data.org,
                 loading: false
             });
@@ -102,6 +113,7 @@ class OrgPicker extends React.Component {
             if (i.id === dptId) break;
             newIndex.push(i);
         }
+        OrgPicker.indexForType[this.props.type] = newIndex;
         this.setState({
             index: newIndex
         });
@@ -193,7 +205,7 @@ class OrgPicker extends React.Component {
                                                             <img src={require('../../assets/org.png')} style={styles.icon} />
                                                             :
                                                             !item.avatarHash ?
-                                                                <div style={{ ...styles.icon, backgroundColor: colors[i % colors.length] }} >{item.name.substring(item.name.length - (item.name.length > 2 ? 2 : 1), item.name.length)}</div>
+                                                                <div style={{ ...styles.icon, backgroundColor: colors[item.id % colors.length] }} >{item.name.substring(item.name.length - (item.name.length > 2 ? 2 : 1), item.name.length)}</div>
                                                                 :
                                                                 <img src={Acc.getThumbUrl(item.avatarHash)} style={styles.icon} />}
                                                         extra={item.type === 'emp' ?
@@ -260,8 +272,6 @@ class OrgPicker extends React.Component {
     }
 
     render() {
-
-
         return (
             <div style={{ ...styles.container, height: document.documentElement.clientHeight }}>
                 <NavBar
@@ -325,12 +335,13 @@ const styles = {
         color: COLORS.TITLE_COLOR,
     },
     icon: {
+        display: '-webkit-flex',
         width: 70,
         height: 70,
         borderRadius: '50%',
-        textAlign: 'center',
         fontSize: 25,
-        lineHeight: '70px',
+        justifyContent: 'center',
+        alignItems: 'center',
         color: 'white'
     },
     item: {

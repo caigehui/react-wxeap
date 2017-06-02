@@ -7,60 +7,6 @@ import { BORDER_COLOR, SUBTITLE_COLOR, PRIMARY_COLOR } from '../../constants';
 
 const BAR_HEIGHT = 80;
 
-const styles = {
-    container: {
-        width: '100%',
-        height: BAR_HEIGHT,
-        backgroundColor: 'white',
-        borderBottom: `1px solid ${BORDER_COLOR}`,
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        flexWrap: 'no-wrap'
-    },
-    filterItem: {
-        height: '60%',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRight: `1px solid ${BORDER_COLOR}`,
-        flexWrap: 'no-wrap'
-    },
-    itemTitle: {
-        textAlign: 'center',
-        fontSize: 28,
-        color: SUBTITLE_COLOR,
-        marginLeft: 5,
-        marginRight: 5,
-        whiteSpace: 'nowrap',
-        overflow: 'hidden'
-    },
-    itemTitleSelected: {
-        color: PRIMARY_COLOR
-    },
-    icon: {
-        width: 30,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    iconUp: {
-        transform: 'rotate(180deg)'
-    },
-    menu: {
-        zIndex: 2,
-        position: 'absolute',
-        left: 0,
-        right: 0
-    },
-    shade: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: 'rgba(0,0,0,0.4)',
-        zIndex: 1
-    }
-};
-
-
 export default class FilterBar extends React.Component {
 
     static propTypes = {
@@ -246,3 +192,58 @@ export default class FilterBar extends React.Component {
         );
     }
 }
+
+
+const styles = {
+    container: {
+        width: '100%',
+        height: BAR_HEIGHT,
+        backgroundColor: 'white',
+        borderBottom: `1px solid ${BORDER_COLOR}`,
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        flexWrap: 'no-wrap'
+    },
+    filterItem: {
+        height: '60%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRight: `1px solid ${BORDER_COLOR}`,
+        flexWrap: 'no-wrap'
+    },
+    itemTitle: {
+        textAlign: 'center',
+        fontSize: 28,
+        color: SUBTITLE_COLOR,
+        marginLeft: 5,
+        marginRight: 5,
+        whiteSpace: 'nowrap',
+        overflow: 'hidden'
+    },
+    itemTitleSelected: {
+        color: PRIMARY_COLOR
+    },
+    icon: {
+        width: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    iconUp: {
+        transform: 'rotate(180deg)'
+    },
+    menu: {
+        zIndex: 2,
+        position: 'absolute',
+        left: 0,
+        right: 0
+    },
+    shade: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0,0,0,0.4)',
+        zIndex: 1
+    }
+};
+

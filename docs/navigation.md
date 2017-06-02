@@ -18,6 +18,7 @@
 
 * # 布局
 * [View](./components/View.md)
+* [Cell](./components/Cell.md)
 * [ScrollView](./components/ScrollView.md)
 - - - - 
 * # 弹出层
@@ -34,6 +35,7 @@
 * [Seperator](./components/Seperator.md)
 * [FilterBar](./components/FilterBar.md)
 * [FloatButton](./components/FloatButton.md)
+* [DefaultAvatar](./components/DefaultAvatar.md)
 
 
 [Utils]()

@@ -3,7 +3,6 @@ import ListView from '../ListView';
 import { SearchBar, Popup } from 'antd-mobile';
 import Header from './header';
 import * as COLORS from '../../constants';
-import View from '../View';
 
 export default class Search extends Component {
 
@@ -28,7 +27,8 @@ export default class Search extends Component {
 
     static defaultProps = {
         label: '查找内容',
-        notFoundLabel: '未找到相关内容'
+        notFoundLabel: '未找到相关内容',
+        placeholder: ''
     }
 
     constructor(props) {
@@ -43,6 +43,9 @@ export default class Search extends Component {
     componentDidMount() {
         this.setState({ focused: true });
         this.mounted = true;
+        window.addEventListener('resize', () => {
+            this.forceUpdate();
+        }, false);
     }
 
     componentWillUnmount() {
@@ -82,7 +85,7 @@ export default class Search extends Component {
 
     render() {
         return (
-            <View style={{ ...styles.container, height: document.documentElement.clientHeight }}>
+            <div style={{ ...styles.container, height: document.documentElement.clientHeight }}>
                 <div style={styles.searchBar}>
                     <SearchBar
                         focused={this.state.focused}
@@ -96,7 +99,7 @@ export default class Search extends Component {
                 </div>
                 <ListView
                     style={{
-                        height: document.documentElement.clientHeight - 95,
+                        height: document.documentElement.clientHeight - 90,
                         width: '100%',
                         backgroundColor: 'rgb(245,245,249)'
                     }}
@@ -110,7 +113,7 @@ export default class Search extends Component {
                     renderHeader={this.state.isEmpty || this.state.isInit ? this.renderHeader : null}
                     nocache={true}
                 />;
-            </View>
+            </div>
         );
     }
 }
@@ -118,16 +121,12 @@ export default class Search extends Component {
 const styles = {
     container: {
         width: '100%',
-        height: document.documentElement.clientHeight,
-        backgroundColor: COLORS.BACKGROUND_COLOR,
-        flexDirection: 'column'
+        backgroundColor: COLORS.BACKGROUND_COLOR
     },
     searchBar: {
-        width: '97%',
-        margin: '0 auto',
+        width: '100%',
         height: 90,
         overflow: 'hidden',
         borderRadius: 5,
-        marginTop: 20
     }
 };

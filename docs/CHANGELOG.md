@@ -2,6 +2,13 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.7.0
+`2017-6-2`
+
+* 【新增】`Search`组件
+* 【新增】`SearchBar`组件
+* 【优化】`OrgPicker`使用`SearchBar`组件
+
 ## 2.6.0
 `2017-6-1`
 

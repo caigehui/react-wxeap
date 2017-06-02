@@ -22,6 +22,8 @@ export { default as DatePicker } from './components/DatePicker';
 export { default as View } from './components/View';
 export { default as Cell } from './components/Cell';
 export { default as FilterBar } from './components/FilterBar';
+export { default as Search } from './components/Search';
+export { default as SearchBar } from './components/SearchBar';
 export { default as ScrollView } from './components/ScrollView';
 export { default as request } from './app/request';
 export { default as delay } from './utils/delay';

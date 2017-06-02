@@ -19,6 +19,7 @@ export default class SearchBar extends Component {
         placeholder: PropTypes.string,// 输入框默认的搜索数据
         label: PropTypes.string,// 默认下方icon提示文字
         notFoundLabel: PropTypes.string,// 未找到数据的提示文字
+        style: PropTypes.object // 样式覆盖
     }
 
     static defaultProps = {
@@ -42,10 +43,10 @@ export default class SearchBar extends Component {
     }
 
     render() {
-        const { width } = this.props;
+        const { width, style } = this.props;
         return (
             <View
-                style={this.props.disabled ? { ...styles.container, ...styles.disabled, width } : { ...styles.container, width }}
+                style={this.props.disabled ? { ...styles.container, ...styles.disabled, width, ...style } : { ...styles.container, width, ...style }}
                 onClick={this.onClick}>
                 <img src={require('../../assets/search.png')} style={styles.icon} />
                 搜索

@@ -2,6 +2,16 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.7.2
+`2017-6-5`
+
+* 【修复】更新`antd-mobile`以修复一些BUG
+
+## 2.7.1
+`2017-6-5`
+
+* 【新增】`getImagesFromAccs`通过Accs获取图片
+
 ## 2.7.0
 `2017-6-2`
 

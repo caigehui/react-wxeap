@@ -3,7 +3,7 @@
  * @param {string} hash 
  */
 export function getImageUrl(hash) {
-    const url = API.substring(0, API.length - 6); 
+    const url = API.substring(0, API.length - 6);
     return `${url}Service/WxGetFile.ashx?hash=${hash}`;
 }
 
@@ -12,7 +12,7 @@ export function getImageUrl(hash) {
  * @param {string} hash 
  */
 export function getThumbUrl(hash) {
-    const url = API.substring(0, API.length - 6); 
+    const url = API.substring(0, API.length - 6);
     return `${url}Service/WxGetFile.ashx?hash=${hash}&imgSize=small`;
 }
 
@@ -31,6 +31,25 @@ export function getPreviewPath(accId) {
 export function getImagesDisplay(imgs) {
     return imgs.map((img, i) => ({
         url: img.url ? img.url : getImageUrl(img.hash),
-        id: i 
+        id: i
     }));
+}
+
+/**
+ * 根据Accs获取图片
+ * @param {Array} accs 
+ * @param {bool} isThumb 
+ */
+export function getImagesFromAccs(accs, isThumb) {
+    let imgs = [];
+    accs.map((acc, i) => {
+        let fileExtension = acc.oName.substring(acc.oName.lastIndexOf('.') + 1);
+        if (fileExtension === 'jpg' || fileExtension === 'png' || fileExtension === 'gif' || fileExtension === 'jpeg') { 
+            imgs.push({
+                url: isThumb ? getThumbUrl(acc.hash) : getImageUrl(acc.hash),
+                id: i
+            });
+        }
+    });
+    return imgs;
 }

@@ -30,13 +30,19 @@
 * # 组件
 * [ImagePicker](./components/ImagePicker.md)
 * [ListView](./components/ListView.md)
-* [ChatView](./components/ChatView.md)
 * [Navigation](./components/Navigation.md)
 * [Seperator](./components/Seperator.md)
 * [FilterBar](./components/FilterBar.md)
 * [FloatButton](./components/FloatButton.md)
-* [DefaultAvatar](./components/DefaultAvatar.md)
 
+
+[Components]()
+
+* # 组件
+* [ChatView](./components/ChatView.md)
+* [DefaultAvatar](./components/DefaultAvatar.md)
+* [Search](./components/Search.md)
+* [SearchBar](./components/SearchBar.md)
 
 [Utils]()
 

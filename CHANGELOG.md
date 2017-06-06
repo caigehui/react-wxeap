@@ -2,6 +2,17 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+
+## 2.7.4
+`2017-6-6`
+
+* 【优化】`Navaigation`新增返回字样
+
+## 2.7.3
+`2017-6-5`
+
+* 【优化】`Search`的placeholder
+
 ## 2.7.2
 `2017-6-5`
 

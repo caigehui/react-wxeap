@@ -8,3 +8,5 @@ import { SearchBar } from 'react-wxeap'
 <SearchBar width="90%" placeholder="" onSearch={this.onSearch} renderRow={this.renderRow}>
 
 ```
+
+note: `Search`的全部属性将通过`SearchBar`传递

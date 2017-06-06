@@ -28,7 +28,7 @@ export default class Search extends Component {
     static defaultProps = {
         label: '查找内容',
         notFoundLabel: '未找到相关内容',
-        placeholder: ''
+        placeholder: '搜索'
     }
 
     constructor(props) {
@@ -89,11 +89,10 @@ export default class Search extends Component {
                 <div style={styles.searchBar}>
                     <SearchBar
                         focused={this.state.focused}
-                        placeholder="搜索"
+                        placeholder={this.props.placeholder}
                         onSubmit={this.onSubmit}
                         onFocus={this.onFocus}
                         onCancel={this.onCancel}
-                        defaultValue={this.props.placeholder}
                         showCancelButton
                     />
                 </div>

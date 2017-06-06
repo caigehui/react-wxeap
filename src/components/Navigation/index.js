@@ -29,7 +29,7 @@ export default class Navigation extends React.Component {
             autoHide && (hide || MobileDetect.isWechat || MobileDetect.isApp) ?
                 <div/> :
                 <NavBar
-                    mode="light" rightContent={rightContent} onLeftClick={onBack} iconName={onBack ? 'left' : null}>
+                    mode="light" leftContent={onBack ? '返回' : null} rightContent={rightContent} onLeftClick={onBack} iconName={onBack ? 'left' : null}>
                     {title}
                 </NavBar>
         );

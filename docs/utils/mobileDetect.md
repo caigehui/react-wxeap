@@ -13,6 +13,7 @@
 * isMobile
 * isWechat
 * wechatVer
+* isAppOrWX
 
 ## Usage
 

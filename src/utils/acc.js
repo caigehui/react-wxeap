@@ -59,5 +59,5 @@ export function getImagesFromAccs(accs, isThumb) {
  * @param {string} oUrl 
  */
 export function getImageFromContent(oUrl) {
-    return `${API.substring(0, API.length - 6)}Commomn/WxGetFile.aspx${oUrl.substring(oUrl.indexOf('?'))}`
+    return `${API.substring(0, API.length - 6)}Commomn/WxGetFile.aspx${oUrl.substring(oUrl.indexOf('?'))}`;
 }

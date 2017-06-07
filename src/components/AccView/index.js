@@ -55,7 +55,7 @@ export default class AccView extends React.Component {
             <View style={{ ...styles.container, height: 40 * 2 + 80 + 100 * accs.length + 20 }}>
                 <View style={{ ...styles.card, height: 80 + 100 * accs.length + 20 }}>
                     <View style={styles.labelRow}>
-                        <img src={require('./acc.png')} style={styles.icon} />
+                        <img src={require('../../assets/acc.png')} style={styles.icon} />
                         <View style={styles.label}>
                             附件
                         </View>
@@ -76,7 +76,7 @@ export default class AccView extends React.Component {
                     }
                 </View>
             </View>
-        )
+        );
     }
 }
 
@@ -137,4 +137,4 @@ const styles = {
         height: 40,
         marginBottom: 10
     }
-}
+};

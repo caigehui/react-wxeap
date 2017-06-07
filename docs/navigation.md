@@ -14,7 +14,7 @@
 * [bind](./app/bind.md)
 * [request](./app/request.md)
 
-[Components]()
+[Components-1]()
 
 * # 布局
 * [View](./components/View.md)
@@ -36,7 +36,7 @@
 * [FloatButton](./components/FloatButton.md)
 
 
-[Components]()
+[Components-2]()
 
 * # 组件
 * [ChatView](./components/ChatView.md)

@@ -53,3 +53,11 @@ export function getImagesFromAccs(accs, isThumb) {
     });
     return imgs;
 }
+
+/**
+ * 获取富文本里面图片的地址
+ * @param {string} oUrl 
+ */
+export function getImageFromContent(oUrl) {
+    return `${API.substring(0, API.length - 6)}Commomn/WxGetFile.aspx${oUrl.substring(oUrl.indexOf('?'))}`
+}

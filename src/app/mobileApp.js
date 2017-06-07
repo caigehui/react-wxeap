@@ -57,7 +57,7 @@ export default class MobileApp {
     }
 
     refreshUI = () => {
-        this.router.forceUpdate();
+        this.router && this.router.forceUpdate();
     }
 
     persist() {

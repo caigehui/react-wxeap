@@ -2,6 +2,10 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.8.0
+`2017-6-7`
+
+* 【新增】`AccView`附件View
 
 ## 2.7.4
 `2017-6-6`

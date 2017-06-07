@@ -43,6 +43,7 @@
 * [DefaultAvatar](./components/DefaultAvatar.md)
 * [Search](./components/Search.md)
 * [SearchBar](./components/SearchBar.md)
+* [AccView](./components/AccView.md)
 
 [Utils]()
 

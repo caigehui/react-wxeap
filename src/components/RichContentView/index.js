@@ -44,7 +44,7 @@ export default class RichContentView extends React.Component {
                 this.imgs = [...this.imgs, {
                     id,
                     url: newUrl
-                }]
+                }];
             }
             result += `<img id="${id}" style="width: 100%;" src="${newUrl}">`;
             data = data.substring(data.indexOf('/>') + 2);

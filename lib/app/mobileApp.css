@@ -86,3 +86,11 @@ html, body, :global(#root) {
 :global(.am-menu .am-flexbox .am-flexbox-item .am-list .am-list-item .am-list-line .am-list-content) {
   white-space: pre!important
 }
+
+:global(.am-image-picker-upload-btn):active {
+  background-color: rgb(220, 220, 220)!important
+}
+
+:global(.am-search) {
+  background-color: rgb(245, 245, 249)!important
+}

@@ -21,7 +21,7 @@ export default class RichContentView extends React.Component {
         for (let i = 0; i < this.imgs.length; i++) {
             let img = this.imgs[i];
             let imgEl = document.getElementById(img.id);
-            imgEl.addEventListener("click", () => {
+            imgEl.addEventListener('click', () => {
                 ImageViewer(i, this.imgs);
             });
         }
@@ -44,7 +44,7 @@ export default class RichContentView extends React.Component {
                 id,
                 url: newUrl
             });
-            result += `<img id="${id}" style="width: 100%;" src="${newUrl}">`
+            result += `<img id="${id}" style="width: 100%;" src="${newUrl}">`;
             data = data.substring(data.indexOf('/>') + 2);
         }
         return (
@@ -60,7 +60,7 @@ export default class RichContentView extends React.Component {
             }} dangerouslySetInnerHTML={{
                 __html: result
             }} />
-        )
+        );
     }
 
 }

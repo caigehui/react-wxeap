@@ -38,11 +38,11 @@ const styles = {
         right: 50,
         width: 80,
         height: 80,
-        backgroundColor: 'rgba(0,0,0,0.6)',
+        backgroundColor: 'rgba(0,0,0,0.75)',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 40,
         zIndex: 999,
-        boxShadow: '0px 0px 20px rgba(0,0,0,0.2)'
+        boxShadow: '0px 0px 40px rgba(0,0,0,0.7)'
     }
 };

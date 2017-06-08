@@ -44,6 +44,7 @@
 * [Search](./components/Search.md)
 * [SearchBar](./components/SearchBar.md)
 * [AccView](./components/AccView.md)
+* [RichContentView](./components/RichContentView.md)
 
 [Utils]()
 

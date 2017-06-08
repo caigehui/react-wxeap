@@ -40,10 +40,12 @@ export default class RichContentView extends React.Component {
             let url = data.substring(0, data.indexOf('"'));
             let id = url.substring(url.lastIndexOf('.') - 18, url.lastIndexOf('.'));
             let newUrl = Acc.getImageFromContent(url);
-            if (!this.imgs.searchByCondition(i => i.id === id)) this.imgs.push({
-                id,
-                url: newUrl
-            });
+            if (!this.imgs.searchByCondition(i => i.id === id)) {
+                this.imgs = [...this.imgs, {
+                    id,
+                    url: newUrl
+                }]
+            }
             result += `<img id="${id}" style="width: 100%;" src="${newUrl}">`;
             data = data.substring(data.indexOf('/>') + 2);
         }
@@ -56,6 +58,7 @@ export default class RichContentView extends React.Component {
                 paddingTop: 20,
                 fontSize: 30,
                 paddingBottom: 20,
+                lineHeight: 1.5,
                 ...this.props.style
             }} dangerouslySetInnerHTML={{
                 __html: result

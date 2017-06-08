@@ -98,7 +98,7 @@ export default class Search extends Component {
                 </div>
                 <ListView
                     style={{
-                        height: document.documentElement.clientHeight - 90,
+                        height: document.documentElement.clientHeight - 120,
                         width: '100%',
                         backgroundColor: 'rgb(245,245,249)'
                     }}
@@ -123,6 +123,7 @@ const styles = {
         backgroundColor: COLORS.BACKGROUND_COLOR
     },
     searchBar: {
+        paddingTop: 20,
         width: '100%',
         height: 90,
         overflow: 'hidden',

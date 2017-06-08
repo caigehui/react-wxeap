@@ -8,7 +8,12 @@ export default class ScrollView extends Component {
         height: PropTypes.number,
         width: PropTypes.number,
         backgroundColor: PropTypes.string,
-        children: PropTypes.any
+        children: PropTypes.any,
+        style: PropTypes.object
+    }
+
+    static defaultProps = {
+        style: {}
     }
 
     constructor(props) {
@@ -35,7 +40,8 @@ export default class ScrollView extends Component {
             <ListView
                 style={{
                     ...style,
-                    ...this.props
+                    ...this.props,
+                    ...this.props.style
                 }}
                 renderHeader={() => <div>{this.props.children}</div>}
                 dataSource={this.state.dataSource}

@@ -6,7 +6,7 @@ import isArray from 'isarray';
 import { BORDER_COLOR, SUBTITLE_COLOR, PRIMARY_COLOR } from '../../constants';
 
 const BAR_HEIGHT = 80;
-
+let labels = [];
 export default class FilterBar extends React.Component {
 
     static propTypes = {
@@ -48,7 +48,11 @@ export default class FilterBar extends React.Component {
     }
 
     componentDidMount() {
-        this.setState({ offsetTop: findDOMNode(this.bar).offsetTop });
+        this.setState({ offsetTop: findDOMNode(this.bar).offsetTop, labels: labels.length ? labels : this.state.labels });
+    }
+    
+    componentWillUnmount() {
+        labels = this.state.labels;
     }
 
     componentWillReceiveProps(nextProps) {

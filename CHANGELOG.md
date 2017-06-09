@@ -2,6 +2,10 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.9.4
+`2017-6-10`
+* 【优化】`FilterBar`会保存labels
+
 ## 2.9.3
 `2017-6-10`
 

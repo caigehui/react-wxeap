@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.9.3
+`2017-6-10`
+
+* 【优化】`ListiView`现在渲染时默认会回到在上次停留的位置
+
 ## 2.9.2
 `2017-6-9`
 

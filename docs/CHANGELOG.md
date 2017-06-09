@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.9.2
+`2017-6-9`
+
+* 【优化】`RichContentView`支持Update数据
+
 ## 2.9.1
 `2017-6-8`
 

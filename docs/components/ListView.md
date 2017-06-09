@@ -54,6 +54,7 @@ import { ListView } from 'react-wxeap'
 | nocache | 是否关闭数据缓存 | bool | false |
 | allLoadedText | 全部加载完后的文本 | string | '没有更多了' |
 | footerHidden | 是否隐藏footer | bool | false |
+| stayPosition | 是否保留上次停留的位置 | bool | true |
 
 原型方法：
 

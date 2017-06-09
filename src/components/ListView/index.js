@@ -31,6 +31,10 @@ const styles = {
 
 let cacheData = {};
 
+let position = {};
+
+let allLoaded = {};
+
 export default class extends React.Component {
 
 
@@ -48,6 +52,7 @@ export default class extends React.Component {
         nocache: PropTypes.bool,
         footerHidden: PropTypes.bool,
         style: PropTypes.object,
+        stayPosition: PropTypes.bool
     }
 
     static defaultProps = {
@@ -58,7 +63,8 @@ export default class extends React.Component {
         nocache: false,
         footerHidden: false,
         mode: 'default',
-        scrollBarDiabled: false
+        scrollBarDiabled: false,
+        stayPosition: true
     }
 
     constructor(props) {
@@ -77,15 +83,12 @@ export default class extends React.Component {
             refreshing: false,
             isLoading: false,
             page: 1,
-            allLoaded: false
+            allLoaded: false,
         };
     }
 
     componentDidMount() {
-        /**
-         * 初始化时触发刷新
-         */
-        this.reload();
+
         /**
          * 获取Scroller
          */
@@ -94,6 +97,31 @@ export default class extends React.Component {
          * 设置最大scrollTo的距离
          */
         this.scroller.__maxScrollTop = 20000;
+
+        if (position[this.props.listId] === undefined || !this.props.stayPosition) {
+            /**
+             * 初始化时触发刷新
+             */
+            this.reload();
+        } else {
+            this.setState({
+                dataSource: this.state.dataSource.cloneWithRows(this.getListData()),
+                allLoaded: allLoaded[this.props.listId] ? true : false
+            });
+            this.triggerStayPosition = true;
+        }
+    }
+
+    componentDidUpdate() {
+        if (this.props.stayPosition && this.triggerStayPosition) {
+            this.triggerStayPosition = false;
+            this.scroller.scrollTo(0, position[this.props.listId], false);
+        }
+    }
+
+    componentWillUnmount() {
+        position[this.props.listId] = this.scroller.__scrollTop;
+        allLoaded[this.props.listId] = this.state.allLoaded;
     }
 
     componentWillReceiveProps() {

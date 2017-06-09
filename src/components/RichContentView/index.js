@@ -18,6 +18,14 @@ export default class RichContentView extends React.Component {
     imgs = [];
 
     componentDidMount() {
+        this.addImgListener();
+    }
+
+    componentDidUpdate() {
+        this.addImgListener();
+    }
+
+    addImgListener = () => {
         for (let i = 0; i < this.imgs.length; i++) {
             let img = this.imgs[i];
             let imgEl = document.getElementById(img.id);
@@ -30,6 +38,7 @@ export default class RichContentView extends React.Component {
     render() {
         let data = this.props.content.replace(/font-size:\s*\d*px;/gi, '');
         let result = '';
+        this.imgs = [];
         while (data.length > 0) {
             if (data.indexOf('<img src="') < 0) {
                 result += data;

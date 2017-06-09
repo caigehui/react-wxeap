@@ -13,16 +13,14 @@ const colors = [COLORS.BLUE_COLOR, COLORS.RED_COLOR, COLORS.GREEN_COLOR, COLORS.
 class OrgPicker extends React.Component {
 
     static propTypes = {
-        type: React.PropTypes.oneOf(['empCheck', 'empRadio', 'dptCheck', 'dptRadio']),
+        type: React.PropTypes.oneOf(['empCheck', 'empRadio', 'dptCheck', 'dptRadio', 'cmpCheck', 'cmpRadio']),
         checked: React.PropTypes.arrayOf(React.PropTypes.object),
-        onConfirm: React.PropTypes.func,
-        companyId: React.PropTypes.number
+        onConfirm: React.PropTypes.func
     }
 
     static defaultProps = {
         type: 'empRadio',
-        checked: [],
-        companyId: 0
+        checked: []
     }
 
     static indexForType = {}
@@ -33,7 +31,8 @@ class OrgPicker extends React.Component {
             checked: props.checked,
             index: OrgPicker.indexForType[props.type] || [],
             loading: true,
-            org: []
+            org: [],
+            companies: []
         };
     }
 
@@ -54,27 +53,59 @@ class OrgPicker extends React.Component {
         }, false);
     }
 
-    request = (dptId) => {
+    request = (id) => {
         this.setState({ loading: true });
-        request(`${API}EAPOrg/QueryOrg?dptId=${dptId}&companyId=${this.props.companyId}`).then(({ data }) => {
-            OrgPicker.indexForType[this.props.type] = [...this.state.index, data.org[0]];
-            this.setState({
-                index: OrgPicker.indexForType[this.props.type],
-                org: data.org,
-                loading: false
+
+        if (this.props.type === 'cmpCheck') {
+            // 公司多选，展示当前公司的子公司
+            request(`${API}EAPOrg/QueryChildrenCompany?companyId=${id}`).then(({ data }) => {
+                OrgPicker.indexForType[this.props.type] = [...this.state.index, data.companies[0]];
+                this.setState({
+                    index: OrgPicker.indexForType[this.props.type],
+                    companies: data.companies,
+                    loading: false
+                });
+                // 刷新
+                this.listView.refreshUI();
+                this.listView.scrollToTop();
             });
-            this.fill([''], true);
-            this.listView.scrollToTop();
-        });
+        } else if (this.props.type === 'cmpRadio') {
+            // 公司单选，只展示用户所在的全部公司
+            request(`${API}EAPOrg/QueryCompany`).then(({ data }) => {
+                this.setState({
+                    companies: data.companies,
+                    loading: false
+                });
+                // 刷新
+                this.listView.refreshUI();
+                this.listView.scrollToTop();
+            });
+        } else {
+            request(`${API}EAPOrg/QueryOrg?dptId=${id}&companyId=0`).then(({ data }) => {
+                OrgPicker.indexForType[this.props.type] = [...this.state.index, data.org[0]];
+                this.setState({
+                    index: OrgPicker.indexForType[this.props.type],
+                    org: data.org,
+                    loading: false
+                });
+                // 刷新
+                this.listView.refreshUI();
+                this.listView.scrollToTop();
+            });
+        }
 
     }
 
     getNavTitle() {
         const { type } = this.props;
-        if (type === 'empCheck') return '人员多选';
-        else if (type === 'empRadio') return '人员单选';
-        else if (type === 'dptCheck') return '部门多选';
-        else return '部门单选';
+        switch (type) {
+            case 'empCheck': return '人员多选';
+            case 'empRadio': return '人员单选';
+            case 'dptCheck': return '部门多选';
+            case 'dptRadio': return '部门单选';
+            case 'cmpCheck': return '子公司选择';
+            case 'cmpRadio': return '切换公司';
+        }
     }
 
     onConfirm = () => {
@@ -88,12 +119,14 @@ class OrgPicker extends React.Component {
         switch (type) {
             case 'empCheck':
             case 'dptCheck':
+            case 'cmpCheck':
                 this.setState({
                     checked: this.state.checked.searchByCondition(a => a.id === item.id) ? this.state.checked.removeByCondition(a => a.id === item.id) : [...this.state.checked, item]
                 });
                 break;
             case 'empRadio':
             case 'dptRadio':
+            case 'cmpRadio':
                 this.setState({
                     checked: [item]
                 });
@@ -175,6 +208,7 @@ class OrgPicker extends React.Component {
     renderIndexContainer() {
         const { index } = this.state;
         if (index.length === 0) return null;
+        if (this.props.type === 'cmpRadio') return null; // 切换公司不需要Index
         let el = [];
         index.map((dpt, i) => {
             el.push(<div key={i} onClick={() => {
@@ -193,7 +227,7 @@ class OrgPicker extends React.Component {
     }
 
     renderPickerContainer() {
-        const { org, checked, index } = this.state;
+        const { org, checked, index, companies } = this.state;
         return (
             <div style={styles.pickerContainer}>
                 {
@@ -272,9 +306,66 @@ class OrgPicker extends React.Component {
                                                             </View>
                                                         } />
                                                 );
-                                            }else {
+                                            } else {
                                                 return null;
                                             }
+                                        })}
+                                    </List>
+                                );
+                            case 'cmpCheck':
+                                return (
+                                    <List>
+                                        {companies.map((item, i) => {
+                                            if (i === 0) return null;
+                                            return (
+                                                <Cell
+                                                    key={item.id}
+                                                    checked={checked.searchByCondition(a => a.id === item.id)}
+                                                    checkable
+                                                    onClick={() => item.isLeaf ? this.onChange(item) : this.onClick(item.id)}
+                                                    onCheck={() => this.onChange(item)}
+                                                    renderContent={() =>
+                                                        <View style={styles.cell}>
+                                                            <img src={require('../../assets/org.png')}
+                                                                style={styles.icon} />
+                                                            <View style={styles.label}>
+                                                                {item.name}
+                                                            </View>
+                                                            {
+                                                                !item.isLeaf ?
+                                                                    <View style={styles.arrow}>
+                                                                        <Icon type="right"
+                                                                            size="md" color={COLORS.SUBTITLE_COLOR} />
+                                                                    </View>
+                                                                    : null
+                                                            }
+                                                        </View>
+                                                    } />
+                                            );
+                                        })}
+                                    </List>
+                                );
+                            case 'cmpRadio':
+                                return (
+                                    <List>
+                                        {companies.map(item => {
+                                            return (
+                                                <Cell
+                                                    key={item.id}
+                                                    checked={checked.searchByCondition(a => a.id === item.id)}
+                                                    checkable
+                                                    onClick={() => this.onChange(item)}
+                                                    onCheck={() => this.onChange(item)}
+                                                    renderContent={() =>
+                                                        <View style={styles.cell}>
+                                                            <img src={require('../../assets/org.png')}
+                                                                style={styles.icon} />
+                                                            <View style={styles.label}>
+                                                                {item.name}
+                                                            </View>
+                                                        </View>
+                                                    } />
+                                            );
                                         })}
                                     </List>
                                 );

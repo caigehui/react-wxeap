@@ -2,8 +2,15 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.9.6
+`2017-6-10`
+
+* 【优化】公司选择
+* 【新增】`OrgPicker`新增`cmpCheck`和`cmpRadio`分别用于子公司选择和切换公司
+
 ## 2.9.4
 `2017-6-10`
+
 * 【优化】`FilterBar`会保存labels
 
 ## 2.9.3

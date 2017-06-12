@@ -26,14 +26,13 @@
 * [InputBox](./components/InputBox.md)
 * [OrgPicker](./components/OrgPicker.md)
 * [DatePicker](./components/DatePicker.md)
+* [Search](./components/Search.md)
 - - - - 
 * # 组件
 * [ImagePicker](./components/ImagePicker.md)
 * [ListView](./components/ListView.md)
 * [Navigation](./components/Navigation.md)
 * [Seperator](./components/Seperator.md)
-* [FilterBar](./components/FilterBar.md)
-* [FloatButton](./components/FloatButton.md)
 
 
 [Components-2]()
@@ -41,10 +40,11 @@
 * # 组件
 * [ChatView](./components/ChatView.md)
 * [DefaultAvatar](./components/DefaultAvatar.md)
-* [Search](./components/Search.md)
 * [SearchBar](./components/SearchBar.md)
 * [AccView](./components/AccView.md)
 * [RichContentView](./components/RichContentView.md)
+* [FilterBar](./components/FilterBar.md)
+* [FloatButton](./components/FloatButton.md)
 
 [Utils]()
 

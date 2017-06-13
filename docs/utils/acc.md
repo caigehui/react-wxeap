@@ -12,6 +12,16 @@ let newImgs = Acc.getImgsDisplay(originImgs) // [{url: 'http://sdasdasdas'}]
 
 // 根据hash获取原图或缩略图地址
 let originalPhoto = Acc.getImageUrl('sdasfgsvfxcxcvx');
-let originalThumb = Acc.getImageThumb('asfdsaderewdse');
+let originalThumb = Acc.getThumbUrl('asfdsaderewdse');
+
+// 根据附件数组获取图片
+let accImgs = Acc.getImagesFromAccs(accs)
+
+// 根据accId获取预览地址
+let previePath = Acc.getPreviewPath(accId)
+
+// 获取富文本里面的图片地址
+let richImg = Acc.getImageFromContent(url)
+
 ```
 

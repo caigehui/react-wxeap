@@ -8,8 +8,9 @@ import {Cell} from 'react-wxeap'
 <Cell 
     height={100}
     checkable={true}
+    checked={this.state.checked}
     onClick={(isChecked) => console.log(isChecked)}
-    onCheck={(isChecked) => console.log(isChecked)}
+    onCheck={(isChecked) => this.setState({ checked: isChecked })}
     swipable={true}
     actionButtons={[
         [

@@ -26,4 +26,5 @@ class Eample extends React.Component {
 | height    | 高度     | number  |   |
 | width | 宽度 | number | document.documentElement.clientWidth |
 | backgroundColor    | 背景颜色  | string |  transparent  |
+| style | 样式覆盖 | object | |
 

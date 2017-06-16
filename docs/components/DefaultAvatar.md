@@ -1,6 +1,6 @@
 # DefaultAvatar
 
-在移动端，当用户没有头像时，使用`DefaultAvatar`作为头像
+在移动端，当用户没有头像(`avatarHash`)时，使用`DefaultAvatar`作为头像
 
 
 | 属性 | 说明 | 类型 | 默认值 |

@@ -73,7 +73,10 @@ export default class Search extends Component {
     onSubmit = (value) => {
         // 过滤前后空格
         value = value.replace(/(^\s*)|(\s*$)/g, ''); 
-        if (!value) return this.setState({ isInit: true, focused: false });
+        if (!value) {
+            this.listView.fill([], true);
+            return this.setState({ isInit: true, focused: false });
+        } 
         // 触发onSearch
         this.props.onSearch && this.props.onSearch(value, list => {
             if (!this.mounted) return;

@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.9.10
+`2017-6-23`
+
+* 【修复】`Search`空值时不会清除列表的BUG
+
 ## 2.9.9
 `2017-6-23`
 

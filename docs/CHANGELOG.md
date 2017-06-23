@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.9.8
+`2017-6-23`
+
+* 【优化】`ListView`的stayPosition默认关闭
+
 ## 2.9.7
 `2017-6-12`
 

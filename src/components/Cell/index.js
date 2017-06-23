@@ -19,7 +19,8 @@ export default class Cell extends React.Component {
     static defaultProps = {
         swipable: false,
         checkable: false,
-        height: 100
+        height: 100,
+        actionButtons: []
     }
     
 

@@ -54,7 +54,7 @@ import { ListView } from 'react-wxeap'
 | nocache | 是否关闭数据缓存 | bool | false |
 | allLoadedText | 全部加载完后的文本 | string | '没有更多了' |
 | footerHidden | 是否隐藏footer | bool | false |
-| stayPosition | 是否保留上次停留的位置 | bool | true |
+| stayPosition | 是否保留上次停留的位置 | bool | false |
 
 原型方法：
 
@@ -62,3 +62,5 @@ import { ListView } from 'react-wxeap'
 * reload() : 直接触发下拉刷新
 * scrollToTop() : 会回到顶部
 * refreshUI() : 刷新当前UI
+
+note: 开启StayPosition，会停留在上次浏览的位置，并发送一次请求，所以fill需要传递第三个参数: page

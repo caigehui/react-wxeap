@@ -35,8 +35,9 @@ let position = {};
 
 let allLoaded = {};
 
-export default class extends React.Component {
+let page = {};
 
+export default class extends React.Component {
 
     static propTypes = {
         listId: PropTypes.string.isRequired,
@@ -58,13 +59,13 @@ export default class extends React.Component {
     static defaultProps = {
         refreshable: true,
         listId: 'temp',
-        pageSize: 4,
+        pageSize: 10,
         allLoadedText: '没有更多了',
         nocache: false,
         footerHidden: false,
         mode: 'default',
         scrollBarDiabled: false,
-        stayPosition: true
+        stayPosition: false
     }
 
     constructor(props) {
@@ -106,8 +107,10 @@ export default class extends React.Component {
         } else {
             this.setState({
                 dataSource: this.state.dataSource.cloneWithRows(this.getListData()),
-                allLoaded: allLoaded[this.props.listId] ? true : false
+                allLoaded: allLoaded[this.props.listId] ? true : false,
+                page: page[this.props.listId]
             });
+            this.send(page[this.props.listId]);
             this.triggerStayPosition = true;
         }
     }
@@ -122,6 +125,7 @@ export default class extends React.Component {
     componentWillUnmount() {
         position[this.props.listId] = this.scroller.__scrollTop;
         allLoaded[this.props.listId] = this.state.allLoaded;
+        page[this.props.listId] = this.state.page;
     }
 
     componentWillReceiveProps() {

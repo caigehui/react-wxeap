@@ -48,6 +48,7 @@ class InputBox extends React.Component {
                 >{title}</NavBar>
                 <div style={styles.textarea}>
                     <TextareaItem
+                        autoFocus={true} 
                         value={this.state.value}
                         onChange={(value) => this.setState({ value })}
                         placeholder={placeholder}

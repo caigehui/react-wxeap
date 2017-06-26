@@ -68,6 +68,8 @@ export default class RichContentView extends React.Component {
                 fontSize: 30,
                 paddingBottom: 20,
                 lineHeight: 1.5,
+                whiteSpace: 'pre-wrap',
+                wordBreak: 'break-all',
                 ...this.props.style
             }} dangerouslySetInnerHTML={{
                 __html: result

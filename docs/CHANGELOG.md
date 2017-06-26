@@ -2,11 +2,22 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.9.13
+`2017-6-26`
+
+* 【修复】`RichContentView`换行问题
+* 【修复】`Acc`图片转化问题
+* 【优化】`BackToHome`代码
+
+## 2.9.12
+`2017-6-26`
+
+* 【修复】附件预览移除header
+
 ## 2.9.11
 `2017-6-23`
 
 * 【升级】`antd-mobile`
-
 
 ## 2.9.10
 `2017-6-23`

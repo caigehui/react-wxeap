@@ -59,5 +59,6 @@ export function getImagesFromAccs(accs, isThumb) {
  * @param {string} oUrl 
  */
 export function getImageFromContent(oUrl) {
-    return `${API.substring(0, API.length - 6)}Common/WxGetFile.aspx${oUrl.substring(oUrl.indexOf('?'))}`;
+    if(oUrl.indexOf('../../') < 0) return oUrl;
+    return `${API.substring(0, API.length - 6)}Common/WxGetFile.aspx${oUrl.substring(oUrl.indexOf('?'))}&isMobile=1`;
 }

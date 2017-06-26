@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.9.14
+`2017-6-26`
+
+* 【修复】移除预览Header
+
 ## 2.9.13
 `2017-6-26`
 

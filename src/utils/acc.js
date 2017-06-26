@@ -22,7 +22,7 @@ export function getThumbUrl(hash) {
  */
 export function getPreviewPath(accId) {
     const url = API.substring(0, API.length - 6);
-    return `${url}Base/Lib/WxFilePreview.aspx?AccId=${accId}`;
+    return `${url}Base/Lib/WxFilePreview.aspx?AccId=${accId}&isMobile=1`;
 }
 /**
  * 根据hash获取图片地址
@@ -60,5 +60,5 @@ export function getImagesFromAccs(accs, isThumb) {
  */
 export function getImageFromContent(oUrl) {
     if(oUrl.indexOf('../../') < 0) return oUrl;
-    return `${API.substring(0, API.length - 6)}Common/WxGetFile.aspx${oUrl.substring(oUrl.indexOf('?'))}&isMobile=1`;
+    return `${API.substring(0, API.length - 6)}Common/WxGetFile.aspx${oUrl.substring(oUrl.indexOf('?'))}`;
 }

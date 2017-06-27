@@ -429,7 +429,9 @@ const styles = {
         paddingLeft: 30,
         paddingTop: 15,
         paddingBottom: 15,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        whiteSpace: 'pre-wrap',
+        wordBreak: 'break-all'
     },
     pickerContainer: {
         borderTop: `1px solid ${COLORS.BORDER_COLOR}`,

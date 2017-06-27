@@ -3,7 +3,9 @@ import React, { PropTypes } from 'react';
 const style = {
     display: '-webkit-flex',
     flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    whiteSpace: 'pre-wrap',
+    wordBreak: 'break-all'
 };
 
 export default class View extends React.Component {

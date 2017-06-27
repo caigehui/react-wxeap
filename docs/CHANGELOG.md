@@ -2,6 +2,12 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.9.15
+`2017-6-27`
+
+* 【优化】`OrgPicker`换行
+* 【优化】`View`新增两个默认的自动换行属性
+
 ## 2.9.14
 `2017-6-26`
 

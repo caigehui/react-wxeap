@@ -28,13 +28,16 @@ const styles = {
     }
 };
 
-
+// 缓存数据
 let cacheData = {};
 
+// 位置
 let position = {};
 
+// 是否全部加载完成
 let allLoaded = {};
 
+// 页数
 let page = {};
 
 export default class extends React.Component {
@@ -116,6 +119,7 @@ export default class extends React.Component {
     }
 
     componentDidUpdate() {
+        // 恢复位置
         if (this.props.stayPosition && this.triggerStayPosition) {
             this.triggerStayPosition = false;
             this.scroller.scrollTo(0, position[this.props.listId], false);
@@ -123,12 +127,14 @@ export default class extends React.Component {
     }
 
     componentWillUnmount() {
+        // 记实位置，是否加载完成，页数
         position[this.props.listId] = this.scroller.__scrollTop;
         allLoaded[this.props.listId] = this.state.allLoaded;
         page[this.props.listId] = this.state.page;
     }
 
     componentWillReceiveProps() {
+        // 接受新props时刷新UI
         this.refreshUI();
     }
 
@@ -152,7 +158,7 @@ export default class extends React.Component {
     }
 
     /**
-     * 滚动到指定位置
+     * 滚动到顶部
      */
     scrollToTop = () => {
         this.scroller.scrollTo(0, 0, true);
@@ -171,6 +177,7 @@ export default class extends React.Component {
     fill = (data, allLoaded, page) => {
         try {
             if (!page) {
+                // 如果没有传递了page，默认为添加到尾部
                 let originData = this.state.page === 1 ? [] : cacheData[this.props.listId];
                 this.setState({
                     dataSource: this.state.dataSource.cloneWithRows([...originData, ...data]),
@@ -178,8 +185,10 @@ export default class extends React.Component {
                     isLoading: false,
                     allLoaded
                 });
+                // 缓存数据
                 cacheData[this.props.listId] = [...originData, ...data];
             } else {
+                // 传递了page，只更新第page页的数据
                 let newData = this.state.page === 1 ? [] : cacheData[this.props.listId];
                 newData.splice(this.props.pageSize * (page - 1), this.props.pageSize, ...data);
                 this.setState({
@@ -203,7 +212,7 @@ export default class extends React.Component {
     }
 
     /**
-     * 列表滚动到底部
+     * 列表滚动到底部，触发加载更多
      */
     onEndReached = () => {
         const { isLoading, allLoaded, page } = this.state;

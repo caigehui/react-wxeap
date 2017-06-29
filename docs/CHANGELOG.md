@@ -2,6 +2,17 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.10.4
+`2017-6-29`
+
+* 【修复】`Search`搜索的BUG
+
+## 2.10.3
+`2017-6-29`
+
+* 【新增】`RichContentView`支持编辑
+
+
 ## 2.10.0
 `2017-6-29`
 

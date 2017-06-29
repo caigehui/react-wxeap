@@ -80,14 +80,10 @@ export default class Search extends Component {
     onSubmit = (value) => {
         // 过滤前后空格
         value = value.replace(/(^\s*)|(\s*$)/g, '');
-        if (!value) {
-            this.listView.fill([], true);
-            this.setState({ isInit: true, focused: false, content: '' });
-        } else {
-            this.setState({ isInit: false, focused: false, content: value });
-        }
+        this.listView.fill([], true);
+        this.listView.scrollToTop();
+        this.setState({ isInit: !value, focused: false, content: value });
         this.listView.reload();
-
     }
 
     render() {

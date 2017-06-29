@@ -2,6 +2,16 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.9.19
+`2017-6-29`
+
+* 【优化】`Search`支持分页查询
+
+## 2.9.16
+`2017-6-27`
+
+* 【修复】`RichContentView`过滤掉pt单位的字体大小
+
 ## 2.9.15
 `2017-6-27`
 

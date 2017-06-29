@@ -1,5 +1,8 @@
 import { REHYDRATE } from 'redux-persist/constants';
 
+/**
+ * redux中间件
+ */
 export default store => next => action => {
 	if(action.type === REHYDRATE) {
 		// 恢复数据

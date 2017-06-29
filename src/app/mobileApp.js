@@ -32,7 +32,7 @@ export default class MobileApp {
         this.addModel(routes);
         this.addRouter(routes);
         this.configureAPI(options);
-
+        
         OrientationListener(() => {
             this.refreshUI();
         });

@@ -37,6 +37,7 @@ export default class Search extends Component {
             focused: false, // 输入框是否聚焦
             isEmpty: false, // 搜索结果是否为空
             isInit: true, // 是否初始化
+            content: ''
         };
     }
 
@@ -52,8 +53,14 @@ export default class Search extends Component {
         this.mounted = false;
     }
 
-    onFetch = () => {
-        // 不做任何事
+    onFetch = (page, fill) => {
+        if(!this.state.content) return fill([], true);
+        // 触发onSearch
+        this.props.onSearch && this.props.onSearch(this.state.content, (list, allLoaded) => {
+            if (!this.mounted) return;
+            this.setState({ isEmpty: list.length === 0 });
+            fill(list, allLoaded);
+        }, page);
     }
 
     renderHeader = () => {
@@ -72,18 +79,15 @@ export default class Search extends Component {
 
     onSubmit = (value) => {
         // 过滤前后空格
-        value = value.replace(/(^\s*)|(\s*$)/g, ''); 
+        value = value.replace(/(^\s*)|(\s*$)/g, '');
         if (!value) {
             this.listView.fill([], true);
-            return this.setState({ isInit: true, focused: false });
-        } 
-        // 触发onSearch
-        this.props.onSearch && this.props.onSearch(value, list => {
-            if (!this.mounted) return;
-            this.setState({ isEmpty: list.length === 0 });
-            this.listView.fill(list, true);
-        });
-        this.setState({ isInit: false, focused: false });
+            this.setState({ isInit: true, focused: false, content: '' });
+        } else {
+            this.setState({ isInit: false, focused: false, content: value });
+        }
+        this.listView.reload();
+
     }
 
     render() {

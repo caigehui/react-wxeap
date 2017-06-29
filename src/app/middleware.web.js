@@ -1,6 +1,9 @@
 import { Popup, Toast, ActionSheet } from 'antd-mobile';
 import { REHYDRATE } from 'redux-persist/constants';
 
+/**
+ * redux中间件
+ */
 export default store => next => action => {
 	if (action.type === '@@router/LOCATION_CHANGE') {
 		// 监听路由变化，取消全局Modal

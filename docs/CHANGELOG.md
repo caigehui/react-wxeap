@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.10.5
+`2017-6-29`
+
+* 【修复】`RichContentView`初始内容的BUG
+
 ## 2.10.4
 `2017-6-29`
 

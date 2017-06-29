@@ -2,6 +2,12 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.10.0
+`2017-6-29`
+
+* 【新增】`richContent`用于将换行符转化成P标签
+
+
 ## 2.9.19
 `2017-6-29`
 

@@ -59,3 +59,4 @@
 * [backToHome](./utils/backToHome.md)
 * [wrapProps](./utils/wrapProps.md)
 * [datetimeFormat](./utils/datetimeFormat.md)
+* [richContent](./utils/richContent.md)

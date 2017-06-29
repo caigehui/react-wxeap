@@ -34,10 +34,12 @@ export { default as backToHome } from './utils/backToHome';
 export { default as htmlFilter } from './utils/htmlFilter';
 export { default as datetimeFormat} from './utils/datetimeFormat';
 import * as MobileDetect from './utils/mobileDetect';
+import * as RichContent from './utils/richContent';
 import * as CONST from './constants';
 import * as Acc from './utils/acc';
 export {
     MobileDetect,
     CONST,
-    Acc
+    Acc,
+    RichContent
 };

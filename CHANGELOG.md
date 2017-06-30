@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.10.6
+`2017-6-30`
+
+* 【优化】`Search`不隐藏Footer
+
 ## 2.10.5
 `2017-6-29`
 

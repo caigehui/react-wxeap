@@ -109,7 +109,6 @@ export default class Search extends Component {
                     refreshable={false}
                     listId="search"
                     pageSize={100}
-                    footerHidden={true}
                     renderRow={this.props.renderRow}
                     onFetch={this.onFetch}
                     renderHeader={this.state.isEmpty || this.state.isInit ? this.renderHeader : null}

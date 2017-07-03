@@ -2,10 +2,15 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
-## 2.10.6
+## 2.10.8
 `2017-6-30`
 
-* 【优化】`Search`不隐藏Footer
+* 【修复】`RichContentView`base64图片无法预览的BUG
+
+## 2.10.7
+`2017-6-30`
+
+* 【优化】`Search`不隐藏Footer, 并加入了搜索提示
 
 ## 2.10.5
 `2017-6-29`

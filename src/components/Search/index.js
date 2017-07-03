@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ListView from '../ListView';
-import { SearchBar, Popup } from 'antd-mobile';
+import { SearchBar, Popup, Toast } from 'antd-mobile';
 import Header from './header';
 import * as COLORS from '../../constants';
 
@@ -55,9 +55,11 @@ export default class Search extends Component {
 
     onFetch = (page, fill) => {
         if(!this.state.content) return fill([], true);
+        if(page === 1) Toast.loading('正在搜索', 0);
         // 触发onSearch
         this.props.onSearch && this.props.onSearch(this.state.content, (list, allLoaded) => {
             if (!this.mounted) return;
+            if(page === 1) Toast.hide();
             this.setState({ isEmpty: list.length === 0 });
             fill(list, allLoaded);
         }, page);

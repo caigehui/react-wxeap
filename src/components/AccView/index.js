@@ -7,11 +7,13 @@ import { Icon } from 'antd-mobile';
 
 export default class AccView extends React.Component {
     static propTypes = {
-        accs: React.PropTypes.array
+        accs: React.PropTypes.array,
+        title: React.PropTypes.string
     }
 
     static defaultProps = {
-        accs: []
+        accs: [],
+        title: '附件'
     }
 
     getFileImg(acc) {
@@ -50,14 +52,14 @@ export default class AccView extends React.Component {
     }
 
     render() {
-        const { accs } = this.props;
+        const { accs, title } = this.props;
         return (
             <View style={{ ...styles.container, height: 40 * 2 + 80 + 100 * accs.length + 20 }}>
                 <View style={{ ...styles.card, height: 80 + 100 * accs.length + 20 }}>
                     <View style={styles.labelRow}>
                         <img src={require('../../assets/acc.png')} style={styles.icon} />
                         <View style={styles.label}>
-                            附件
+                            {title}
                         </View>
                     </View>
                     {

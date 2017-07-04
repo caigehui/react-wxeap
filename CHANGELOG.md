@@ -2,6 +2,12 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.10.10
+`2017-7-4`
+
+* 【优化】`AccView`提供`title`属性
+* 【升级】`antd-mobile`以修复`SearchBar`键盘类型不是搜索的问题
+
 ## 2.10.8
 `2017-6-30`
 

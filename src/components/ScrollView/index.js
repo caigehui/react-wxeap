@@ -9,11 +9,13 @@ export default class ScrollView extends Component {
         width: PropTypes.number,
         backgroundColor: PropTypes.string,
         children: PropTypes.any,
-        style: PropTypes.object
+        style: PropTypes.object,
+        useZscroller: PropTypes.bool
     }
 
     static defaultProps = {
-        style: {}
+        style: {},
+        useZscroller: true
     }
 
     constructor(props) {
@@ -45,7 +47,7 @@ export default class ScrollView extends Component {
                 }}
                 renderHeader={() => <div>{this.props.children}</div>}
                 dataSource={this.state.dataSource}
-                useZscroller={true}
+                useZscroller={this.props.useZscroller}
                 scrollerOptions={{ scrollbars: true }}
                 renderRow={this.renderRow}
                 pageSize={1}

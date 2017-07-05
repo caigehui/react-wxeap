@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.10.11
+`2017-7-5`
+
+* 【优化】`ScrollView`支持关闭`useZscroller`属性
+
 ## 2.10.10
 `2017-7-4`
 

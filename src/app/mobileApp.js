@@ -9,6 +9,7 @@ import { createHashHistory } from 'history';
 import * as CONSTANTS from '../constants';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import { Toast } from 'antd-mobile';
+import isArray from 'isarray';
 
 export default class MobileApp {
 
@@ -79,7 +80,13 @@ export default class MobileApp {
             if (!model) {
                 console.error(`react-wxeap->mobileApp: 路由\'${route.path}\'缺少model`);
             } else {
-                this.mobileApp.model(model);
+                if(isArray(model)) {
+                    for(let i of model) {
+                        this.mobileApp.model(i);
+                    }
+                }else {
+                    this.mobileApp.model(model);
+                }
             }
 
         }

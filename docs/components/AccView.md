@@ -5,6 +5,6 @@
 ```
 import { AccView } from 'react-wxeap';
 
-<AccView accs={[]}>
+<AccView accs={[]} title="附件">
 
 ```

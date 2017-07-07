@@ -9,7 +9,8 @@ html, body, :global(#root) {
     border-bottom: 0px!important
 }
 :global(.am-list-body) {
-    border-top: 0px!important
+    border-top: 0px!important;
+    background-color: transparent!important;
 }
 
 :global(.am-list-header) {

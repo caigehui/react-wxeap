@@ -17,8 +17,10 @@
 [Components-1]()
 
 * # 布局
+* [Navigation](./components/Navigation.md)
 * [View](./components/View.md)
 * [Cell](./components/Cell.md)
+* [ScrollView](./components/ScrollView.md)
 * [ScrollView](./components/ScrollView.md)
 - - - - 
 * # 弹出层
@@ -31,8 +33,6 @@
 * # 组件
 * [ImagePicker](./components/ImagePicker.md)
 * [ListView](./components/ListView.md)
-* [Navigation](./components/Navigation.md)
-* [Seperator](./components/Seperator.md)
 
 
 [Components-2]()

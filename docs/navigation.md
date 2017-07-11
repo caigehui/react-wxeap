@@ -21,7 +21,7 @@
 * [View](./components/View.md)
 * [Cell](./components/Cell.md)
 * [ScrollView](./components/ScrollView.md)
-* [ScrollView](./components/ScrollView.md)
+* [Seperator](./components/Seperator.md)
 - - - - 
 * # 弹出层
 * [ImageViewer](./components/ImageViewer.md)

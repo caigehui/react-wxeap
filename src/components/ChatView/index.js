@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import ReactChatView from './chatview';
+import ReactChatView from './ChatView';
 import View from '../View';
 import MobileDetect from '../../utils/mobileDetect';
 import { Icon } from 'antd-mobile';

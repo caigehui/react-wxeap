@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ListView from '../ListView';
 import { SearchBar, Popup, Toast } from 'antd-mobile';
-import Header from './header';
+import Header from './Header';
 import * as COLORS from '../../constants';
 
 export default class Search extends Component {

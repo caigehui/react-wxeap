@@ -6,28 +6,6 @@ import {
     Icon
 } from 'antd-mobile';
 
-const styles = {
-    listView: {
-        height: document.documentElement.clientHeight - ((MobileDetect.isWechat || MobileDetect.isApp ? 0 : 90)),
-        width: document.documentElement.clientWidth,
-        backgroundColor: 'rgb(245,245,249)'
-    },
-    footer: {
-        display: 'flex',
-        width: '100%',
-        height: 60,
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        textAlign: 'center',
-        verticalAlign: 'middle',
-    },
-    sep: {
-        height: 1,
-        width: '25%',
-        backgroundColor: 'rgb(220,220,225)',
-    }
-};
-
 // 缓存数据
 let cacheData = {};
 
@@ -273,3 +251,26 @@ export default class extends React.Component {
         );
     }
 }
+
+
+const styles = {
+    listView: {
+        height: document.documentElement.clientHeight - ((MobileDetect.isWechat || MobileDetect.isApp ? 0 : 90)),
+        width: document.documentElement.clientWidth,
+        backgroundColor: 'rgb(245,245,249)'
+    },
+    footer: {
+        display: 'flex',
+        width: '100%',
+        height: 60,
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        textAlign: 'center',
+        verticalAlign: 'middle',
+    },
+    sep: {
+        height: 1,
+        width: '25%',
+        backgroundColor: 'rgb(220,220,225)',
+    }
+};

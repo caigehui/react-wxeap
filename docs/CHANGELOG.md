@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.10.14
+`2017-7-12`
+
+* 【新增】全局变量`EAP`,作为`EAP`的路径
+
 ## 2.10.13
 `2017-7-7`
 

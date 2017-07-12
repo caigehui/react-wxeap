@@ -33,7 +33,7 @@ export default class MobileApp {
         this.addModel(routes);
         this.addRouter(routes);
         this.configureAPI(options);
-        
+
         OrientationListener(() => {
             this.refreshUI();
         });
@@ -80,11 +80,11 @@ export default class MobileApp {
             if (!model) {
                 console.error(`react-wxeap->mobileApp: 路由\'${route.path}\'缺少model`);
             } else {
-                if(isArray(model)) {
-                    for(let i of model) {
+                if (isArray(model)) {
+                    for (let i of model) {
                         this.mobileApp.model(i);
                     }
-                }else {
+                } else {
                     this.mobileApp.model(model);
                 }
             }
@@ -111,14 +111,10 @@ export default class MobileApp {
         const { module, origin, auth } = options;
         this.origin = origin;
         this.auth = auth;
-
-        const APIConfig = (origin, module) => {
-            let url = window.location.href.toLowerCase();
-            let end = url.lastIndexOf(`/${module}`);
-            url = url.substring(0, end);
-            return CONSTANTS.DEV_MODE ? `${origin}/wxapi/` : `${url}/wxapi/`;
-        };
-
-        global.API = APIConfig(origin, module);
+        let url = window.location.href.toLowerCase();
+        let end = url.lastIndexOf(`/${module}`);
+        url = url.substring(0, end);
+        global.API = CONSTANTS.DEV_MODE ? `${origin}/wxapi/` : `${url}/wxapi/`;
+        global.EAP = CONSTANTS.DEV_MODE ? `${origin}/` : `${url}/`;
     }
 }

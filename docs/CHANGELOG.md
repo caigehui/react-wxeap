@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.10.15
+`2017-7-13`
+
+* 【修复】`Navigation`的title支持动态变化
+
 ## 2.10.14
 `2017-7-12`
 

@@ -22,6 +22,10 @@ export default class Navigation extends React.Component {
         document.title = this.props.title;
     }
 
+    componentDidUpdate() {
+        document.title = this.props.title;
+    }
+
     render() {
 
         const { title, onBack, hide, autoHide, rightContent } = this.props;

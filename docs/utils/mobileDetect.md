@@ -1,4 +1,4 @@
-# mobileDetect
+# MobileDetect
 
 设备/微信判断：
 

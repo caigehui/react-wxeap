@@ -95,7 +95,7 @@ export default class ChatView extends Component {
         >
             {
                 this.state.data.map((item, index) => {
-                    return renderRow(item, index);
+                    return renderRow(item, index, this.state.data);
                 })
             }
         </ReactChatView>;

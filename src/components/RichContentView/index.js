@@ -9,13 +9,15 @@ export default class RichContentView extends React.Component {
         content: React.PropTypes.string,
         style: React.PropTypes.object,
         editable: React.PropTypes.bool,
-        onChange: React.PropTypes.func
+        onChange: React.PropTypes.func,
+        contentId: React.PropTypes.string
     }
 
     static defaultProps = {
         content: '暂无内容',
         style: {},
-        editable: false
+        editable: false,
+        contentId: 'temp'
     }
 
     state = {
@@ -62,15 +64,15 @@ export default class RichContentView extends React.Component {
             data = data.substring(data.indexOf('<img src="') + 10);
             let url = data.substring(0, data.indexOf('"'));
             let newUrl = Acc.getImageFromContent(url);
-            if (!this.imgs.searchByCondition(i => i.id === currentId)) {
+            if (!this.imgs.searchByCondition(i => i.id === this.props.contentId + '-' + currentId)) {
                 this.imgs = [...this.imgs, {
-                    id: currentId,
+                    id: this.props.contentId + '-' + currentId,
                     url: newUrl
                 }];
             }
-            result += `<img id="${currentId}" style="width: 100%;" src="${newUrl}">`;
+            result += `<img id="${this.props.contentId + '-' + currentId}" style="width: 100%;" src="${newUrl}" />`;
             currentId++;
-            data = data.substring(data.indexOf('/>') + 2);
+            data = data.substring(data.indexOf('/>') < 0 ? data.indexOf('>') + 1 : data.indexOf('/>') + 2);
         }
         return (
             <div style={{

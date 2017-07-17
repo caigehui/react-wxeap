@@ -60,5 +60,6 @@ export function getImagesFromAccs(accs, isThumb) {
  */
 export function getImageFromContent(oUrl) {
     if(oUrl.indexOf('../../') < 0) return oUrl;
+    if(oUrl.indexOf('WxAccessoryDisplay') > 0) return `${API.substring(0, API.length - 6)}Common/WxAccessoryDisplay.aspx${oUrl.substring(oUrl.indexOf('?'))}`;
     return `${API.substring(0, API.length - 6)}Common/WxGetFile.aspx${oUrl.substring(oUrl.indexOf('?'))}`;
 }

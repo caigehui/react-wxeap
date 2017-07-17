@@ -61,8 +61,6 @@ export default class RichContentView extends React.Component {
             result += data.substring(0, data.indexOf('<img src="'));
             data = data.substring(data.indexOf('<img src="') + 10);
             let url = data.substring(0, data.indexOf('"'));
-            // let id = url.substring(url.lastIndexOf('.') - 18, url.lastIndexOf('.'));
-            // if(url.lastIndexOf('.') - 18 < 0) id = url.substring(url.length - 10, url.length - 1);
             let newUrl = Acc.getImageFromContent(url);
             if (!this.imgs.searchByCondition(i => i.id === currentId)) {
                 this.imgs = [...this.imgs, {

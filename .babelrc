@@ -11,6 +11,15 @@
         "style": "css",
         "libraryName": "antd-mobile"
       }
+    ],
+    [
+      "transform-runtime",
+      {
+        "helpers": false,
+        "polyfill": false,
+        "regenerator": true,
+        "moduleName": "babel-runtime"
+      }
     ]
   ]
 }

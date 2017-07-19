@@ -2,6 +2,13 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.11.1
+`2017-7-19`
+
+* 【新增】`linking`，在`App`中会进行`Push`
+* 【新增】`Navigation`兼容`App`的title
+* 【修复】`Navigation`限制标题最大长度为8
+
 ## 2.10.21
 `2017-7-17`
 

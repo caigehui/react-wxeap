@@ -33,6 +33,7 @@ export { default as wrapProps } from './utils/wrapProps';
 export { default as backToHome } from './utils/backToHome';
 export { default as htmlFilter } from './utils/htmlFilter';
 export { default as datetimeFormat} from './utils/datetimeFormat';
+export { default as linking } from './utils/linking';
 import * as MobileDetect from './utils/mobileDetect';
 import * as RichContent from './utils/richContent';
 import * as CONST from './constants';

@@ -60,3 +60,4 @@
 * [wrapProps](./utils/wrapProps.md)
 * [datetimeFormat](./utils/datetimeFormat.md)
 * [richContent](./utils/richContent.md)
+* [linking](./utils/linking.md)

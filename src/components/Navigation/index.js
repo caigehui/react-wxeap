@@ -18,12 +18,24 @@ export default class Navigation extends React.Component {
         autoHide: true
     }
 
-    componentDidMount() {
+    configureTitle = () => {
         document.title = this.props.title;
+        MobileDetect.isApp && window.postMessage(JSON.stringify({
+            type: 'onTitleUpdate',
+            payload: {
+                title: this.props.title
+            }
+        }));
     }
 
-    componentDidUpdate() {
-        document.title = this.props.title;
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.title !== this.props.title) {
+            this.configureTitle();
+        }
+    }
+
+    componentDidMount() {
+        this.configureTitle();
     }
 
     render() {
@@ -34,7 +46,7 @@ export default class Navigation extends React.Component {
                 <div/> :
                 <NavBar
                     mode="light" leftContent={onBack ? '返回' : null} rightContent={rightContent} onLeftClick={onBack} iconName={onBack ? 'left' : null}>
-                    {title}
+                    {title.length > 8 ? title.substring(0 ,7) + '...' : title}
                 </NavBar>
         );
     }

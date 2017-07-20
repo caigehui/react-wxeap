@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.11.4
+`2017-7-20`
+
+* 【修复】`Navigation`标题错误
+
 ## 2.11.2
 `2017-7-19`
 

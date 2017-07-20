@@ -14,6 +14,7 @@
 * isWechat
 * wechatVer
 * isAppOrWX
+* isApp
 
 ## Usage
 

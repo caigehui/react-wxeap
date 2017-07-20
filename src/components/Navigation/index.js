@@ -18,24 +18,24 @@ export default class Navigation extends React.Component {
         autoHide: true
     }
 
-    configureTitle = () => {
-        document.title = this.props.title;
+    configureTitle = (title) => {
+        document.title = title;
         MobileDetect.isApp && window.postMessage(JSON.stringify({
             type: 'onTitleUpdate',
             payload: {
-                title: this.props.title
+                title
             }
         }));
     }
 
     componentWillReceiveProps(nextProps) {
         if(nextProps.title !== this.props.title) {
-            this.configureTitle();
+            this.configureTitle(nextProps.title);
         }
     }
 
     componentDidMount() {
-        this.configureTitle();
+        this.configureTitle(this.props.title);
     }
 
     render() {

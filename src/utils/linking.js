@@ -34,13 +34,13 @@ export default function (lo, dispatch) {
     if (isApp) {
         if(lo.isGoBack) {
             window.postMessage(JSON.stringify({
-                type: 'goBack'
+                type: 'onGoBack'
             }));
         }
         const data = {
             type: 'onShouldPush',
             payload: {
-                url: lo.pathname.indexOf('http') === 0 ? lo.pathname : window.location.href.substring(0, (window.location.href.lastIndexOf('/') - 2)) + lo.pathname + (() => {
+                url: lo.pathname.indexOf('http') === 0 ? lo.pathname : window.location.href.substring(0, (window.location.href.lastIndexOf('/'))) + lo.pathname + (() => {
                     if (!lo.query) return '';
                     let queryStr = '?';
                     for (let i in lo.query) {

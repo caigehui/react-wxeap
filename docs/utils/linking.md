@@ -31,7 +31,7 @@ linking({
 // 返回
 linking({
     isGoBack: true
-})
+}, this.props.dispatch)
 
 // model中返回
 yield put(linking({

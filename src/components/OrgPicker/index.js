@@ -15,7 +15,8 @@ class OrgPicker extends React.Component {
     static propTypes = {
         type: React.PropTypes.oneOf(['empCheck', 'empRadio', 'dptCheck', 'dptRadio', 'cmpCheck', 'cmpRadio']),
         checked: React.PropTypes.arrayOf(React.PropTypes.object),
-        onConfirm: React.PropTypes.func
+        onConfirm: React.PropTypes.func,
+        enableEmpty: React.PropTypes.bool
     }
 
     static defaultProps = {
@@ -109,7 +110,7 @@ class OrgPicker extends React.Component {
     }
 
     onConfirm = () => {
-        if (this.state.checked.length === 0) return;
+        if (!this.props.enableEmpty && this.state.checked.length === 0) return;
         this.props.onConfirm && this.props.onConfirm(this.state.checked);
         Popup.hide();
     }
@@ -394,7 +395,7 @@ class OrgPicker extends React.Component {
                     onLeftClick={Popup.hide}
                     rightContent={this.props.type === 'empRadio' || this.props.type === 'dptRadio' ? null : <div style={styles.tick} onClick={this.onConfirm}
                     >
-                        <Icon type={require('../../assets/tick.svg')} color={this.state.checked.length > 0 ? COLORS.PRIMARY_COLOR : 'rgba(74, 144, 226, 0.3)'} />
+                        <Icon type={require('../../assets/tick.svg')} color={!this.props.enableEmpty && this.state.checked.length === 0 ? 'rgba(74, 144, 226, 0.3)' : COLORS.PRIMARY_COLOR} />
                     </div>}
                 >{this.getNavTitle()}</NavBar>
                 <ListView

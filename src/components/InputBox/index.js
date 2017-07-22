@@ -14,9 +14,10 @@ class InputBox extends React.Component {
     static propTypes = {
         onConfirm: React.PropTypes.func,
         title: React.PropTypes.string,
+        initialValue: React.PropTypes.string,
         placeholder: React.PropTypes.string,
         maxLength: React.PropTypes.number,
-        minLength: React.PropTypes.number
+        minLength: React.PropTypes.number,
     }
 
     state = {
@@ -24,7 +25,7 @@ class InputBox extends React.Component {
         minLength: 0,
         title: '输入',
         placeholder: '请输入',
-        value: ''
+        value: this.props.initialValue || ''
     }
 
     onConfirm = () => {

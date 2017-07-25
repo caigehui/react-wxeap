@@ -10,6 +10,7 @@ import { InputBox } from 'react-wxeap'
 InputBox({
     title: '评论', // 标题
     placeholder: '请输入评论',
+    initialValue: '初始值',
     maxLength: 0, // 最大长度：不指定表示不限制最大长度
     minLength: 0,  // 最小长度
     onConfirm: (value) => {
@@ -18,3 +19,5 @@ InputBox({
 })
 
 ```
+
+note: 当confirm返回true时，InputBox不关闭

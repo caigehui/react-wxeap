@@ -30,8 +30,8 @@ class InputBox extends React.Component {
 
     onConfirm = () => {
         if(this.state.value.length < this.props.minLength) return Toast.info(`请输入至少${this.props.minLength}个字符`, 2);
-        this.props.onConfirm && this.props.onConfirm(this.state.value);
-        Popup.hide();
+        let hiddenDisabled = this.props.onConfirm && this.props.onConfirm(this.state.value);
+        !hiddenDisabled && Popup.hide();
     }
 
     render() {

@@ -58,7 +58,7 @@ var ChatView = React.createClass({
     </div>;
 
     return (
-      <div className={this.props.className} ref="scrollable"
+      <div className={this.props.className} ref="scrollable" id="ChatView"
            style={{overflowX: 'hidden', overflowY: 'scroll', ...this.props.style}}>
         <div ref="smoothScrollingWrapper">
           {this.props.flipped ? loadSpinner : null}

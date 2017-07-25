@@ -2,6 +2,14 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.11.5
+`2017-7-24`
+
+* 【优化】`OrgPicker`新增`enableEmpty`属性以支持不选择时点击确定
+* 【优化】`InputBox`支持初始值
+* 【优化】`InputBox`当`confirm`返回`true`时，`InputBox`不关闭
+* 【优化】`ChatView`添加id
+
 ## 2.11.4
 `2017-7-20`
 

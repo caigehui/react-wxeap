@@ -21,11 +21,18 @@ class InputBox extends React.Component {
     }
 
     state = {
+        focused: false,
         maxLength: 0,
         minLength: 0,
         title: '输入',
         placeholder: '请输入',
         value: this.props.initialValue || ''
+    }
+
+    componentDidMount() {
+        this.setState({
+            focused: true
+        })
     }
 
     onConfirm = () => {
@@ -49,7 +56,8 @@ class InputBox extends React.Component {
                 >{title}</NavBar>
                 <div style={styles.textarea}>
                     <TextareaItem
-                        autoFocus={true} 
+                        onFocus={() => this.setState({ focused: false })}
+                        focused={this.state.focused}
                         value={this.state.value}
                         onChange={(value) => this.setState({ value })}
                         placeholder={placeholder}

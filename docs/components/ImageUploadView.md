@@ -4,7 +4,7 @@
 
 ```
 
-<ImageUplaodView 
+<ImageUploadView 
     renderContent={() => <View/>}
     onImagePicked={url => console.log(url)}
     /> 

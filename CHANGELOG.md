@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.12.1
+`2017-7-27`
+
+* 【修复】`RichContentView`点击图片后马上又消失的BUG
+
 ## 2.12.0
 `2017-7-26`
 

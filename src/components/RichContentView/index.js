@@ -50,13 +50,20 @@ export default class RichContentView extends React.Component {
         this.addImgListener();
     }
 
+
     addImgListener = () => {
         for (let i = 0; i < this.imgs.length; i++) {
             let img = this.imgs[i];
-            let imgEl = document.getElementById(img.id);
-            imgEl.addEventListener('click', () => {
+
+            // 快速克隆移除所有listener：https://stackoverflow.com/questions/9251837/how-to-remove-all-listeners-in-an-element
+            let oldImgEl = document.getElementById(img.id);
+            let newImgEl = oldImgEl.cloneNode(true);
+            oldImgEl.parentNode.replaceChild(newImgEl, oldImgEl);
+
+            const onImgClick = () => {
                 ImageViewer(i, this.imgs);
-            });
+            };
+            newImgEl.addEventListener('click', onImgClick);
         }
     }
 

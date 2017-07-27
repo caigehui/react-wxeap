@@ -32,6 +32,7 @@
 - - - - 
 * # 组件
 * [ImagePicker](./components/ImagePicker.md)
+* [ImageUploadView](./components/ImageUploadView.md)
 * [ListView](./components/ListView.md)
 
 

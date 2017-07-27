@@ -2,6 +2,12 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.12.0
+`2017-7-26`
+
+* 【新增】`ImageUploadView`支持自定义图片上传
+* 【优化】`InputBox`支持自动聚焦
+
 ## 2.11.5
 `2017-7-24`
 

@@ -105,7 +105,7 @@ export default class ImageUploadView extends React.Component {
                 />
                 {renderContent()}
             </div>
-        )
+        );
     }
 
 }

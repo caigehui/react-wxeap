@@ -32,7 +32,7 @@ class InputBox extends React.Component {
     componentDidMount() {
         this.setState({
             focused: true
-        })
+        });
     }
 
     onConfirm = () => {

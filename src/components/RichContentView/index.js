@@ -10,14 +10,16 @@ export default class RichContentView extends React.Component {
         style: React.PropTypes.object,
         editable: React.PropTypes.bool,
         onChange: React.PropTypes.func,
-        contentId: React.PropTypes.string
+        contentId: React.PropTypes.string,
+        enableContentChange: React.PropTypes.bool
     }
 
     static defaultProps = {
         content: '暂无内容',
         style: {},
         editable: false,
-        contentId: 'temp'
+        contentId: 'temp',
+        enableContentChange: false
     }
 
     state = {
@@ -27,9 +29,17 @@ export default class RichContentView extends React.Component {
     imgs = [];
 
     componentWillReceiveProps(nextProps) {
-        if(this.state.content === '') {
-            this.setState({ content: nextProps.content });
+        // 防止表单出现改变
+        if (!this.props.enableContentChange) {
+            if (this.state.content === '') {
+                this.setState({ content: nextProps.content });
+            }
+        } else {
+            if (this.state.content !== nextProps.content) {
+                this.setState({ content: nextProps.content });
+            }
         }
+
     }
 
     componentDidMount() {
@@ -90,10 +100,10 @@ export default class RichContentView extends React.Component {
             }} dangerouslySetInnerHTML={{
                 __html: result
             }}
-            contentEditable={this.props.editable} 
-            onInput={e => {
-                this.props.onChange && this.props.onChange(e.target.innerHTML);
-            }}/>
+                contentEditable={this.props.editable}
+                onInput={e => {
+                    this.props.onChange && this.props.onChange(e.target.innerHTML);
+                }} />
         );
     }
 

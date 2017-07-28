@@ -1,6 +1,6 @@
 # Search
 
-路由到Search
+路由到Search而不是Modal
 
 ```
 

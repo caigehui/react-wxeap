@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 2.13.2
+`2017-7-28`
+
+* 【修复】`ImageUploadView`支持自定义input的宽度
+
 ## 2.13.0
 `2017-7-28`
 

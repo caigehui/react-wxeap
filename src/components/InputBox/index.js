@@ -22,10 +22,6 @@ class InputBox extends React.Component {
 
     state = {
         focused: false,
-        maxLength: 0,
-        minLength: 0,
-        title: '输入',
-        placeholder: '请输入',
         value: this.props.initialValue || ''
     }
 
@@ -91,6 +87,8 @@ const styles = {
     }
 };
 
-export default (options) => {
+function show(options) {
     Popup.show(<InputBox {...options}/>, { wrapProps });
 };
+
+export default show;

@@ -8,12 +8,14 @@ export default class ImageUploadView extends React.Component {
         renderContent: PropTypes.func,
         onImagePicked: PropTypes.func,
         style: PropTypes.object,
+        inputWidth: PropTypes.number,
         maxWidth: PropTypes.number
     }
 
     static defaultProps = {
         style: {},
-        maxWidth: 1080
+        maxWidth: 1080,
+        inputWidth: 100
     }
 
     // 获取图片的正确方向
@@ -86,7 +88,7 @@ export default class ImageUploadView extends React.Component {
     }
 
     render() {
-        const { renderContent, style } = this.props;
+        const { renderContent, style, inputWidth } = this.props;
         return (
             <div style={{...style, position: 'relative'}}>
                 <input
@@ -96,7 +98,7 @@ export default class ImageUploadView extends React.Component {
                         left: 0,
                         top: 0,
                         bottom: 0,
-                        right: 0
+                        width: inputWidth
                     }}
                     ref="fileSelectorInput"
                     type="file"

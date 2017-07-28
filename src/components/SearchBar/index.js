@@ -1,12 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import * as COLORS from '../../constants';
-import Search from '../Search';
 import View from '../View';
+import { routerRedux } from 'dva/router';
 
 const BAR_HEIGHT = 56;
 const BORDER_DADIUS = 10;
 const DISABLED_OPACITY = 0.6;
 
+import bind from '../../app/bind';
+
+@bind()
 export default class SearchBar extends Component {
 
     static propTypes = {
@@ -19,7 +22,8 @@ export default class SearchBar extends Component {
         placeholder: PropTypes.string,// 输入框默认的搜索数据
         label: PropTypes.string,// 默认下方icon提示文字
         notFoundLabel: PropTypes.string,// 未找到数据的提示文字
-        style: PropTypes.object // 样式覆盖
+        style: PropTypes.object, // 样式覆盖
+        dispatch: PropTypes.any
     }
 
     static defaultProps = {
@@ -31,15 +35,17 @@ export default class SearchBar extends Component {
         if (this.props.disabled) return;
         this.props.onClick && this.props.onClick();
 
-        // 弹出搜索框
-        Search.show({
-            onSearch: this.props.onSearch,
-            renderRow: this.props.renderRow,
-            placeholder: this.props.placeholder,
-            label: this.props.label,
-            notFoundLabel: this.props.notFoundLabel,
-            onCancel: this.props.onCancel
-        });
+        this.props.dispatch(routerRedux.push({
+            pathname: '/SearchComponent',
+            state: {
+                onSearch: this.props.onSearch,
+                renderRow: this.props.renderRow,
+                placeholder: this.props.placeholder,
+                label: this.props.label,
+                notFoundLabel: this.props.notFoundLabel,
+                onCancel: this.props.onCancel
+            }
+        }));
     }
 
     render() {

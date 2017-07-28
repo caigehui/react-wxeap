@@ -1,20 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import ListView from '../ListView';
-import { SearchBar, Popup, Toast } from 'antd-mobile';
+import { SearchBar, Toast } from 'antd-mobile';
 import Header from './Header';
 import * as COLORS from '../../constants';
+import bind from '../../app/bind';
+import { routerRedux } from 'dva/router';
 
+function deprecation() {
+    console.warn('Searh组件的instance，hide和show不再使用，请删除相关代码');
+}
+
+@bind(state => state.searchComponent)
 export default class Search extends Component {
-
-    static instance = Popup.newInstance();
-
-    static show = (options) => {
-        Search.instance.show(<Search {...options} />, { transitionName: 'slide-down' });
-    };
-
-    static hide = () => {
-        Search.instance.hide();
-    };
 
     static propTypes = {
         onSearch: PropTypes.func, // 触发搜索
@@ -23,6 +20,11 @@ export default class Search extends Component {
         placeholder: PropTypes.string,// 输入框默认的搜索数据
         label: PropTypes.string,// 默认下方icon提示文字
         notFoundLabel: PropTypes.string,// 未找到数据的提示文字
+        dispatch: PropTypes.any,
+        isEmpty: PropTypes.bool,
+        isInit: PropTypes.bool,
+        content: PropTypes.string,
+        autoFocus: PropTypes.bool
     }
 
     static defaultProps = {
@@ -31,48 +33,55 @@ export default class Search extends Component {
         placeholder: '搜索'
     }
 
+    static instance = {
+        show: () => {
+            deprecation();
+        },
+        hide: () => {
+            deprecation();
+        }
+    };
+
+    static show = () => {
+        deprecation();
+    };
+
+    static hide = () => {
+        deprecation();
+    };
+
     constructor(props) {
         super(props);
         this.state = {
             focused: false, // 输入框是否聚焦
-            isEmpty: false, // 搜索结果是否为空
-            isInit: true, // 是否初始化
-            content: ''
         };
     }
 
     componentDidMount() {
-        this.setState({ focused: true });
-        this.mounted = true;
-        window.addEventListener('resize', () => {
-            this.forceUpdate();
-        }, false);
-    }
-
-    componentWillUnmount() {
-        this.mounted = false;
+        if(this.props.autoFocus) {
+            this.setState({ focused: true });
+        }
     }
 
     onFetch = (page, fill) => {
-        if(!this.state.content) return fill([], true);
-        if(page === 1) Toast.loading('正在搜索', 0);
+        if (!this.props.content) return fill([], true);
+        if (page === 1) Toast.loading('正在搜索', 0);
         // 触发onSearch
-        this.props.onSearch && this.props.onSearch(this.state.content, (list, allLoaded) => {
-            if (!this.mounted) return;
-            if(page === 1) Toast.hide();
-            this.setState({ isEmpty: list.length === 0 });
+        this.props.onSearch && this.props.onSearch(this.props.content, (list, allLoaded) => {
+            if (page === 1) Toast.hide();
+            this.props.dispatch({ type: 'searchComponent/save', payload: { isEmpty: list.length === 0 } });
             fill(list, allLoaded);
         }, page);
     }
 
     renderHeader = () => {
-        return <Header label={this.state.isInit ? this.props.label : this.props.notFoundLabel} type={this.state.isInit ? 'search' : 'search-noresult'} />;
+        return <Header label={this.props.isInit ? this.props.label : this.props.notFoundLabel} type={this.props.isInit ? 'search' : 'search-noresult'} />;
     }
 
     onCancel = () => {
         this.setState({ focused: false });
         this.props.onCancel && this.props.onCancel();
-        Search.instance.hide();
+        this.props.dispatch(routerRedux.goBack());
     }
 
     onFocus = () => {
@@ -84,7 +93,8 @@ export default class Search extends Component {
         value = value.replace(/(^\s*)|(\s*$)/g, '');
         this.listView.fill([], true);
         this.listView.scrollToTop();
-        this.setState({ isInit: !value, focused: false, content: value });
+        this.props.dispatch({ type: 'searchComponent/save', payload: { isInit: !value, content: value } });
+        this.setState({ focused: false});
         this.listView.reload();
     }
 
@@ -99,6 +109,8 @@ export default class Search extends Component {
                         onFocus={this.onFocus}
                         onCancel={this.onCancel}
                         showCancelButton
+                        value={this.props.content}
+                        onChange={value => this.props.dispatch({ type: 'searchComponent/save', payload: { content: value } })}
                     />
                 </div>
                 <ListView
@@ -113,7 +125,7 @@ export default class Search extends Component {
                     pageSize={100}
                     renderRow={this.props.renderRow}
                     onFetch={this.onFetch}
-                    renderHeader={this.state.isEmpty || this.state.isInit ? this.renderHeader : null}
+                    renderHeader={this.props.isEmpty || this.props.isInit ? this.renderHeader : null}
                     nocache={true}
                 />;
             </div>

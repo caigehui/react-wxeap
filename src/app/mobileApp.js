@@ -10,6 +10,16 @@ import * as CONSTANTS from '../constants';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import { Toast } from 'antd-mobile';
 import isArray from 'isarray';
+import searchModel from '../components/Search/model';
+import Search from '../components/Search';
+
+const otherRoutes = [
+    {
+        path: '/SearchComponent',
+        component: Search,
+        model: searchModel
+    }
+];
 
 export default class MobileApp {
 
@@ -29,6 +39,7 @@ export default class MobileApp {
                 Toast.info(e, 2);
             },
         });
+        routes = [...routes, ...otherRoutes];
         this.routes = routes;
         this.addModel(routes);
         this.addRouter(routes);

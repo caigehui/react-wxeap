@@ -1,4 +1,4 @@
-# acc
+# Acc
 
 react-wxeap@2.4.0版本使用hash获取图片，服务器不再返回图片地址。
 

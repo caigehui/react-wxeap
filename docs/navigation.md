@@ -9,7 +9,7 @@
 
 [App]()
 
-* [mobileApp](./app/mobileApp.md)
+* [MobileApp](./app/MobileApp.md)
 * [rnApp](./app/rnApp.md)
 * [bind](./app/bind.md)
 * [request](./app/request.md)
@@ -53,12 +53,12 @@
 * [Array](./utils/extensions/array.md)
 * [Object](./utils/object.md)
 - - - - 
-* [acc](./utils/acc.md)
+* [Acc](./utils/Acc.md)
 * [delay](./utils/delay.md)
 * [htmlFilter](./utils/htmlFilter.md)
-* [mobileDetect](./utils/mobileDetect.md)
+* [MobileDetect](./utils/MobileDetect.md)
 * [backToHome](./utils/backToHome.md)
 * [wrapProps](./utils/wrapProps.md)
 * [datetimeFormat](./utils/datetimeFormat.md)
-* [richContent](./utils/richContent.md)
+* [RichContent](./utils/RichContent.md)
 * [linking](./utils/linking.md)

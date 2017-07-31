@@ -5,7 +5,7 @@
 ```
 import { SearchBar } from 'react-wxeap'
 
-<SearchBar width="90%" placeholder="" onSearch={this.onSearch} renderRow={this.renderRow}>
+<SearchBar width="90%" placeholder="" onSearch={this.onSearch} renderRow={this.renderRow}/>
 
 ```
 

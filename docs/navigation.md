@@ -28,7 +28,6 @@
 * [InputBox](./components/InputBox.md)
 * [OrgPicker](./components/OrgPicker.md)
 * [DatePicker](./components/DatePicker.md)
-* [Search](./components/Search.md)
 - - - - 
 * # 组件
 * [ImagePicker](./components/ImagePicker.md)
@@ -47,6 +46,9 @@
 * [FilterBar](./components/FilterBar.md)
 * [FloatButton](./components/FloatButton.md)
 
+* # 特殊
+* [Search](./components/Search.md)
+
 [Utils]()
 
 * # extensions
@@ -56,7 +58,7 @@
 * [acc](./utils/acc.md)
 * [delay](./utils/delay.md)
 * [htmlFilter](./utils/htmlFilter.md)
-* [mobileDetect](./utils/mobileDetect.md)
+* [MobileDetect](./utils/MobileDetect.md)
 * [backToHome](./utils/backToHome.md)
 * [wrapProps](./utils/wrapProps.md)
 * [datetimeFormat](./utils/datetimeFormat.md)

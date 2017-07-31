@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import MobileDetect from '../../utils/mobileDetect';
+import MobileDetect from '../../utils/MobileDetect';
 import { ListView } from 'antd-mobile';
 
 export default class ScrollView extends Component {

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import MobileDetect from '../../utils/mobileDetect';
+import MobileDetect from '../../utils/MobileDetect';
 import {
     ListView,
     RefreshControl,
@@ -18,7 +18,7 @@ let allLoaded = {};
 // 页数
 let page = {};
 
-export default class extends React.Component {
+export default class WXListView extends React.Component {
 
     static propTypes = {
         listId: PropTypes.string.isRequired,

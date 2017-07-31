@@ -1,10 +1,5 @@
-/**
- * react web 入口
- */
-import 'babel-polyfill';
-import './utils/extensions/array';
 export { compareObject } from './utils/extensions/object';
-export { default as MobileApp } from './app/mobileApp';
+export { default as MobileApp } from './app/MobileApp';
 export { default as bind } from './app/bind';
 export { routerRedux } from 'dva/router';
 export { DEV_MODE } from './constants';
@@ -35,10 +30,10 @@ export { default as backToHome } from './utils/backToHome';
 export { default as htmlFilter } from './utils/htmlFilter';
 export { default as datetimeFormat} from './utils/datetimeFormat';
 export { default as linking } from './utils/linking';
-import * as MobileDetect from './utils/mobileDetect';
-import * as RichContent from './utils/richContent';
+import * as MobileDetect from './utils/MobileDetect';
+import * as RichContent from './utils/RichContent';
 import * as CONST from './constants';
-import * as Acc from './utils/acc';
+import * as Acc from './utils/Acc';
 export {
     MobileDetect,
     CONST,

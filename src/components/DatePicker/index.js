@@ -786,6 +786,8 @@ const styles = {
     }
 };
 
-export default (options) => {
-    Popup.show(<DatePicker {...options} />, { transitionName: 'am-fade', wrapProps });
-};
+function show(options) {
+    Popup.show(<DatePicker {...options}/>, { transitionName: 'am-fade', wrapProps });
+}
+
+export default show;

@@ -1,6 +1,6 @@
 {
   "name": "react-wxeap",
-  "version": "3.0.0-beta.0",
+  "version": "3.0.0-beta.3",
   "description": "cnwxsoft web framework",
   "scripts": {
     "lint": "eslint --ext .js src --fix",
@@ -20,6 +20,7 @@
     "clean-cmd": "rd /s/q lib && md lib"
   },
   "main": "lib/index",
+  "typings": "lib/index.d.ts",
   "author": "cnwxsoft",
   "repository": {
     "type": "git",
@@ -46,12 +47,12 @@
     "react-dom": "~15.4.1",
     "react-pinch-zoom-pan": "1.4.0",
     "redux-persist": "^4.8.0",
-    "lodash.clone": "^4.5.0"
-  },
-  "devDependencies": {
+    "lodash.clone": "^4.5.0",
     "@types/react": "^15.0.38",
     "@types/react-dom": "^15.5.1",
-    "typescript": "~2.4.0",
+    "typescript": "~2.4.0"
+  },
+  "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.0",
     "babel-eslint": "^7.1.1",

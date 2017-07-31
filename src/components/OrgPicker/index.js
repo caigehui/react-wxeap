@@ -6,7 +6,7 @@ import Cell from '../Cell';
 import ListView from '../ListView';
 import { Popup, NavBar, Icon, List } from 'antd-mobile';
 import * as COLORS from '../../constants';
-import * as Acc from '../../utils/acc';
+import * as Acc from '../../utils/Acc';
 
 const colors = [COLORS.BLUE_COLOR, COLORS.RED_COLOR, COLORS.GREEN_COLOR, COLORS.YELLOW_COLOR];
 
@@ -501,6 +501,9 @@ const styles = {
     }
 };
 
-export default (options) => {
-    Popup.show(<OrgPicker {...options} />, { transitionName: 'am-fade', wrapProps });
-};
+
+function show(options) {
+    Popup.show(<OrgPicker {...options}/>, { transitionName: 'am-fade', wrapProps });
+}
+
+export default show;

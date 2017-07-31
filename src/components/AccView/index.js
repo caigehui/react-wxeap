@@ -2,7 +2,7 @@ import React from 'react';
 import View from '../View';
 import ImageViewer from '../ImageViewer';
 import * as COLORS from '../../constants';
-import * as Acc from '../../utils/acc';
+import * as Acc from '../../utils/Acc';
 import { Icon } from 'antd-mobile';
 
 export default class AccView extends React.Component {

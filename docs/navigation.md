@@ -28,7 +28,6 @@
 * [InputBox](./components/InputBox.md)
 * [OrgPicker](./components/OrgPicker.md)
 * [DatePicker](./components/DatePicker.md)
-* [Search](./components/Search.md)
 - - - - 
 * # 组件
 * [ImagePicker](./components/ImagePicker.md)
@@ -46,6 +45,9 @@
 * [RichContentView](./components/RichContentView.md)
 * [FilterBar](./components/FilterBar.md)
 * [FloatButton](./components/FloatButton.md)
+
+* # 特殊
+* [Search](./components/Search.md)
 
 [Utils]()
 

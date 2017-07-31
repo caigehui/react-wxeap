@@ -1,6 +1,8 @@
 # Search
 
-路由到Search而不是Modal
+`Search`比较特殊，它是以路由形式进行跳转的
+
+note: 路由到Search而不是Modal
 
 ```
 

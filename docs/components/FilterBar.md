@@ -8,7 +8,7 @@ import { FilterBar } from 'react-wxeap';
 conditions = [
     [ { label: '1', value: '1' }, { label: '2', value: '2' } ],
     [ { label: 'a', value: 'a', children: [ { label: 'a-a', value: 'a-b' } ] } ]
-    [ { label: '指定条件': value: '指定条件' } ]
+    [ { label: '指定条件',value: '指定条件' } ]
 ]
 
 state = {

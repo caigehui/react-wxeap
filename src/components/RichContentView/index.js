@@ -1,7 +1,7 @@
 import React from 'react';
 import ImageViewer from '../ImageViewer';
 import * as COLORS from '../../constants';
-import * as Acc from '../../utils/acc';
+import * as Acc from '../../utils/Acc';
 
 export default class RichContentView extends React.Component {
 

@@ -43,7 +43,7 @@ export function getImagesDisplay(imgs) {
 export function getImagesFromAccs(accs, isThumb) {
     let imgs = [];
     accs.map((acc, i) => {
-        let fileExtension = acc.oName.substring(acc.oName.lastIndexOf('.') + 1);
+        let fileExtension = acc.oName.substring(acc.oName.lastIndexOf('.') + 1).toLowerCase();
         if (fileExtension === 'jpg' || fileExtension === 'png' || fileExtension === 'gif' || fileExtension === 'jpeg') { 
             imgs.push({
                 url: isThumb ? getThumbUrl(acc.hash) : getImageUrl(acc.hash),

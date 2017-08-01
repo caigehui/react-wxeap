@@ -1,7 +1,7 @@
 import React from 'react';
 import { ImagePicker } from 'antd-mobile';
 import compressImage from '../../utils/compressImage';
-import * as MobileDetect from '../../utils/mobileDetect';
+import * as MobileDetect from '../../utils/MobileDetect';
 
 export default class ImagePickerCompress extends React.Component {
 

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { NavBar } from 'antd-mobile';
-import * as MobileDetect from '../../utils/mobileDetect';
+import * as MobileDetect from '../../utils/MobileDetect';
 
 export default class Navigation extends React.Component {
 

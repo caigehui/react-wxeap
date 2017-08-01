@@ -1,4 +1,4 @@
-import { isApp } from './mobileDetect';
+import { isApp } from './MobileDetect';
 import { routerRedux } from 'dva/router';
 
 // function awaitPostMessage() {

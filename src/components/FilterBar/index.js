@@ -36,6 +36,7 @@ export default class FilterBar extends React.Component {
     }
 
     setLabels = (labels) => {
+        console.warn('depracated!该方法已经被废弃，请使用setLabel');
         this.setState({ labels: labels });
     }
 

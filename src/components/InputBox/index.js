@@ -89,6 +89,6 @@ const styles = {
 
 function show(options) {
     Popup.show(<InputBox {...options}/>, { wrapProps });
-};
+}
 
 export default show;

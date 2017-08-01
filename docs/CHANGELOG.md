@@ -2,7 +2,7 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
-## 3.0.0-beta
+## 3.0.0
 `2017-7-31`
 
 * 【重构】使用`TypeScript`编写全部组件的声明文件，支持代码提示

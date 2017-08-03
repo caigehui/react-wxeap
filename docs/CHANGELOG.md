@@ -8,6 +8,7 @@ Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语�
 * 【重构】使用`TypeScript`编写全部组件的声明文件，支持代码提示
 * 【移除】移除对`React Native`的支持，App使用只能使用2.x版本
 * 【修复】`Acc`的`getImagesFromAcc`现在会忽略文件格式的大小写
+* 【修复】body的css新增`position: absolute`解决一些布局问题
 
 ## 2.13.2
 `2017-7-28`

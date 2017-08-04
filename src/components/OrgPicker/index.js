@@ -16,7 +16,8 @@ class OrgPicker extends React.Component {
         type: React.PropTypes.oneOf(['empCheck', 'empRadio', 'dptCheck', 'dptRadio', 'cmpCheck', 'cmpRadio']),
         checked: React.PropTypes.arrayOf(React.PropTypes.object),
         onConfirm: React.PropTypes.func,
-        enableEmpty: React.PropTypes.bool
+        enableEmpty: React.PropTypes.bool,
+        customLabel: React.PropTypes.string
     }
 
     static defaultProps = {
@@ -98,7 +99,8 @@ class OrgPicker extends React.Component {
     }
 
     getNavTitle() {
-        const { type } = this.props;
+        const { type, customLabel } = this.props;
+        if(customLabel) return customLabel;
         switch (type) {
             case 'empCheck': return '人员多选';
             case 'empRadio': return '人员单选';

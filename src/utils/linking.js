@@ -35,7 +35,7 @@ export default function (lo, dispatch) {
         if(lo.isGoBack) {
             window.postMessage(JSON.stringify({
                 type: 'onGoBack'
-            }));
+            }), '*');
         }
         const data = {
             type: 'onShouldPush',
@@ -55,7 +55,7 @@ export default function (lo, dispatch) {
             }
         };
         // awaitPostMessage();
-        window.postMessage(JSON.stringify(data));
+        window.postMessage(JSON.stringify(data), '*');
     } else {
         // model
         if (lo.isModel) {

@@ -11,6 +11,8 @@ declare interface OrgPickerProps {
     checked?: Array<Item>;
     onConfirm?: (checked: Array<Item>) => void;
     enableEmpty?: boolean;
+    // 自定义导航标题
+    customLabel?: string;
 }
 
 /**

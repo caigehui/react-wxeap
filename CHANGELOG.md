@@ -2,8 +2,14 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 3.0.1
+`2017-8-4`
+
+* 【优化】`OrgPicker`支持自定义导航栏的Label
+* 【修复】修复了`Navigation`在`App`中引起的报错
+
 ## 3.0.0
-`2017-7-31`
+`2017-8-3`
 
 * 【重构】使用`TypeScript`编写全部组件的声明文件，支持代码提示
 * 【移除】移除对`React Native`的支持，App使用只能使用2.x版本

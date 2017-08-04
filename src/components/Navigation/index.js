@@ -20,22 +20,27 @@ export default class Navigation extends React.Component {
 
     configureTitle = (title) => {
         document.title = title;
-        MobileDetect.isApp && window.postMessage(JSON.stringify({
-            type: 'onTitleUpdate',
-            payload: {
-                title
-            }
-        }));
+        if (MobileDetect.isApp) {
+            const data = {
+                type: 'onTitleUpdate',
+                payload: {
+                    title
+                }
+            };
+            window.postMessage(JSON.stringify(data), '*');
+        }
     }
 
     componentWillReceiveProps(nextProps) {
-        if(nextProps.title !== this.props.title) {
+        if (nextProps.title !== this.props.title) {
             this.configureTitle(nextProps.title);
         }
     }
 
     componentDidMount() {
-        this.configureTitle(this.props.title);
+        setTimeout(() => {
+            this.configureTitle(this.props.title);
+        }, 100);
     }
 
     render() {
@@ -43,10 +48,10 @@ export default class Navigation extends React.Component {
         const { title, onBack, hide, autoHide, rightContent } = this.props;
         return (
             autoHide && (hide || MobileDetect.isWechat || MobileDetect.isApp) ?
-                <div/> :
+                <div /> :
                 <NavBar
                     mode="light" leftContent={onBack ? '返回' : null} rightContent={rightContent} onLeftClick={onBack} iconName={onBack ? 'left' : null}>
-                    {title.length > 8 ? title.substring(0 ,7) + '...' : title}
+                    {title.length > 8 ? title.substring(0, 7) + '...' : title}
                 </NavBar>
         );
     }

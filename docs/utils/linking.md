@@ -35,8 +35,7 @@ linking({
 
 // model中返回
 yield put(linking({
-    isGoBack: true,
-    isModel: true
+    isGoBack: true
 }))
 
 ```

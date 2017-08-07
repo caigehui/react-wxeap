@@ -2,6 +2,13 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 3.0.2
+`2017-8-7`
+
+* 【优化】`linking`在model中goBack不用传isGoBack参数
+* 【修复】`RichContentView`正则表达式错误引起的不显示图片的问题
+* 【优化】`RichContentView`支持自定义点击图片的方法
+
 ## 3.0.1
 `2017-8-4`
 

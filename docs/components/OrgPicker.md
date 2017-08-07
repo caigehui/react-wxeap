@@ -11,7 +11,8 @@ OrgPicker({
     enableEmpty: true, // 是否允许 没有选择时点击确定
     onConfirm: (items) => {
 
-    } // items是一个对象数组，代表已选的对象（人员或部门），每个对象包括`id`和`name`两个属性。单选时其长度恒为1，多选时长度不定
+    }, // items是一个对象数组，代表已选的对象（人员或部门），每个对象包括`id`和`name`两个属性。单选时其长度恒为1，多选时长度不定
+    customLabel: '' // Navigation的Label
 })
 ```
 

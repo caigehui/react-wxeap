@@ -58,7 +58,7 @@ export default function (lo, dispatch) {
         window.postMessage(JSON.stringify(data), '*');
     } else {
         // model
-        if (lo.isModel) {
+        if (!dispatch) {
             if (lo.isGoBack) {
                 return routerRedux.goBack();
             } else {

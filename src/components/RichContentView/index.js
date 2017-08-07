@@ -11,7 +11,8 @@ export default class RichContentView extends React.Component {
         editable: React.PropTypes.bool,
         onChange: React.PropTypes.func,
         contentId: React.PropTypes.string,
-        enableContentChange: React.PropTypes.bool
+        enableContentChange: React.PropTypes.bool,
+        onImageClick: React.PropTypes.func
     }
 
     static defaultProps = {
@@ -61,14 +62,18 @@ export default class RichContentView extends React.Component {
             oldImgEl.parentNode.replaceChild(newImgEl, oldImgEl);
 
             const onImgClick = () => {
-                ImageViewer(i, this.imgs);
+                if(this.props.onImageClick) {
+                    this.props.onImageClick(i, img.url);
+                }else {
+                    ImageViewer(i, this.imgs);
+                }
             };
             newImgEl.addEventListener('click', onImgClick);
         }
     }
 
     render() {
-        let data = this.state.content.replace(/font-size:\s*\d*px;/gi, '').replace(/font-size:\s*\d*pt;/gi, '').replace(' alt=""', '');
+        let data = this.state.content.replace(/font-size:\s*\d*px;/gi, '').replace(/font-size:\s*\d*pt;/gi, '').replace(/ alt=""/gi, '');
         let result = '';
         this.imgs = [];
         let currentId = 0;

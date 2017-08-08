@@ -17,7 +17,8 @@ class OrgPicker extends React.Component {
         checked: React.PropTypes.arrayOf(React.PropTypes.object),
         onConfirm: React.PropTypes.func,
         enableEmpty: React.PropTypes.bool,
-        customLabel: React.PropTypes.string
+        customLabel: React.PropTypes.string,
+        nocache: React.PropTypes.bool
     }
 
     static defaultProps = {
@@ -31,7 +32,7 @@ class OrgPicker extends React.Component {
         super(props);
         this.state = {
             checked: props.checked,
-            index: OrgPicker.indexForType[props.type] || [],
+            index: props.nocache ? [] : (OrgPicker.indexForType[props.type] || []),
             loading: true,
             org: [],
             companies: []

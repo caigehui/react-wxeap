@@ -76,8 +76,21 @@ export default class MobileApp {
         // 获取白名单
         let whitelist = [];
         for (let route of this.routes) {
-            if (route.model.persist) {
-                whitelist.push(route.model.namespace);
+            const { model } = route;
+            if (!model) {
+                console.error(`react-wxeap->mobileApp: 路由\'${route.path}\'缺少model`);
+            } else {
+                if (isArray(model)) {
+                    for (let i of model) {
+                        if (i.persist) {
+                            whitelist.push(i.namespace);
+                        }
+                    }
+                } else {
+                    if (model.persist) {
+                        whitelist.push(model.namespace);
+                    }
+                }
             }
         }
         persistStore(this.mobileApp._store, {

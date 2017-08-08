@@ -66,7 +66,7 @@ export default class ChatView extends Component {
                 height: document.documentElement.clientHeight - ((MobileDetect.isWechat || MobileDetect.isApp ? 0 : 90)),
                 width: document.documentElement.clientWidth,
                 backgroundColor: 'rgb(245,245,249)',
-                overflowScrolling: 'touch'
+                webkitOverflowScrolling: 'touch'
             },
             icon: {
                 justifyContent: 'space-around',

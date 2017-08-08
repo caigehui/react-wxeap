@@ -24,7 +24,8 @@ export default class Search extends Component {
         isEmpty: PropTypes.bool,
         isInit: PropTypes.bool,
         content: PropTypes.string,
-        autoFocus: PropTypes.bool
+        autoFocus: PropTypes.bool,
+        isBack: PropTypes.bool
     }
 
     static defaultProps = {
@@ -126,7 +127,9 @@ export default class Search extends Component {
                     renderRow={this.props.renderRow}
                     onFetch={this.onFetch}
                     renderHeader={this.props.isEmpty || this.props.isInit ? this.renderHeader : null}
-                    nocache={true}
+                    nocache={this.props.isBack ? false : true}
+                    stayPosition={this.props.isBack ? true : false}
+                    footerHidden
                 />;
             </div>
         );

@@ -13,6 +13,10 @@ declare interface OrgPickerProps {
     enableEmpty?: boolean;
     // 自定义导航标题
     customLabel?: string;
+    // 不保存层级位置
+    nocache?: boolean;
+    //禁止删除checked的单位
+    disableCheckedDelete?: boolean;
 }
 
 /**

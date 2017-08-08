@@ -2,6 +2,14 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 3.0.6
+`2017-8-8`
+
+* 【优化】`OrgPicker`新增属性`nocache`用于取消层级保留
+* 【优化】使用了苹果官方的全局字体
+* 【优化】`OrgPicker`新增了`disableCheckedDelete`用于禁止修改已选单位
+* 【修复】修复了`SearchBar`和`Search`搜索时的一些BUG
+
 ## 3.0.5
 `2017-8-7`
 

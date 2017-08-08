@@ -15,6 +15,8 @@ declare interface OrgPickerProps {
     customLabel?: string;
     // 不保存层级位置
     nocache?: boolean;
+    //禁止删除checked的单位
+    disableCheckedDelete?: boolean;
 }
 
 /**

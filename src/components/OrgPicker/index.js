@@ -18,7 +18,8 @@ class OrgPicker extends React.Component {
         onConfirm: React.PropTypes.func,
         enableEmpty: React.PropTypes.bool,
         customLabel: React.PropTypes.string,
-        nocache: React.PropTypes.bool
+        nocache: React.PropTypes.bool,
+        disableCheckedDelete: React.PropTypes.bool
     }
 
     static defaultProps = {
@@ -31,6 +32,7 @@ class OrgPicker extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            originalChecked: props.checked,
             checked: props.checked,
             index: props.nocache ? [] : (OrgPicker.indexForType[props.type] || []),
             loading: true,
@@ -101,7 +103,7 @@ class OrgPicker extends React.Component {
 
     getNavTitle() {
         const { type, customLabel } = this.props;
-        if(customLabel) return customLabel;
+        if (customLabel) return customLabel;
         switch (type) {
             case 'empCheck': return '人员多选';
             case 'empRadio': return '人员单选';
@@ -192,7 +194,7 @@ class OrgPicker extends React.Component {
             checkedEl.push(<div key={i}
                 onClick={() => this.onCheckedClick(item)}
                 style={{
-                    ...styles.item, color: COLORS.RED_COLOR
+                    ...styles.item, color: this.props.disableCheckedDelete ? COLORS.SUBTITLE_COLOR : COLORS.RED_COLOR
                 }} >{item.name}</div>);
             if (i === checked.length - 1) return;
             checkedEl.push(<div key={`${i}-sep`} style={{
@@ -231,7 +233,8 @@ class OrgPicker extends React.Component {
     }
 
     renderPickerContainer() {
-        const { org, checked, index, companies } = this.state;
+        const { disableCheckedDelete } = this.props;
+        const { org, checked, index, companies, originalChecked } = this.state;
         return (
             <div style={styles.pickerContainer}>
                 {
@@ -245,6 +248,7 @@ class OrgPicker extends React.Component {
                                             if (item.type === 'all') return null;
                                             return (
                                                 <Cell
+                                                    disabled={disableCheckedDelete ? originalChecked.searchByCondition(i => i.id === item.id) : false}
                                                     key={item.id}
                                                     checkable={item.type === 'emp'}
                                                     checked={checked.searchByCondition(a => a.id === item.id)}
@@ -287,6 +291,7 @@ class OrgPicker extends React.Component {
                                             if (item.type === 'dpt' || (index.length === 1 && item.type === 'all')) {
                                                 return (
                                                     <Cell
+                                                        disabled={disableCheckedDelete ? originalChecked.searchByCondition(i => i.id === item.id) : false}
                                                         key={item.id}
                                                         checked={checked.searchByCondition(a => a.id === item.id)}
                                                         checkable
@@ -323,6 +328,7 @@ class OrgPicker extends React.Component {
                                             if (i === 0) return null;
                                             return (
                                                 <Cell
+                                                    disabled={disableCheckedDelete ? originalChecked.searchByCondition(i => i.id === item.id) : false}
                                                     key={item.id}
                                                     checked={checked.searchByCondition(a => a.id === item.id)}
                                                     checkable
@@ -355,6 +361,7 @@ class OrgPicker extends React.Component {
                                         {companies.map(item => {
                                             return (
                                                 <Cell
+                                                    disabled={disableCheckedDelete ? originalChecked.searchByCondition(i => i.id === item.id) : false}
                                                     key={item.id}
                                                     checked={checked.searchByCondition(a => a.id === item.id)}
                                                     checkable
@@ -506,7 +513,7 @@ const styles = {
 
 
 function show(options) {
-    Popup.show(<OrgPicker {...options}/>, { transitionName: 'am-fade', wrapProps });
+    Popup.show(<OrgPicker {...options} />, { transitionName: 'am-fade', wrapProps });
 }
 
 export default show;

@@ -9,7 +9,8 @@ export default class ChatView extends Component {
         renderRow: PropTypes.func,
         onFetch: PropTypes.func,
         style: PropTypes.object,
-        allLoadedText: PropTypes.string
+        allLoadedText: PropTypes.string,
+        stayPosition: PropTypes.bool
     }
 
     static defaultProps = {

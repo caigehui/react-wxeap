@@ -12,15 +12,32 @@ export default {
         isEmpty: false, // 搜索结果是否为空
         isInit: true, // 是否初始化
         content: '',
-        autoFocus: true // 自动聚焦
+        autoFocus: true, // 自动聚焦
+        isBack: false
     },
 
     subscriptions: {
         setup({ history, dispatch }) {
             return history.listen(({ pathname, state }) => {
                 if (pathname === '/SearchComponent') {
-                    if (!state.onSearch) return dispatch({ type: 'save', payload: { autoFocus: false } });
-                    dispatch({ type: 'save', payload: { ...state, content: '', autoFocus: true} });
+                    if (!state.onSearch) return dispatch({
+                        type: 'save',
+                        payload: {
+                            autoFocus: false,
+                            isBack: true
+                        }
+                    });
+                    dispatch({
+                        type: 'save',
+                        payload: {
+                            ...state,
+                            content: '',
+                            autoFocus: true,
+                            isInit: true,
+                            isEmpty: false,
+                            isBack: true
+                        }
+                    });
                 }
             });
         }

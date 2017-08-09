@@ -21,5 +21,5 @@ const style = {
     flexDirection: 'row',
     flexWrap: 'wrap',
     whiteSpace: 'pre-wrap',
-    wordBreak: 'break-all'
+    wordBreak: 'break-word'
 };

@@ -12,7 +12,8 @@ export default class RichContentView extends React.Component {
         onChange: React.PropTypes.func,
         contentId: React.PropTypes.string,
         enableContentChange: React.PropTypes.bool,
-        onImageClick: React.PropTypes.func
+        onImageClick: React.PropTypes.func,
+        isFixImgHeight: React.PropTypes.bool
     }
 
     static defaultProps = {
@@ -92,7 +93,7 @@ export default class RichContentView extends React.Component {
                     url: newUrl
                 }];
             }
-            result += `<img id="${this.props.contentId + '-' + currentId}" style="width: 100%;" src="${newUrl}" />`;
+            result += this.props.isFixImgHeight ? `<img id="${this.props.contentId + '-' + currentId}" style="height: 200px; object-fit: contain;" src="${newUrl}" />` : `<img id="${this.props.contentId + '-' + currentId}" style="width: 100%;" src="${newUrl}" />`;
             currentId++;
             data = data.substring(data.indexOf('/>') < 0 ? data.indexOf('>') + 1 : data.indexOf('/>') + 2);
         }
@@ -107,7 +108,7 @@ export default class RichContentView extends React.Component {
                 paddingBottom: 20,
                 lineHeight: 1.5,
                 whiteSpace: 'pre-wrap',
-                wordBreak: 'break-all',
+                wordBreak: 'break-word',
                 ...this.props.style
             }} dangerouslySetInnerHTML={{
                 __html: result

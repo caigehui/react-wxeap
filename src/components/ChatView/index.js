@@ -67,7 +67,7 @@ export default class ChatView extends Component {
                 height: document.documentElement.clientHeight - ((MobileDetect.isWechat || MobileDetect.isApp ? 0 : 90)),
                 width: document.documentElement.clientWidth,
                 backgroundColor: 'rgb(245,245,249)',
-                webkitOverflowScrolling: 'touch'
+                WebkitOverflowScrolling: 'touch'
             },
             icon: {
                 justifyContent: 'space-around',
@@ -91,6 +91,7 @@ export default class ChatView extends Component {
             flipped={true}
             scrollLoadThreshold={50}
             onInfiniteLoad={this.onLoad}
+            stayPosition={this.props.stayPosition}
             loadingSpinnerDelegate={!this.state.allLoaded ? <View style={styles.icon}><Icon type={require('../../assets/loading.svg')} /></View> :
                 <View style={styles.icon}><div style={styles.sep} />{this.props.allLoadedText}<div style={styles.sep} /></View>}
         >

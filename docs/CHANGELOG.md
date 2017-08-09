@@ -2,6 +2,24 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 3.0.9
+`2017-8-9`
+
+* 【修复】修复全局字体
+* 【优化】`RichContentView`新增一个属性
+
+## 3.0.8
+`2017-8-9`
+
+* 【修复】`RichContentView`和`View`标点符号不换行
+
+## 3.0.7
+
+`2017-8-9`
+
+* 【修复】`backToHome`修改为恢复会话丢失
+* 【修复】`ChatView`平滑滚动
+
 ## 3.0.6
 `2017-8-8`
 

@@ -9,6 +9,10 @@ declare interface RichContentViewProps {
     contentId: string;
     enableContentChange?: boolean;
     onImageClick?: (index: number, url: string) => void;
+    /**
+     * 是否固定图片高度
+     */
+    isFixImgHeight?: boolean;
 }
 
 declare class RichContentView extends React.Component<RichContentViewProps, any> { }

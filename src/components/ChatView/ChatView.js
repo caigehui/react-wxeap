@@ -21,7 +21,8 @@ var ChatView = React.createClass({
 		onInfiniteLoad: React.PropTypes.func.isRequired,
 		loadingSpinnerDelegate: React.PropTypes.element,
 		className: React.PropTypes.string,
-		style: React.PropTypes.object
+		style: React.PropTypes.object,
+		stayPosition: React.PropTypes.bool
 	},
 
 	getDefaultProps() {

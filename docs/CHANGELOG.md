@@ -2,11 +2,21 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 3.1.0
+
+* 【修复】`OrgPicker`现在会显示部门下无岗位的人员
+* 【优化】`OrgPicker`支持搜索
+* 【修复】`ListView`初始化加载时Footer文本显示为“加载中...”
+* 【修复】`OrgPicker`人员现在不会超出右边界
+* 【优化】网络断开或者恢复时会有`Toast`提示，并且网络断开时不会进行网络请求
+* 【修复】`datatimeFormat`现在会显示一年以前的日期的年份
+* 【优化】`DatePicker`现在会区分`Filter`和`Statistics`
+
 ## 3.0.9
 `2017-8-9`
 
 * 【修复】修复全局字体
-* 【优化】`RichContentView`新增一个属性
+* 【优化】`RichContentView`新增一个属性`isFixImgHeight`来固定图片的高度
 
 ## 3.0.8
 `2017-8-9`

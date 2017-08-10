@@ -17,7 +17,8 @@ DatePicker({
     format: 'YYYY-MM-DD',
     onSelect: (newDate) => {
         console.log(newDate)
-    }
+    },
+    type: 'filter' // 默认为'filter',数据统计时使用'statistics'
 })
 
 ```

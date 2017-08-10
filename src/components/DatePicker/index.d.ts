@@ -18,6 +18,12 @@ declare interface DatePickerProps {
      * 格式化
      */
     format: string;
+    /**
+     * 类型：
+     * filter：过滤，可以选择一月内，一周内等等
+     * statistics: 统计，可以选择本月，本周等等
+     */
+    type: 'filter' | 'statistics'
 }
 
 /**

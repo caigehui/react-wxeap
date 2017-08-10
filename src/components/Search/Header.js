@@ -8,6 +8,11 @@ export default class Header extends Component {
         label: PropTypes.string,
         type: PropTypes.oneOf(['search', 'search-noresult']),
     }
+    
+    static defaultProps = {
+        label: '查找内容',
+        type: 'search'
+    }
 
     render() {
         const { label, type } = this.props;

@@ -210,7 +210,7 @@ export default class WXListView extends React.Component {
     onRefresh = () => {
         const { refreshing } = this.state;
         if (refreshing === false) {
-            this.setState({ refreshing: true, page: 1 });
+            this.setState({ refreshing: true, isLoading: true, page: 1 });
             this.send(1);
         }
     }

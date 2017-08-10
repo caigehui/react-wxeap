@@ -10,6 +10,7 @@ declare interface OrgPickerProps {
     type: 'empCheck' | 'empRadio' | 'dptCheck' | 'dptRadio' | 'cmpCheck' | 'cmpRadio';
     checked?: Array<Item>;
     onConfirm?: (checked: Array<Item>) => void;
+    // 是否允许为空，默认不允许
     enableEmpty?: boolean;
     // 自定义导航标题
     customLabel?: string;

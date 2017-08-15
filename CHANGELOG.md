@@ -2,11 +2,10 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
-## 3.1.
+## 3.1.1
 `2017-8-11`
 
-
-
+* 【修复】`RichContentView`限制图片的最大宽度
 
 ## 3.1.0
 `2017-8-10`

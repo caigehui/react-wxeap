@@ -7,6 +7,9 @@ declare interface RichContentViewProps {
     editable?: boolean;
     onChange?: (innerHTML: string) => void;
     contentId: string;
+    /**
+     * 是否允许动态刷新
+     */
     enableContentChange?: boolean;
     onImageClick?: (index: number, url: string) => void;
     /**

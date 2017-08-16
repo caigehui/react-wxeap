@@ -59,7 +59,10 @@ export function getImagesFromAccs(accs, isThumb) {
  * @param {string} oUrl 
  */
 export function getImageFromContent(oUrl) {
+    // 如果是Base64图片
     if(oUrl.indexOf('../../') < 0) return oUrl;
+    // WxAccessoryDisplay
     if(oUrl.indexOf('WxAccessoryDisplay') > 0) return `${API.substring(0, API.length - 6)}Common/WxAccessoryDisplay.aspx${oUrl.substring(oUrl.indexOf('?'))}`;
+    // 其他情况(大多数)
     return `${API.substring(0, API.length - 6)}Common/WxGetFile.aspx${oUrl.substring(oUrl.indexOf('?'))}`;
 }

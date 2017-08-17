@@ -4,11 +4,17 @@ import React from 'react';
 declare interface RichContentViewProps {
     content?: string;
     style?: object;
+    /**
+     * 是否可编辑
+     */
     editable?: boolean;
     onChange?: (innerHTML: string) => void;
+    /**
+     * 唯一标识
+     */
     contentId: string;
     /**
-     * 是否允许动态刷新
+     * 是否允许动态刷新，默认关闭
      */
     enableContentChange?: boolean;
     onImageClick?: (index: number, url: string) => void;

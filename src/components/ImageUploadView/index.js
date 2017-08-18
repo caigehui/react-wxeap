@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import compressImage from '../../utils/compressImage';
 import { Toast } from 'antd-mobile';
+import { MobileDetect } from 'react-wxeap';
 
 export default class ImageUploadView extends React.Component {
 
@@ -14,8 +15,23 @@ export default class ImageUploadView extends React.Component {
 
     static defaultProps = {
         style: {},
-        maxWidth: 1080,
+        maxWidth: 512,
         inputWidth: 100
+    }
+
+    _onImagePicked = (e) => {
+        const message = JSON.parse(e.data);
+        if(message.type === 'onImagePicked') {
+            this.props.onImagePicked && this.props.onImagePicked(message.payload.imageData);
+        }
+    }
+
+    componentDidMount() {
+        MobileDetect.isApp && window.document.addEventListener('message', this._onImagePicked);
+    }
+
+    componentWillUnMount() {
+        MobileDetect.isApp && window.document.removeEventListener('message', this._onImagePicked);
     }
 
     // 获取图片的正确方向
@@ -87,24 +103,35 @@ export default class ImageUploadView extends React.Component {
         }
     }
 
+    onClick = () => {
+        if(!MobileDetect.isApp) return;
+        window.postMessage(JSON.stringify({
+            type: 'onShowImagePicker'
+        }), '*');
+    }
+
     render() {
         const { renderContent, style, inputWidth } = this.props;
         return (
-            <div style={{...style, position: 'relative'}}>
-                <input
-                    style={{
-                        opacity: 0,
-                        position: 'absolute',
-                        left: 0,
-                        top: 0,
-                        bottom: 0,
-                        width: inputWidth
-                    }}
-                    ref="fileSelectorInput"
-                    type="file"
-                    accept="image/jpg,image/jpeg,image/png,image/gif"
-                    onChange={this.onFileChange}
-                />
+            <div style={{ ...style, position: 'relative' }} onClick={this.onClick}>
+                {
+                    MobileDetect.isApp ? null
+                        :
+                        <input
+                            style={{
+                                opacity: 0,
+                                position: 'absolute',
+                                left: 0,
+                                top: 0,
+                                bottom: 0,
+                                width: inputWidth
+                            }}
+                            ref="fileSelectorInput"
+                            type="file"
+                            accept="image/jpg,image/jpeg,image/png,image/gif"
+                            onChange={this.onFileChange}
+                        />
+                }
                 {renderContent()}
             </div>
         );

@@ -19,7 +19,20 @@ export default class Navigation extends React.Component {
     }
 
     configureTitle = (title) => {
+
         document.title = title;
+        if(MobileDetect.isWechat) {
+            var i = document.createElement('iframe');
+            i.src = '//m.baidu.com/favicon.ico';
+            i.style.display = 'none';
+            i.onload = function () {
+                setTimeout(function () {
+                    i.remove();
+                }, 9)
+            }
+            document.body.appendChild(i);
+        }
+        
         if (MobileDetect.isApp) {
             const data = {
                 type: 'onTitleUpdate',
@@ -40,7 +53,7 @@ export default class Navigation extends React.Component {
     componentDidMount() {
         setTimeout(() => {
             this.configureTitle(this.props.title);
-        }, 100);
+        }, 200);
     }
 
     render() {

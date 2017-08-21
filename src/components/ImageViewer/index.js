@@ -7,6 +7,7 @@ import {
 import { PinchView } from 'react-pinch-zoom-pan';
 import Carousel from 're-carousel';
 import IndicatorDots from './IndicatorDots';
+import MobileDetect from '../../utils/MobileDetect';
 
 class ImageViewer extends React.Component {
 
@@ -86,7 +87,17 @@ const styles = {
  * @param  {array} imgs  图片数组
  */
 function show(initIndex, imgs) {
-    Popup.show(<ImageViewer imgs={imgs} initIndex={initIndex} />, { transitionName: 'am-fade' });
+    if(MobileDetect.isApp) {
+        window.postMessage(JSON.stringify({
+            type: 'onShowImageViewer',
+            payload: {
+                imageInitIndex: initIndex,
+                images: imgs
+            }
+        }));
+    }else {
+        Popup.show(<ImageViewer imgs={imgs} initIndex={initIndex} />, { transitionName: 'am-fade' });
+    }
 }
 
 export default show;

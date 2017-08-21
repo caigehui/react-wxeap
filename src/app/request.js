@@ -40,10 +40,10 @@ function validation(responseJson) {
 			responseJson.errmsg && delete responseJson.errmsg;
 			return { data: responseJson || {}, err: null };
 		case 4001: // 会话丢失，刷新页面
-			Toast.info('连接超时，即将返回主页', 2, () => {
+			Toast.info('连接超时', 2, () => {
 				backToHome();
 			});
-			return { data: null, err: '连接超时，即将返回主页'};
+			return { data: null, err: '连接超时'};
 		default:
 			Toast.info(responseJson.errmsg, 2);
 			throw responseJson.errmsg;

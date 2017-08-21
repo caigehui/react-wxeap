@@ -7,7 +7,8 @@ export default class ImagePickerCompress extends React.Component {
 
     static propTypes = {
         maxWidth: React.PropTypes.number,
-        onChange: React.PropTypes.func
+        onChange: React.PropTypes.func,
+        files: React.PropTypes.array
     }
 
     componentDidMount() {
@@ -20,10 +21,41 @@ export default class ImagePickerCompress extends React.Component {
                 cameras[i].setAttribute('capture', 'camera');
             }
         }
+        /**
+         * 在App使用原生相机
+         */
+        if(MobileDetect.isApp) {
+            let cameras = document.querySelectorAll('input[type=\'file\']');
+            for (let i = 0; i < cameras.length; i++) {
+                cameras[i].setAttribute('type', 'button');
+                this.btn = document.getElementsByClassName('am-image-picker-item am-image-picker-upload-btn');
+                this.btn[0].addEventListener('click', this.onShowImagePicker);
+            }
+        }
+
+        MobileDetect.isApp && window.document.addEventListener('message', this.onImagePicked);
+    }
+
+    componentWillUnmount() {
+        this.btn && this.btn.removeEventListener('click', this.onShowImagePicker);
+        MobileDetect.isApp && window.document.removeEventListener('message', this.onImagePicked);
     }
 
     static defaultProps = {
         maxWidth: 1080
+    }
+
+    onShowImagePicker = () => {
+        window.postMessage(JSON.stringify({
+            type: 'onShowImagePicker'
+        }), '*');
+    }
+
+    onImagePicked = (e) => {
+        const message = JSON.parse(e.data);
+        if(message.type === 'onImagePicked') {
+            this.props.onChange && this.props.onChange([...this.props.files, { url: message.payload.imageData, orientation: 1 }], 'add', this.props.files.length);
+        }
     }
 
     onChange = (files, type, index) => {
@@ -31,10 +63,10 @@ export default class ImagePickerCompress extends React.Component {
             compressImage(files[files.length - 1].url, files[files.length - 1].orientation, this.props.maxWidth, url => {
                 files[files.length - 1].url = url;
                 files[files.length - 1].orientation = 1;
-                this.props.onChange(files, type, index);
+                this.props.onChange && this.props.onChange(files, type, index);
             });
         } else {
-            this.props.onChange(files, type, index);
+            this.props.onChange && this.props.onChange(files, type, index);
         }
 
 

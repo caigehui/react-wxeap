@@ -2,7 +2,15 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 3.1.1
+`2017-8-21`
+
+* 【修复】`RichContentView`限制图片的最大宽度
+* 【优化】`ImageUploadView`和`ImagePicker`App上传图片
+* 【修复】`request`超时文本
+
 ## 3.1.0
+`2017-8-10`
 
 * 【修复】`OrgPicker`现在会显示部门下无岗位的人员
 * 【优化】`OrgPicker`支持搜索

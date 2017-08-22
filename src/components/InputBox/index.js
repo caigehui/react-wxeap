@@ -59,6 +59,7 @@ class InputBox extends React.Component {
                         placeholder={placeholder}
                         rows={5}
                         count={maxLength}
+                        autoHeight
                     />
                 </div>
             </div>
@@ -68,7 +69,7 @@ class InputBox extends React.Component {
 }
 const styles = {
     container: {
-        height: 400,
+        minHeight: 400,
         width: '100%',
         backgroundColor: 'white',
     },
@@ -80,7 +81,7 @@ const styles = {
         alignItems: 'center',
     },
     textarea: {
-        height: 310,
+        minHeight: 310,
         width: '93%',
         marginLeft: '3%',
         fontSize: 25

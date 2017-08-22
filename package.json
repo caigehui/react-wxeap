@@ -1,6 +1,6 @@
 {
   "name": "react-wxeap",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "cnwxsoft web framework",
   "scripts": {
     "lint": "eslint --ext .js src --fix",

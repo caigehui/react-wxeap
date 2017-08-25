@@ -35,6 +35,7 @@ export { default as backToHome } from './utils/backToHome';
 export { default as htmlFilter } from './utils/htmlFilter';
 export { default as datetimeFormat} from './utils/datetimeFormat';
 export { default as linking } from './utils/linking';
+export { default as MessageBridge } from './utils/MessageBridge';
 import * as MobileDetect from './utils/MobileDetect';
 import * as RichContent from './utils/RichContent';
 import * as CONST from './constants';

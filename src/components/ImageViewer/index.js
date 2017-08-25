@@ -9,15 +9,16 @@ import './photoswipe.css';
  * @param {number} initIndex 
  * @param {array} imgs 
  */
-export default function show(initIndex, imgs) {
-    Popup.show(<ImageViewer imgs={imgs} initIndex={initIndex} />, { wrapProps, transitionName: 'am-fade' });
+export default function show(initIndex, imgs, imgEl) {
+    Popup.show(<ImageViewer imgs={imgs} imgEl={imgEl} initIndex={initIndex} />, { wrapProps, transitionName: 'none' });
 }
 
 class ImageViewer extends React.Component {
 
     static propTypes = {
         imgs: React.PropTypes.array,
-        initIndex: React.PropTypes.number
+        initIndex: React.PropTypes.number,
+        imgEl: React.PropTypes.any
     }
 
     constructor(props) {
@@ -25,7 +26,7 @@ class ImageViewer extends React.Component {
 
         let h = [];
 
-        for(let i = 0; i < props.imgs.length; i++) {
+        for (let i = 0; i < props.imgs.length; i++) {
             let img = props.imgs[i];
             let myImg = new Image();
             myImg.src = img.url;
@@ -49,7 +50,7 @@ class ImageViewer extends React.Component {
             h,
             isOpen: true
         };
-    
+
     }
 
     componentWillUnmount() {
@@ -74,6 +75,7 @@ class ImageViewer extends React.Component {
                     isOpen={this.state.isOpen}
                     items={this.props.imgs.map((img, index) => ({
                         src: img.url,
+                        msrc: img.thumb || img.url,
                         h: this.state.h[index],
                         w: document.documentElement.clientWidth
                     }))}
@@ -83,7 +85,12 @@ class ImageViewer extends React.Component {
                         closeEl: false,
                         loop: false,
                         fullscreenEl: false,
-                        maxSpreadZoom: 3
+                        maxSpreadZoom: 3,
+                        getThumbBoundsFn: this.props.imgEl ? () => {
+                            let pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
+                            let rect = this.props.imgEl.getBoundingClientRect();
+                            return { x: rect.left, y: rect.top + pageYScroll, w: rect.width };
+                        } : undefined
                     }}
                     close={this.handleClose} />
             </div>

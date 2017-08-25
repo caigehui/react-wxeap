@@ -5,8 +5,10 @@ declare interface Image {
 
 /**
  * 弹出ImageViewer
- * @param props 
+ * @param initIndex 
+ * @param imgs 
+ * @param getThumbBoundsFn 
  */
-declare function show(initIndex: number, imgs: Array<Image>): void;
+declare function show(initIndex: number, imgs: Array<Image>, imgEl: any): void;
 
 export default show;

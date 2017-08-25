@@ -17,7 +17,7 @@ declare interface RichContentViewProps {
      * 是否允许动态刷新，默认关闭
      */
     enableContentChange?: boolean;
-    onImageClick?: (index: number, url: string) => void;
+    onImageClick?: (index: number, url: string, imgEl: any) => void;
     /**
      * 是否固定图片高度
      */

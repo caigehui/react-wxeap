@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { NavBar } from 'antd-mobile';
 import * as MobileDetect from '../../utils/MobileDetect';
+import MessageBridge from '../../utils/MessageBridge';
 
 export default class Navigation extends React.Component {
 
@@ -21,7 +22,7 @@ export default class Navigation extends React.Component {
     configureTitle = (title) => {
 
         document.title = title;
-        if(MobileDetect.isWechat) {
+        if (MobileDetect.isWechat) {
             let i = document.createElement('iframe');
             i.src = '//m.baidu.com/favicon.ico';
             i.style.display = 'none';
@@ -32,16 +33,14 @@ export default class Navigation extends React.Component {
             };
             document.body.appendChild(i);
         }
-        
-        if (MobileDetect.isApp) {
-            const data = {
-                type: 'onTitleUpdate',
-                payload: {
-                    title
-                }
-            };
-            window.postMessage(JSON.stringify(data), '*');
-        }
+
+        MessageBridge.postMessage({
+            type: 'onTitleUpdate',
+            payload: {
+                title
+            }
+        });
+
     }
 
     componentWillReceiveProps(nextProps) {

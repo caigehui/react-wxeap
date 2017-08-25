@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import compressImage from '../../utils/compressImage';
 import { Toast } from 'antd-mobile';
 import { MobileDetect } from 'react-wxeap';
+import MessageBridge from '../../utils/MessageBridge';
 
 export default class ImageUploadView extends React.Component {
 
@@ -19,19 +20,18 @@ export default class ImageUploadView extends React.Component {
         inputWidth: 100
     }
 
-    _onImagePicked = (e) => {
-        const message = JSON.parse(e.data);
+    _onImagePicked = (message) => {
         if(message.type === 'onImagePicked') {
             this.props.onImagePicked && this.props.onImagePicked(message.payload.imageData);
         }
     }
 
     componentDidMount() {
-        MobileDetect.isApp && window.document.addEventListener('message', this._onImagePicked);
+        MessageBridge.addMessageListener(this._onImagePicked);
     }
 
     componentWillUnMount() {
-        MobileDetect.isApp && window.document.removeEventListener('message', this._onImagePicked);
+        MessageBridge.removeMessageListener(this._onImagePicked);
     }
 
     // 获取图片的正确方向
@@ -104,10 +104,9 @@ export default class ImageUploadView extends React.Component {
     }
 
     onClick = () => {
-        if(!MobileDetect.isApp) return;
-        window.postMessage(JSON.stringify({
+        MessageBridge.postMessage({
             type: 'onShowImagePicker'
-        }), '*');
+        });
     }
 
     render() {

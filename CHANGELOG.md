@@ -2,10 +2,12 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
-## 3.1.4
+## 3.1.5
 `2017-8-22`
 
 * 【重做】`ImageViewer`，现在的用户体验更好
+* 【优化】`RichContentView`，支持图片缩放
+* 【移除】`ImagePicker`的`onImageClick`，点击会自动预览图片
 
 ## 3.1.2
 `2017-8-22`

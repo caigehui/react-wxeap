@@ -63,10 +63,10 @@ export default class RichContentView extends React.Component {
             oldImgEl.parentNode.replaceChild(newImgEl, oldImgEl);
 
             const onImgClick = () => {
-                if(this.props.onImageClick) {
-                    this.props.onImageClick(i, img.url);
-                }else {
-                    ImageViewer(i, this.imgs);
+                if (this.props.onImageClick) {
+                    this.props.onImageClick(i, img.url, newImgEl);
+                } else {
+                    ImageViewer(i, this.imgs, newImgEl);
                 }
             };
             newImgEl.addEventListener('click', onImgClick);

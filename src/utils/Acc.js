@@ -31,6 +31,7 @@ export function getPreviewPath(accId) {
 export function getImagesDisplay(imgs) {
     return imgs.map((img, i) => ({
         url: img.url ? img.url : getImageUrl(img.hash),
+        thumb: img.url ? img.url : getThumbUrl(img.hash),
         id: i
     }));
 }

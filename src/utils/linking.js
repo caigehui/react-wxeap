@@ -1,41 +1,14 @@
 import { isApp } from './MobileDetect';
 import { routerRedux } from 'dva/router';
-
-// function awaitPostMessage() {
-//   let isReactNativePostMessageReady = !!window.originalPostMessage;
-//   const queue = [];
-//   let currentPostMessageFn = function store(message) {
-//     if (queue.length > 100) queue.shift();
-//     queue.push(message);
-//   };
-//   if (!isReactNativePostMessageReady) {
-//     // const originalPostMessage = window.postMessage;
-//     Object.defineProperty(window, 'postMessage', {
-//       configurable: true,
-//       enumerable: true,
-//       get() {
-//         return currentPostMessageFn;
-//       },
-//       set(fn) {
-//         currentPostMessageFn = fn;
-//         isReactNativePostMessageReady = true;
-//         setTimeout(sendQueue, 0);
-//       }
-//     });
-//   }
-
-//   function sendQueue() {
-//     while (queue.length > 0) window.postMessage(queue.shift());
-//   }
-// }
+import MessageBridge from './MessageBridge';
 
 export default function (lo, dispatch) {
 
     if (isApp) {
         if(lo.isGoBack) {
-            window.postMessage(JSON.stringify({
+            MessageBridge.postMessage({
                 type: 'onGoBack'
-            }), '*');
+            });
         }
         const data = {
             type: 'onShouldPush',
@@ -54,8 +27,7 @@ export default function (lo, dispatch) {
                 })()
             }
         };
-        // awaitPostMessage();
-        window.postMessage(JSON.stringify(data), '*');
+        MessageBridge.postMessage(data);
     } else {
         // model
         if (lo.isModel) {

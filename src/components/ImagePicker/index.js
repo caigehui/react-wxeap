@@ -2,6 +2,8 @@ import React from 'react';
 import { ImagePicker } from 'antd-mobile';
 import compressImage from '../../utils/compressImage';
 import * as MobileDetect from '../../utils/MobileDetect';
+import ImageViewer from '../ImageViewer';
+import MessageBridge from '../../utils/MessageBridge';
 
 export default class ImagePickerCompress extends React.Component {
 
@@ -33,12 +35,12 @@ export default class ImagePickerCompress extends React.Component {
             }
         }
 
-        MobileDetect.isApp && window.document.addEventListener('message', this.onImagePicked);
+        MessageBridge.addMessageListener(this.onImagePicked);
     }
 
     componentWillUnmount() {
         this.btn && this.btn.removeEventListener('click', this.onShowImagePicker);
-        MobileDetect.isApp && window.document.removeEventListener('message', this.onImagePicked);
+        MessageBridge.removeMessageListener(this.onImagePicked);
     }
 
     static defaultProps = {
@@ -46,9 +48,9 @@ export default class ImagePickerCompress extends React.Component {
     }
 
     onShowImagePicker = () => {
-        window.postMessage(JSON.stringify({
+        MessageBridge.postMessage({
             type: 'onShowImagePicker'
-        }), '*');
+        });
     }
 
     onImagePicked = (e) => {
@@ -68,11 +70,16 @@ export default class ImagePickerCompress extends React.Component {
         } else {
             this.props.onChange && this.props.onChange(files, type, index);
         }
-
-
     }
+
+    onImageClick = (index, files) => {
+        let imageEls = document.getElementsByClassName('am-image-picker-item-content');
+        // 可能会因为多个ImagePicker在一个页面而出现定位问题
+        ImageViewer(index, files, imageEls[index]);
+    }
+
     render() {
-        return <ImagePicker {...this.props} onChange={this.onChange} />;
+        return <ImagePicker {...this.props} onImageClick={this.onImageClick} onChange={this.onChange} />;
     }
 
 }

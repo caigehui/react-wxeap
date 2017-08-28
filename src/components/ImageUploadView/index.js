@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import compressImage from '../../utils/compressImage';
 import { Toast } from 'antd-mobile';
-import { MobileDetect } from 'react-wxeap';
+import MobileDetect from '../../utils/MobileDetect';
 import MessageBridge from '../../utils/MessageBridge';
 
 export default class ImageUploadView extends React.Component {
@@ -22,7 +22,9 @@ export default class ImageUploadView extends React.Component {
 
     _onImagePicked = (message) => {
         if(message.type === 'onImagePicked') {
-            this.props.onImagePicked && this.props.onImagePicked(message.payload.imageData);
+            setTimeout(() => {
+                this.props.onImagePicked && this.props.onImagePicked(message.payload.imageData);
+            }, MobileDetect.isIOS ? 0 : 500)
         }
     }
 

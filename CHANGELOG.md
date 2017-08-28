@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 3.2.0
+`2017-8-28`
+
+* 【新增】`MessageBridge`用于和App进行通信
+
 ## 3.1.5
 `2017-8-22`
 

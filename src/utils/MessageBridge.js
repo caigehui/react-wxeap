@@ -10,7 +10,7 @@ export default class MessageBridge {
      */
     static getMessageFromAndroid(message) {
         for (let listener of MessageBridge.listeners) {
-            listener(JSON.parse(message));
+            listener(message);
         }
     }
 

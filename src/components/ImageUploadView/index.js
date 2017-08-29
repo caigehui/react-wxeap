@@ -24,7 +24,7 @@ export default class ImageUploadView extends React.Component {
         if(message.type === 'onImagePicked') {
             setTimeout(() => {
                 this.props.onImagePicked && this.props.onImagePicked(message.payload.imageData);
-            }, MobileDetect.isIOS ? 0 : 500)
+            }, MobileDetect.isIOS ? 0 : 500);
         }
     }
 

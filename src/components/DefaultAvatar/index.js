@@ -28,7 +28,7 @@ export default class DefaultAvatar extends React.Component {
             width: radius * 2,
             height: radius * 2,
             borderRadius: '50%',
-            fontSize: radius - 10,
+            fontSize: radius - 14,
             justifyContent: 'center',
             alignItems: 'center',
             color: 'white',

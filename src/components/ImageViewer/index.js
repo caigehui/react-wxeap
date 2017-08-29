@@ -87,9 +87,8 @@ class ImageViewer extends React.Component {
                         fullscreenEl: false,
                         maxSpreadZoom: 3,
                         getThumbBoundsFn: this.props.imgEl ? () => {
-                            let pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
                             let rect = this.props.imgEl.getBoundingClientRect();
-                            return { x: rect.left, y: rect.top + pageYScroll, w: rect.width };
+                            return { x: rect.left, y: rect.top , w: rect.width };
                         } : undefined
                     }}
                     close={this.handleClose} />

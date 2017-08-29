@@ -34,12 +34,14 @@ export default class Navigation extends React.Component {
             document.body.appendChild(i);
         }
 
-        MessageBridge.postMessage({
-            type: 'onTitleUpdate',
-            payload: {
-                title
-            }
-        });
+        setTimeout(() => {
+            MessageBridge.postMessage({
+                type: 'onTitleUpdate',
+                payload: {
+                    title
+                }
+            });
+        }, MobileDetect.isAndroid ? 200 : 100);
 
     }
 

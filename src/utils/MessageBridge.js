@@ -56,11 +56,10 @@ export default class MessageBridge {
             for (let listener of MessageBridge.listeners) {
                 if (listener === callback) {
                     window.document.removeEventListener('message', listener);
-                    MessageBridge.listeners = MessageBridge.listeners.removeByCondition(listener === callback);
                 }
             }
         }
-
+        MessageBridge.listeners = MessageBridge.listeners.removeByCondition((listener) => listener === callback);
         
     }
 

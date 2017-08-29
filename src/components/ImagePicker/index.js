@@ -30,21 +30,20 @@ export default class ImagePickerCompress extends React.Component {
             let cameras = document.querySelectorAll('input[type=\'file\']');
             for (let i = 0; i < cameras.length; i++) {
                 cameras[i].setAttribute('type', 'button');
-                this.btn = document.getElementsByClassName('am-image-picker-item am-image-picker-upload-btn');
-                this.btn[0].addEventListener('click', this.onShowImagePicker);
             }
+            this.btn = document.getElementsByClassName('am-image-picker-item am-image-picker-upload-btn');
+            this.btn && this.btn[0] && this.btn[0].addEventListener('click', this.onShowImagePicker);
+            MessageBridge.addMessageListener(this.onImagePicked);
         }
-
-        MessageBridge.addMessageListener(this.onImagePicked);
     }
 
     componentWillUnmount() {
-        this.btn && this.btn.removeEventListener('click', this.onShowImagePicker);
+        this.btn && this.btn[0] && this.btn[0].removeEventListener('click', this.onShowImagePicker);
         MessageBridge.removeMessageListener(this.onImagePicked);
     }
 
     static defaultProps = {
-        maxWidth: 1080
+        maxWidth: 512
     }
 
     onShowImagePicker = () => {
@@ -53,8 +52,7 @@ export default class ImagePickerCompress extends React.Component {
         });
     }
 
-    onImagePicked = (e) => {
-        const message = JSON.parse(e.data);
+    onImagePicked = (message) => {
         if(message.type === 'onImagePicked') {
             this.props.onChange && this.props.onChange([...this.props.files, { url: message.payload.imageData, orientation: 1 }], 'add', this.props.files.length);
         }

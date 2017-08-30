@@ -113,3 +113,35 @@ export default {
   persist: true
 }
 ```
+
+## 路由生命周期
+
+在`react-wxeap@3.3.0`以上版本，可以移除`model`中的`subscriptions`
+
+取而代之的是在`effects`中加入以下四个路由生命周期方法：
+
+```
+effects: {
+    // Push到此Route
+    *onPushToRoute({ payload: { current, before } }, { call, put }) {
+        console.log(`onPushToRoute: \'${current.pathname}\' from \'${before.pathname}\'`);
+    },
+    // Pop到此Route
+    *onPopToRoute({ payload: { before, current } }) {
+        console.log(`onPopToRoute: \'${current.pathname}\' from \'${before.pathname}\'`);
+    },
+    // 此Route将要Pop
+    *routeDidPop({ payload: { current, next } }) {
+        console.log(`\'${current.pathname}\' did pop to \'${next.pathname}\'`);
+    },
+    // 此Route将要Push
+    *routeDidPush({ payload: { current, next } }) {
+        console.log(`\'${current.pathname}\' did push to \'${next.pathname}\'`);
+    },
+
+    ....
+}
+        
+```
+
+note: current代表当前route，next代表下一个route，before代表上一个route

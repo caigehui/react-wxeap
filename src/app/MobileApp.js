@@ -3,7 +3,7 @@ import OrientationListener from '../utils/orientationListener.js';
 import React from 'react';
 import dva from 'dva';
 import { Router, Route } from 'dva/router';
-import middleware from './middleware';
+import { rehydrateMiddleware, routingMiddleware } from './middlewares';
 import { useRouterHistory } from 'dva/router';
 import { createHashHistory } from 'history';
 import * as CONSTANTS from '../constants';
@@ -31,7 +31,7 @@ export default class MobileApp {
      */
     constructor(routes, options, otherMiddlewares = []) {
         this.mobileApp = dva({
-            onAction: [middleware, ...otherMiddlewares],
+            onAction: [rehydrateMiddleware, routingMiddleware, ...otherMiddlewares],
             extraEnhancers: [autoRehydrate()],
             history: useRouterHistory(createHashHistory)({ queryKey: true }),// 不移除_k参数 
             onError(e) {
@@ -100,7 +100,8 @@ export default class MobileApp {
 
     addModel(routes) {
         for (let route of routes) {
-            const { model } = route;
+            let { model } = route;
+            model.state._pathname = route.path;
             if (!model) {
                 console.error(`react-wxeap->mobileApp: 路由\'${route.path}\'缺少model`);
             } else {

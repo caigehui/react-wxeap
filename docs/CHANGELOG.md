@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 3.3.0
+`2017-8-30`
+
+* 【新增】`routingMiddleware`中间件，路由时会自动发送的`Action`给指定`model`
+
 ## 3.2.0
 `2017-8-28`
 

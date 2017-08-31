@@ -74,7 +74,7 @@ export default class RichContentView extends React.Component {
     }
 
     render() {
-        let data = this.state.content.replace(/font-size:\s*\d*px;/gi, '').replace(/font-size:\s*\d*pt;/gi, '').replace(/ alt=""/gi, '');
+        let data = this.state.content.replace(/font-size:[^]*px;/gi, '').replace(/font-size:[^]*pt;/gi, '').replace(/ alt=""/gi, '');
         let result = '';
         this.imgs = [];
         let currentId = 0;

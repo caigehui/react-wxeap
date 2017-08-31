@@ -101,16 +101,17 @@ export default class MobileApp {
     addModel(routes) {
         for (let route of routes) {
             let { model } = route;
-            model.state._pathname = route.path;
             if (!model) {
                 console.error(`react-wxeap->mobileApp: 路由\'${route.path}\'缺少model`);
             } else {
                 if (isArray(model)) {
                     for (let i of model) {
                         this.mobileApp.model(i);
+                        i.state._pathname = route.path;
                     }
                 } else {
                     this.mobileApp.model(model);
+                    model.state._pathname = route.path;
                 }
             }
 

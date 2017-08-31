@@ -2,10 +2,13 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
-## 3.3.1
+## 3.3.5
 `2017-8-31`
 
-* 【修复】`routingMiddleware`不支持web初始化的请求
+* 【修复】`routingMiddleware`现在支持web初始化的请求
+* 【修复】`ScrollView`现在会触发TextAreaItem
+* 【修复】`RichContentView`现在会过滤小数点的`font-size`
+* 【修复】`Menu`现在的文本会正常显示
 
 ## 3.3.0
 `2017-8-30`

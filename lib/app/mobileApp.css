@@ -74,11 +74,11 @@ html, body, :global(#root) {
   border-bottom: 1px solid rgb(220, 220, 220)!important;
 }
 
-
 /* FilterBar菜单 */
 :global(.am-menu .am-flexbox .am-flexbox-item:first-child) { flex: 0.5}
 :global(.am-menu .am-flexbox .am-flexbox-item:last-child) { flex: 1}
 :global(.am-menu .am-flexbox .am-flexbox-item:first-child .am-list .am-list-item .am-list-line) { border-bottom: 1px solid #ddd!important;}
+:global(.am-menu .am-list-content) { overflow: initial!important}
 
 /* 图标大小 */
 :global(.am-icon-xxs) {

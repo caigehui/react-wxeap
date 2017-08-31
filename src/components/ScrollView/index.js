@@ -9,13 +9,7 @@ export default class ScrollView extends Component {
         width: PropTypes.number,
         backgroundColor: PropTypes.string,
         children: PropTypes.any,
-        style: PropTypes.object,
-        useZscroller: PropTypes.bool
-    }
-
-    static defaultProps = {
-        style: {},
-        useZscroller: true
+        style: PropTypes.object
     }
 
     constructor(props) {
@@ -34,24 +28,19 @@ export default class ScrollView extends Component {
 
     render() {
         const style = {
-            height: document.documentElement.clientHeight - ((MobileDetect.isWechat || MobileDetect.isApp ? 0 : 90)),
-            width: document.documentElement.clientWidth,
-            backgroundColor: 'transparent'
+            height: this.props.height || document.documentElement.clientHeight - ((MobileDetect.isWechat || MobileDetect.isApp ? 0 : 90)),
+            width: this.props.width || document.documentElement.clientWidth,
+            backgroundColor: this.props.backgroundColor || 'transparent',
+            WebkitOverflowScrolling: 'touch',
+            overflow: 'scroll',
+            overflowX: 'hidden'
         };
         return (
-            <ListView
-                style={{
-                    ...style,
-                    ...this.props,
-                    ...this.props.style
-                }}
-                renderHeader={() => <div>{this.props.children}</div>}
-                dataSource={this.state.dataSource}
-                useZscroller={this.props.useZscroller}
-                scrollerOptions={{ scrollbars: true }}
-                renderRow={this.renderRow}
-                pageSize={1}
-            />
+            <div style={this.props.style ? { ...style, ...this.props.style } : style}>
+                {
+                    React.Children.map(this.props.children, child => child)
+                }
+            </div>
         );
     }
 }

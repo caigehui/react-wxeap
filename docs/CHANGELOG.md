@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 3.3.1
+`2017-8-31`
+
+* 【修复】`routingMiddleware`不支持web初始化的请求
+
 ## 3.3.0
 `2017-8-30`
 

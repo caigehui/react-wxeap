@@ -14,10 +14,21 @@ export const rehydrateMiddleware = store => next => action => {
 
 export const routingMiddleware = store => next => action => {
 	const state = store.getState();
-	if (!state.routing.locationBeforeTransitions || action.type !== '@@router/LOCATION_CHANGE') return next(action);
+	if (action.type !== '@@router/LOCATION_CHANGE') return next(action);
 	next(action);
-
+	
 	for (let model in state) {
+		if(model === 'routing' || model === '@@dva') continue;
+		if(!state.routing.locationBeforeTransitions) {
+			state[model]._pathname === action.payload.pathname && store.dispatch({
+				type: `${model}/onPushToRoute`,
+				payload: {
+					current: action.payload,
+					before: null
+				}
+			});
+			continue;
+		}
 		if (state[model]._pathname === state.routing.locationBeforeTransitions.pathname) {
 			if (action.payload.action === 'POP') {
 				store.dispatch({

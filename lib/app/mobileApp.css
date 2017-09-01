@@ -54,9 +54,6 @@ html, body, :global(#root) {
 :global(.am-popup) {
   background-color: rgba(0, 0, 0, 0)!important
 }
-:global(.am-popup-mask) {
-  background-color: rgba(0, 0, 0, 0.7)!important
-}
 
 /*刷新控件*/
 :global(.am-refresh-control-loading) {

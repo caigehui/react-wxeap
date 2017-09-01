@@ -70,8 +70,9 @@ class ImageViewer extends React.Component {
 
     render() {
         return (
-            <div style={{ width: document.documentElement.clientWidth, height: document.documentElement.clientHeight }}>
+            <div style={{ width: document.documentElement.clientWidth, height: document.documentElement.clientHeight }} onClick={() => this.photoSwipe && this.photoSwipe.closePhotoSwipe()}>
                 <PhotoSwipe
+                    ref={o => this.photoSwipe = o}
                     isOpen={this.state.isOpen}
                     items={this.props.imgs.map((img, index) => ({
                         src: img.url,

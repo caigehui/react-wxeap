@@ -1,4 +1,4 @@
-import { Popup, Toast, ActionSheet } from 'antd-mobile';
+import { Popup, ActionSheet } from 'antd-mobile';
 import { REHYDRATE } from 'redux-persist/constants';
 
 export const rehydrateMiddleware = store => next => action => {
@@ -85,6 +85,5 @@ export const routingMiddleware = store => next => action => {
 	}
 
 	Popup.hide();
-	Toast.hide();
 	ActionSheet.close();
 };

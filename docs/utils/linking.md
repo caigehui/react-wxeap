@@ -1,6 +1,6 @@
 # linking
 
-使用linking，在App中会拦截跳转并`push`一个新页面
+使用linking，在App中会拦截跳转并`push`一个新页面,linking只在touch主页使用，其他模块用routerRedux进行路由跳转 
 
 ```javascript
 import { linking } from 'react-wxeap';

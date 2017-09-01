@@ -2,12 +2,18 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 3.3.6
+
+* 【修复】`RichContentView`现在会过滤小数点的`font-size`
+* 【优化】`ImageViewer`图片预览再次点击可以关闭
+* 【修复】`compressImage`会把图片变成`PNG`格式
+* 【修复】`routingMiddleware`不会再路由时关闭`Toast`
+
 ## 3.3.5
 `2017-8-31`
 
 * 【修复】`routingMiddleware`现在支持web初始化的请求
 * 【修复】`ScrollView`现在会触发TextAreaItem
-* 【修复】`RichContentView`现在会过滤小数点的`font-size`
 * 【修复】`Menu`现在的文本会正常显示
 
 ## 3.3.0

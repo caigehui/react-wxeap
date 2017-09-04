@@ -1,5 +1,5 @@
 # react-wxeap
-[gimmick:theme](yeti)
+[gimmick:theme](bootstrap)
 
 [首页](index.md)
 [更新日志](CHANGELOG.md)

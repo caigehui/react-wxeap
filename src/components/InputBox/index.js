@@ -59,7 +59,6 @@ class InputBox extends React.Component {
                         placeholder={placeholder}
                         rows={5}
                         count={maxLength}
-                        autoHeight
                     />
                 </div>
             </div>
@@ -89,7 +88,7 @@ const styles = {
 };
 
 function show(options) {
-    Popup.show(<InputBox {...options}/>, { wrapProps });
+    Popup.show(<InputBox {...options}/>);
 }
 
 export default show;

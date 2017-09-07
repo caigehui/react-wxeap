@@ -6,7 +6,7 @@ Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语�
 `2017-9-5`
 
 * 【修复】`InputBox`输入内容过长无法上下滑动的问题
-
+* 【修复】`ImagePicker`在App中出现白色背景的问题
 
 ## 3.3.6
 

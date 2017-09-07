@@ -2,6 +2,12 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 3.3.7
+`2017-9-5`
+
+* 【修复】`InputBox`输入内容过长无法上下滑动的问题
+* 【修复】`ImagePicker`在App中出现白色背景的问题
+
 ## 3.3.6
 
 * 【修复】`RichContentView`现在会过滤小数点的`font-size`

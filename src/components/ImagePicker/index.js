@@ -54,7 +54,9 @@ export default class ImagePickerCompress extends React.Component {
 
     onImagePicked = (message) => {
         if(message.type === 'onImagePicked') {
-            this.props.onChange && this.props.onChange([...this.props.files, { url: message.payload.imageData, orientation: 1 }], 'add', this.props.files.length);
+            compressImage(message.payload.imageData, 1, this.props.maxWidth, url => {
+                this.props.onChange && this.props.onChange([...this.props.files, { url, orientation: 1 }], 'add', this.props.files.length);
+            });
         }
     }
 

@@ -4,7 +4,6 @@ import React from 'react';
 declare interface ImgaePickerProps {
     files?: Array<{}>;
     onChange?: (files: Array<{}>, operationType: string, index?: number) => void;
-    onAddImageClick?: () => void;
     selectable?: boolean;
     maxWidth: number;
 }

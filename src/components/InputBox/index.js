@@ -6,8 +6,6 @@ import {
     Icon,
     Toast
 } from 'antd-mobile';
-import wrapProps from '../../utils/wrapProps';
-
 
 class InputBox extends React.Component {
 

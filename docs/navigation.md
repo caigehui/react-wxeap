@@ -45,6 +45,7 @@
 * [RichContentView](./components/RichContentView.md)
 * [FilterBar](./components/FilterBar.md)
 * [FloatButton](./components/FloatButton.md)
+* [PinchZoomView](./components/PinchZoomView.md)
 
 * # 特殊
 * [Search](./components/Search.md)
@@ -64,3 +65,4 @@
 * [datetimeFormat](./utils/datetimeFormat.md)
 * [RichContent](./utils/RichContent.md)
 * [linking](./utils/linking.md)
+* [MessageBridge](./utils/MessageBridge.md)

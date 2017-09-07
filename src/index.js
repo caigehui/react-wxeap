@@ -21,6 +21,7 @@ export { default as ImagePicker } from './components/ImagePicker';
 export { default as DatePicker } from './components/DatePicker';
 export { default as RichContentView } from './components/RichContentView';
 export { default as ImageUploadView } from './components/ImageUploadView';
+export { default as PinchZoomView } from './components/PinchZoomView';
 export { default as View } from './components/View';
 export { default as Cell } from './components/Cell';
 export { default as AccView } from './components/AccView';

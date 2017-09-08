@@ -2,6 +2,16 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 3.4.1
+`2017-9-8`
+
+* 【修复】`Linking`在put的时候出现的问题
+
+## 3.4.0
+`2017-9-7`
+
+* 【新增】`PinchZoomView`支持缩放
+
 ## 3.3.7
 `2017-9-5`
 

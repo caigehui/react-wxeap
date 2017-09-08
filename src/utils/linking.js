@@ -28,6 +28,7 @@ export default function (lo, dispatch) {
             }
         };
         MessageBridge.postMessage(data);
+        return { type: 'none', payload: {} };
     } else {
         // model
         if (lo.isModel) {

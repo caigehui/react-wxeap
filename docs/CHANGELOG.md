@@ -2,6 +2,12 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 3.4.2
+``
+
+* 【优化】`FilterBar`新增`switchBtns`以支持使用“切换“图标
+* 【调整】`DatePicker`默认使用`statistics`
+
 ## 3.4.1
 `2017-9-8`
 

@@ -24,7 +24,7 @@ class DatePicker extends React.Component {
             type: '' // 自定义的类型
         },
         format: 'YYYY-MM-DD',
-        type: 'filter'
+        type: 'statistics'
     }
 
     constructor(props) {

@@ -12,6 +12,7 @@ declare interface FilterBarProps {
     values: Array<String>;
     onChange: (values: Array<String>, selectedIndex: number) => void;
     onClick: (index: number, callback: (label: string) => void) => void;
+    switchBtns: Array<Number>;
 }
 
 declare class FilterBar extends React.Component<FilterBarProps, any> {

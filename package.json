@@ -30,7 +30,7 @@
   "dependencies": {
     "@types/react": "^15.0.38",
     "@types/react-dom": "^15.5.1",
-    "antd-mobile": "^1.4.1",
+    "antd-mobile": "^1.6.7",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-polyfill": "6.23.0",

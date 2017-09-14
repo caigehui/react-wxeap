@@ -67,8 +67,20 @@ function hammerIt(elm) {
 
 export default class PinchZoomView extends React.Component {
 
+    static propTypes = {
+        initScale: React.PropTypes.number
+    }
+
+    static defaultProps = {
+        initScale: 1
+    }
+
     componentDidMount() {
-        hammerIt(document.getElementById('pinch-zoom-view'));
+        let view = document.getElementById('pinch-zoom-view');
+        view.style.webkitTransform =
+            'translate3d(0px, 0px, 0) ' +
+            'scale3d(' + this.props.initScale + ', ' + this.props.initScale + ', 1)';
+        hammerIt(view);
     }
 
     render() {

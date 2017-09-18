@@ -1,21 +1,23 @@
 /* eslint-disable */
 import React from 'react';
 
+let posX = 0,
+    posY = 0,
+    scale = 1,
+    last_scale = 1,
+    last_posX = 0,
+    last_posY = 0,
+    max_pos_x = 0,
+    max_pos_y = 0,
+    transform = '';
+
 function hammerIt(elm) {
     let hammertime = new Hammer(elm, {});
     hammertime.get('pinch').set({
         enable: true
     });
-    let posX = 0,
-        posY = 0,
-        scale = 1,
-        last_scale = 1,
-        last_posX = 0,
-        last_posY = 0,
-        max_pos_x = 0,
-        max_pos_y = 0,
-        transform = '',
-        el = elm;
+
+    let el = elm;
 
     hammertime.on('doubletap pan pinchmove pinchend pinchcancel panend', function (ev) {
         // pan    
@@ -67,25 +69,24 @@ function hammerIt(elm) {
 
 export default class PinchZoomView extends React.Component {
 
-    static propTypes = {
-        initScale: React.PropTypes.number
-    }
-
-    static defaultProps = {
-        initScale: 1
-    }
-
     componentDidMount() {
-        let view = document.getElementById('pinch-zoom-view');
-        view.style.webkitTransform =
-            'translate3d(0px, 0px, 0) ' +
-            'scale3d(' + this.props.initScale + ', ' + this.props.initScale + ', 1)';
-        hammerIt(view);
+        hammerIt(this.refs['pinch-zoom-view']);
+    }
+
+    /**
+     * 设置缩放
+     * @param {number} scale 
+     */
+    setScale = (s) => {
+        scale = s;
+        this.refs['pinch-zoom-view'].style.webkitTransform =
+            'translate3d(0px, ' + Math.ceil((s - 1) * this.refs['pinch-zoom-view'].clientHeight / 2) + 'px, 0) ' +
+            'scale3d(' + s + ', ' + s + ', 1)';
     }
 
     render() {
         return (
-            <div id="pinch-zoom-view">
+            <div ref="pinch-zoom-view">
                 {this.props.children}
             </div>
         );

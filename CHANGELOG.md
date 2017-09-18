@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 3.4.3
+`2017-9-14`
+
+* 【优化】`PinchZoomView`支持设置Scale
+
 ## 3.4.2
 `2017-9-11`
 

@@ -1,8 +1,5 @@
-declare interface PinchZoomViewProps {
-    // 初始缩放
-    initScale?: number;
+declare class PinchZoomView extends React.Component<any> { 
+    setScale(scale: number): void;
 }
-
-declare class PinchZoomView extends React.Component<PinchZoomViewProps, any> { }
 
 export default PinchZoomView;

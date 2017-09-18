@@ -2,6 +2,8 @@
 
 条件筛选栏组件
 
+note: 不支持多个Filter渲染在同一页面下
+
 ```
 import { FilterBar } from 'react-wxeap';
 

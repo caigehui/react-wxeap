@@ -2,6 +2,16 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 3.4.4
+`2017-9-19`
+
+* 【修复】如果路由生命周期中push自己，现在会正常触发`onPushToRoute`
+
+## 3.4.3
+`2017-9-14`
+
+* 【优化】`PinchZoomView`支持设置Scale
+
 ## 3.4.2
 `2017-9-11`
 

@@ -16,10 +16,10 @@ export const routingMiddleware = store => next => action => {
 	const state = store.getState();
 	if (action.type !== '@@router/LOCATION_CHANGE') return next(action);
 	next(action);
-	
+
 	for (let model in state) {
-		if(model === 'routing' || model === '@@dva') continue;
-		if(!state.routing.locationBeforeTransitions) {
+		if (model === 'routing' || model === '@@dva') continue;
+		if (!state.routing.locationBeforeTransitions) {
 			state[model]._pathname === action.payload.pathname && store.dispatch({
 				type: `${model}/onPushToRoute`,
 				payload: {
@@ -55,7 +55,8 @@ export const routingMiddleware = store => next => action => {
 					}
 				});
 			}
-		} else if (state[model]._pathname === action.payload.pathname) {
+		}
+		if (state[model]._pathname === action.payload.pathname) {
 			if (action.payload.action === 'POP') {
 				store.dispatch({
 					type: `${model}/onPopToRoute`,
@@ -64,17 +65,17 @@ export const routingMiddleware = store => next => action => {
 						before: state.routing.locationBeforeTransitions
 					}
 				});
-			} else if (action.payload.action === 'PUSH') {
+			} else if (action.payload.action === 'REPLACE') {
 				store.dispatch({
-					type: `${model}/onPushToRoute`,
+					type: `${model}/onReplaceToRoute`,
 					payload: {
 						current: action.payload,
 						before: state.routing.locationBeforeTransitions
 					}
 				});
-			} else if (action.payload.action === 'REPLACE') {
+			} else {
 				store.dispatch({
-					type: `${model}/onReplaceToRoute`,
+					type: `${model}/onPushToRoute`,
 					payload: {
 						current: action.payload,
 						before: state.routing.locationBeforeTransitions

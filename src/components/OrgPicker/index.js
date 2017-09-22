@@ -20,7 +20,8 @@ class OrgPicker extends React.Component {
         enableEmpty: React.PropTypes.bool,
         customLabel: React.PropTypes.string,
         nocache: React.PropTypes.bool,
-        disableCheckedDelete: React.PropTypes.bool
+        disableCheckedDelete: React.PropTypes.bool,
+        accessControl: React.PropTypes.bool
     }
 
     static defaultProps = {
@@ -63,47 +64,42 @@ class OrgPicker extends React.Component {
         }, false);
     }
 
-    request = (id) => {
+    request = async (id) => {
         this.setState({ loading: true });
-
         if (this.props.type === 'cmpCheck') {
             // 公司多选，展示当前公司的子公司
-            request(`${API}EAPOrg/QueryChildrenCompany?companyId=${id}`).then(({ data }) => {
-                OrgPicker.indexForType[this.props.type] = [...this.state.index, data.companies[0]];
-                this.setState({
-                    index: OrgPicker.indexForType[this.props.type],
-                    companies: data.companies,
-                    loading: false
-                });
-                // 刷新
-                this.listView.refreshUI();
-                this.listView.scrollToTop();
+            const { data } = await request(`${API}EAPOrg/QueryChildrenCompany?companyId=${id}`);
+            OrgPicker.indexForType[this.props.type] = [...this.state.index, data.companies[0]];
+            this.setState({
+                index: OrgPicker.indexForType[this.props.type],
+                companies: data.companies,
+                loading: false
             });
         } else if (this.props.type === 'cmpRadio') {
             // 公司单选，只展示用户所在的全部公司
-            request(`${API}EAPOrg/QueryCompany`).then(({ data }) => {
-                this.setState({
-                    companies: data.companies,
-                    loading: false
-                });
-                // 刷新
-                this.listView.refreshUI();
-                this.listView.scrollToTop();
+            const { data } = await request(`${API}EAPOrg/QueryCompany`);
+            this.setState({
+                companies: data.companies,
+                loading: false
             });
         } else {
-            request(`${API}EAPOrg/QueryOrg?dptId=${id}&companyId=0`).then(({ data }) => {
-                OrgPicker.indexForType[this.props.type] = [...this.state.index, data.org[0]];
-                this.setState({
-                    index: OrgPicker.indexForType[this.props.type],
-                    org: data.org,
-                    loading: false
-                });
-                // 刷新
-                this.listView.refreshUI();
-                this.listView.scrollToTop();
+            if (this.props.accessControl && id === 0) {
+                // 权限控制
+                const { data: { me } } = await request(`${API}EAPMe/QueryMe`);
+                id = me.currentCmpDptId;
+            }
+            const { data } = await request(`${API}EAPOrg/QueryOrg?dptId=${id}&companyId=0`);
+            OrgPicker.indexForType[this.props.type] = [...this.state.index, data.org[0]];
+            this.setState({
+                index: OrgPicker.indexForType[this.props.type],
+                org: data.org,
+                loading: false
             });
         }
 
+        // 刷新
+        this.listView.refreshUI();
+        this.listView.scrollToTop();
     }
 
     getNavTitle() {

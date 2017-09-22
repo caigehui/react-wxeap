@@ -17,24 +17,23 @@ export default class AccView extends React.Component {
     }
 
     getFileImg(acc) {
-        const url = API.substring(0, API.length - 6);
         const filetype = this.getFileType(acc.oName);
         if (filetype === 'png' || filetype === 'jpg' || filetype === 'jpeg' || filetype === 'gif') {
-            return `${url}Service/WxGetFile.ashx?imgSize=small&hash=${acc.hash}`;
+            return `${EAP}Service/WxGetFile.ashx?imgSize=small&hash=${acc.hash}`;
         } else if (filetype === 'txt')
-            return `${url}Images/Yunpan/txt80.png`;
+            return `${EAP}Images/Yunpan/txt80.png`;
         else if (filetype === 'xls' || filetype === 'xlsx')
-            return `${url}Images/Yunpan/Xls80.png`;
+            return `${EAP}Images/Yunpan/Xls80.png`;
         else if (filetype === 'doc' || filetype === 'docx')
-            return `${url}Images/Yunpan/Doc80.png`;
+            return `${EAP}Images/Yunpan/Doc80.png`;
         else if (filetype === 'pptx' || filetype === 'ppt')
-            return `${url}Images/Yunpan/PPT80.png`;
+            return `${EAP}Images/Yunpan/PPT80.png`;
         else if (filetype === 'zip' || filetype === 'rar')
-            return `${url}Images/Yunpan/Zip80.png`;
+            return `${EAP}Images/Yunpan/Zip80.png`;
         else if (filetype === 'pdf')
-            return `${url}Images/Yunpan/PDF80.png`;
+            return `${EAP}Images/Yunpan/PDF80.png`;
         else
-            return `${url}Images/Yunpan/Unknown80.png`;
+            return `${EAP}Images/Yunpan/Unknown80.png`;
     }
 
     getFileType = (fileName) => {
@@ -42,11 +41,10 @@ export default class AccView extends React.Component {
     }
 
     onAccClick = (acc) => {
-        const url = API.substring(0, API.length - 6);
         // 获取文件后缀名，如果是图片文件就调用图片文件的组件预览，否则就跳转至预览页面
         const filetype = this.getFileType(acc.oName);
         if (filetype === 'png' || filetype === 'jpg' || filetype === 'jpeg' || filetype === 'gif')
-            ImageViewer(0, [{ url: `${url}Service/WxGetFile.ashx?hash=${acc.hash}` }]);
+            ImageViewer(0, [{ url: `${EAP}Service/WxGetFile.ashx?hash=${acc.hash}` }]);
         else
             window.location.href = Acc.getPreviewPath(acc.id);
     }

@@ -14,7 +14,8 @@ OrgPicker({
     }, // items是一个对象数组，代表已选的对象（人员或部门），每个对象包括`id`和`name`两个属性。单选时其长度恒为1，多选时长度不定
     customLabel: '', // Navigation的Label
     nocache: false, // 是否保留层级位置
-    disableCheckedDelete: false //用于禁止修改已选单位
+    disableCheckedDelete: false, //用于禁止修改已选单位
+    accessControl: false, // 权限控制（无法查看上级公司）
 })
 ```
 

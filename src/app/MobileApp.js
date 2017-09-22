@@ -12,6 +12,7 @@ import { Toast } from 'antd-mobile';
 import isArray from 'isarray';
 import searchModel from '../components/Search/model';
 import Search from '../components/Search';
+const config = require('../../../../config/default.json');
 
 const otherRoutes = [
     {
@@ -26,10 +27,9 @@ export default class MobileApp {
     /**
      * 初始化App
      * @param {array} routes 
-     * @param {object} options
      * @param {array} otherMiddlewares 
      */
-    constructor(routes, options, otherMiddlewares = []) {
+    constructor(routes, otherMiddlewares = []) {
         this.mobileApp = dva({
             onAction: [rehydrateMiddleware, routingMiddleware, ...otherMiddlewares],
             extraEnhancers: [autoRehydrate()],
@@ -43,7 +43,7 @@ export default class MobileApp {
         this.routes = routes;
         this.addModel(routes);
         this.addRouter(routes);
-        this.configureAPI(options);
+        this.configureAPI();
 
         OrientationListener(() => {
             this.refreshUI();
@@ -57,8 +57,8 @@ export default class MobileApp {
      * 启动应用
      */
     start() {
-        if (CONSTANTS.DEV_MODE && this.auth && this.auth.length > 0) {
-            fetch(this.origin + this.auth, { credentials: 'include' }).then(() => {
+        if (CONSTANTS.DEV_MODE && config.auth && config.auth.length > 0) {
+            fetch(`/eap${config.auth}`, { credentials: 'include' }).then(() => {
                 this.mobileApp.start('#root');
                 this.persist();
             });
@@ -133,14 +133,11 @@ export default class MobileApp {
         });
     }
 
-    configureAPI(options) {
-        const { module, origin, auth } = options;
-        this.origin = origin;
-        this.auth = auth;
+    configureAPI() {
         let url = window.location.href.toLowerCase();
-        let end = url.lastIndexOf(`/${module}`);
+        let end = url.lastIndexOf(`/${config.module}`);
         url = url.substring(0, end);
-        global.API = CONSTANTS.DEV_MODE ? `${origin}/wxapi/` : `${url}/wxapi/`;
-        global.EAP = CONSTANTS.DEV_MODE ? `${origin}/` : `${url}/`;
+        global.API = CONSTANTS.DEV_MODE ? '/api/' : `${url}/wxapi/`;
+        global.EAP = CONSTANTS.DEV_MODE ? '/eap/' : `${url}/`;
     }
 }

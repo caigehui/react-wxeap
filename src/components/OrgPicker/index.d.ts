@@ -18,6 +18,8 @@ declare interface OrgPickerProps {
     nocache?: boolean;
     //禁止删除checked的单位
     disableCheckedDelete?: boolean;
+    // 权限控制（无法查看上级公司）
+    accessControl?: boolean;
 }
 
 /**

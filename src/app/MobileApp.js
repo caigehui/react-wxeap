@@ -139,5 +139,6 @@ export default class MobileApp {
         url = url.substring(0, end);
         global.API = CONSTANTS.DEV_MODE ? '/api/' : `${url}/wxapi/`;
         global.EAP = CONSTANTS.DEV_MODE ? '/eap/' : `${url}/`;
+        global.EAP_PATH = CONSTANTS.DEV_MODE ? config.origin + '/' : `${url}/`;
     }
 }

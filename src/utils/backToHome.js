@@ -1,4 +1,4 @@
-import { DEV_MODE } from '../constant';
+import { DEV_MODE } from '../constants';
 export default function backToHome() {
     if(DEV_MODE) {
         const config = require('../../../../config/default.json');

@@ -3,7 +3,7 @@
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
 ## 4.0.0
-`2017-9-xx`
+`2017-9-28`
 
 * 【重做】调试时不再跨域请求，而是使用代理转发，以后不用再改`EAP`的`web.config`
 * 【移除】`MobileApp`移除了`options`参数，使用`config`配置的方式

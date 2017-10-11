@@ -1,9 +1,8 @@
 # TODO
 
-## Feature-3.x
+## Feature-4.1.x
 
-* 新增路由跳转时的过渡动画
-* 
+* `FilterBar`支持高级筛选
 
 ## Feature-2.x
 * 支持`react-native`

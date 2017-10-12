@@ -1,7 +1,10 @@
 html, body, :global(#root) {
   height: 100%;
   width: 100%;
-  margin: 0!important
+  margin: 0!important;
+  overflow-x: hidden;
+  position: absolute;
+  font-family: "SF Pro SC","SF Pro Text","SF Pro Icons","PingFang SC","Helvetica Neue","Helvetica","Arial",sans-serif;
 }
 
 
@@ -9,7 +12,8 @@ html, body, :global(#root) {
     border-bottom: 0px!important
 }
 :global(.am-list-body) {
-    border-top: 0px!important
+    border-top: 0px!important;
+    background-color: transparent!important;
 }
 
 :global(.am-list-header) {
@@ -50,9 +54,6 @@ html, body, :global(#root) {
 :global(.am-popup) {
   background-color: rgba(0, 0, 0, 0)!important
 }
-:global(.am-popup-mask) {
-  background-color: rgba(0, 0, 0, 0.7)!important
-}
 
 /*刷新控件*/
 :global(.am-refresh-control-loading) {
@@ -70,11 +71,11 @@ html, body, :global(#root) {
   border-bottom: 1px solid rgb(220, 220, 220)!important;
 }
 
-
 /* FilterBar菜单 */
 :global(.am-menu .am-flexbox .am-flexbox-item:first-child) { flex: 0.5}
 :global(.am-menu .am-flexbox .am-flexbox-item:last-child) { flex: 1}
 :global(.am-menu .am-flexbox .am-flexbox-item:first-child .am-list .am-list-item .am-list-line) { border-bottom: 1px solid #ddd!important;}
+:global(.am-menu .am-list-content) { overflow: initial!important}
 
 /* 图标大小 */
 :global(.am-icon-xxs) {

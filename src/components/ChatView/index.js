@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
-import ReactChatView from './chatview';
+import ReactChatView from './ChatView';
 import View from '../View';
-import MobileDetect from '../../utils/mobileDetect';
+import MobileDetect from '../../utils/MobileDetect';
 import { Icon } from 'antd-mobile';
 
 export default class ChatView extends Component {
@@ -9,7 +9,8 @@ export default class ChatView extends Component {
         renderRow: PropTypes.func,
         onFetch: PropTypes.func,
         style: PropTypes.object,
-        allLoadedText: PropTypes.string
+        allLoadedText: PropTypes.string,
+        stayPosition: PropTypes.bool
     }
 
     static defaultProps = {
@@ -66,7 +67,7 @@ export default class ChatView extends Component {
                 height: document.documentElement.clientHeight - ((MobileDetect.isWechat || MobileDetect.isApp ? 0 : 90)),
                 width: document.documentElement.clientWidth,
                 backgroundColor: 'rgb(245,245,249)',
-                overflowScrolling: 'touch'
+                WebkitOverflowScrolling: 'touch'
             },
             icon: {
                 justifyContent: 'space-around',
@@ -90,12 +91,13 @@ export default class ChatView extends Component {
             flipped={true}
             scrollLoadThreshold={50}
             onInfiniteLoad={this.onLoad}
+            stayPosition={this.props.stayPosition}
             loadingSpinnerDelegate={!this.state.allLoaded ? <View style={styles.icon}><Icon type={require('../../assets/loading.svg')} /></View> :
                 <View style={styles.icon}><div style={styles.sep} />{this.props.allLoadedText}<div style={styles.sep} /></View>}
         >
             {
                 this.state.data.map((item, index) => {
-                    return renderRow(item, index);
+                    return renderRow(item, index, this.state.data);
                 })
             }
         </ReactChatView>;

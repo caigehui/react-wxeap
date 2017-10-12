@@ -13,7 +13,6 @@ import {Cell} from 'react-wxeap'
     onCheck={(isChecked) => this.setState({ checked: isChecked })}
     swipable={true}
     actionButtons={[
-        [
             {
             text: 'Cancel',
             onPress: () => console.log('cancel'),
@@ -24,7 +23,6 @@ import {Cell} from 'react-wxeap'
             onPress: () => console.log('delete'),
             style: { backgroundColor: '#F4333C', color: 'white' },
             },
-        ]
     ]}
     renderContent={(isChecked) => {
         return <View />

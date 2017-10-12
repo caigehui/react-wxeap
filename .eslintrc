@@ -14,7 +14,9 @@
     "react"
   ],
   "globals": {
-    "API": false
+    "API": false,
+    "EAP": false,
+    "EAP_PATH": false
   },
   "rules": {
     "no-alert": 2,

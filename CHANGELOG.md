@@ -2,6 +2,283 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 4.0.0
+`2017-9-28`
+
+* 【重做】调试时不再跨域请求，而是使用代理转发，以后不用再改`EAP`的`web.config`
+* 【移除】`MobileApp`移除了`options`参数，使用`config`配置的方式
+* 【新增】`OrgPicker`新增属性`accessControl`，用于权限控制，开启则用户无法查看上级公司
+* 【优化】优化了`FloatButton`的默认样式
+
+## 3.4.4
+`2017-9-19`
+
+* 【修复】如果路由生命周期中push自己，现在会正常触发`onPushToRoute`
+
+## 3.4.3
+`2017-9-14`
+
+* 【优化】`PinchZoomView`支持设置Scale
+
+## 3.4.2
+`2017-9-11`
+
+* 【优化】`FilterBar`新增`switchBtns`以支持使用“切换“图标
+* 【调整】`DatePicker`默认使用`statistics`
+
+## 3.4.1
+`2017-9-8`
+
+* 【修复】`Linking`在put的时候出现的问题
+
+## 3.4.0
+`2017-9-7`
+
+* 【新增】`PinchZoomView`支持缩放
+
+## 3.3.7
+`2017-9-5`
+
+* 【修复】`InputBox`输入内容过长无法上下滑动的问题
+* 【修复】`ImagePicker`在App中出现白色背景的问题
+
+## 3.3.6
+
+* 【修复】`RichContentView`现在会过滤小数点的`font-size`
+* 【优化】`ImageViewer`图片预览再次点击可以关闭
+* 【修复】`compressImage`会把图片变成`PNG`格式
+* 【修复】`routingMiddleware`不会再路由时关闭`Toast`
+
+## 3.3.5
+`2017-8-31`
+
+* 【修复】`routingMiddleware`现在支持web初始化的请求
+* 【修复】`ScrollView`现在会触发TextAreaItem
+* 【修复】`Menu`现在的文本会正常显示
+
+## 3.3.0
+`2017-8-30`
+
+* 【新增】`routingMiddleware`中间件，路由时会自动发送的`Action`给指定`model`
+
+## 3.2.0
+`2017-8-28`
+
+* 【新增】`MessageBridge`用于和App进行通信
+
+## 3.1.5
+`2017-8-22`
+
+* 【重做】`ImageViewer`，现在的用户体验更好
+* 【优化】`RichContentView`，支持图片缩放
+* 【移除】`ImagePicker`的`onImageClick`，点击会自动预览图片
+
+## 3.1.2
+`2017-8-22`
+
+* 【修复】`InputBox`开启`AutoHeight`
+
+## 3.1.1
+`2017-8-21`
+
+* 【修复】`RichContentView`限制图片的最大宽度
+* 【优化】`ImageUploadView`和`ImagePicker`App上传图片
+* 【修复】`request`超时文本
+
+## 3.1.0
+`2017-8-10`
+
+* 【修复】`OrgPicker`现在会显示部门下无岗位的人员
+* 【优化】`OrgPicker`支持搜索
+* 【修复】`ListView`初始化加载时Footer文本显示为“加载中...”
+* 【修复】`OrgPicker`人员现在不会超出右边界
+* 【优化】网络断开或者恢复时会有`Toast`提示，并且网络断开时不会进行网络请求
+* 【修复】`datatimeFormat`现在会显示一年以前的日期的年份
+* 【优化】`DatePicker`现在会区分`Filter`和`Statistics`
+
+## 3.0.9
+`2017-8-9`
+
+* 【修复】修复全局字体
+* 【优化】`RichContentView`新增一个属性`isFixImgHeight`来固定图片的高度
+
+## 3.0.8
+`2017-8-9`
+
+* 【修复】`RichContentView`和`View`标点符号不换行
+
+## 3.0.7
+
+`2017-8-9`
+
+* 【修复】`backToHome`修改为恢复会话丢失
+* 【修复】`ChatView`平滑滚动
+
+## 3.0.6
+`2017-8-8`
+
+* 【优化】`OrgPicker`新增属性`nocache`用于取消层级保留
+* 【优化】使用了苹果官方的全局字体
+* 【优化】`OrgPicker`新增了`disableCheckedDelete`用于禁止修改已选单位
+* 【修复】修复了`SearchBar`和`Search`搜索时的一些BUG
+
+## 3.0.5
+`2017-8-7`
+
+* 【修复】开启`perisit`数据无法恢复的BUG
+
+## 3.0.4
+`2017-8-7`
+
+* 【修复】`RichContentView`正则表达式错误引起的不显示图片的问题
+* 【优化】`RichContentView`支持自定义点击图片的方法
+
+## 3.0.1
+`2017-8-4`
+
+* 【优化】`OrgPicker`支持自定义导航栏的Label
+* 【修复】修复了`Navigation`在`App`中引起的报错
+
+## 3.0.0
+`2017-8-3`
+
+* 【重构】使用`TypeScript`编写全部组件的声明文件，支持代码提示
+* 【移除】移除对`React Native`的支持，App使用只能使用2.x版本
+* 【修复】`Acc`的`getImagesFromAcc`现在会忽略文件格式的大小写
+* 【修复】body的css新增`position: absolute`解决一些布局问题
+
+## 2.13.2
+`2017-7-28`
+
+* 【修复】`ImageUploadView`支持自定义input的宽度
+
+## 2.13.0
+`2017-7-28`
+
+* 【重做】重做了`Search`组件，现在是使用路由的形式
+
+## 2.12.1
+`2017-7-27`
+
+* 【修复】`RichContentView`点击图片后马上又消失的BUG
+
+## 2.12.0
+`2017-7-26`
+
+* 【新增】`ImageUploadView`支持自定义图片上传
+* 【优化】`InputBox`支持自动聚焦
+
+## 2.11.5
+`2017-7-24`
+
+* 【优化】`OrgPicker`新增`enableEmpty`属性以支持不选择时点击确定
+* 【优化】`InputBox`支持初始值
+* 【优化】`InputBox`当`confirm`返回`true`时，`InputBox`不关闭
+* 【优化】`ChatView`添加id
+
+## 2.11.4
+`2017-7-20`
+
+* 【修复】`Navigation`标题错误
+
+## 2.11.2
+`2017-7-19`
+
+* 【新增】`linking`，在`App`中会进行`Push`
+* 【新增】`Navigation`兼容`App`的title
+* 【修复】`Navigation`限制标题最大长度为8
+
+
+## 2.10.21
+`2017-7-17`
+
+* 【修复】`acc`兼容`<img>`标签没有结尾的BUG
+* 【修复】多个`RichContentView`的图片没有点击响应的BUG
+
+## 2.10.17
+`2017-7-17`
+
+* 【修复】`acc`兼容内部短信的`WxAcceesoryDisplay`
+
+
+## 2.10.16
+`2017-7-13`
+
+* 【优化】`ChatView`的`renderRow`返回列表数据
+
+## 2.10.15
+`2017-7-13`
+
+* 【修复】`Navigation`的title支持动态变化
+
+## 2.10.14
+`2017-7-12`
+
+* 【新增】全局变量`EAP`,作为`EAP`的路径
+
+## 2.10.13
+`2017-7-7`
+
+* 【修复】`RichContentView`特定情况下图片无法预览BUG
+
+## 2.10.12
+`2017-7-5`
+
+* 【优化】`mobileApp`支持`model`数组
+
+## 2.10.11
+`2017-7-5`
+
+* 【优化】`ScrollView`支持关闭`useZscroller`属性
+
+## 2.10.10
+`2017-7-4`
+
+* 【优化】`AccView`提供`title`属性
+* 【升级】`antd-mobile`以修复`SearchBar`键盘类型不是搜索的问题
+
+## 2.10.8
+`2017-6-30`
+
+* 【修复】`RichContentView`base64图片无法预览的BUG
+
+## 2.10.7
+`2017-6-30`
+
+* 【优化】`Search`不隐藏Footer, 并加入了搜索提示
+
+## 2.10.5
+`2017-6-29`
+
+* 【修复】`RichContentView`初始内容的BUG
+
+## 2.10.4
+`2017-6-29`
+
+* 【修复】`Search`搜索的BUG
+
+## 2.10.3
+`2017-6-29`
+
+* 【新增】`RichContentView`支持编辑
+
+
+## 2.10.0
+`2017-6-29`
+
+* 【新增】`richContent`用于将换行符转化成P标签
+
+
+## 2.9.19
+`2017-6-29`
+
+* 【优化】`Search`支持分页查询
+
+## 2.9.16
+`2017-6-27`
+
+* 【修复】`RichContentView`过滤掉pt单位的字体大小
+
 ## 2.9.15
 `2017-6-27`
 

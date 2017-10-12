@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import MobileDetect from '../../utils/mobileDetect';
+import MobileDetect from '../../utils/MobileDetect';
 import { ListView } from 'antd-mobile';
 
 export default class ScrollView extends Component {
@@ -10,10 +10,6 @@ export default class ScrollView extends Component {
         backgroundColor: PropTypes.string,
         children: PropTypes.any,
         style: PropTypes.object
-    }
-
-    static defaultProps = {
-        style: {}
     }
 
     constructor(props) {
@@ -32,24 +28,19 @@ export default class ScrollView extends Component {
 
     render() {
         const style = {
-            height: document.documentElement.clientHeight - ((MobileDetect.isWechat || MobileDetect.isApp ? 0 : 90)),
-            width: document.documentElement.clientWidth,
-            backgroundColor: 'transparent'
+            height: this.props.height || document.documentElement.clientHeight - ((MobileDetect.isWechat || MobileDetect.isApp ? 0 : 90)),
+            width: this.props.width || document.documentElement.clientWidth,
+            backgroundColor: this.props.backgroundColor || 'transparent',
+            WebkitOverflowScrolling: 'touch',
+            overflow: 'scroll',
+            overflowX: 'hidden'
         };
         return (
-            <ListView
-                style={{
-                    ...style,
-                    ...this.props,
-                    ...this.props.style
-                }}
-                renderHeader={() => <div>{this.props.children}</div>}
-                dataSource={this.state.dataSource}
-                useZscroller={true}
-                scrollerOptions={{ scrollbars: true }}
-                renderRow={this.renderRow}
-                pageSize={1}
-            />
+            <div style={this.props.style ? { ...style, ...this.props.style } : style}>
+                {
+                    React.Children.map(this.props.children, child => child)
+                }
+            </div>
         );
     }
 }

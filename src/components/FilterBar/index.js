@@ -13,13 +13,15 @@ export default class FilterBar extends React.Component {
         conditions: PropTypes.array,
         values: PropTypes.array,
         onChange: PropTypes.func,
-        onClick: PropTypes.func
+        onClick: PropTypes.func,
+        switchBtns: PropTypes.array
     }
 
     static defaultProps = {
         onClick: (i, cb) => {
             cb(null);
-        }
+        },
+        switchBtns: []
     }
 
     constructor(props) {
@@ -36,6 +38,7 @@ export default class FilterBar extends React.Component {
     }
 
     setLabels = (labels) => {
+        console.warn('depracated!该方法已经被废弃，请使用setLabel');
         this.setState({ labels: labels });
     }
 
@@ -100,7 +103,7 @@ export default class FilterBar extends React.Component {
 
 
     render() {
-        const { values } = this.props;
+        const { values, switchBtns } = this.props;
         const { selectedIndex, conditions, labels } = this.state;
 
         return (
@@ -134,13 +137,14 @@ export default class FilterBar extends React.Component {
                             const itemTitleStyle = !isSelected ? styles.itemTitle : { ...styles.itemTitle, ...styles.itemTitleSelected };
                             const iconStyle = !isSelected ? styles.icon : { ...styles.icon, ...styles.iconUp };
                             const iconColor = !isSelected ? 'rgb(200,200,200)' : PRIMARY_COLOR;
+                            const isShowSwitchBtn = switchBtns.searchByCondition(index => i === index);
                             return (
                                 <View style={itemStyle} key={i} onClick={() => this.onItemClick(i)}>
                                     <View style={itemTitleStyle}>
                                         {label}
                                     </View>
                                     <View style={iconStyle}>
-                                        <Icon type={require('../../assets/triangle.svg')} size="xxs" color={iconColor} />
+                                        <Icon type={isShowSwitchBtn ? require('../../assets/switch.svg') : require('../../assets/triangle.svg')} size={isShowSwitchBtn ? 'xs' : 'xxs'} color={iconColor} />
                                     </View>
                                 </View>
                             );

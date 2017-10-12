@@ -6,24 +6,14 @@ import wrapProps from '../../utils/wrapProps';
 
 const TabPane = Tabs.TabPane;
 
-const row1 = [
-    '今日',
-    '昨日',
-    '本周'
-];
-
-const row2 = [
-    '上周',
-    '本月',
-    '上月'
-];
-
 class DatePicker extends React.Component {
 
     static propTypes = {
         onSelect: PropTypes.func,
         checked: PropTypes.object,
-        format: PropTypes.string
+        format: PropTypes.string,
+        type: PropTypes.oneOf(['filter', 'statistics'])
+
     }
 
     static defaultProps = {
@@ -33,7 +23,8 @@ class DatePicker extends React.Component {
             end: '2017-05-25', // 结束日期
             type: '' // 自定义的类型
         },
-        format: 'YYYY-MM-DD'
+        format: 'YYYY-MM-DD',
+        type: 'statistics'
     }
 
     constructor(props) {
@@ -97,6 +88,14 @@ class DatePicker extends React.Component {
                         return moment().startOf('month').format(format);
                     case '上月':
                         return moment().subtract(1, 'months').startOf('month').format(format);
+                    case '一天内':
+                        return moment().subtract(1, 'days').format(format);
+                    case '一周内':
+                        return moment().subtract(1, 'weeks').format(format);
+                    case '一月内':
+                        return moment().subtract(1, 'months').format(format);
+                    case '一年内':
+                        return moment().subtract(1, 'years').format(format);
                     default:
                         return '';
                 }
@@ -115,6 +114,11 @@ class DatePicker extends React.Component {
                         return moment().endOf('month').format(format);
                     case '上月':
                         return moment().subtract(1, 'months').endOf('month').format(format);
+                    case '一天内':
+                    case '一周内':
+                    case '一月内':
+                    case '一年内':
+                        return moment().format(format);
                     default:
                         return '';
                 }
@@ -545,7 +549,10 @@ class DatePicker extends React.Component {
 
 
     render() {
+        const { type } = this.props;
         const { checked, isCustomDate, selectedDate, tab } = this.state;
+        const row1 = type === 'filter' ? ['一天内', '一周内', '一月内'] : ['今日', '昨日', '本周'];
+        const row2 = type === 'filter' ? ['一年内'] : ['上周', '本月', '上月'];
         if (isCustomDate)
             return (
                 <View style={{ ...styles.container, height: document.documentElement.clientHeight }} onClick={Popup.hide}>
@@ -583,23 +590,23 @@ class DatePicker extends React.Component {
                 <View style={{ ...styles.insideContainer, width: document.documentElement.clientWidth - 120 }} onClick={e => e.stopPropagation()}>
                     <View style={styles.row}>
                         {row1.map(name => <View key={name} style={name === checked.label ? { ...styles.item, ...styles.itemSelected } : styles.item} onClick={(e) => {
- e.stopPropagation(); this.onClick(name); 
-}}>{name}</View>)}
+                            e.stopPropagation(); this.onClick(name);
+                        }}>{name}</View>)}
                     </View>
                     <View style={styles.row}>
                         {row2.map(name => <View key={name} style={name === checked.label ? { ...styles.item, ...styles.itemSelected } : styles.item} onClick={(e) => {
- e.stopPropagation(); this.onClick(name); 
-}}>{name}</View>)}
+                            e.stopPropagation(); this.onClick(name);
+                        }}>{name}</View>)}
                     </View>
                     <View style={styles.row}>
                         <View style={'自定义日期' === checked.label ? { ...styles.item, ...styles.itemSelected } : styles.item} onClick={(e) => {
- e.stopPropagation(); this.onClick('自定义日期'); 
-}}>{'自定义日期' === checked.label ? `${checked.start} 至 ${checked.end}` : '自定义日期范围'}</View>
+                            e.stopPropagation(); this.onClick('自定义日期');
+                        }}>{'自定义日期' === checked.label ? `${checked.start} 至 ${checked.end}` : '自定义日期范围'}</View>
                     </View>
                     <View style={styles.row}>
                         <View style={'全部日期' === checked.label ? { ...styles.item, ...styles.itemSelected } : styles.item} onClick={(e) => {
- e.stopPropagation(); this.onClick('全部日期'); 
-}}>全部日期</View>
+                            e.stopPropagation(); this.onClick('全部日期');
+                        }}>全部日期</View>
                     </View>
                 </View>
             </View>
@@ -786,6 +793,8 @@ const styles = {
     }
 };
 
-export default (options) => {
+function show(options) {
     Popup.show(<DatePicker {...options} />, { transitionName: 'am-fade', wrapProps });
-};
+}
+
+export default show;

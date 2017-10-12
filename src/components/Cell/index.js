@@ -13,7 +13,8 @@ export default class Cell extends React.Component {
         onClick: PropTypes.func,
         onCheck: PropTypes.func,
         actionButtons: PropTypes.array,
-        renderContent: PropTypes.func
+        renderContent: PropTypes.func,
+        disabled: PropTypes.bool
     }
 
     static defaultProps = {
@@ -23,7 +24,6 @@ export default class Cell extends React.Component {
         actionButtons: []
     }
     
-
     onCheck = (e) => {
         e.stopPropagation();
         this.props.onCheck && this.props.onCheck(!this.props.checked);
@@ -37,18 +37,19 @@ export default class Cell extends React.Component {
             checkable,
             onClick,
             renderContent,
-            height
+            height,
+            disabled
         } = this.props;
         return (
             <SwipeAction autoClose right={actionButtons} disabled={!swipable}>
-                <View style={{...styles.container, height}} onClick={() => onClick && onClick(!checked)}>
+                <View style={{...styles.container, height}} onClick={disabled ? null : () => onClick && onClick(!checked)}>
                     {
                         checkable ?
-                            <View style={styles.checkContainer} onClick={this.onCheck}>
-                                <View style={checked ? {...styles.check, border: `1.5px solid ${COLORS.PRIMARY_COLOR}`} : styles.check}>
+                            <View style={styles.checkContainer} onClick={disabled ? null : this.onCheck}>
+                                <View style={checked ? {...styles.check, border: `1.5px solid ${disabled ? COLORS.SUBTITLE_COLOR : COLORS.PRIMARY_COLOR}`} : styles.check}>
                                     {
                                         checked ?
-                                        <Icon type="check" color={COLORS.PRIMARY_COLOR}/>
+                                        <Icon type="check" color={disabled ? COLORS.SUBTITLE_COLOR : COLORS.PRIMARY_COLOR}/>
                                         : null
                                     }
                                 </View>

@@ -1,5 +1,5 @@
 # react-wxeap
-[gimmick:theme](yeti)
+[gimmick:theme](bootstrap)
 
 [首页](index.md)
 [更新日志](CHANGELOG.md)
@@ -9,7 +9,7 @@
 
 [App]()
 
-* [mobileApp](./app/mobileApp.md)
+* [MobileApp](./app/MobileApp.md)
 * [rnApp](./app/rnApp.md)
 * [bind](./app/bind.md)
 * [request](./app/request.md)
@@ -17,22 +17,22 @@
 [Components-1]()
 
 * # 布局
+* [Navigation](./components/Navigation.md)
 * [View](./components/View.md)
 * [Cell](./components/Cell.md)
 * [ScrollView](./components/ScrollView.md)
+* [Seperator](./components/Seperator.md)
 - - - - 
 * # 弹出层
 * [ImageViewer](./components/ImageViewer.md)
 * [InputBox](./components/InputBox.md)
 * [OrgPicker](./components/OrgPicker.md)
 * [DatePicker](./components/DatePicker.md)
-* [Search](./components/Search.md)
 - - - - 
 * # 组件
 * [ImagePicker](./components/ImagePicker.md)
+* [ImageUploadView](./components/ImageUploadView.md)
 * [ListView](./components/ListView.md)
-* [Navigation](./components/Navigation.md)
-* [Seperator](./components/Seperator.md)
 
 
 [Components-2]()
@@ -45,6 +45,10 @@
 * [RichContentView](./components/RichContentView.md)
 * [FilterBar](./components/FilterBar.md)
 * [FloatButton](./components/FloatButton.md)
+* [PinchZoomView](./components/PinchZoomView.md)
+
+* # 特殊
+* [Search](./components/Search.md)
 
 [Utils]()
 
@@ -52,10 +56,13 @@
 * [Array](./utils/extensions/array.md)
 * [Object](./utils/object.md)
 - - - - 
-* [acc](./utils/acc.md)
+* [Acc](./utils/Acc.md)
 * [delay](./utils/delay.md)
 * [htmlFilter](./utils/htmlFilter.md)
-* [mobileDetect](./utils/mobileDetect.md)
+* [MobileDetect](./utils/MobileDetect.md)
 * [backToHome](./utils/backToHome.md)
 * [wrapProps](./utils/wrapProps.md)
 * [datetimeFormat](./utils/datetimeFormat.md)
+* [RichContent](./utils/RichContent.md)
+* [linking](./utils/linking.md)
+* [MessageBridge](./utils/MessageBridge.md)

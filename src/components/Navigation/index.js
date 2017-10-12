@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { NavBar } from 'antd-mobile';
-import * as MobileDetect from '../../utils/mobileDetect';
+import * as MobileDetect from '../../utils/MobileDetect';
+import MessageBridge from '../../utils/MessageBridge';
 
 export default class Navigation extends React.Component {
 
@@ -18,8 +19,42 @@ export default class Navigation extends React.Component {
         autoHide: true
     }
 
+    configureTitle = (title) => {
+
+        document.title = title;
+        if (MobileDetect.isWechat) {
+            let i = document.createElement('iframe');
+            i.src = '//m.baidu.com/favicon.ico';
+            i.style.display = 'none';
+            i.onload = function () {
+                setTimeout(function () {
+                    i.remove();
+                }, 9);
+            };
+            document.body.appendChild(i);
+        }
+
+        setTimeout(() => {
+            MessageBridge.postMessage({
+                type: 'onTitleUpdate',
+                payload: {
+                    title
+                }
+            });
+        }, MobileDetect.isAndroid ? 200 : 100);
+
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.title !== this.props.title) {
+            this.configureTitle(nextProps.title);
+        }
+    }
+
     componentDidMount() {
-        document.title = this.props.title;
+        setTimeout(() => {
+            this.configureTitle(this.props.title);
+        }, 200);
     }
 
     render() {
@@ -27,10 +62,10 @@ export default class Navigation extends React.Component {
         const { title, onBack, hide, autoHide, rightContent } = this.props;
         return (
             autoHide && (hide || MobileDetect.isWechat || MobileDetect.isApp) ?
-                <div/> :
+                <div /> :
                 <NavBar
                     mode="light" leftContent={onBack ? '返回' : null} rightContent={rightContent} onLeftClick={onBack} iconName={onBack ? 'left' : null}>
-                    {title}
+                    {title.length > 8 ? title.substring(0, 7) + '...' : title}
                 </NavBar>
         );
     }

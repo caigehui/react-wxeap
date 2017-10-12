@@ -1,5 +1,20 @@
+import fetch from 'dva/fetch';
 import { Toast } from 'antd-mobile';
 import backToHome from '../utils/backToHome';
+
+let onLine = window.navigator.onLine;
+
+window.addEventListener('online', () => {
+	onLine = true;
+	Toast.info('网络恢复', 2);
+}, false);
+
+window.addEventListener('offline', () => {
+	onLine = false;
+	Toast.fail('网络断开', 2);
+}, false);
+
+
 function parseJSON(response) {
 	return response.json();
 }
@@ -25,10 +40,10 @@ function validation(responseJson) {
 			responseJson.errmsg && delete responseJson.errmsg;
 			return { data: responseJson || {}, err: null };
 		case 4001: // 会话丢失，刷新页面
-			Toast.info('连接超时，即将返回主页', 2, () => {
+			Toast.info('连接超时', 2, () => {
 				backToHome();
 			});
-			throw responseJson.errmsg;
+			return { data: null, err: '连接超时'};
 		default:
 			Toast.info(responseJson.errmsg, 2);
 			throw responseJson.errmsg;
@@ -40,6 +55,12 @@ function exception(err) {
 	return { data: null, err };
 }
 
+function offLine() {
+  return new Promise(resolve => {
+    resolve({ data: null, err: '无网络连接' });
+  });
+}
+
 
 /**
  * 发送网络请求，如果是POST请求需要传递bodyObject
@@ -47,6 +68,7 @@ function exception(err) {
  * @param {object} bodyObject 
  */
 export default function request(url, bodyObject) {
+	if(!onLine) return offLine();
 	let options = { credentials: 'include' };
 	if (bodyObject) options = {
 		method: 'POST',

@@ -5,11 +5,21 @@
     "stage-0"
   ],
   "plugins": [
+    "transform-decorators-legacy",
     [
       "import",
       {
         "style": "css",
         "libraryName": "antd-mobile"
+      }
+    ],
+    [
+      "transform-runtime",
+      {
+        "helpers": false,
+        "polyfill": false,
+        "regenerator": true,
+        "moduleName": "babel-runtime"
       }
     ]
   ]

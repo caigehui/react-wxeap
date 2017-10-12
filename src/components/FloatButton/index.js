@@ -1,7 +1,7 @@
 import React from 'react';
 import View from '../View';
 import { Icon } from 'antd-mobile';
-
+import { PRIMARY_COLOR } from '../../constants';
 
 export default class FloatButton extends React.Component {
 
@@ -34,15 +34,15 @@ export default class FloatButton extends React.Component {
 const styles = {
     container: {
         position: 'absolute',
-        bottom: 50,
-        right: 50,
-        width: 80,
-        height: 80,
-        backgroundColor: 'rgba(0,0,0,0.75)',
+        bottom: 30,
+        right: 30,
+        width: 100,
+        height: 100,
+        backgroundColor: PRIMARY_COLOR,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 40,
+        borderRadius: 50,
         zIndex: 999,
-        boxShadow: '0px 0px 40px rgba(0,0,0,0.7)'
+        boxShadow: '2px 10px 20px rgba(0,0,0,0.3)'
     }
 };

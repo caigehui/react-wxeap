@@ -4,9 +4,10 @@ import request from '../../app/request';
 import View from '../View';
 import Cell from '../Cell';
 import ListView from '../ListView';
-import { Popup, NavBar, Icon, List } from 'antd-mobile';
+import { Popup, NavBar, Icon, List, SearchBar } from 'antd-mobile';
 import * as COLORS from '../../constants';
-import * as Acc from '../../utils/acc';
+import * as Acc from '../../utils/Acc';
+import SearchHeader from '../Search/Header';
 
 const colors = [COLORS.BLUE_COLOR, COLORS.RED_COLOR, COLORS.GREEN_COLOR, COLORS.YELLOW_COLOR];
 
@@ -15,12 +16,17 @@ class OrgPicker extends React.Component {
     static propTypes = {
         type: React.PropTypes.oneOf(['empCheck', 'empRadio', 'dptCheck', 'dptRadio', 'cmpCheck', 'cmpRadio']),
         checked: React.PropTypes.arrayOf(React.PropTypes.object),
-        onConfirm: React.PropTypes.func
+        onConfirm: React.PropTypes.func,
+        enableEmpty: React.PropTypes.bool,
+        customLabel: React.PropTypes.string,
+        nocache: React.PropTypes.bool,
+        disableCheckedDelete: React.PropTypes.bool,
+        accessControl: React.PropTypes.bool
     }
 
     static defaultProps = {
         type: 'empRadio',
-        checked: []
+        checked: [],
     }
 
     static indexForType = {}
@@ -28,11 +34,16 @@ class OrgPicker extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            originalChecked: props.checked,
             checked: props.checked,
-            index: OrgPicker.indexForType[props.type] || [],
+            index: props.nocache ? [] : (OrgPicker.indexForType[props.type] || []),
             loading: true,
             org: [],
-            companies: []
+            companies: [],
+            content: '',
+            emps: [],
+            focused: false,
+            searching: false
         };
     }
 
@@ -53,63 +64,59 @@ class OrgPicker extends React.Component {
         }, false);
     }
 
-    request = (id) => {
+    request = async (id) => {
         this.setState({ loading: true });
-
         if (this.props.type === 'cmpCheck') {
             // 公司多选，展示当前公司的子公司
-            request(`${API}EAPOrg/QueryChildrenCompany?companyId=${id}`).then(({ data }) => {
-                OrgPicker.indexForType[this.props.type] = [...this.state.index, data.companies[0]];
-                this.setState({
-                    index: OrgPicker.indexForType[this.props.type],
-                    companies: data.companies,
-                    loading: false
-                });
-                // 刷新
-                this.listView.refreshUI();
-                this.listView.scrollToTop();
+            const { data } = await request(`${API}EAPOrg/QueryChildrenCompany?companyId=${id}`);
+            OrgPicker.indexForType[this.props.type] = [...this.state.index, data.companies[0]];
+            this.setState({
+                index: OrgPicker.indexForType[this.props.type],
+                companies: data.companies,
+                loading: false
             });
         } else if (this.props.type === 'cmpRadio') {
             // 公司单选，只展示用户所在的全部公司
-            request(`${API}EAPOrg/QueryCompany`).then(({ data }) => {
-                this.setState({
-                    companies: data.companies,
-                    loading: false
-                });
-                // 刷新
-                this.listView.refreshUI();
-                this.listView.scrollToTop();
+            const { data } = await request(`${API}EAPOrg/QueryCompany`);
+            this.setState({
+                companies: data.companies,
+                loading: false
             });
         } else {
-            request(`${API}EAPOrg/QueryOrg?dptId=${id}&companyId=0`).then(({ data }) => {
-                OrgPicker.indexForType[this.props.type] = [...this.state.index, data.org[0]];
-                this.setState({
-                    index: OrgPicker.indexForType[this.props.type],
-                    org: data.org,
-                    loading: false
-                });
-                // 刷新
-                this.listView.refreshUI();
-                this.listView.scrollToTop();
+            if (this.props.accessControl && id === 0) {
+                // 权限控制
+                const { data: { me } } = await request(`${API}EAPMe/QueryMe`);
+                id = me.currentCmpDptId;
+            }
+            const { data } = await request(`${API}EAPOrg/QueryOrg?dptId=${id}&companyId=0`);
+            OrgPicker.indexForType[this.props.type] = [...this.state.index, data.org[0]];
+            this.setState({
+                index: OrgPicker.indexForType[this.props.type],
+                org: data.org,
+                loading: false
             });
         }
 
+        // 刷新
+        this.listView.refreshUI();
+        this.listView.scrollToTop();
     }
 
     getNavTitle() {
-        const { type } = this.props;
+        const { type, customLabel } = this.props;
+        if (customLabel) return customLabel;
         switch (type) {
             case 'empCheck': return '人员多选';
             case 'empRadio': return '人员单选';
             case 'dptCheck': return '部门多选';
             case 'dptRadio': return '部门单选';
             case 'cmpCheck': return '子公司选择';
-            case 'cmpRadio': return '切换公司';
+            case 'cmpRadio': return '切换单位';
         }
     }
 
     onConfirm = () => {
-        if (this.state.checked.length === 0) return;
+        if (!this.props.enableEmpty && this.state.checked.length === 0) return;
         this.props.onConfirm && this.props.onConfirm(this.state.checked);
         Popup.hide();
     }
@@ -174,9 +181,37 @@ class OrgPicker extends React.Component {
     }
 
     onCheckedClick = (item) => {
+        if (this.props.disableCheckedDelete) return;
         const { checked } = this.state;
         this.setState({
             checked: checked.removeByCondition(i => i.id === item.id)
+        });
+    }
+
+    renderSearchContainer() {
+        const { type } = this.props;
+        switch (type) {
+            case 'dptCheck':
+            case 'dptRadio':
+            case 'cmpRadio':
+            case 'cmpCheck':
+                return null;
+        }
+        return <SearchBar placeholder="搜索" value={this.state.content} onChange={this.onSearch} onFocus={() => this.setState({ focused: true })} onBlur={() => this.setState({ focused: false })} onCancel={() => this.setState({ emps: [], content: '' })} />;
+    }
+
+    onSearch = (content) => {
+        this.setState({
+            content
+        });
+        content = content.replace(/(^\s*)|(\s*$)/g, '');
+        if (content.length === 0) return this.setState({ emps: [] });
+        this.setState({ searching: true });
+        request(`${API}EAPOrg/Search?content=${content}`).then(({ data }) => {
+            this.setState({
+                emps: data.emps,
+                searching: false
+            });
         });
     }
 
@@ -188,7 +223,7 @@ class OrgPicker extends React.Component {
             checkedEl.push(<div key={i}
                 onClick={() => this.onCheckedClick(item)}
                 style={{
-                    ...styles.item, color: COLORS.RED_COLOR
+                    ...styles.item, color: this.props.disableCheckedDelete ? COLORS.SUBTITLE_COLOR : COLORS.RED_COLOR
                 }} >{item.name}</div>);
             if (i === checked.length - 1) return;
             checkedEl.push(<div key={`${i}-sep`} style={{
@@ -208,6 +243,7 @@ class OrgPicker extends React.Component {
     renderIndexContainer() {
         const { index } = this.state;
         if (index.length === 0) return null;
+        if (this.state.focused || this.state.content.length > 0) return null;
         if (this.props.type === 'cmpRadio') return null; // 切换公司不需要Index
         let el = [];
         index.map((dpt, i) => {
@@ -226,8 +262,54 @@ class OrgPicker extends React.Component {
         );
     }
 
+    renderSearchResult() {
+        const { emps, content, searching, checked, originalChecked } = this.state;
+        return (
+            <div style={styles.pickerContainer}>
+                {
+                    content.length === 0 ?
+                        <SearchHeader label="搜索人员" type="search" />
+                        :
+                        emps.length === 0 ?
+                            <SearchHeader label={searching ? '加载中' : '没有该人员'} type={searching ? 'search' : 'search-noresult'} />
+                            :
+                            <List>
+                                {emps.map(item => {
+                                    return (
+                                        <Cell
+                                            disabled={this.props.disableCheckedDelete ? originalChecked.searchByCondition(i => i.id === item.id) : false}
+                                            key={item.id}
+                                            checkable
+                                            checked={checked.searchByCondition(a => a.id === item.id)}
+                                            onClick={() => this.onChange(item)}
+                                            onCheck={() => this.onChange(item)}
+                                            renderContent={() =>
+                                                <View style={styles.cell}>
+                                                    {
+                                                        !item.avatarHash ?
+                                                            <div style={{ ...styles.icon, backgroundColor: colors[item.id % colors.length] }} >{item.name.substring(item.name.length - (item.name.length > 2 ? 2 : 1), item.name.length)}</div>
+                                                            :
+                                                            <img src={Acc.getThumbUrl(item.avatarHash)} style={styles.icon} />
+                                                    }
+                                                    <View style={styles.label}>
+                                                        {item.name}
+                                                        {!item.jobName ? null : <span style={styles.job}>{item.jobName}</span>}
+                                                    </View>
+                                                </View>} />
+
+                                    );
+                                })}
+                            </List>
+                }
+            </div>
+        );
+
+    }
+
     renderPickerContainer() {
-        const { org, checked, index, companies } = this.state;
+        if (this.state.focused || this.state.content.length > 0) return this.renderSearchResult();
+        const { disableCheckedDelete } = this.props;
+        const { org, checked, index, companies, originalChecked } = this.state;
         return (
             <div style={styles.pickerContainer}>
                 {
@@ -241,6 +323,7 @@ class OrgPicker extends React.Component {
                                             if (item.type === 'all') return null;
                                             return (
                                                 <Cell
+                                                    disabled={disableCheckedDelete ? originalChecked.searchByCondition(i => i.id === item.id) : false}
                                                     key={item.id}
                                                     checkable={item.type === 'emp'}
                                                     checked={checked.searchByCondition(a => a.id === item.id)}
@@ -259,7 +342,7 @@ class OrgPicker extends React.Component {
                                                             }
                                                             <View style={styles.label}>
                                                                 {item.name}
-                                                                {item.type === 'dpt' ? null : <span style={styles.job}>{item.job}</span>}
+                                                                {item.type === 'dpt' || !item.jobName ? null : <span style={styles.job}>{item.jobName}</span>}
                                                             </View>
                                                             {
                                                                 item.type === 'dpt' ?
@@ -283,6 +366,7 @@ class OrgPicker extends React.Component {
                                             if (item.type === 'dpt' || (index.length === 1 && item.type === 'all')) {
                                                 return (
                                                     <Cell
+                                                        disabled={disableCheckedDelete ? originalChecked.searchByCondition(i => i.id === item.id) : false}
                                                         key={item.id}
                                                         checked={checked.searchByCondition(a => a.id === item.id)}
                                                         checkable
@@ -319,6 +403,7 @@ class OrgPicker extends React.Component {
                                             if (i === 0) return null;
                                             return (
                                                 <Cell
+                                                    disabled={disableCheckedDelete ? originalChecked.searchByCondition(i => i.id === item.id) : false}
                                                     key={item.id}
                                                     checked={checked.searchByCondition(a => a.id === item.id)}
                                                     checkable
@@ -351,6 +436,7 @@ class OrgPicker extends React.Component {
                                         {companies.map(item => {
                                             return (
                                                 <Cell
+                                                    disabled={disableCheckedDelete ? originalChecked.searchByCondition(i => i.id === item.id) : false}
                                                     key={item.id}
                                                     checked={checked.searchByCondition(a => a.id === item.id)}
                                                     checkable
@@ -379,6 +465,7 @@ class OrgPicker extends React.Component {
     renderHeader = () => {
         return (
             <div style={{ backgroundColor: 'white' }}>
+                {this.renderSearchContainer()}
                 {this.renderCheckedContainer()}
                 {this.renderIndexContainer()}
             </div>
@@ -394,7 +481,7 @@ class OrgPicker extends React.Component {
                     onLeftClick={Popup.hide}
                     rightContent={this.props.type === 'empRadio' || this.props.type === 'dptRadio' ? null : <div style={styles.tick} onClick={this.onConfirm}
                     >
-                        <Icon type={require('../../assets/tick.svg')} color={this.state.checked.length > 0 ? COLORS.PRIMARY_COLOR : 'rgba(74, 144, 226, 0.3)'} />
+                        <Icon type={require('../../assets/tick.svg')} color={!this.props.enableEmpty && this.state.checked.length === 0 ? 'rgba(74, 144, 226, 0.3)' : COLORS.PRIMARY_COLOR} />
                     </div>}
                 >{this.getNavTitle()}</NavBar>
                 <ListView
@@ -419,10 +506,7 @@ const styles = {
         backgroundColor: 'white'
     },
     checkedContainer: {
-        paddingLeft: 30,
-        width: '100%',
-        paddingTop: 15,
-        paddingBottom: 15,
+        padding: '15px 30px',
         alignSelf: 'center',
     },
     indexContainer: {
@@ -500,6 +584,9 @@ const styles = {
     }
 };
 
-export default (options) => {
+
+function show(options) {
     Popup.show(<OrgPicker {...options} />, { transitionName: 'am-fade', wrapProps });
-};
+}
+
+export default show;

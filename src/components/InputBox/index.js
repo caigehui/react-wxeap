@@ -6,31 +6,33 @@ import {
     Icon,
     Toast
 } from 'antd-mobile';
-import wrapProps from '../../utils/wrapProps';
-
 
 class InputBox extends React.Component {
 
     static propTypes = {
         onConfirm: React.PropTypes.func,
         title: React.PropTypes.string,
+        initialValue: React.PropTypes.string,
         placeholder: React.PropTypes.string,
         maxLength: React.PropTypes.number,
-        minLength: React.PropTypes.number
+        minLength: React.PropTypes.number,
     }
 
     state = {
-        maxLength: 0,
-        minLength: 0,
-        title: '输入',
-        placeholder: '请输入',
-        value: ''
+        focused: false,
+        value: this.props.initialValue || ''
+    }
+
+    componentDidMount() {
+        this.setState({
+            focused: true
+        });
     }
 
     onConfirm = () => {
         if(this.state.value.length < this.props.minLength) return Toast.info(`请输入至少${this.props.minLength}个字符`, 2);
-        this.props.onConfirm && this.props.onConfirm(this.state.value);
-        Popup.hide();
+        let hiddenDisabled = this.props.onConfirm && this.props.onConfirm(this.state.value);
+        !hiddenDisabled && Popup.hide();
     }
 
     render() {
@@ -48,7 +50,8 @@ class InputBox extends React.Component {
                 >{title}</NavBar>
                 <div style={styles.textarea}>
                     <TextareaItem
-                        autoFocus={true} 
+                        onFocus={() => this.setState({ focused: false })}
+                        focused={this.state.focused}
                         value={this.state.value}
                         onChange={(value) => this.setState({ value })}
                         placeholder={placeholder}
@@ -63,7 +66,7 @@ class InputBox extends React.Component {
 }
 const styles = {
     container: {
-        height: 400,
+        minHeight: 400,
         width: '100%',
         backgroundColor: 'white',
     },
@@ -75,13 +78,15 @@ const styles = {
         alignItems: 'center',
     },
     textarea: {
-        height: 310,
+        minHeight: 310,
         width: '93%',
         marginLeft: '3%',
         fontSize: 25
     }
 };
 
-export default (options) => {
-    Popup.show(<InputBox {...options}/>, { wrapProps });
-};
+function show(options) {
+    Popup.show(<InputBox {...options}/>);
+}
+
+export default show;

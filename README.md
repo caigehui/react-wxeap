@@ -5,6 +5,9 @@
 
 cnwxsoft react framework, based on [redux](https://github.com/reactjs/redux), [redux-saga](https://github.com/yelouafi/redux-saga) and [react-router@2.x](https://github.com/ReactTraining/react-router/tree/v2.8.1) (Using [dva](https://github.com/dvajs/dva/))
 
+examples: https://caigehui.github.io/react-wxeap
+
+
 ## Features
 
 * easy to build react app with redux and react-router

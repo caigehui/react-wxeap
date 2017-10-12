@@ -1,32 +1,10 @@
 import React, { PropTypes } from 'react';
-import MobileDetect from '../../utils/mobileDetect';
+import MobileDetect from '../../utils/MobileDetect';
 import {
     ListView,
     RefreshControl,
     Icon
 } from 'antd-mobile';
-
-const styles = {
-    listView: {
-        height: document.documentElement.clientHeight - ((MobileDetect.isWechat || MobileDetect.isApp ? 0 : 90)),
-        width: document.documentElement.clientWidth,
-        backgroundColor: 'rgb(245,245,249)'
-    },
-    footer: {
-        display: 'flex',
-        width: '100%',
-        height: 60,
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        textAlign: 'center',
-        verticalAlign: 'middle',
-    },
-    sep: {
-        height: 1,
-        width: '25%',
-        backgroundColor: 'rgb(220,220,225)',
-    }
-};
 
 // 缓存数据
 let cacheData = {};
@@ -40,7 +18,7 @@ let allLoaded = {};
 // 页数
 let page = {};
 
-export default class extends React.Component {
+export default class WXListView extends React.Component {
 
     static propTypes = {
         listId: PropTypes.string.isRequired,
@@ -232,7 +210,7 @@ export default class extends React.Component {
     onRefresh = () => {
         const { refreshing } = this.state;
         if (refreshing === false) {
-            this.setState({ refreshing: true, page: 1 });
+            this.setState({ refreshing: true, isLoading: true, page: 1 });
             this.send(1);
         }
     }
@@ -273,3 +251,26 @@ export default class extends React.Component {
         );
     }
 }
+
+
+const styles = {
+    listView: {
+        height: document.documentElement.clientHeight - ((MobileDetect.isWechat || MobileDetect.isApp ? 0 : 90)),
+        width: document.documentElement.clientWidth,
+        backgroundColor: 'rgb(245,245,249)'
+    },
+    footer: {
+        display: 'flex',
+        width: '100%',
+        height: 60,
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        textAlign: 'center',
+        verticalAlign: 'middle',
+    },
+    sep: {
+        height: 1,
+        width: '25%',
+        backgroundColor: 'rgb(220,220,225)',
+    }
+};

@@ -1,5 +1,4 @@
 import React, { PropTypes, Component } from 'react';
-import { CONST, View } from 'react-wxeap';
 import View from '../View';
 import * as COLORS from '../../constants';
 export default class Stamp extends Component {

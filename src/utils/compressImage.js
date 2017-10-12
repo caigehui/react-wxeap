@@ -63,10 +63,8 @@ export default function compressImage(src, orientation, maxWidth, cb) {
                     canvas.height = h;
                     ctx.drawImage(img, 0, 0, w, h);
             }
-            // get image type
-            let type = src.substring(src.indexOf(':') + 1, src.indexOf(';'));
             // convert to base64
-            let base64Url = canvas.toDataURL(type);
+            let base64Url = canvas.toDataURL('image/png');
             cb(base64Url);
         }
     };

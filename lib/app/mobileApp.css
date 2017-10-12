@@ -1,7 +1,10 @@
 html, body, :global(#root) {
   height: 100%;
   width: 100%;
-  margin: 0!important
+  margin: 0!important;
+  overflow-x: hidden;
+  position: absolute;
+  font-family: "SF Pro SC","SF Pro Text","SF Pro Icons","PingFang SC","Helvetica Neue","Helvetica","Arial",sans-serif;
 }
 
 
@@ -9,7 +12,8 @@ html, body, :global(#root) {
     border-bottom: 0px!important
 }
 :global(.am-list-body) {
-    border-top: 0px!important
+    border-top: 0px!important;
+    background-color: transparent!important;
 }
 
 :global(.am-list-header) {
@@ -18,16 +22,22 @@ html, body, :global(#root) {
 
 :global(.am-list-item .am-input-control input) {
   text-align: right;
-  font-size: 28px!important;
 }
 
 :global(.am-list-item .am-input-label.am-input-label-5) {
   width: 210px!important;
-  font-size: 30px!important;
+}
+
+:global(.am-list-item) {
+  min-height: 100px!important
+}
+
+:global(.am-list-body div:not(:last-child) .am-list-line:after) {
+  border-bottom: 1px solid rgb(220, 220, 220)!important
 }
 
 :global(.am-list-content) {
-  font-size: 30px!important;
+  color: rgb(50, 50, 50)!important
 }
 :global(.am-list-extra) {
   font-size: 28px!important;
@@ -43,9 +53,6 @@ html, body, :global(#root) {
 }
 :global(.am-popup) {
   background-color: rgba(0, 0, 0, 0)!important
-}
-:global(.am-popup-mask) {
-  background-color: rgba(0, 0, 0, 0.7)!important
 }
 
 /*刷新控件*/
@@ -64,11 +71,11 @@ html, body, :global(#root) {
   border-bottom: 1px solid rgb(220, 220, 220)!important;
 }
 
-
 /* FilterBar菜单 */
 :global(.am-menu .am-flexbox .am-flexbox-item:first-child) { flex: 0.5}
 :global(.am-menu .am-flexbox .am-flexbox-item:last-child) { flex: 1}
 :global(.am-menu .am-flexbox .am-flexbox-item:first-child .am-list .am-list-item .am-list-line) { border-bottom: 1px solid #ddd!important;}
+:global(.am-menu .am-list-content) { overflow: initial!important}
 
 /* 图标大小 */
 :global(.am-icon-xxs) {
@@ -79,4 +86,12 @@ html, body, :global(#root) {
 /* FilterBar的list允许空格 */
 :global(.am-menu .am-flexbox .am-flexbox-item .am-list .am-list-item .am-list-line .am-list-content) {
   white-space: pre!important
+}
+
+:global(.am-image-picker-upload-btn):active {
+  background-color: rgb(220, 220, 220)!important
+}
+
+:global(.am-search) {
+  background-color: rgb(245, 245, 249)!important
 }

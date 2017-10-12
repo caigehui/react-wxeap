@@ -46,6 +46,7 @@
 * [FilterBar](./components/FilterBar.md)
 * [FloatButton](./components/FloatButton.md)
 * [PinchZoomView](./components/PinchZoomView.md)
+* [Stamp](./components/Stamp.md)
 
 * # 特殊
 * [Search](./components/Search.md)

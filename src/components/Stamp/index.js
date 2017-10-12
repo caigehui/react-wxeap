@@ -13,7 +13,7 @@ export default class Stamp extends Component {
         size: 'm',
         top: 0,
         right: 0,
-        text: 'wxsoft',
+        text: '',
         colorType: 'red'
     }
     getSize = () => {

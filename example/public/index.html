@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=0.5,maximum-scale=0.5,minimum-scale=0.5">
+  <title></title>
+  <script type='application/javascript' src='fastclick.js'></script>
+  <script>
+    if (top !== window) {
+      top.location.href = location.href;
+    }
+    if (!window.Promise) {
+      document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"' + '>' + '<' + '/' + 'script>');
+    }
+    window.document.documentElement.style.fontSize = '100px';
+  </script>
+  <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+  <div id="root"></div>
+  <script src="index.js"></script>
+  <script type="text/javascript">
+    if ('addEventListener' in document) {
+      document.addEventListener('DOMContentLoaded', function () {
+        FastClick.attach(document.body);
+      }, false);
+    }
+  </script>
+</body>
+
+</html>

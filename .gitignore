@@ -10,4 +10,6 @@
 node_modules
 config.gypi
 CVS
+package-lock.json
+lib
 npm-debug.log

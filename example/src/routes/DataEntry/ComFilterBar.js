@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { CONST, View, FilterBar, bind, linking, DatePicker } from 'react-wxeap';
-import ComDetail from '../../components/ComDetail';
-import ComHeader from '../../components/ComHeader';
+import ComDetail from 'components/ComDetail';
+import ComHeader from 'components/ComHeader';
 
 @bind(state => state.comFilterBar)
 class ComFilterBar extends Component {

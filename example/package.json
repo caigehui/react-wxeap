@@ -1,5 +1,5 @@
 {
-  "name": "react-wxeap-mobile-template",
+  "name": "react-wxeap-mobile",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -15,7 +15,7 @@
     "babel-runtime": "^6.9.2",
     "react": "~15.4.1",
     "react-dom": "~15.4.1",
-    "react-wxeap": "^4.1.0-beta.0"
+    "react-wxeap": "^4.0.0-beta.7"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",

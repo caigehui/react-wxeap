@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bind, CONST, View, Seperator, ImagePicker, ImageViewer, linking } from 'react-wxeap';
-import ComDetail from 'components/ComDetail';
-import ComHeader from 'components/ComHeader';
+import ComDetail from '../../components/ComDetail';
+import ComHeader from '../../components/ComHeader';
 
 @bind(state => state.comImagePicker)
 export default class ComImagePicker extends Component {

@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { bind, CONST, View, linking, ChatView, DefaultAvatar, RichContentView } from 'react-wxeap';
 import { PAGE_SIZE } from '../../constants';
-import ComDetail from 'components/ComDetail';
-import ComHeader from 'components/ComHeader';
+import ComDetail from '../../components/ComDetail';
+import ComHeader from '../../components/ComHeader';
 
 @bind(state => state.comChatView)
 export default class ComChatView extends Component {

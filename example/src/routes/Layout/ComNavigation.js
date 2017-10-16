@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bind, CONST, View, Navigation, linking } from 'react-wxeap';
-import ComDetail from 'components/ComDetail';
-import ComHeader from 'components/ComHeader';
+import ComDetail from '../../components/ComDetail';
+import ComHeader from '../../components/ComHeader';
 import { Toast } from 'antd-mobile';
 
 @bind(state => state.comNavigation)

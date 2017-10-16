@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bind, CONST, View, Seperator, Search, linking } from 'react-wxeap';
-import ComDetail from 'components/ComDetail';
-import ComHeader from 'components/ComHeader';
+import ComDetail from '../../components/ComDetail';
+import ComHeader from '../../components/ComHeader';
 import { SearchBar, WhiteSpace, List } from 'antd-mobile';
 import { Toast } from 'antd-mobile';
 

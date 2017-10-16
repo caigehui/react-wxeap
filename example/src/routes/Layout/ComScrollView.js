@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { bind, CONST, View, ScrollView, linking } from 'react-wxeap';
-import ComExample from 'components/ComExample';
-import ComDetail from 'components/ComDetail';
-import ComHeader from 'components/ComHeader';
+import ComExample from '../../components/ComExample';
+import ComDetail from '../../components/ComDetail';
+import ComHeader from '../../components/ComHeader';
 
 @bind(state => state.comScrollView)
 class ComScrollView extends Component {

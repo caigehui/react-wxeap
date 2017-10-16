@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bind, CONST, View, Seperator, linking, AccView } from 'react-wxeap';
-import ComDetail from 'components/ComDetail';
-import ComHeader from 'components/ComHeader';
+import ComDetail from '../../components/ComDetail';
+import ComHeader from '../../components/ComHeader';
 
 @bind(state => state.comAccView)
 export default class ComAccView extends Component {

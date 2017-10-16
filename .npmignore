@@ -15,6 +15,7 @@ src/**
 src
 .babelrc
 docs
+example
 .editorconfig
 .gitignore
 .npmignore

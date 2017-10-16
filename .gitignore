@@ -8,6 +8,8 @@
 .wafpickle-*
 .vscode
 node_modules
+package-lock.json
+lib
 config.gypi
 CVS
 npm-debug.log

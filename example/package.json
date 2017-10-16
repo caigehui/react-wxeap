@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "react-wxeap-mobile",
+=======
+  "name": "react-wxeap-mobile-template",
+>>>>>>> refs/remotes/caigehui/master
   "version": "1.0.0",
   "private": true,
   "scripts": {

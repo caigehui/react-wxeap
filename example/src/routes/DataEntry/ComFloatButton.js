@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { bind, CONST, View, FloatButton, linking } from 'react-wxeap';
-import ComExample from '../../components/ComExample';
-import ComDetail from '../../components/ComDetail';
-import ComHeader from '../../components/ComHeader';
+import ComExample from 'components/ComExample';
+import ComDetail from 'components/ComDetail';
+import ComHeader from 'components/ComHeader';
 import { Toast } from 'antd-mobile';
 
 @bind(state => state.comFloatButton)

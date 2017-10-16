@@ -18,12 +18,9 @@ export default {
         "transform-decorators-legacy",
         ["import", { "style": "css", "libraryName": "antd-mobile" }],
         ['module-resolver', {
-          'root': ['../lib'],
+          'root': ['./src'],
           'alias': {
             'components': './components',
-            'asset': './asset',
-            'util': './util',
-            'constant': './constant'
           }
         }]
       ]
@@ -34,12 +31,9 @@ export default {
         "transform-decorators-legacy",
         ["import", { "style": "css", "libraryName": "antd-mobile" }],
         ['module-resolver', {
-          'root': ['../lib'],
+          'root': ['./src'],
           'alias': {
             'components': './components',
-            'asset': './asset',
-            'util': './util',
-            'constant': './constant'
           }
         }]
       ]

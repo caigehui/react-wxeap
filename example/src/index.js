@@ -119,13 +119,7 @@ const routes = [
 	},
 ];
 
-const options = {
-	module: 'wxoa', // wxcsm
-	origin: 'http://192.168.0.92/WxSoft.EAP/Base/Main/WxMain.aspx', // http://192.168.0.92/WxSoft.EAP
-	auth: '/WxLoginIF.aspx?EmpNo=sy&EmpPassword=111111' // /WxLoginIF.aspx?EmpNo=sy&EmpPassword=111111
-};
-
-const app = new MobileApp(routes, options);
+const app = new MobileApp(routes);
 
 app.start();
 

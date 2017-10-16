@@ -6,6 +6,7 @@
 * Combination/ComChatView-ChatView组件介绍页
 * Combination/ComListView-ComListView组件介绍页
 * DataDisplay/ComAccView-AccView组件介绍页
+* DataDisplay/ComStamp-Stamp组件介绍页
 * DataDisplay/ComDefaultAvatar-DefaultAvatar组件介绍页
 * DataDisplay/ComRichContentView-RichContentView组件介绍页
 * DataEntry/ComFilterBar-FilterBar组件介绍页
@@ -28,6 +29,10 @@
 * combination/comChatView-ChatView业务模型
 * combination/comListView-ComListView业务模型
 * dataDisplay/comAccView-AccView业务模型
+<<<<<<< HEAD
+* dataDisplay/comStamp-Stamp业务模型
+=======
+>>>>>>> refs/remotes/caigehui/master
 * dataDisplay/comDefaultAvatar-DefaultAvatar业务模型
 * dataDisplay/comRichContentView-RichContentView业务模型
 * dataEntry/comFilterBar-FilterBar业务模型

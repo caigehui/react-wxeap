@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { bind, CONST, View, Seperator, Search, linking } from 'react-wxeap';
-import ComDetail from '../../components/ComDetail';
-import ComHeader from '../../components/ComHeader';
+import { bind, CONST, View, Seperator, Search, linking,routerRedux } from 'react-wxeap';
+import ComDetail from 'components/ComDetail';
+import ComHeader from 'components/ComHeader';
 import { SearchBar, WhiteSpace, List } from 'antd-mobile';
 import { Toast } from 'antd-mobile';
 
@@ -13,26 +13,31 @@ class ComSearch extends Component {
     }
 
     popupSearch = () => {
-        Search.show({
-            onSearch: (value, fill) => {
-                this.props.dispatch({ type: 'comSearch/searchEmp', payload: { value, fill } });
-            }, // 搜索回调func
-            renderRow: (rowData) => {
-                return <div>
-                    <List>
-                        <List.Item>{rowData.name}</List.Item>
-                    </List>
-                </div>;
-
-            }, // 渲染func
-            onCancel: () => {
-                Toast.info('你点击了cancel',1);
-
-            }, // 取消回调func
-            placeholder: '搜索一下“张”这个字', // 搜索框的初始值
-            label: '', // 提示文字
-            notFoundLabel: '找不到内容' // 找不到内容时的提示文字
-        });
+        this.props.dispatch(routerRedux.push({
+            pathname: '/SearchComponent',
+            state: {
+                onSearch: ()=>{
+                    onSearch: (value, fill) => {
+                        this.props.dispatch({ type: 'comSearch/searchEmp', payload: { value, fill } });
+                    } // 搜索回调func
+                },
+                renderRow: (rowData) => {
+                    return <div>
+                        <List>
+                            <List.Item>{rowData.name}</List.Item>
+                        </List>
+                    </div>;
+    
+                }, // 渲染func,
+                placeholder: '搜索一下“张”这个字', // 搜索框的初始值,
+                label: '', // 提示文字
+                notFoundLabel: '找不到内容', // 找不到内容时的提示文字
+                onCancel: () => {
+                    Toast.info('你点击了cancel',1);
+    
+                }, // 取消回调func
+            }
+        }));
     }
 
     render() {

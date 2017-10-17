@@ -3,7 +3,7 @@ import ReactChatView from './ChatView';
 import View from '../View';
 import MobileDetect from '../../utils/MobileDetect';
 import { Icon } from 'antd-mobile';
-import $ from 'jQuery';
+import $ from 'jquery';
 
 export default class ChatView extends Component {
     static propTypes = {
@@ -12,7 +12,7 @@ export default class ChatView extends Component {
         allLoadedText: PropTypes.string,
         getHistory: PropTypes.func,
         getNewMessage: PropTypes.func,
-        requestInterval: PropTypes.number
+        requestInterval: PropTypes.number,
     }
 
     static defaultProps = {
@@ -26,10 +26,15 @@ export default class ChatView extends Component {
         allLoaded: false
     }
 
+    
+    count = 0
+
     componentDidMount() {
         this.getHistory(() => {
             this.getNewMessage();
-            this.timer = setInterval(this.getNewMessage, this.props.requestInterval);
+            if(this.props.requestInterval !== 0) {
+                this.timer = setInterval(this.getNewMessage, this.props.requestInterval);
+            }
         });
     }
 
@@ -37,11 +42,34 @@ export default class ChatView extends Component {
         clearInterval(this.timer);
     }
 
+    /**
+     * 新增一条数据
+     */
+    append = (data, sort) => {
+        this.setState({
+            data: !sort ? [data, ...this.state.data] : [data, ...this.state.data].sort(sort)
+        });
+        setTimeout(() => {
+            $('ChatView').animate({
+                scrollTop: $('ChatView').scrollHeight
+            });
+        }, 200);
+    }
+
+    /**
+     * 移除一条记录
+     */
+    remove = (find) => {
+        this.setState({
+            data: this.state.data.removeByCondition(find)
+        });
+    }
+
     getNewMessage = () => {
-        this.props.getNewMessage && this.props.getNewMessage((data) => {
+        this.props.getNewMessage && this.props.getNewMessage((data, sort) => {
             // 向前加数据
             this.setState({
-                data: [...data, ...this.state.data]
+                data: !sort ? [data, ...this.state.data] : [data, ...this.state.data].sort(sort)
             });
             // 滚动容器至底部
             setTimeout(() => {
@@ -53,15 +81,18 @@ export default class ChatView extends Component {
     }
 
     getHistory = (complete) => {
-        this.props.getHistory && this.props.getHistory((data) => {
+        this.props.getHistory && this.props.getHistory((data, allLoaded) => {
             // 向后加数据
             this.setState({
-                data: [...this.state.data, ...data]
+                data: [...this.state.data, ...data],
+                allLoaded
             });
             setTimeout(() => {
                 complete && complete();
             }, 200);
-        });
+        }, this.count);
+
+        this.count += 1;
     }
 
     onLoad = () => {

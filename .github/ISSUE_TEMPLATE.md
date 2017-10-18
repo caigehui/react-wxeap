@@ -1,8 +1,7 @@
 <!--
 如果对react-wxeap的组件有疑问，或者在开发过程中遇到问题
 请按照下面的模板提交issue
-没有按照模板提问
-如何向开源社区提问题: https://github.com/seajs/seajs/issues/545
+没有按照模板提问的issue将被close
 -->
 ### What steps will reproduce the problem? 该问题的重现步骤是什么？
 1. 

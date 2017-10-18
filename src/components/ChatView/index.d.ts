@@ -16,7 +16,7 @@ declare interface ChatViewProps {
     /**
      * 获取历史消息
      */
-    getHistory: (success: (data: Array, allLoaded) => void) => void;
+    getHistory: (success: (data: Array, allLoaded) => void, count: number) => void;
 }
 
 declare class ChatView extends React.Component<ChatViewProps, any> {

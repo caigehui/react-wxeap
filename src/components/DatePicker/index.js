@@ -12,8 +12,7 @@ class DatePicker extends React.Component {
         onSelect: PropTypes.func,
         checked: PropTypes.object,
         format: PropTypes.string,
-        type: PropTypes.oneOf(['filter', 'statistics'])
-
+        type: PropTypes.oneOf(['onlyCalendar', 'statistics'])
     }
 
     static defaultProps = {
@@ -33,7 +32,7 @@ class DatePicker extends React.Component {
         // 初始化日期业务模型
         this.state = {
             checked: props.checked, // 已选择的日期
-            isCustomDate: false, // 是否自定义日期范围
+            isCustomDate: props.type === 'onlyCalendar', // 是否自定义日期范围
             tab: (() => {  // 当前自定义日期范围的类型
                 switch (props.checked.type) {
                     case '日历':
@@ -220,7 +219,7 @@ class DatePicker extends React.Component {
         let nextMonthStartDay = moment(current.add(1, 'months').startOf('month')); // 下个月第一天
         current.subtract(1, 'months');
         let startDay = current.startOf('month').day() || 7; // 如果是星期天则为7
-        let dayNum = current.endOf('month').date() + startDay; // 本月天数+上月剩余天数
+        let dayNum = current.endOf('month').date() + startDay - 1; // 本月天数+上月剩余天数
 
         return (
             <View style={styles.calendar}>
@@ -341,7 +340,7 @@ class DatePicker extends React.Component {
                                         lastMonthEndDay.add(startDay - 2 - j, 'days');
                                         label = date.format('D');
                                         setSelectedDay(date);
-                                    } else if ((i === Math.ceil(dayNum / 7) && j >= dayNum % 7 - 1) || i > Math.ceil(dayNum / 7)) {
+                                    } else if ((i === Math.ceil(dayNum / 7) && j > dayNum % 7 - 1) || i > Math.ceil(dayNum / 7)) {
                                         let offsetY = i - Math.ceil(dayNum / 7);
                                         let offsetX = j - dayNum % 7 + 1;
                                         textStyle = { ...textStyle, ...styles.inactive };

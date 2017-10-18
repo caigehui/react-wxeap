@@ -20,10 +20,10 @@ declare interface DatePickerProps {
     format: string;
     /**
      * 类型：
-     * filter：过滤，可以选择一月内，一周内等等
      * statistics: 统计，可以选择本月，本周等等
+     * onlyCalendar: 只打开日历选择自定义日期
      */
-    type: 'filter' | 'statistics'
+    type: 'statistics' | 'onlyCalendar' 
 }
 
 /**

@@ -1,0 +1,9 @@
+:global(.am-accordion){
+    border:none;
+  border-top:none !important;
+  border-bottom:none !important;
+}
+:global(.am-accordion-header:after){
+    border-top:none !important;
+    border-bottom:none !important;
+}

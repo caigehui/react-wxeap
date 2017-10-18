@@ -3,24 +3,46 @@ import React from 'react';
 
 declare interface ChatViewProps {
     renderRow: (item: any, index: number, data: Array) => React.ReactElement<any>;
-    onFetch?: (page: number, fill: (data: any, allLoaded: boolean) => void) => void;
     style?: object;
     allLoadedText?: string;
-    stayPosition?: boolean;
+    /**
+     * 传0则不轮询
+     */
+    requestInterval?: number;
+    /**
+     * 每过requestInterval的时间执行一次请求
+     */
+    getNewMessage: (success: (data: Array, sort: Function) => void) => void;
+    /**
+     * 获取历史消息
+     */
+    getHistory: (success: (data: Array, allLoaded) => void) => void;
 }
 
 declare class ChatView extends React.Component<ChatViewProps, any> {
     /**
-     * 填充数据
-     * @param data 
-     * @param allLoaded 
+     * 插入一条新数据
+     * @param data object
      */
-    fill(data, allLoaded): void;
+    append(data: object, sort: Function) : void;
 
     /**
-     * 重新加载
+     * 移除一条数据
+     * @param find func 
+     * example:
+     * this.chatView.remove(item => item.id === id)
      */
-    reload(): void;
+    remove(find: (item: object) => boolean)
+
+    /**
+     * 触发getNewMessage
+     */
+    getNewMessage() : void;
+
+    /**
+     * 触发getHistory
+     */
+    getHistory(): void;
 }
 
 export default ChatView;

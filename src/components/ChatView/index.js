@@ -3,59 +3,102 @@ import ReactChatView from './ChatView';
 import View from '../View';
 import MobileDetect from '../../utils/MobileDetect';
 import { Icon } from 'antd-mobile';
+import $ from 'jquery';
 
 export default class ChatView extends Component {
     static propTypes = {
         renderRow: PropTypes.func,
-        onFetch: PropTypes.func,
         style: PropTypes.object,
         allLoadedText: PropTypes.string,
-        stayPosition: PropTypes.bool
+        getHistory: PropTypes.func,
+        getNewMessage: PropTypes.func,
+        requestInterval: PropTypes.number,
     }
 
     static defaultProps = {
         style: {},
-        allLoadedText: '没有更多了'
+        allLoadedText: '没有更多了',
+        requestInterval: 8000
     }
 
     state = {
-        page: 1,
         data: [],
         allLoaded: false
     }
 
+    
+    count = 0
+
     componentDidMount() {
-        this.reload();
+        this.getHistory(() => {
+            this.getNewMessage();
+            if(this.props.requestInterval !== 0) {
+                this.timer = setInterval(this.getNewMessage, this.props.requestInterval);
+            }
+        });
     }
 
-    reload = () => {
+    componentWillUnmout() {
+        clearInterval(this.timer);
+    }
+
+    /**
+     * 新增一条数据
+     */
+    append = (data, sort) => {
+        this.setState({
+            data: !sort ? [data, ...this.state.data] : [data, ...this.state.data].sort(sort)
+        });
         setTimeout(() => {
-            this.setState({ page: 1 });
-            this.send(1);
+            $('ChatView').animate({
+                scrollTop: $('ChatView').scrollHeight
+            });
         }, 200);
     }
 
-    send = (page) => {
-        this.props.onFetch && this.props.onFetch(page, this.fill);
+    /**
+     * 移除一条记录
+     */
+    remove = (find) => {
+        this.setState({
+            data: this.state.data.removeByCondition(find)
+        });
     }
 
-    fill = (data, allLoaded) => {
-        const { page } = this.state;
-        if (page === 1) {
-            this.setState({ data, allLoaded });
-        } else {
-            this.setState({ data: [...this.state.data, ...data], allLoaded });
-        }
-        this.resolve && this.resolve();
+    getNewMessage = () => {
+        this.props.getNewMessage && this.props.getNewMessage((data, sort) => {
+            // 向前加数据
+            this.setState({
+                data: !sort ? [data, ...this.state.data] : [data, ...this.state.data].sort(sort)
+            });
+            // 滚动容器至底部
+            setTimeout(() => {
+                $('ChatView').animate({
+                    scrollTop: $('ChatView').scrollHeight
+                });
+            }, 200);
+        });
     }
 
+    getHistory = (complete) => {
+        this.props.getHistory && this.props.getHistory((data, allLoaded) => {
+            // 向后加数据
+            this.setState({
+                data: [...this.state.data, ...data],
+                allLoaded
+            });
+            setTimeout(() => {
+                complete && complete();
+            }, 200);
+        }, this.count);
+
+        this.count += 1;
+    }
 
     onLoad = () => {
         return new Promise(resolve => {
-            if (this.state.allLoaded) return;
-            this.resolve = resolve;
-            this.send(this.state.page + 1);
-            this.setState({ page: this.state.page + 1 });
+            if (this.state.allLoaded) return resolve();
+            this.getHistory(resolve);
         });
     }
 
@@ -91,7 +134,6 @@ export default class ChatView extends Component {
             flipped={true}
             scrollLoadThreshold={50}
             onInfiniteLoad={this.onLoad}
-            stayPosition={this.props.stayPosition}
             loadingSpinnerDelegate={!this.state.allLoaded ? <View style={styles.icon}><Icon type={require('../../assets/loading.svg')} /></View> :
                 <View style={styles.icon}><div style={styles.sep} />{this.props.allLoadedText}<div style={styles.sep} /></View>}
         >

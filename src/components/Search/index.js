@@ -20,7 +20,6 @@ export default class searchComponent extends Component {
             placeholder: PropTypes.string,// 输入框默认的搜索数据
             label: PropTypes.string,// 默认下方icon提示文字
             notFoundLabel: PropTypes.string,// 未找到数据的提示文字
-            notFoundLabel: PropTypes.string,// 未找到数据的提示文字
             dispatch: PropTypes.any,
             isEmpty: PropTypes.bool,
             isInit: PropTypes.bool,

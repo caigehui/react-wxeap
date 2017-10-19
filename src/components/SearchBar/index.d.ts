@@ -12,6 +12,7 @@ declare interface SearchBarProps {
     label?: string;// 默认下方icon提示文字
     notFoundLabel?: string;// 未找到数据的提示文字
     style?: object; // 样式覆盖
+    searchCondition?:Array<Conditon>;//可选择的查询条件
 }
 
 declare class SearchBar extends React.Component<SearchBarProps, any> { }

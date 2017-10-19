@@ -15,7 +15,7 @@ const BACKGROUND_COLOR = 'rgb(245,245,249)';
 
 let valuesCache = {};
 let labels = [];
-export default class MyFilterBar extends React.Component {
+export default class FilterBarPro extends React.Component {
     static propTypes = {
         filterBarId: React.PropTypes.any,
         conditions: React.PropTypes.array,

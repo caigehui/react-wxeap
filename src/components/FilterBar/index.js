@@ -183,14 +183,15 @@ export default class FilterBar extends React.Component {
                                 const level = data.searchByCondition(a => a.hasOwnProperty('children')) ? 2 : 1;
                                 const height = Math.min(data.length * 100, 500);
                                 return (
-                                    <Menu
-                                        height={height}
-                                        style={style}
-                                        data={data}
-                                        level={level}
-                                        value={value}
-                                        onChange={onChange}
-                                    />
+                                    <div style={style}>
+                                        <Menu
+                                            height={height}
+                                            data={data}
+                                            level={level}
+                                            value={value}
+                                            onChange={onChange}
+                                        />
+                                    </div>
                                 );
                             })()
                             : null

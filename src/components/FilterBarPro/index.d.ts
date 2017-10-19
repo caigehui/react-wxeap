@@ -32,7 +32,7 @@ declare interface FilterBarProProps {
     onChangePro?:(values:Array<ValuePro>)=>void;
 }
 
-declare class FilterBar extends React.Component<FilterBarProProps, any> {
+declare class FilterBarPro extends React.Component<FilterBarProProps, any> {
     /**
      * 设置Label
      * @param label 

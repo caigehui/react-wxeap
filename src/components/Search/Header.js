@@ -75,7 +75,7 @@ export default class Header extends Component {
 
 const styles = {
     container: {
-        marginTop: 100,
+        marginTop: 30,
         width: '100%',
         height: 500,
         flexDirection: 'column',

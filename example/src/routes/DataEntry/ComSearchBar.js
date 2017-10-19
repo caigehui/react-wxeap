@@ -45,6 +45,13 @@ export default class ComSearchBar extends Component {
                         onSearch={this.onSearch}
                         renderRow={this.renderSearch}
                         style={{ height: 60 }}
+                        searchCondition={
+                            [
+                                { label: '条件1', value: '条件1' },
+                                { label: '条件2', value: '条件2' },
+                                { label: '条件3', value: '条件3' }
+                            ]
+                        }
                     />
                 </View>
                 <Seperator style={{ height: 18 }} />

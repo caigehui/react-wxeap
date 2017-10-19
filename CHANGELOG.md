@@ -1,12 +1,7 @@
 # 更新日志
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
-## 4.2.0-rc
-`2017-10-18`
 
-* 【新增】`FilterBarPro`高级筛选
-
-## 4.2.0-rc
 ## 4.1.0-rc
 `2017-10-17`
 

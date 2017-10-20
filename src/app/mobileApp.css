@@ -95,3 +95,8 @@ html, body, :global(#root) {
 :global(.am-search) {
   background-color: rgb(245, 245, 249)!important
 }
+
+/*modal.alert安卓样式*/
+:global(.am-modal-android .am-modal-content .am-modal-footer .am-modal-button-group-v.am-modal-button-group-normal){
+  flex-direction:column !important;
+}

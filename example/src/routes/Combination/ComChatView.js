@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { bind, CONST, View, linking, ChatView, DefaultAvatar, RichContentView } from 'react-wxeap';
+import { bind, CONST, View, linking, DefaultAvatar, RichContentView, ChatView } from 'react-wxeap';
 import { PAGE_SIZE } from '../../constants';
 import ComDetail from 'components/ComDetail';
 import ComHeader from 'components/ComHeader';
@@ -11,38 +11,25 @@ export default class ComChatView extends Component {
         dispatch: PropTypes.func
     }
 
-    onFetch = (page, fill) => {
-        this.props.dispatch({ type: 'comChatView/queryList', payload: { page, fill, pageSize: PAGE_SIZE } });
+    renderRow = (rowData, index) => {
+        return <div key={index} style={{height: 120}}>{rowData}</div>
+    } 
+
+
+    getHistory = (success, count) => {
+        setTimeout(() => {
+            success([0 ,1, 2], true)
+        }, 500);
     }
 
-    renderRow = (rowData, index) => {
-        return <View key={index} style={{ flexDirection: 'column', alignItems: 'center', margin: '40px 0' }}>
-            {
-                rowData.msgType === 'send'
-                    ?
-                    <View style={{ width: '100%', marginTop: 10, flexWrap: 'nowrap', flexDirection: 'row-reverse', position: 'relative' }}>
-                        <View>
-                            <DefaultAvatar radius={styles.HeadImage.width / 2} id={rowData.id} name={rowData.name} style={styles.HeadImage} />
-                        </View>
-                        <div style={styles.triangleRight} />
-                        <RichContentView contentId={'2'} style={styles.SendedMsg} content={rowData.dream} />
-                    </View>
-                    :
-                    <View style={{ width: '100%', marginTop: 10, flexWrap: 'nowrap', position: 'relative' }}>
-                        <View>
-                            <DefaultAvatar radius={styles.HeadImage.width / 2} id={rowData.id} name={rowData.name} style={styles.HeadImage} />
-                        </View>
-                        <View style={{ flexDirection: 'column' }}>
-                            <View style={{ fontSize: 24, color: '#a0a0a0', marginBottom: 15 }}>
-                                {rowData.name}
-                            </View>
-                            <div style={styles.triangleLeft} />
-                            <RichContentView contentId={'1'} style={styles.ReceivedMsg} content={rowData.dream} />
-                        </View>
-                    </View>
-            }
-        </View>;
-
+    getNewMessage = (success) => {
+        setTimeout(() => {
+            success(['new msg1' ,'new msg2', 'new msg1' ,'new msg2', 'new msg1' ,'new msg2' ])
+            setTimeout(() => {
+                // 滚动到最新消息的开头
+                this.refs.chatview.scrollToNewMsg()
+            }, 2000);
+        }, 500);
     }
 
     render() {
@@ -59,13 +46,16 @@ export default class ComChatView extends Component {
                 <ComDetail title={'基本示例'}>
                 </ComDetail>
                 <ChatView
+                    ref="chatview"
                     style={{
                         width: document.documentElement.clientWidth,
-                        height: document.documentElement.clientHeight - 300,
-                        WebkitOverflowScrolling: 'touch'
+                        height: 400,
+                        backgroundColor: 'white'
                     }}
                     renderRow={this.renderRow}
-                    onFetch={this.onFetch}
+                    getHistory={this.getHistory}
+                    getNewMessage={this.getNewMessage}
+                    requestInterval={0}
                 />
             </div>
         );

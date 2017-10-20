@@ -109,6 +109,7 @@ class ExampleList extends Component {
 					<ListItem content={'ImageUploadView(支持自定义按钮的图片选择器)'} doAction={this.compush} pathname={'/ComImageUploadView'} />
 					<ListItem content={'SearchBar(搜索栏)'} doAction={this.compush} pathname={'/ComSearchBar'} />
 					<ListItem content={'FilterBar(条件筛选栏)'} doAction={this.compush} pathname={'/ComFilterBar'} />
+					<ListItem content={'FilterBarPro(高级条件筛选栏)'} doAction={this.compush} pathname={'/ComFilterBarPro'} />
 				</ListAcc>
 				<ListAcc id={'dataDisplay'} isSpread={this.props.dataDisplayKey} saveKey={this.saveKey} title={'数据展示 Data Display'}>
 					<ListItem content={'DefaultAvatar(头像)'} doAction={this.compush} pathname={'/ComDefaultAvatar'} />

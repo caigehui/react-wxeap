@@ -26,6 +26,7 @@ export { default as View } from './components/View';
 export { default as Cell } from './components/Cell';
 export { default as AccView } from './components/AccView';
 export { default as FilterBar } from './components/FilterBar';
+export { default as FilterBarPro } from './components/FilterBarPro';
 export { default as Search } from './components/Search';
 export { default as SearchBar } from './components/SearchBar';
 export { default as ScrollView } from './components/ScrollView';

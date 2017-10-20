@@ -43,6 +43,17 @@ declare class ChatView extends React.Component<ChatViewProps, any> {
      * 触发getHistory
      */
     getHistory(): void;
+
+    /**
+     * 滚动到最底部
+     */
+    scrollToBottom(): void;
+
+    /**
+     * 滚动到新消息开头
+     */
+    scrollToNewMsg():void;
+
 }
 
 export default ChatView;

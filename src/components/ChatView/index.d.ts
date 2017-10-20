@@ -2,6 +2,7 @@
 import React from 'react';
 
 declare interface ChatViewProps {
+    id?: string;
     renderRow: (item: any, index: number, data: Array) => React.ReactElement<any>;
     style?: object;
     allLoadedText?: string;
@@ -12,11 +13,11 @@ declare interface ChatViewProps {
     /**
      * 每过requestInterval的时间执行一次请求
      */
-    getNewMessage: (success: (data: Array, sort: Function) => void) => void;
+    getNewMessage: (success: (data: Array, sort?: Function) => void) => void;
     /**
      * 获取历史消息
      */
-    getHistory: (success: (data: Array, allLoaded) => void, count: number) => void;
+    getHistory: (success: (data: Array, allLoaded?: Boolean) => void, count: number) => void;
 }
 
 declare class ChatView extends React.Component<ChatViewProps, any> {
@@ -24,7 +25,7 @@ declare class ChatView extends React.Component<ChatViewProps, any> {
      * 插入一条新数据
      * @param data object
      */
-    append(data: object, sort: Function) : void;
+    append(data: object, sort?: Function) : void;
 
     /**
      * 移除一条数据

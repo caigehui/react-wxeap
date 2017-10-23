@@ -11,6 +11,7 @@ const LOADING_THRESHOLD = 100;
 export default class ChatView extends Component {
 
     static propTypes = {
+        id: PropTypes.string,
         renderRow: PropTypes.func,
         style: PropTypes.object,
         allLoadedText: PropTypes.string,
@@ -20,6 +21,7 @@ export default class ChatView extends Component {
     }
 
     static defaultProps = {
+        id: 'chatview',
         style: {},
         allLoadedText: '没有更多了',
         requestInterval: 8000
@@ -44,7 +46,7 @@ export default class ChatView extends Component {
         this.getHistory(() => {
 
             // 监听滚动
-            let chatview = $('#chatview');
+            let chatview = $(`#${this.props.id}`);
             chatview.on('scroll', () => {
 
                 // 使用timeout来降低触发频率
@@ -70,14 +72,14 @@ export default class ChatView extends Component {
 
     componentWillUpdate() {
         if (this._shouldAdjustPosition) {
-            this._lastScrollTop = $('#chatview')[0].scrollHeight - $('#chatview').scrollTop();
+            this._lastScrollTop = $(`#${this.props.id}`)[0].scrollHeight - $(`#${this.props.id}`).scrollTop();
         }
     }
 
     componentDidUpdate() {
-        if (this._shouldAdjustPosition && ($('#chatview')[0].scrollHeight > $('#chatview')[0].clientHeight)) {
+        if (this._shouldAdjustPosition && ($(`#${this.props.id}`)[0].scrollHeight > $(`#${this.props.id}`)[0].clientHeight)) {
             this._shouldAdjustPosition = false;
-            let chatview = $('#chatview');
+            let chatview = $(`#${this.props.id}`);
             chatview.scrollTop(chatview[0].scrollHeight - this._lastScrollTop);
         }
     }
@@ -87,13 +89,13 @@ export default class ChatView extends Component {
     }
 
     scrollToBottom = () => {
-        $('#chatview').animate({
-            scrollTop: $('#chatview')[0].scrollHeight
+        $(`#${this.props.id}`).animate({
+            scrollTop: $(`#${this.props.id}`)[0].scrollHeight
         });
     }
 
     scrollToNewMsg = () => {
-        $('#chatview').animate({
+        $(`#${this.props.id}`).animate({
             scrollTop: this.oldScrollHeight
         });
     }
@@ -125,7 +127,7 @@ export default class ChatView extends Component {
     getNewMessage = () => {
         this.props.getNewMessage && this.props.getNewMessage((data, sort) => {
 
-            this.oldScrollHeight = $('#chatview')[0].scrollHeight;
+            this.oldScrollHeight = $(`#${this.props.id}`)[0].scrollHeight;
             // 向前加数据
             this.setState({
                 data: !sort ? [...data, ...this.state.data] : [...data, ...this.state.data].sort(sort)
@@ -203,7 +205,7 @@ export default class ChatView extends Component {
             ...style
         };
         return (
-            <div id="chatview" style={chatviewStyle}>
+            <div id={this.props.id} style={chatviewStyle}>
                 {this.renderHeader()}
                 {
                     [...this.state.data].reverse().map((rowData, index) => {

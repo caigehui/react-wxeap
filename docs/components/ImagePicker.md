@@ -7,6 +7,7 @@ import { ImagePicker } from 'react-wxeap'
 ...
 <ImagePicker
     files={imgs}
+    allFiles={[{oName:'oName',size: 100,hash:'size',}]}
     onChange={(imgs, operationType) => {
         dispatch({ type: 'model/save', payload: { imgs } })
     }}
@@ -19,6 +20,7 @@ import { ImagePicker } from 'react-wxeap'
 | 属性 | 说明 | 类型 | 默认值 |
 | ----|-----|------|------ |
 | files    | 图片文件数组,元素为对象,包含属性 url（必选, 可能还有id, orientation, 以及业务需要的其它属性     | Array  | []  |
+| allFiles   | 所有附件（文件）,主要用于上传附件时还存在暂存的除了图片以外的其他类型文件(可选)  | Array:[{oName:'oName',size: 100,hash:'size',}] | []  |
 | onChange    | files 值发生变化触发的回调函数, operationType 操作类型有添加，移除，如果是移除操作，则第三个参数代表的是移除图片的索引  | (files: Object, operationType: string, index: number): void |   |
 | onImageClick   | 点击图片触发的回调  | (index: number, files: Object): void |   |
 | onAddImageClick | 自定义选择图片的方法  | (): void |   |

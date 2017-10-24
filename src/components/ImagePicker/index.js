@@ -113,8 +113,7 @@ export default class ImagePickerCompress extends React.Component {
                             <div style={{ width: '100%' }}>
                                 <div style={{ marginLeft: 16, color: COLORS.BLUE_COLOR }}>图片</div>
                                 <ImagePicker
-                                    maxWidth={this.props.maxWidth}
-                                    files={Acc.getImagesFromAccs(allFile)}
+                                    {...this.props}
                                     onImageClick={this.onImageClick}
                                     onChange={this.onChange}
                                 />
@@ -126,8 +125,7 @@ export default class ImagePickerCompress extends React.Component {
                         </div>
                         :
                         <ImagePicker
-                            maxWidth={this.props.maxWidth}
-                            files={Acc.getImagesFromAccs(allFile)}
+                            {...this.props}
                             onImageClick={this.onImageClick}
                             onChange={this.onChange}
                         />

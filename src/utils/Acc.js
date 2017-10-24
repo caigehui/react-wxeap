@@ -3,7 +3,7 @@
  * @param {string} hash 
  */
 export function getImageUrl(hash) {
-    return `${EAP}Service/WxGetFile.ashx?hash=${hash}`;
+    return `${EAP_PATH}Service/WxGetFile.ashx?hash=${hash}`;
 }
 
 /**
@@ -11,7 +11,7 @@ export function getImageUrl(hash) {
  * @param {string} hash 
  */
 export function getThumbUrl(hash) {
-    return `${EAP}Service/WxGetFile.ashx?hash=${hash}&imgSize=small`;
+    return `${EAP_PATH}Service/WxGetFile.ashx?hash=${hash}&imgSize=small`;
 }
 
 /**
@@ -19,7 +19,7 @@ export function getThumbUrl(hash) {
  * @param {int} accId 
  */
 export function getPreviewPath(accId) {
-    return `${EAP}Base/Lib/WxFilePreview.aspx?AccId=${accId}&isMobile=1`;
+    return `${EAP_PATH}Base/Lib/WxFilePreview.aspx?AccId=${accId}&isMobile=1`;
 }
 /**
  * 根据hash获取图片地址
@@ -60,7 +60,7 @@ export function getImageFromContent(oUrl) {
     // 如果是Base64图片
     if(oUrl.indexOf('../../') < 0) return oUrl;
     // WxAccessoryDisplay
-    if(oUrl.indexOf('WxAccessoryDisplay') > 0) return `${EAP}Common/WxAccessoryDisplay.aspx${oUrl.substring(oUrl.indexOf('?'))}`;
+    if(oUrl.indexOf('WxAccessoryDisplay') > 0) return `${EAP_PATH}Common/WxAccessoryDisplay.aspx${oUrl.substring(oUrl.indexOf('?'))}`;
     // 其他情况(大多数)
-    return `${EAP}Common/WxGetFile.aspx${oUrl.substring(oUrl.indexOf('?'))}`;
+    return `${EAP_PATH}Common/WxGetFile.aspx${oUrl.substring(oUrl.indexOf('?'))}`;
 }

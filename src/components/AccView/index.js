@@ -8,7 +8,8 @@ import { Icon } from 'antd-mobile';
 export default class AccView extends React.Component {
     static propTypes = {
         accs: React.PropTypes.array,
-        title: React.PropTypes.string
+        title: React.PropTypes.string,
+        style: React.PropTypes.object
     }
 
     static defaultProps = {
@@ -50,9 +51,9 @@ export default class AccView extends React.Component {
     }
 
     render() {
-        const { accs, title } = this.props;
+        const { accs, title, style } = this.props;
         return (
-            <View style={{ ...styles.container, height: 40 * 2 + 80 + 100 * accs.length + 20 }}>
+            <View style={{ ...styles.container, height: 40 * 2 + 80 + 100 * accs.length + 20, ...style }}>
                 <View style={{ ...styles.card, height: 80 + 100 * accs.length + 20 }}>
                     <View style={styles.labelRow}>
                         <img src={require('../../assets/acc.png')} style={styles.icon} />

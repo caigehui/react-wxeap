@@ -2,6 +2,14 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 4.2.0-rc
+`2017-10-24`
+
+* 【优化】`ImagePicker`支持显示其他附件
+* 【修复】`Acc`在测试环境下路径出错
+* 【修复】`ChatView`无法清除timer的BUG
+* 【优化】`AccView`支持自定义style
+
 ## 4.1.0-rc
 `2017-10-19`
 

@@ -6,6 +6,7 @@ declare interface ImgaePickerProps {
     onChange?: (files: Array<{}>, operationType: string, index?: number) => void;
     selectable?: boolean;
     maxWidth: number;
+    allFile?: Array<{}>
 }
 
 declare class ImgaePicker extends React.Component<ImgaePickerProps, any> { }

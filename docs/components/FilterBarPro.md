@@ -142,7 +142,7 @@ render() {
 | conditionsPro | 高级筛选面板的数据来源，可支持无限条件 | Array | [] |
 | defaultValuesPro | 高级筛选面板的默认值 | Array | [] |
 | onCustomClick | 点击自定义组件，更新高级筛选选面板的值，有两个参数: i和cb，i代表点击第几个条件，cb为回调函数，传入Label和value | func | |
-| onChange   | 点击高级筛选面板的完成按钮时的回调: values为更改后的valusPro  | (values: Array): void |   |
+| onChangePro | 点击高级筛选面板的完成按钮时的回调: values为更改后的valusPro  | (values: Array): void |   |
 
 `FilterBarPro`实例有一个方法`setLabel`, 用于修改普通筛选栏label, 传入要修改的label值和label的位置
 `FilterBarPro`有普通筛选栏和高级筛选面板

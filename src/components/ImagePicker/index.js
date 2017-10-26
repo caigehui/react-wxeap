@@ -5,7 +5,6 @@ import * as MobileDetect from '../../utils/MobileDetect';
 import ImageViewer from '../ImageViewer';
 import MessageBridge from '../../utils/MessageBridge';
 import * as COLORS from '../../constants';
-import * as Acc from '../../utils/Acc';
 import AccItem from './AccItem';
 
 export default class ImagePickerCompress extends React.Component {
@@ -88,13 +87,7 @@ export default class ImagePickerCompress extends React.Component {
             allFile.map((data) => {
                 const accName = data.oName.substring(data.oName.lastIndexOf('.') + 1).toLowerCase();
                 if (accName !== 'png' && accName !== 'jpg' && accName !== 'jpeg' && accName !== 'gif') {
-                    otherFile.push(
-                        {
-                            oName: data.oName,
-                            size: data.size,
-                            hash: data.hash,
-                        }
-                    );
+                    otherFile.push(data);
                 }
             });
         }

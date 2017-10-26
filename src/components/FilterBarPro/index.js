@@ -460,12 +460,12 @@ export default class FilterBarPro extends React.Component {
                         case 'custom':
                             return (
                                 <View
-                                    style={{ ...styles.titlePro, borderBottom: `1px solid ${BORDER_COLOR}` }}
+                                    style={{ ...styles.titlePro, borderBottom: `1px solid ${BORDER_COLOR}`, whiteSpace: 'nowrap' }}
                                     key={i}
                                     onClick={() => this.onCustomClick(i)}
                                 >
                                     <View style={{ color: `${TITLE_COLOR}` }}>{item.name}</View>
-                                    <View style={{ alignItems: 'center' }}>
+                                    <View style={{ alignItems: 'center', whiteSpace: 'nowrap' }}>
                                         <View style={valuesPro[i].label === '请选择' ? { color: SUBTITLE_COLOR } : { color: PRIMARY_COLOR }}>{valuesPro[i].label}</View>
                                         <Icon type="right" size="sm" color="rgb(200,200,200)" />
                                     </View>

@@ -84,7 +84,7 @@ export default class ChatView extends Component {
         }
     }
 
-    componentWillUnmout() {
+    componentWillUnmount() {
         clearInterval(this.timer);
     }
 

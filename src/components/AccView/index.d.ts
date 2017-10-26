@@ -10,6 +10,11 @@ declare interface AccViewProps {
      * 标题
      */
     title: string;
+
+    /**
+     * 样式覆盖
+     */
+    style: object;
 }
 
 declare class AccView extends React.Component<AccViewProps, any> {}

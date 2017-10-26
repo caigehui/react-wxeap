@@ -44,6 +44,7 @@
 * [AccView](./components/AccView.md)
 * [RichContentView](./components/RichContentView.md)
 * [FilterBar](./components/FilterBar.md)
+* [FilterBarPro](./components/FilterBarPro.md)
 * [FloatButton](./components/FloatButton.md)
 * [PinchZoomView](./components/PinchZoomView.md)
 * [Stamp](./components/Stamp.md)

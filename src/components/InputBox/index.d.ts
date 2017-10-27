@@ -11,7 +11,7 @@ declare interface InputBoxProps {
      * 输入框的初始值
      */
     initialValue?: string;
-    
+
     placeholder?: string;
     /**
      * 输入的最大长度，为0则不限制
@@ -22,7 +22,7 @@ declare interface InputBoxProps {
      */
     minLength?: number;
     /**
-     * 类型，一般用作输入数字，不传默认为textare，需要弹出数字键盘传'number',其他类型参考mobile.ant的InputItem组件
+     * 类型，一般用作输入数字，不传默认为textare。银行卡bankCard,手机号phone,密码password, 数字number,money带小数点的数字键盘
      */
     type?: string;
 }

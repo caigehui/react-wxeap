@@ -8,6 +8,7 @@
 import { InputBox } from 'react-wxeap'
 
 InputBox({
+    type:'textarea',//类型，一般用作输入数字，不传默认为textarea。银行卡bankCard,手机号phone,密码password, 数字number,money带小数点的数字键盘
     title: '评论', // 标题
     placeholder: '请输入评论',
     initialValue: '初始值',

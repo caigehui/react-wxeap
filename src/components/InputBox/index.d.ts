@@ -11,7 +11,7 @@ declare interface InputBoxProps {
      * 输入框的初始值
      */
     initialValue?: string;
-    
+
     placeholder?: string;
     /**
      * 输入的最大长度，为0则不限制
@@ -21,6 +21,10 @@ declare interface InputBoxProps {
      * 输入的最小长度，为0则不限制
      */
     minLength?: number;
+    /**
+     * 类型，一般用作输入数字，不传默认为textarea。银行卡bankCard,手机号phone,密码password, 数字number,money带小数点的数字键盘
+     */
+    type?: 'textarea' | 'bankCard' | 'phone' | 'password' | 'number' | 'money';
 }
 
 /**

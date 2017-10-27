@@ -21,6 +21,10 @@ declare interface InputBoxProps {
      * 输入的最小长度，为0则不限制
      */
     minLength?: number;
+    /**
+     * 类型，一般用作输入数字，不传默认为textare，需要弹出数字键盘传'number',其他类型参考mobile.ant的InputItem组件
+     */
+    type?: string;
 }
 
 /**

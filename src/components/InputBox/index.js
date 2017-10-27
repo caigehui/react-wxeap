@@ -3,6 +3,7 @@ import {
     Popup,
     NavBar,
     TextareaItem,
+    InputItem,
     Icon,
     Toast
 } from 'antd-mobile';
@@ -16,6 +17,10 @@ class InputBox extends React.Component {
         placeholder: React.PropTypes.string,
         maxLength: React.PropTypes.number,
         minLength: React.PropTypes.number,
+        type: React.PropTypes.string
+    }
+    static defaultProps = {
+        type: ''
     }
 
     state = {
@@ -30,15 +35,15 @@ class InputBox extends React.Component {
     }
 
     onConfirm = () => {
-        if(this.state.value.length < this.props.minLength) return Toast.info(`请输入至少${this.props.minLength}个字符`, 2);
+        if (this.state.value.length < this.props.minLength) return Toast.info(`请输入至少${this.props.minLength}个字符`, 2);
         let hiddenDisabled = this.props.onConfirm && this.props.onConfirm(this.state.value);
         !hiddenDisabled && Popup.hide();
     }
 
     render() {
-        const { title, placeholder, maxLength } = this.props;
+        const { title, placeholder, maxLength, type } = this.props;
         return (
-            <div style={styles.container}>
+            <div style={type === '' ? { ...styles.container, minHeight: 400 } : styles.container}>
                 <NavBar
                     iconName={require('../../assets/close.svg')}
                     mode="light"
@@ -48,17 +53,31 @@ class InputBox extends React.Component {
                         <Icon type={require('../../assets/tick.svg')} />
                     </div>}
                 >{title}</NavBar>
-                <div style={styles.textarea}>
-                    <TextareaItem
-                        onFocus={() => this.setState({ focused: false })}
-                        focused={this.state.focused}
-                        value={this.state.value}
-                        onChange={(value) => this.setState({ value })}
-                        placeholder={placeholder}
-                        rows={5}
-                        count={maxLength}
-                    />
-                </div>
+                {
+                    type === '' ?
+                        <div style={styles.textarea}>
+                            <TextareaItem
+                                onFocus={() => this.setState({ focused: false })}
+                                focused={this.state.focused}
+                                value={this.state.value}
+                                onChange={(value) => this.setState({ value })}
+                                placeholder={placeholder}
+                                rows={5}
+                                count={maxLength}
+                            />
+                        </div>
+                        : <div style={{}}>
+                            <InputItem
+                                type={this.props.type}
+                                onFocus={() => this.setState({ focused: false })}
+                                focused={this.state.focused}
+                                value={this.state.value}
+                                onChange={(value) => this.setState({ value })}
+                                placeholder={placeholder}
+                                clear={true}
+                            />
+                        </div>
+                }
             </div>
         );
     }
@@ -66,7 +85,6 @@ class InputBox extends React.Component {
 }
 const styles = {
     container: {
-        minHeight: 400,
         width: '100%',
         backgroundColor: 'white',
     },
@@ -86,7 +104,7 @@ const styles = {
 };
 
 function show(options) {
-    Popup.show(<InputBox {...options}/>);
+    Popup.show(<InputBox {...options} />);
 }
 
 export default show;

@@ -5,7 +5,7 @@ import ImageViewer from '../ImageViewer';
 import View from '../View';
 import MobileDetect from '../../utils/MobileDetect';
 import wrapProps from '../../utils/wrapProps';
-import request from '../../app/request'
+import request from '../../app/request';
 import { Icon, Toast, ActionSheet, Modal } from 'antd-mobile';
 
 export default class AccItem extends React.Component {
@@ -21,7 +21,7 @@ export default class AccItem extends React.Component {
         super(props);
         this.state = {
             accs: props.accs
-        }
+        };
     }
 
     getFileImg(acc) {
@@ -101,7 +101,7 @@ export default class AccItem extends React.Component {
 
     showActionSheet = (acc) => {
         const IOSBUTTONS = ['预览', '删除', '取消'];
-        const BUTTONS = ['预览', '下载', '删除', '取消']
+        const BUTTONS = ['预览', '下载', '删除', '取消'];
         if (MobileDetect.isIOS) {
             ActionSheet.showActionSheetWithOptions(
                 {

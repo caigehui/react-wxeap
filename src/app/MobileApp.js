@@ -4,10 +4,12 @@ import React from 'react';
 import dva from 'dva';
 import { Router, Route } from 'dva/router';
 import { rehydrateMiddleware, routingMiddleware } from './middlewares';
+import { REHYDRATE } from 'redux-persist/constants';
 import { useRouterHistory } from 'dva/router';
 import { createHashHistory } from 'history';
 import * as CONSTANTS from '../constants';
 import { persistStore, autoRehydrate } from 'redux-persist';
+import createActionBuffer from 'redux-action-buffer';
 import { Toast } from 'antd-mobile';
 import isArray from 'isarray';
 import searchModel from '../components/Search/model';
@@ -31,7 +33,11 @@ export default class MobileApp {
      */
     constructor(routes, otherMiddlewares = []) {
         this.mobileApp = dva({
-            onAction: [rehydrateMiddleware, routingMiddleware, ...otherMiddlewares],
+            onAction: [
+                // 使用ActionBuffer让App在路由启动前恢复
+                createActionBuffer(REHYDRATE),
+                rehydrateMiddleware,
+                 routingMiddleware, ...otherMiddlewares],
             extraEnhancers: [autoRehydrate()],
             history: useRouterHistory(createHashHistory)({ queryKey: true }),// 不移除_k参数 
             onError(e) {

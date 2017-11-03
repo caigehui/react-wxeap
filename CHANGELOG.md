@@ -2,6 +2,13 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 4.3.0-beta
+`2017-11-3`
+
+* 【优化】`AccView`在Android端支持文件下载
+* 【优化】`ImagePicker`支持删除附件和下载
+* 【优化】persist为true的model数据恢复会在路由启动之前
+
 ## 4.2.1
 `2017-10-30`
 

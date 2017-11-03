@@ -1,6 +1,6 @@
 {
   "name": "react-wxeap",
-  "version": "4.2.0",
+  "version": "4.3.0",
   "description": "cnwxsoft web framework",
   "scripts": {
     "lint": "eslint --ext .js src --fix",
@@ -48,6 +48,7 @@
     "react-dom": "~15.4.1",
     "react-photoswipe": "^1.3.0",
     "redux-persist": "~4.8.0",
+    "redux-action-buffer": "^1.1.0",
     "jquery": "^3.2.1"
   },
   "devDependencies": {

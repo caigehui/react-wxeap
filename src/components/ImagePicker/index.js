@@ -115,7 +115,6 @@ export default class ImagePickerCompress extends React.Component {
                                 <div style={{ marginLeft: 16, color: COLORS.BLUE_COLOR }}>其他附件</div>
                                 <AccItem
                                     accs={this.getOtherFile()}
-                                    onDelete={this.props.onDelete}
                                 />
                             </div>
                         </div>

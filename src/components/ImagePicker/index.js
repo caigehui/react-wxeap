@@ -14,6 +14,7 @@ export default class ImagePickerCompress extends React.Component {
         onChange: React.PropTypes.func,
         files: React.PropTypes.array,
         allFile: React.PropTypes.any,
+        onDelete: React.PropTypes.func
     }
     componentDidMount() {
         /**
@@ -113,7 +114,10 @@ export default class ImagePickerCompress extends React.Component {
                             </div>
                             <div style={this.getOtherFile().length > 0 ? { width: '100%' } : { display: 'none' }}>
                                 <div style={{ marginLeft: 16, color: COLORS.BLUE_COLOR }}>其他附件</div>
-                                <AccItem accs={this.getOtherFile()} />
+                                <AccItem
+                                    accs={this.getOtherFile()}
+                                    onDelete={this.props.onDelete}
+                                />
                             </div>
                         </div>
                         :

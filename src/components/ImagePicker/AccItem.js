@@ -3,15 +3,25 @@ import * as COLORS from '../../constants';
 import * as Acc from '../../utils/Acc';
 import ImageViewer from '../ImageViewer';
 import View from '../View';
-import { Icon } from 'antd-mobile';
+import MobileDetect from '../../utils/MobileDetect'
+import wrapProps from '../../utils/wrapProps'
+import { Icon, Toast, ActionSheet } from 'antd-mobile';
 
 export default class AccItem extends React.Component {
     static propTypes = {
-        accs: React.PropTypes.array
+        accs: React.PropTypes.array,
+        onDelete: React.PropTypes.func
     }
 
     static defaultProps = {
         accs: []
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            accs: props.accs
+        }
     }
 
     getFileImg(acc) {
@@ -49,17 +59,88 @@ export default class AccItem extends React.Component {
             window.location.href = Acc.getPreviewPath(acc.id);
     }
 
+    onDownloadClick = (acc) => {
+
+        try {
+            let elemIF = document.createElement('iframe');
+            elemIF.src = Acc.getImageUrl(acc.hash);
+            elemIF.style.display = 'none';
+            document.body.appendChild(elemIF);
+        } catch (err) {
+            Toast.fail('下载异常！', 2);
+            // return;
+        }
+    }
+
+    onDelete = (acc) => {
+
+        const { accs } = this.state;
+        const newAccs = accs.removeByCondition(i => i.id === acc.id);
+        this.setState({
+            accs: newAccs
+        });
+        this.props.onDelete && this.props.onDelete(acc.id);
+    }
+
+    showActionSheet = (acc) => {
+        const IOSBUTTONS = ['预览', '删除', '取消'];
+        const BUTTONS = ['预览', '下载', '删除', '取消']
+        if (MobileDetect.isIOS) {
+            ActionSheet.showActionSheetWithOptions(
+                {
+                    options: IOSBUTTONS,
+                    cancelButtonIndex: IOSBUTTONS.length - 1,
+                    destructiveButtonIndex: IOSBUTTONS.length - 2,
+                    // title: acc.oName,
+                    message: acc.oName,
+                    maskClosable: true,
+                    wrapProps,
+                },
+                (buttonIndex) => {
+                    if (buttonIndex === IOSBUTTONS.length - 1) return;
+                    if (buttonIndex === 0) {
+                        this.onAccClick(acc);
+                    } else if (buttonIndex === IOSBUTTONS.length - 2) {
+                        this.onDelete(acc);
+                    }
+                }
+            );
+        } else {
+            ActionSheet.showActionSheetWithOptions(
+                {
+                    options: BUTTONS,
+                    cancelButtonIndex: BUTTONS.length - 1,
+                    destructiveButtonIndex: BUTTONS.length - 2,
+                    // title: acc.oName,
+                    message: acc.oName,
+                    maskClosable: true,
+                    wrapProps,
+                },
+                (buttonIndex) => {
+                    if (buttonIndex === BUTTONS.length - 1) return;
+                    if (buttonIndex === 0) {
+                        this.onAccClick(acc);
+                    } else if (buttonIndex === BUTTONS.length - 2) {
+                        this.onDelete(acc);
+                    } else if (buttonIndex === 1) {
+                        this.onDownloadClick(acc);
+                    }
+                }
+            );
+        }
+
+    }
+
     render() {
-        const { accs } = this.props;
+        const { accs } = this.state;
         return (
             <View style={accs.length === 0 ? styles.hide : { width: '95%', margin: '10px auto', fontSize: 26 }}>
                 <View style={{ width: '100%' }}>
-
                     {
                         accs.map((acc, i) => (
-                            <View key={i} style={{ ...styles.accRow, borderBottom: i === accs.length - 1 ? '0' : `1px solid ${COLORS.BORDER_COLOR}` }} onClick={() => this.onAccClick(acc)}>
+                            <View key={i} style={{ ...styles.accRow, borderBottom: i === accs.length - 1 ? '0' : `1px solid ${COLORS.BORDER_COLOR}` }} onClick={() => this.showActionSheet(acc)}>
                                 <img src={this.getFileImg(acc)} style={styles.fileImg} />
-                                <View style={{ ...styles.label, color: COLORS.TITLE_COLOR, flex: 1 }}>
+                                <View style={{ ...styles.label, color: COLORS.TITLE_COLOR }}>
                                     {acc.oName}
                                     <span style={styles.size}>{`(${parseInt(acc.size / 1024)}KB)`}</span>
                                 </View>

@@ -3,14 +3,14 @@ import * as COLORS from '../../constants';
 import * as Acc from '../../utils/Acc';
 import ImageViewer from '../ImageViewer';
 import View from '../View';
-import MobileDetect from '../../utils/MobileDetect'
-import wrapProps from '../../utils/wrapProps'
-import { Icon, Toast, ActionSheet } from 'antd-mobile';
+import MobileDetect from '../../utils/MobileDetect';
+import wrapProps from '../../utils/wrapProps';
+import request from '../../app/request'
+import { Icon, Toast, ActionSheet, Modal } from 'antd-mobile';
 
 export default class AccItem extends React.Component {
     static propTypes = {
         accs: React.PropTypes.array,
-        onDelete: React.PropTypes.func
     }
 
     static defaultProps = {
@@ -73,13 +73,30 @@ export default class AccItem extends React.Component {
     }
 
     onDelete = (acc) => {
-
-        const { accs } = this.state;
-        const newAccs = accs.removeByCondition(i => i.id === acc.id);
-        this.setState({
-            accs: newAccs
-        });
-        this.props.onDelete && this.props.onDelete(acc.id);
+        Modal.alert('删除附件', `此操作不可逆，确认删除${acc.oName}吗？`, [
+            {
+                text: '取消', onPress: () => {
+                    // do nothing
+                }, style: 'default'
+            },
+            {
+                text: '确定', onPress: async () => {
+                    Toast.loading('正在删除', 0);
+                    const accId = `${acc.id}`;
+                    const { err } = await request(`${API}/EAPAcc/DeleteAcc?id=${accId}`);
+                    if (!err) {
+                        Toast.success('删除成功', 1);
+                        const { accs } = this.state;
+                        const newAccs = accs.removeByCondition(i => i.id === acc.id);
+                        this.setState({
+                            accs: newAccs
+                        });
+                    } else {
+                        Toast.fail(`${err}，删除失败`, 2);
+                    }
+                }, style: { fontWeight: 'bold' }
+            }
+        ]);
     }
 
     showActionSheet = (acc) => {

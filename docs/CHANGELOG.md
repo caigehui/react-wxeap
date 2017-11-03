@@ -2,6 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 4.2.1
+`2017-10-30`
+
+* 【修复】修改antd-mobile依赖
+
 ## 4.2.0
 `2017-10-24`
 

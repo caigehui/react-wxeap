@@ -3,7 +3,8 @@ import View from '../View';
 import ImageViewer from '../ImageViewer';
 import * as COLORS from '../../constants';
 import * as Acc from '../../utils/Acc';
-import { Icon } from 'antd-mobile';
+import MobileDetect from '../../utils/MobileDetect';
+import { Icon,Toast } from 'antd-mobile';
 
 export default class AccView extends React.Component {
     static propTypes = {
@@ -20,21 +21,21 @@ export default class AccView extends React.Component {
     getFileImg(acc) {
         const filetype = this.getFileType(acc.oName);
         if (filetype === 'png' || filetype === 'jpg' || filetype === 'jpeg' || filetype === 'gif') {
-            return `${EAP}Service/WxGetFile.ashx?imgSize=small&hash=${acc.hash}`;
+            return `${EAP_PATH}Service/WxGetFile.ashx?imgSize=small&hash=${acc.hash}`;
         } else if (filetype === 'txt')
-            return `${EAP}Images/Yunpan/txt80.png`;
+            return `${EAP_PATH}Images/Yunpan/txt80.png`;
         else if (filetype === 'xls' || filetype === 'xlsx')
-            return `${EAP}Images/Yunpan/Xls80.png`;
+            return `${EAP_PATH}Images/Yunpan/Xls80.png`;
         else if (filetype === 'doc' || filetype === 'docx')
-            return `${EAP}Images/Yunpan/Doc80.png`;
+            return `${EAP_PATH}Images/Yunpan/Doc80.png`;
         else if (filetype === 'pptx' || filetype === 'ppt')
-            return `${EAP}Images/Yunpan/PPT80.png`;
+            return `${EAP_PATH}Images/Yunpan/PPT80.png`;
         else if (filetype === 'zip' || filetype === 'rar')
-            return `${EAP}Images/Yunpan/Zip80.png`;
+            return `${EAP_PATH}Images/Yunpan/Zip80.png`;
         else if (filetype === 'pdf')
-            return `${EAP}Images/Yunpan/PDF80.png`;
+            return `${EAP_PATH}Images/Yunpan/PDF80.png`;
         else
-            return `${EAP}Images/Yunpan/Unknown80.png`;
+            return `${EAP_PATH}Images/Yunpan/Unknown80.png`;
     }
 
     getFileType = (fileName) => {
@@ -45,9 +46,39 @@ export default class AccView extends React.Component {
         // 获取文件后缀名，如果是图片文件就调用图片文件的组件预览，否则就跳转至预览页面
         const filetype = this.getFileType(acc.oName);
         if (filetype === 'png' || filetype === 'jpg' || filetype === 'jpeg' || filetype === 'gif')
-            ImageViewer(0, [{ url: `${EAP}Service/WxGetFile.ashx?hash=${acc.hash}` }]);
-        else
+            ImageViewer(0, [{ url: `${EAP_PATH}Service/WxGetFile.ashx?hash=${acc.hash}` }]);
+        else {
             window.location.href = Acc.getPreviewPath(acc.id);
+        }
+    }
+
+    onDownloadClick = (acc, e) => {
+        e.stopPropagation();
+        try {
+            let elemIF = document.createElement('iframe');
+            elemIF.src = Acc.getImageUrl(acc.hash);
+            elemIF.style.display = 'none';
+            document.body.appendChild(elemIF);
+        } catch (err) {
+            Toast.fail('下载异常！', 2);
+            // return;
+        }
+    }
+
+    renderIcon = (acc) => {
+        if (MobileDetect.isIOS) {
+            return (
+                <View style={styles.arrow} >
+                    <Icon type="right" color={COLORS.SUBTITLE_COLOR} size="md" />
+                </View>
+            );
+        } else {
+            return (
+                <View style={styles.arrow} onClick={(e) => this.onDownloadClick(acc, e)}>
+                    <Icon type={require('../../assets/download2.svg')} color={COLORS.SUBTITLE_COLOR} size="md" />
+                </View>
+            );
+        }
     }
 
     render() {
@@ -69,9 +100,7 @@ export default class AccView extends React.Component {
                                     {acc.oName}
                                     <span style={styles.size}>{`(${parseInt(acc.size / 1024)}KB)`}</span>
                                 </View>
-                                <View style={styles.arrow}>
-                                    <Icon type="right" color={COLORS.SUBTITLE_COLOR} size="md" />
-                                </View>
+                                {this.renderIcon(acc)}
                             </View>
                         ))
                     }
@@ -133,6 +162,7 @@ const styles = {
         fontSize: 28
     },
     arrow: {
+        padding: '10px 20px 0 10px',
         marginRight: 40,
         width: 40,
         height: 40,

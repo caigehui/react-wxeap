@@ -13,8 +13,7 @@ export default class ImagePickerCompress extends React.Component {
         maxWidth: React.PropTypes.number,
         onChange: React.PropTypes.func,
         files: React.PropTypes.array,
-        allFile: React.PropTypes.any,
-        onDelete: React.PropTypes.func
+        allFile: React.PropTypes.any
     }
     componentDidMount() {
         /**

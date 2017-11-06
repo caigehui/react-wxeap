@@ -62,6 +62,11 @@ export default class AccItem extends React.Component {
     onDownloadClick = (acc) => {
 
         try {
+            const filetype = this.getFileType(acc.oName);
+            if (filetype === 'txt' && MobileDetect.isApp) {
+                Toast.fail('APP暂时不支持txt文件下载！', 2);
+                return;
+            }
             let elemIF = document.createElement('iframe');
             elemIF.src = Acc.getImageUrl(acc.hash);
             elemIF.style.display = 'none';

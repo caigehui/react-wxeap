@@ -2,7 +2,12 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
-## 4.3.0-beta
+## 4.3.1
+`2017-11-6`
+
+* 【修复】修复了`Linking`的一个BUG
+
+## 4.3.0
 `2017-11-3`
 
 * 【优化】`AccView`在Android端支持文件下载

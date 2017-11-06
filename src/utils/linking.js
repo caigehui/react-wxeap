@@ -5,10 +5,14 @@ import MessageBridge from './MessageBridge';
 export default function (lo, dispatch) {
 
     if (isApp) {
-        if(lo.isGoBack) {
-            MessageBridge.postMessage({
-                type: 'onGoBack'
-            });
+        if (lo.isGoBack) {
+            if (window.history.length > 1) {
+                return MessageBridge.postMessage({
+                    type: 'onGoBack'
+                });
+            } else {
+                return routerRedux.goBack();
+            }
         }
         const data = {
             type: 'onShouldPush',

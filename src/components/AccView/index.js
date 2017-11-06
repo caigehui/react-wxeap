@@ -4,7 +4,7 @@ import ImageViewer from '../ImageViewer';
 import * as COLORS from '../../constants';
 import * as Acc from '../../utils/Acc';
 import MobileDetect from '../../utils/MobileDetect';
-import { Icon,Toast } from 'antd-mobile';
+import { Icon, Toast } from 'antd-mobile';
 
 export default class AccView extends React.Component {
     static propTypes = {
@@ -55,12 +55,18 @@ export default class AccView extends React.Component {
     onDownloadClick = (acc, e) => {
         e.stopPropagation();
         try {
+            const filetype = this.getFileType(acc.oName);
+            if (filetype === 'txt' && MobileDetect.isApp) {
+                Toast.fail('APP暂时不支持txt文件下载！', 2);
+                return;
+            }
             let elemIF = document.createElement('iframe');
             elemIF.src = Acc.getImageUrl(acc.hash);
             elemIF.style.display = 'none';
             document.body.appendChild(elemIF);
         } catch (err) {
             Toast.fail('下载异常！', 2);
+            // console.warn(err);
             // return;
         }
     }

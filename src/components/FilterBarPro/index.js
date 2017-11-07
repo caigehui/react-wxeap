@@ -373,7 +373,6 @@ export default class FilterBarPro extends React.Component {
                     <div style={style}>
                         <Menu
                             height={height}
-                            style={style}
                             data={data}
                             level={level}
                             value={value}

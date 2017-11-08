@@ -14,7 +14,7 @@ const BORDER_COLOR = 'rgb(220, 220, 220)';
 const BACKGROUND_COLOR = 'rgb(245,245,249)';
 
 let valuesCache = {};
-let labels = [];
+let labels = {};
 export default class FilterBarPro extends React.Component {
     static propTypes = {
         filterBarId: React.PropTypes.any,
@@ -108,12 +108,12 @@ export default class FilterBarPro extends React.Component {
     componentDidMount() {
         this.setState({
             offsetTop: findDOMNode(this.bar).offsetTop,
-            labels: labels.length ? labels : this.state.labels
+            labels: labels[this.props.filterBarId].length ? labels[this.props.filterBarId] : this.state.labels
         });
     }
 
     componentWillUnmount() {
-        labels = this.state.labels;
+        labels[this.props.filterBarId] = this.state.labels;
         valuesCache[this.props.filterBarId] = this.state.valuesPro;
     }
 

@@ -2,10 +2,15 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
+## 4.3.2
+`2017-11-7`
+
+* 【修复】了`FilterBarPro`的一个BUG
+
 ## 4.3.1
 `2017-11-6`
 
-* 【修复】修复了`Linking`的一个BUG
+* 【修复】了`Linking`的一个BUG
 
 ## 4.3.0
 `2017-11-3`

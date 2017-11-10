@@ -43,7 +43,7 @@ function validation(responseJson) {
 			Toast.info('连接超时', 2, () => {
 				backToHome();
 			});
-			return { data: null, err: '连接超时'};
+			return { data: null, err: '连接超时' };
 		default:
 			Toast.info(responseJson.errmsg, 2);
 			throw responseJson.errmsg;
@@ -56,9 +56,9 @@ function exception(err) {
 }
 
 function offLine() {
-  return new Promise(resolve => {
-    resolve({ data: null, err: '无网络连接' });
-  });
+	return new Promise(resolve => {
+		resolve({ data: null, err: '无网络连接' });
+	});
 }
 
 
@@ -68,7 +68,7 @@ function offLine() {
  * @param {object} bodyObject 
  */
 export default function request(url, bodyObject) {
-	if(!onLine) return offLine();
+	if (!onLine) return offLine();
 	let options = { credentials: 'include' };
 	if (bodyObject) options = {
 		method: 'POST',

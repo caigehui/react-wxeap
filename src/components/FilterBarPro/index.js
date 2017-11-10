@@ -33,7 +33,8 @@ export default class FilterBarPro extends React.Component {
         onClick: (i, cb) => {
             cb(null);
         },
-        switchBtns: []
+        switchBtns: [],
+        filterBarId: 'temp'
     }
 
     constructor(props) {

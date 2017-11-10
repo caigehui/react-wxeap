@@ -22,7 +22,8 @@ export default class FilterBar extends React.Component {
         onClick: (i, cb) => {
             cb(null);
         },
-        switchBtns: []
+        switchBtns: [],
+        filterBarId: 'temp'
     }
 
     constructor(props) {

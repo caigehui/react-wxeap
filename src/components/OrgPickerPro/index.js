@@ -8,13 +8,14 @@ import { Popup, NavBar, Icon, List, SearchBar } from 'antd-mobile';
 import * as COLORS from '../../constants';
 import * as Acc from '../../utils/Acc';
 import SearchHeader from '../Search/Header';
+// import { wrapProps, request, View, Cell, ListView, SearchHeader, Acc } from 'react-wxeap';
 
 const colors = [COLORS.BLUE_COLOR, COLORS.RED_COLOR, COLORS.GREEN_COLOR, COLORS.YELLOW_COLOR];
 
-class OrgPicker extends React.Component {
+class OrgPickerPro extends React.Component {
 
     static propTypes = {
-        type: React.PropTypes.oneOf(['empCheck', 'empRadio', 'dptCheck', 'dptRadio', 'cmpCheck', 'cmpRadio']),
+        type: React.PropTypes.oneOf(['empCheck', 'empRadio', 'dptCheck', 'dptRadio', 'cmpCheck', 'cmpRadio', 'prjCheck', 'prjRadio']),
         checked: React.PropTypes.arrayOf(React.PropTypes.object),
         onConfirm: React.PropTypes.func,
         enableEmpty: React.PropTypes.bool,
@@ -36,14 +37,17 @@ class OrgPicker extends React.Component {
         this.state = {
             originalChecked: props.checked,
             checked: props.checked,
-            index: props.nocache ? [] : (OrgPicker.indexForType[props.type] || []),
+            index: props.nocache ? [] : (OrgPickerPro.indexForType[props.type] || []),
             loading: true,
             org: [],
             companies: [],
+            prjT: [],
             content: '',
             emps: [],
             focused: false,
-            searching: false
+            searching: false,
+            dptId: 0,
+            prjId: 0
         };
     }
 
@@ -64,14 +68,15 @@ class OrgPicker extends React.Component {
         }, false);
     }
 
-    request = async (id) => {
-        this.setState({ loading: true });
+    request = async (id, prjId = 0, pstId = 0) => {
+
+        this.setState({ loading: true, dptId: id, prjId });
         if (this.props.type === 'cmpCheck') {
             // 公司多选，展示当前公司的子公司
             const { data } = await request(`${API}EAPOrg/QueryChildrenCompany?companyId=${id}`);
-            OrgPicker.indexForType[this.props.type] = [...this.state.index, data.companies[0]];
+            OrgPickerPro.indexForType[this.props.type] = [...this.state.index, data.companies[0]];
             this.setState({
-                index: OrgPicker.indexForType[this.props.type],
+                index: OrgPickerPro.indexForType[this.props.type],
                 companies: data.companies,
                 loading: false
             });
@@ -82,19 +87,43 @@ class OrgPicker extends React.Component {
                 companies: data.companies,
                 loading: false
             });
+        } else if (this.props.type === 'prjCheck' || this.props.type === 'prjRadio') {
+            const { data } = await request(`${API}EAPOrg/QueryPrjTeam`);
+            this.setState({
+                prjT: data.teams,
+                loading: false
+            });
         } else {
             if (this.props.accessControl && id === 0) {
                 // 权限控制
                 const { data: { me } } = await request(`${API}EAPMe/QueryMe`);
                 id = me.currentCmpDptId;
             }
-            const { data } = await request(`${API}EAPOrg/QueryOrg?dptId=${id}&companyId=0`);
-            OrgPicker.indexForType[this.props.type] = [...this.state.index, data.org[0]];
-            this.setState({
-                index: OrgPicker.indexForType[this.props.type],
-                org: data.org,
-                loading: false
-            });
+            if (pstId !== 0) {
+                const { data } = await request(`${API}EAPOrg/QueryOrg?dptId=${id}&companyId=0&prjId=${prjId}&pstId=${pstId}`);
+                OrgPickerPro.indexForType[this.props.type] = [...this.state.index, data.org[0]];
+                this.setState({
+                    index: OrgPickerPro.indexForType[this.props.type],
+                    org: data.org,
+                    loading: false
+                });
+            } else if (prjId !== 0) {
+                const { data } = await request(`${API}EAPOrg/QueryOrg?dptId=${id}&companyId=0&prjId=${prjId}`);
+                OrgPickerPro.indexForType[this.props.type] = [...this.state.index, data.org[0]];
+                this.setState({
+                    index: OrgPickerPro.indexForType[this.props.type],
+                    org: data.org,
+                    loading: false
+                });
+            } else {
+                const { data } = await request(`${API}EAPOrg/QueryOrg?dptId=${id}&companyId=0`);
+                OrgPickerPro.indexForType[this.props.type] = [...this.state.index, data.org[0]];
+                this.setState({
+                    index: OrgPickerPro.indexForType[this.props.type],
+                    org: data.org,
+                    loading: false
+                });
+            }
         }
 
         // 刷新
@@ -112,6 +141,8 @@ class OrgPicker extends React.Component {
             case 'dptRadio': return '部门单选';
             case 'cmpCheck': return '子公司选择';
             case 'cmpRadio': return '切换单位';
+            case 'prjCheck': return '项目组多选';
+            case 'prjRadio': return '项目组单选';
         }
     }
 
@@ -127,6 +158,7 @@ class OrgPicker extends React.Component {
             case 'empCheck':
             case 'dptCheck':
             case 'cmpCheck':
+            case 'prjCheck':
                 this.setState({
                     checked: this.state.checked.searchByCondition(a => a.id === item.id) ? this.state.checked.removeByCondition(a => a.id === item.id) : [...this.state.checked, item]
                 });
@@ -134,6 +166,7 @@ class OrgPicker extends React.Component {
             case 'empRadio':
             case 'dptRadio':
             case 'cmpRadio':
+            case 'prjRadio':
                 this.setState({
                     checked: [item]
                 });
@@ -142,22 +175,37 @@ class OrgPicker extends React.Component {
         }
     }
 
-    onClick = (id) => {
-        this.request(id);
+    onClick = (item) => {
+        if (item.type === 'prj') {
+            const { dptId } = this.state;
+            this.request(dptId, item.id);
+            return;
+        }
+        if (item.type === 'pst') {
+            const { dptId, prjId } = this.state;
+            this.request(dptId, prjId, item.id);
+            return;
+        }
+        this.request(item.id);
     }
 
-    dptLink = (dptId) => {
-        let { index } = this.state;
+    dptLink = (item) => {
+        const { index } = this.state;
         let newIndex = [];
         for (let i of index) {
-            if (i.id === dptId) break;
+            if (i.id === item.id && i.name === item.name) break;
             newIndex.push(i);
         }
-        OrgPicker.indexForType[this.props.type] = newIndex;
+        OrgPickerPro.indexForType[this.props.type] = newIndex;
         this.setState({
             index: newIndex
         });
-        this.request(dptId);
+        if (item.type === 'prj') {
+            const { dptId } = this.state;
+            this.request(dptId, item.id);
+        } else {
+            this.request(item.id);
+        }
     }
 
     renderLoading() {
@@ -195,6 +243,8 @@ class OrgPicker extends React.Component {
             case 'dptRadio':
             case 'cmpRadio':
             case 'cmpCheck':
+            case 'prjCheck':
+            case 'prjRadio':
                 return null;
         }
         return <SearchBar placeholder="搜索" value={this.state.content} onChange={this.onSearch} onFocus={() => this.setState({ focused: true })} onBlur={() => this.setState({ focused: false })} onCancel={() => this.setState({ emps: [], content: '' })} />;
@@ -246,10 +296,10 @@ class OrgPicker extends React.Component {
         if (this.state.focused || this.state.content.length > 0) return null;
         if (this.props.type === 'cmpRadio') return null; // 切换公司不需要Index
         let el = [];
-        index.map((dpt, i) => {
+        index.map((item, i) => {
             el.push(<div key={i} onClick={() => {
-                i !== index.length - 1 && this.dptLink(dpt.id);
-            }} style={i === index.length - 1 ? { ...styles.item, color: COLORS.SUBTITLE_COLOR } : styles.item}>{dpt.name}</div>);
+                i !== index.length - 1 && this.dptLink(item);
+            }} style={i === index.length - 1 ? { ...styles.item, color: COLORS.SUBTITLE_COLOR } : styles.item}>{item.name}</div>);
             if (i === index.length - 1) return;
             el.push(<div key={`${i}-sep`} style={{
                 ...styles.item, padding: 0
@@ -309,7 +359,7 @@ class OrgPicker extends React.Component {
     renderPickerContainer() {
         if (this.state.focused || this.state.content.length > 0) return this.renderSearchResult();
         const { disableCheckedDelete } = this.props;
-        const { org, checked, index, companies, originalChecked } = this.state;
+        const { org, checked, index, companies, originalChecked, prjT } = this.state;
         return (
             <div style={styles.pickerContainer}>
                 {
@@ -320,19 +370,20 @@ class OrgPicker extends React.Component {
                                 return (
                                     <List>
                                         {org.map(item => {
-                                            if (item.type === 'all') return null;
+                                            if (item.type === 'prj' && index.length > 1) return null;
+                                            if (item.type === 'all' || item.isAll) return null;
                                             return (
                                                 <Cell
                                                     disabled={disableCheckedDelete ? originalChecked.searchByCondition(i => i.id === item.id) : false}
                                                     key={item.id}
-                                                    checkable={item.type === 'emp'}
+                                                    checkable={item.type === 'emp' || item.type === 'prjEmp'}
                                                     checked={checked.searchByCondition(a => a.id === item.id)}
-                                                    onClick={() => item.type === 'emp' ? this.onChange(item) : this.onClick(item.id)}
+                                                    onClick={() => item.type === 'emp' || item.type === 'prjEmp' ? this.onChange(item) : this.onClick(item)}
                                                     onCheck={() => this.onChange(item)}
                                                     renderContent={() =>
                                                         <View style={styles.cell}>
                                                             {
-                                                                item.type === 'dpt' ?
+                                                                item.type === 'dpt' || item.type === 'prj' || item.type === 'pst' ?
                                                                     <img src={require('../../assets/org.png')} style={styles.icon} />
                                                                     :
                                                                     !item.avatarHash ?
@@ -342,10 +393,11 @@ class OrgPicker extends React.Component {
                                                             }
                                                             <View style={styles.label}>
                                                                 {item.name}
-                                                                {item.type === 'dpt' || !item.jobName ? null : <span style={styles.job}>{item.jobName}</span>}
+                                                                {item.type === 'dpt' || item.type === 'prj' || item.type === 'pst' || !item.jobName ? null : <span style={styles.job}>{item.jobName}</span>}
+                                                                {item.posName ? <span style={styles.job}>{item.posName}</span> : null}
                                                             </View>
                                                             {
-                                                                item.type === 'dpt' ?
+                                                                item.type === 'dpt' || item.type === 'prj' || item.type === 'pst' ?
                                                                     <View style={styles.arrow}>
                                                                         <Icon type="right"
                                                                             size="md" color={COLORS.SUBTITLE_COLOR} />
@@ -370,7 +422,7 @@ class OrgPicker extends React.Component {
                                                         key={item.id}
                                                         checked={checked.searchByCondition(a => a.id === item.id)}
                                                         checkable
-                                                        onClick={() => item.isLeaf || (index.length === 1 && item.type === 'all') ? this.onChange(item) : this.onClick(item.id)}
+                                                        onClick={() => item.isLeaf || (index.length === 1 && item.type === 'all') ? this.onChange(item) : this.onClick(item)}
                                                         onCheck={() => this.onChange(item)}
                                                         renderContent={() =>
                                                             <View style={styles.cell}>
@@ -381,6 +433,44 @@ class OrgPicker extends React.Component {
                                                                 </View>
                                                                 {
                                                                     !item.isLeaf && !(index.length === 1 && item.type === 'all') ?
+                                                                        <View style={styles.arrow}>
+                                                                            <Icon type="right"
+                                                                                size="md" color={COLORS.SUBTITLE_COLOR} />
+                                                                        </View>
+                                                                        : null
+                                                                }
+                                                            </View>
+                                                        } />
+                                                );
+                                            } else {
+                                                return null;
+                                            }
+                                        })}
+                                    </List>
+                                );
+                            case 'prjCheck':
+                            case 'prjRadio':
+                                return (
+                                    <List>
+                                        {prjT.map(item => {
+                                            if (item.type === 'prj' || (index.length === 1 && (item.type === 'all' || item.isAll))) {
+                                                return (
+                                                    <Cell
+                                                        disabled={disableCheckedDelete ? originalChecked.searchByCondition(i => i.id === item.id) : false}
+                                                        key={item.id}
+                                                        checked={checked.searchByCondition(a => a.id === item.id)}
+                                                        checkable
+                                                        onClick={() => item.isLeaf || (index.length === 1 && (item.type === 'all' || item.isAll)) ? this.onChange(item) : this.onClick(item)}
+                                                        onCheck={() => this.onChange(item)}
+                                                        renderContent={() =>
+                                                            <View style={styles.cell}>
+                                                                <img src={index.length === 1 && (item.type === 'all' || item.isAll) ? require('../../assets/org-prt.png') : require('../../assets/org.png')}
+                                                                    style={styles.icon} />
+                                                                <View style={styles.label}>
+                                                                    {item.name}
+                                                                </View>
+                                                                {
+                                                                    !item.isLeaf && !(index.length === 1 && (item.type === 'all' || item.isAll)) ?
                                                                         <View style={styles.arrow}>
                                                                             <Icon type="right"
                                                                                 size="md" color={COLORS.SUBTITLE_COLOR} />
@@ -407,7 +497,7 @@ class OrgPicker extends React.Component {
                                                     key={item.id}
                                                     checked={checked.searchByCondition(a => a.id === item.id)}
                                                     checkable
-                                                    onClick={() => item.isLeaf ? this.onChange(item) : this.onClick(item.id)}
+                                                    onClick={() => item.isLeaf ? this.onChange(item) : this.onClick(item)}
                                                     onCheck={() => this.onChange(item)}
                                                     renderContent={() =>
                                                         <View style={styles.cell}>
@@ -473,6 +563,7 @@ class OrgPicker extends React.Component {
     }
 
     render() {
+
         return (
             <div style={{ ...styles.container, height: document.documentElement.clientHeight }}>
                 <NavBar
@@ -586,7 +677,7 @@ const styles = {
 
 
 function show(options) {
-    Popup.show(<OrgPicker {...options} />, { transitionName: 'am-fade', wrapProps });
+    Popup.show(<OrgPickerPro {...options} />, { transitionName: 'am-fade', wrapProps });
 }
 
 export default show;

@@ -14,6 +14,7 @@ export { default as ChatView } from './components/ChatView';
 export { default as Seperator } from './components/Seperator';
 export { default as InputBox } from './components/InputBox';
 export { default as OrgPicker } from './components/OrgPicker';
+export { default as OrgPickerPro } from './components/OrgPickerPro';
 export { default as DefaultAvatar } from './components/DefaultAvatar';
 export { default as Navigation } from './components/Navigation';
 export { default as FloatButton } from './components/FloatButton';

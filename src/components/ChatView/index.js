@@ -41,7 +41,7 @@ export default class ChatView extends Component {
     // 是否应该适配chatview的高度
     _shouldAdjustPosition = false
 
-    componentDidMount() {
+    init() {
         // 初始化加载一次历史记录
         this.getHistory(() => {
 

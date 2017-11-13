@@ -109,7 +109,7 @@ export default class FilterBarPro extends React.Component {
     componentDidMount() {
         this.setState({
             offsetTop: findDOMNode(this.bar).offsetTop,
-            labels: labels[this.props.filterBarId].length ? labels[this.props.filterBarId] : this.state.labels
+            labels: labels[this.props.filterBarId] && labels[this.props.filterBarId].length ? labels[this.props.filterBarId] : this.state.labels
         });
     }
 

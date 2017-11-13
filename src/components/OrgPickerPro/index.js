@@ -208,6 +208,81 @@ class OrgPickerPro extends React.Component {
         }
     }
 
+    renderIsAllChecked = (all) => {
+        const { type } = this.props;
+        const { checked } = this.state;
+        let newAll = [...all];
+        if (type === 'cmpCheck') {
+            newAll.splice(0, 1);
+        }
+        for (let item of newAll) {
+            if (type === 'empCheck' && (item.type === 'emp' || item.type === 'prjEmp') && !checked.searchByCondition(i => i.id === item.id)) {
+                return false;
+            }
+            if (type === 'dptCheck' && item.type === 'dpt' && !checked.searchByCondition(i => i.id === item.id)) {
+                return false;
+            }
+            if (type === 'cmpCheck' && !checked.searchByCondition(i => i.id === item.id)) {
+                return false;
+            }
+            if (type === 'prjCheck' && item.type === 'prj' && !checked.searchByCondition(i => i.id === item.id)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    onClickAll = (all) => {
+        const { type } = this.props;
+        const { checked } = this.state;
+        let newChecked = [...checked];
+        let newAll = [...all];
+        if (type === 'cmpCheck') {
+            newAll.splice(0, 1);
+        }
+        if (this.renderIsAllChecked(all)) {
+            for (let item of newAll) {
+                if (type === 'empCheck' && !(item.type === 'emp' || item.type === 'prjEmp')) continue;
+                if (type === 'dptCheck' && item.type !== 'dpt') continue;
+
+                if (type === 'prjCheck' && item.type !== 'prj') continue;
+                if (newChecked.searchByCondition(i => i.id === item.id && i.name === item.name)) {
+                    newChecked = newChecked.removeByCondition(i => i.id === item.id && i.name === item.name);
+                }
+            }
+        } else {
+            for (let item of newAll) {
+                if (type === 'empCheck' && !(item.type === 'emp' || item.type === 'prjEmp')) continue;
+                if (type === 'dptCheck' && item.type !== 'dpt') continue;
+
+                if (type === 'prjCheck' && item.type !== 'prj') continue;
+                if (newChecked.searchByCondition(i => i.id === item.id && i.name === item.name)) {
+                    newChecked = newChecked.removeByCondition(i => i.id === item.id && i.name === item.name);
+                }
+                newChecked.push(item);
+            }
+        }
+        this.setState({ checked: newChecked });
+    }
+
+    renderAllChecked = (all) => {
+        return (
+            <Cell
+                disabled={false}
+                checkable={true}
+                checked={this.renderIsAllChecked(all)}
+                onClick={() => this.onClickAll(all)}
+                onCheck={() => this.onClickAll(all)}
+                renderContent={() =>
+                    <View style={styles.cell}>
+                        <View style={styles.label}>
+                            全选
+                        </View>
+                    </View>}
+            />
+        );
+    }
+
     renderLoading() {
         return (
             <View style={styles.loading}>
@@ -369,6 +444,7 @@ class OrgPickerPro extends React.Component {
                             case 'empRadio':
                                 return (
                                     <List>
+                                        {this.props.type === 'empCheck' && org.searchByCondition(i => i.type === 'emp' || i.type === 'prjEmp') ? this.renderAllChecked(org) : null}
                                         {org.map(item => {
                                             if (item.type === 'prj' && index.length > 1) return null;
                                             if (item.type === 'all' || item.isAll) return null;
@@ -414,8 +490,9 @@ class OrgPickerPro extends React.Component {
                             case 'dptRadio':
                                 return (
                                     <List>
+                                        {this.props.type === 'dptCheck' && org.searchByCondition(i => i.type === 'dpt') ? this.renderAllChecked(org) : null}
                                         {org.map(item => {
-                                            if (item.type === 'dpt' || (index.length === 1 && item.type === 'all')) {
+                                            if (item.type === 'dpt') {
                                                 return (
                                                     <Cell
                                                         disabled={disableCheckedDelete ? originalChecked.searchByCondition(i => i.id === item.id) : false}
@@ -452,8 +529,9 @@ class OrgPickerPro extends React.Component {
                             case 'prjRadio':
                                 return (
                                     <List>
+                                        {this.props.type === 'prjCheck' && prjT.searchByCondition(i => i.type === 'prj') ? this.renderAllChecked(prjT) : null}
                                         {prjT.map(item => {
-                                            if (item.type === 'prj' || (index.length === 1 && (item.type === 'all' || item.isAll))) {
+                                            if (item.type === 'prj') {
                                                 return (
                                                     <Cell
                                                         disabled={disableCheckedDelete ? originalChecked.searchByCondition(i => i.id === item.id) : false}
@@ -489,6 +567,7 @@ class OrgPickerPro extends React.Component {
                             case 'cmpCheck':
                                 return (
                                     <List>
+                                        {this.props.type === 'cmpCheck' && companies.length > 1 ? this.renderAllChecked(companies) : null}
                                         {companies.map((item, i) => {
                                             if (i === 0) return null;
                                             return (

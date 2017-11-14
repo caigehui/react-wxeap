@@ -13,3 +13,4 @@ lib
 config.gypi
 CVS
 npm-debug.log
+sh.exe.stackdump

@@ -2,7 +2,7 @@
  * react web 入口
  */
 
- 
+ //test1
 import 'babel-polyfill';
 import './utils/extensions/array';
 export { compareObject } from './utils/extensions/object';

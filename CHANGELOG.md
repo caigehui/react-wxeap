@@ -2,7 +2,11 @@
 
 Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语义化版本规范。
 
-## 4.4.3
+## 4.3.5
+
+* 【优化】`ChatView`需要手动调用init方法
+
+## 4.3.3
 `2017-11-8`
 
 * 【修复】了多个`FilterBar`的情况下的Bug，需要指定filerBarId
@@ -39,16 +43,12 @@ Note: 严格遵循[Semantic Versioning 2.0.0](http://semver.org/lang/zh-CN/)语�
 * 【优化】`InputBox`支持自定义键盘
 
 
-## 4.1.0-rc
+## 4.1.0
 `2017-10-19`
 
 * 【重做】`ChatView`，移除旧的API，减少数据冗余和流量消耗，并完美兼容数据缓存
 * 【新增】加入了`jquery`的依赖
 * 【优化】优化了`Search`和`SearchBar`
-
-## 4.1.0-beta
-`2017-10-12`
-
 * 【新增】`Stamp`组件
 
 ## 4.0.2

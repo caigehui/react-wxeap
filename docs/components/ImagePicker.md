@@ -13,7 +13,8 @@ import { ImagePicker } from 'react-wxeap'
     }}
     onImageClick={ImageViewer}
     selectable={imgs.length < 3}
-    maxWidth={800}/>
+    maxWidth={800}
+    />
 ```
 
 

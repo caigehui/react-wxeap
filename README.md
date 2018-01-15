@@ -1,6 +1,6 @@
 # react-wxeap 
 
-**Thie repo is transfered to cnwxsoft's Gitlab server, and not being maintained anymore** 
+**This repo had been transferred to cnwxsoft's Gitlab server, and not being maintained anymore** 
 
 [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://www.npmjs.com/package/react-wxeap)
 [![Travis](https://img.shields.io/npm/v/react-wxeap.svg?style=flat)](https://img.shields.io/npm/v/react-wxeap.svg?style=flat)
